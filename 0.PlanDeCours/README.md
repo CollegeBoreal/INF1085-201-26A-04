@@ -194,15 +194,16 @@ Résumé du cours en une ligne
 
 🐧 Installer → Administrer → Sécuriser → Automatiser → Déployer → Surveiller → Documenter → Mettre en production un serveur Linux d'entreprise.
 
-Version « fun » orientée carrière
-Étape	Ce que l'étudiant devient🐣 Installation Linux	Junior Linux User
-💻 Ligne de commande	Terminal Ninja
-👥 Utilisateurs & groupes	Administrateur système
-🔐 Sécurité	Gardien du serveur
-⚙️ Scripts Bash	Automatisation Guru
-🌐 Services réseau	Architecte Linux
-📊 Monitoring	Dépanneur d'élite
-🚀 Projet final	Linux SysAdmin prêt pour l'entreprise
+| Étape                     | Ce que l'étudiant devient             |
+| ------------------------- | ------------------------------------- |
+| 🐣 Installation Linux     | Junior Linux User                     |
+| 💻 Ligne de commande      | Terminal Ninja                        |
+| 👥 Utilisateurs & groupes | Administrateur système                |
+| 🔐 Sécurité               | Gardien du serveur                    |
+| ⚙️ Scripts Bash           | Automatisation Guru                   |
+| 🌐 Services réseau        | Architecte Linux                      |
+| 📊 Monitoring             | Dépanneur d'élite                     |
+| 🚀 Projet final           | Linux SysAdmin prêt pour l'entreprise |
 
 Cette progression reflète directement les trois RAC du cours : installation, administration des comptes et permissions, puis optimisation, sécurité et surveillance des systèmes Linux.
 
