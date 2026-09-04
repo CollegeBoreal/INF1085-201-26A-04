@@ -156,7 +156,7 @@ Services Réseau
 • Applications serveur
 "]
 
-E --> F2["
+E --> F2["🥼
 Services Linux
  - Web
  - DNS
