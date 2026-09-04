@@ -140,7 +140,7 @@ Permissions & Sécurité
 • Pare-feu
 "]
 
-D --> E["⚙️
+D --> E2["⚙️
 Scripts & Automatisation
 • Bash
 • Variables
@@ -148,13 +148,15 @@ Scripts & Automatisation
 • Tâches planifiées
 "]
 
-E --> F["🌐
+E1 --> F["🌐
 Services Réseau
 • Web
 • DNS
 • SSH
 • Applications serveur
 "]
+
+E2 --> F
 
 F --> G["📊
 Surveillance & Diagnostic
