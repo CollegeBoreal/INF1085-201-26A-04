@@ -164,9 +164,9 @@ Services Linux
  - Déploiement
 "]
 
-F2 --> G
+F2 --> H
 
-G --> H["📊
+F1 --> H["📊
 Surveillance & Diagnostic
 • Logs
 • Dépannage
