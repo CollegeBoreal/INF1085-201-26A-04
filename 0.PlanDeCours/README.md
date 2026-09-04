@@ -148,7 +148,7 @@ Scripts & Automatisation
 • Tâches planifiées
 "]
 
-E --> F1["🌐
+E --> F2["🌐
 Services Réseau
 • Web
 • DNS
@@ -174,7 +174,6 @@ Surveillance & Diagnostic
 • Monitoring
 "]
 
-
 H --> I["📚
 Documentation
 • Procédures
@@ -182,7 +181,7 @@ Documentation
 • Bonnes pratiques
 "]
 
-J --> K["🚀
+I --> J["🚀
 Projet Final
 Serveur Web complet
 • Installation
