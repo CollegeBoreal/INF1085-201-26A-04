@@ -140,6 +140,14 @@ Permissions & Sécurité
 • Pare-feu
 "]
 
+D --> E1["
+Services Linux
+ - Web
+ - DNS
+ - Réseau
+ - Déploiement
+"]
+
 D --> E2["⚙️
 Scripts & Automatisation
 • Bash
