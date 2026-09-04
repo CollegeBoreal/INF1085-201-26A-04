@@ -105,6 +105,7 @@ R5 --> R6["Projet<br/>Serveur Web"]
 
 Voici une version plus engageante, moderne et « étudiant-friendly » du curriculum INF1085, avec quelques émojis pour illustrer le parcours d'apprentissage.
 
+```mermaid
 flowchart LR
 
 A["🐧
@@ -189,6 +190,7 @@ D --> E["🤖 Automatiser"]
 E --> F["🌐 Déployer des services"]
 F --> G["📈 Surveiller"]
 G --> H["🚀 Exploiter en production"]
+```
 
 Résumé du cours en une ligne
 
