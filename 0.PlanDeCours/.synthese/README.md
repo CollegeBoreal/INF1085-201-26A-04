@@ -27,35 +27,42 @@
 - 🔍 Diagnostiquer et résoudre des problèmes système.
 - ⚡ Adapter la configuration selon les besoins de l'entreprise.
 - 📈 Surveiller les performances et l'état du système.
-📝 Documenter les modifications et procédures.
-🤖 Automatiser la surveillance et certaines opérations administratives.
-🧪 Évaluations
-Évaluation	%🐧 Laboratoire : Installation initiale du système	10 %
-❓ Quiz : Installation et configuration initiale	10 %
-👥 Laboratoire : Gestion des comptes, processus et permissions	10 %
-💻 Laboratoire : Ligne de commande	10 %
-❓ Quiz : Gestion des comptes, processus et permissions	10 %
-📦 Laboratoire : Installation d'application	10 %
-⚙️ Laboratoire : Configuration	10 %
-❓ Quiz : Configuration et surveillance	10 %
-🚀 Projet final : Mise en fonction d'un serveur Web	20 %
+- 📝 Documenter les modifications et procédures.
+- 🤖 Automatiser la surveillance et certaines opérations administratives.
+
+## 🧪 Évaluations
+
+| Évaluation                                                     |    % |
+| -------------------------------------------------------------- | ---: |
+| 🐧 Laboratoire : Installation initiale du système              | 10 % |
+| ❓ Quiz : Installation et configuration initiale                | 10 % |
+| 👥 Laboratoire : Gestion des comptes, processus et permissions | 10 % |
+| 💻 Laboratoire : Ligne de commande                             | 10 % |
+| ❓ Quiz : Gestion des comptes, processus et permissions         | 10 % |
+| 📦 Laboratoire : Installation d'application                    | 10 % |
+| ⚙️ Laboratoire : Configuration                                 | 10 % |
+| ❓ Quiz : Configuration et surveillance                         | 10 % |
+| 🚀 Projet final : Mise en fonction d'un serveur Web            | 20 % |
+
 
 Total : 100 %.
 
-✅ Note de passage
-60 % (C-)
-🏆 Compétences développées
+# ✅ Note de passage
+- 60 % (C-)
+
+# 🏆 Compétences développées
 
 Durant le cours, les étudiants développeront :
 
-💻 Administration de systèmes Linux.
-🔒 Sécurité des environnements informatiques.
-🔧 Diagnostic et dépannage.
-🤖 Automatisation par scripts.
-🌐 Déploiement de services et infrastructures.
-📚 Documentation technique professionnelle.
-🧠 Résolution de problèmes et pensée analytique.
-⏱️ Gestion du temps et des ressources.
-🎓 Résumé en une phrase
+- 💻 Administration de systèmes Linux.
+- 🔒 Sécurité des environnements informatiques.
+- 🔧 Diagnostic et dépannage.
+- 🤖 Automatisation par scripts.
+- 🌐 Déploiement de services et infrastructures.
+- 📚 Documentation technique professionnelle.
+- 🧠 Résolution de problèmes et pensée analytique.
+- ⏱️ Gestion du temps et des ressources.
+
+# 🎓 Résumé en une phrase
 
 🐧 Installer → Administrer → Sécuriser → Automatiser → Surveiller → Déployer un serveur Linux professionnel en appliquant les pratiques utilisées en entreprise.
