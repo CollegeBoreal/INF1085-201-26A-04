@@ -179,8 +179,10 @@ Serveur Web complet
 • Configuration
 • Documentation
 "]
+```
 
 Vue « parcours étudiant »
+```mermaid
 flowchart LR
 
 A["🛠️ Installer"] --> B["💻 Administrer"]
