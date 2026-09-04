@@ -164,13 +164,15 @@ Services Linux
  - Déploiement
 "]
 
-F2 --> G["📊
+E --> F2["📊
 Surveillance & Diagnostic
 • Logs
 • Dépannage
 • Performance
 • Monitoring
 "]
+
+F2 --> G
 
 G --> H["📚
 Documentation
