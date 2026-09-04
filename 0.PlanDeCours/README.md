@@ -140,7 +140,7 @@ Permissions & Sécurité
 • Pare-feu
 "]
 
-D --> F1["⚙️
+D --> E["⚙️
 Scripts & Automatisation
 • Bash
 • Variables
@@ -148,7 +148,7 @@ Scripts & Automatisation
 • Tâches planifiées
 "]
 
-E --> F2["🌐
+E --> F1["🌐
 Services Réseau
 • Web
 • DNS
@@ -156,7 +156,7 @@ Services Réseau
 • Applications serveur
 "]
 
-F1 --> G["
+E --> F2["
 Services Linux
  - Web
  - DNS
