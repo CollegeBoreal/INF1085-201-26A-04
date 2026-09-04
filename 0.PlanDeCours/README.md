@@ -164,7 +164,9 @@ Services Linux
  - Déploiement
 "]
 
-E --> F2["📊
+F2 --> G
+
+G --> H["📊
 Surveillance & Diagnostic
 • Logs
 • Dépannage
@@ -172,16 +174,15 @@ Surveillance & Diagnostic
 • Monitoring
 "]
 
-F2 --> G
 
-G --> H["📚
+H --> I["📚
 Documentation
 • Procédures
 • Changements
 • Bonnes pratiques
 "]
 
-H --> I["🚀
+J --> K["🚀
 Projet Final
 Serveur Web complet
 • Installation
