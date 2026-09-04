@@ -17,7 +17,7 @@
 
 ---
 
-## 📈 Plan de Cours
+## :b: Plan de Cours 📈 
 
 ```mermaid
 flowchart LR
