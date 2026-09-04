@@ -103,72 +103,106 @@ R5 --> R6["Projet<br/>Serveur Web"]
 ```
 
 
-Sommaire du curriculum – INF1085 Administration Linux
+Voici une version plus engageante, moderne et « étudiant-friendly » du curriculum INF1085, avec quelques émojis pour illustrer le parcours d'apprentissage.
 
-Le cours Automne-2026-INF-1085-201-04-Administration-Linux.pdf (INF1085-201 Administration Linux) est un cours de 56 heures du programme Techniques des systèmes informatiques, offert à l'automne 2026. Le préalable est INF1092-200 ou INF1092-201.
+flowchart LR
 
-Description du cours
+A["🐧
+Installation Linux
+• Ubuntu Server
+• Machines virtuelles
+• SSH
+• Configuration initiale
+"]
 
-Le cours porte sur l'administration avancée de systèmes Linux en réseau, notamment :
+--> B["💻
+Ligne de commande
+• Navigation
+• Fichiers et dossiers
+• Éditeurs texte
+• Processus
+"]
 
-l'installation et la configuration d'un système Linux;
-l'organisation d'un domaine;
-la gestion avancée des utilisateurs et des groupes;
-la gestion des permissions et privilèges d'accès;
-l'administration, la sécurité, la surveillance et l'automatisation du système.
-Résultats d'apprentissage (RAC)
-1. Installer un système d'exploitation en réseau
+B --> C["👥
+Utilisateurs & Groupes
+• Comptes
+• Groupes
+• Sudo
+• Gestion organisationnelle
+"]
 
-Les étudiants apprennent à :
+C --> D["🔐
+Permissions & Sécurité
+• chmod
+• chown
+• ACL
+• Pare-feu
+"]
 
-installer et configurer Linux dans différents environnements;
-effectuer les mises à jour;
-installer des services et applications serveur;
-documenter l'installation et la configuration.
-2. Gérer les comptes et les groupes
+D --> E["⚙️
+Scripts & Automatisation
+• Bash
+• Variables
+• Boucles
+• Tâches planifiées
+"]
 
-Les étudiants apprennent à :
+E --> F["🌐
+Services Réseau
+• Web
+• DNS
+• SSH
+• Applications serveur
+"]
 
-administrer les utilisateurs et groupes;
-gérer les permissions et privilèges;
-organiser les comptes selon la structure d'une entreprise;
-automatiser des tâches administratives à l'aide de scripts.
-3. Optimiser et surveiller un système Linux
+F --> G["📊
+Surveillance & Diagnostic
+• Logs
+• Dépannage
+• Performance
+• Monitoring
+"]
 
-Les étudiants apprennent à :
+G --> H["📚
+Documentation
+• Procédures
+• Changements
+• Bonnes pratiques
+"]
 
-appliquer des mesures de sécurité;
-diagnostiquer et résoudre des problèmes système;
-adapter la configuration selon les besoins de l'entreprise;
-documenter les changements;
-automatiser la surveillance et l'administration.
-Évaluation
+H --> I["🚀
+Projet Final
+Serveur Web complet
+• Installation
+• Sécurisation
+• Configuration
+• Documentation
+"]
 
-Évaluation	%Laboratoire : Installation initiale	10
-Quiz : Installation et configuration initiale	10
-Laboratoire : Gestion des comptes, processus et permissions	10
-Laboratoire : Ligne de commande	10
-Quiz : Gestion des comptes, processus et permissions	10
-Laboratoire : Installation d'application	10
-Laboratoire : Configuration	10
-Quiz : Configuration et surveillance	10
-Projet de session : Mise en fonction d'un serveur Web	20
+Vue « parcours étudiant »
+flowchart LR
 
-La note de passage est de 60 % (C-).
+A["🛠️ Installer"] --> B["💻 Administrer"]
+B --> C["👤 Gérer les utilisateurs"]
+C --> D["🔒 Sécuriser"]
+D --> E["🤖 Automatiser"]
+E --> F["🌐 Déployer des services"]
+F --> G["📈 Surveiller"]
+G --> H["🚀 Exploiter en production"]
 
-Compétences développées
+Résumé du cours en une ligne
 
-Le cours contribue aux compétences du programme en :
+🐧 Installer → Administrer → Sécuriser → Automatiser → Déployer → Surveiller → Documenter → Mettre en production un serveur Linux d'entreprise.
 
-administration de systèmes informatiques;
-sécurité des environnements informatiques;
-diagnostic et dépannage;
-automatisation par scripts;
-déploiement et maintenance d'infrastructures;
-documentation technique;
-résolution de problèmes et gestion du temps.
-Résumé en une phrase
+Version « fun » orientée carrière
+Étape	Ce que l'étudiant devient🐣 Installation Linux	Junior Linux User
+💻 Ligne de commande	Terminal Ninja
+👥 Utilisateurs & groupes	Administrateur système
+🔐 Sécurité	Gardien du serveur
+⚙️ Scripts Bash	Automatisation Guru
+🌐 Services réseau	Architecte Linux
+📊 Monitoring	Dépanneur d'élite
+🚀 Projet final	Linux SysAdmin prêt pour l'entreprise
 
-INF1085 prépare l'étudiant à installer, administrer, sécuriser, surveiller et automatiser des serveurs Linux en entreprise, avec un accent important sur les comptes, permissions, scripts et services réseau.
+Cette progression reflète directement les trois RAC du cours : installation, administration des comptes et permissions, puis optimisation, sécurité et surveillance des systèmes Linux.
 
-# References
