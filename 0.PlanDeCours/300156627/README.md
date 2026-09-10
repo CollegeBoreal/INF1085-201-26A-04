@@ -4,4 +4,4 @@
 
 # Bienvenue sur mon dossier pour le cours INF1085 - Administration Linux.
 
-<img src="images (1).jpg" alt="icone" width ="40%" height="40%">
+<img src="Image.jpg" alt="icone" width ="40%" height="40%">
