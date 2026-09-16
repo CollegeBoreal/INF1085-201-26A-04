@@ -36,8 +36,8 @@
 | 17 | [300154479](../300154479/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/260781405?s=460&v=4' width=20 height=20></image>](https://github.com/dylanengabou-beep) | :x: | :x: |
 | 18 | [300155045](../300155045/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 19 | [300155881](../300155881/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
-| 20 | [300155884](../300155884/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/patricia-nguemedzi) | :x: | :x: |
-| 21 | [300156533](../300156533/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
+| 20 | [300155884](../300155884/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266604081?s=460&v=4' width=20 height=20></image>](https://github.com/patricia-nguemedzi) | :x: | :x: |
+| 21 | [300156533](../300156533/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231499534?s=460&v=4' width=20 height=20></image>](https://github.com/raoufrm-4) | :x: | :x: |
 | 22 | [300156627](../300156627/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/rougaiyatoudiallo) | :1st_place_medal: | :heavy_check_mark: |
 | 23 | [300157287](../300157287/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 24 | [300157334](../300157334/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
