@@ -38,7 +38,7 @@
 | 19 | [300155881](../300155881/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 20 | [300155884](../300155884/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266604081?s=460&v=4' width=20 height=20></image>](https://github.com/patricia-nguemedzi) | :x: | :x: |
 | 21 | [300156533](../300156533/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231499534?s=460&v=4' width=20 height=20></image>](https://github.com/raoufrm-4) | :x: | :x: |
-| 22 | [300156627](../300156627/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/rougaiyatoudiallo) | :1st_place_medal: | :heavy_check_mark: |
+| 22 | [300156627](../300156627/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/118176543?s=460&v=4' width=20 height=20></image>](https://github.com/rougaiyatoudiallo) | :1st_place_medal: | :heavy_check_mark: |
 | 23 | [300157287](../300157287/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 24 | [300157334](../300157334/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 25 | [300157440](../300157440/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
