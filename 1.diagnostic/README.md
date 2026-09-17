@@ -77,3 +77,7 @@ Bips mémoire	DIMM dans le mauvais emplacement
 Démarre puis s'éteint	Problème d'alimentation ou court-circuit du socket
 
 Pour un DL360 G6 de plus de 15 ans, je testerais d'abord CPU2 seul dans Socket 1 avant de démonter le socket. C'est le test qui permet d'éliminer rapidement 50 % des causes possibles.
+
+# References
+
+[Socket LGA 1366](https://fr.wikipedia.org/wiki/LGA_1366)
