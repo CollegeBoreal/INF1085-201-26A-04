@@ -345,7 +345,7 @@ Exemple :
 ```text
 UID USER
 0   root
-1000 brice
+1000 Mamadou
 ```
 
 Plus lisible que :
