@@ -20,7 +20,7 @@
 | 1 | [300145955](../300145955/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501283?s=460&v=4' width=20 height=20></image>](https://github.com/arianemaeva03-star) | :2nd_place_medal: | :x: |
 | 2 | [300150410](../300150410/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 3 | [300150468](../300150468/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
-| 4 | [300150470](../300150470/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/277295412?s=460&v=4' width=20 height=20></image>](https://github.com/hacene-ifticene) | :2nd_place_medal: | :x: |
+| 4 | [300150470](../300150470/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/277295412?s=460&v=4' width=20 height=20></image>](https://github.com/hacene-ifticene) | :2nd_place_medal: | :heavy_check_mark: |
 | 5 | [300150496](../300150496/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231500876?s=460&v=4' width=20 height=20></image>](https://github.com/mohamedaymenmedjras-dev) | :x: | :x: |
 | 6 | [300151483](../300151483/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231570852?s=460&v=4' width=20 height=20></image>](https://github.com/arnauld-ttad) | :x: | :x: |
 | 7 | [300151504](../300151504/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939073?s=460&v=4' width=20 height=20></image>](https://github.com/Nassimidir) | :1st_place_medal: | :heavy_check_mark: |
@@ -46,4 +46,4 @@
 | 27 | [300158052](../300158052/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 28 | [300158185](../300158185/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 29 | [300158383](../300158383/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501135?s=460&v=4' width=20 height=20></image>](https://github.com/salmabaali) | :1st_place_medal: | :heavy_check_mark: |
-| :abacus: | \$\frac{8}{30}\$ = 26.67% | \$\displaystyle\sum_{i=1}^{30} s_i\$ = 8 |
+| :abacus: | \$\frac{9}{30}\$ = 30% | \$\displaystyle\sum_{i=1}^{30} s_i\$ = 9 |
