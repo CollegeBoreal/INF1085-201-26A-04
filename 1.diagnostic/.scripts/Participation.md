@@ -27,7 +27,7 @@
 | 8 | [300151588](../300151588/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/58528251?s=460&v=4' width=20 height=20></image>](https://github.com/belhAmine) | :2nd_place_medal: | :heavy_check_mark: |
 | 9 | [300151589](../300151589/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501417?s=460&v=4' width=20 height=20></image>](https://github.com/walidwolf31) | :2nd_place_medal: | :heavy_check_mark: |
 | 10 | [300151753](../300151753/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266413355?s=460&v=4' width=20 height=20></image>](https://github.com/kheloufinourdine48-rgb) | :x: | :x: |
-| 11 | [300151834](../300151834/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266591188?s=460&v=4' width=20 height=20></image>](https://github.com/amirlounaci-bit) | :2nd_place_medal: | :x: |
+| 11 | [300151834](../300151834/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266591188?s=460&v=4' width=20 height=20></image>](https://github.com/amirlounaci-bit) | :2nd_place_medal: | :heavy_check_mark: |
 | 12 | [300153401](../300153401/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266600832?s=460&v=4' width=20 height=20></image>](https://github.com/youneschaghica-hub) | :x: | :x: |
 | 13 | [300153602](../300153602/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266413722?s=460&v=4' width=20 height=20></image>](https://github.com/meryemabdedou83-ux) | :x: | :x: |
 | 14 | [300153605](../300153605/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266167340?s=460&v=4' width=20 height=20></image>](https://github.com/siham-sys) | :1st_place_medal: | :heavy_check_mark: |
@@ -46,4 +46,4 @@
 | 27 | [300158052](../300158052/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 28 | [300158185](../300158185/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 29 | [300158383](../300158383/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501135?s=460&v=4' width=20 height=20></image>](https://github.com/salmabaali) | :1st_place_medal: | :heavy_check_mark: |
-| :abacus: | \$\frac{10}{30}\$ = 33.33% | \$\displaystyle\sum_{i=1}^{30} s_i\$ = 10 |
+| :abacus: | \$\frac{11}{30}\$ = 36.67% | \$\displaystyle\sum_{i=1}^{30} s_i\$ = 11 |
