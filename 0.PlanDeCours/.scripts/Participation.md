@@ -23,4 +23,4 @@
 | 4 | [300150470](../300150470/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/277295412?s=460&v=4' width=20 height=20></image>](https://github.com/hacene-ifticene) | :x: | :x: |
 | 5 | [300150496](../300150496/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231500876?s=460&v=4' width=20 height=20></image>](https://github.com/mohamedaymenmedjras-dev) | :x: | :x: |
 | 6 | [300151483](../300151483/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231570852?s=460&v=4' width=20 height=20></image>](https://github.com/arnauld-ttad) | :x: | :x: |
-| 7 | [300151504](../300151504/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939073?s=460&v=4' width=20 height=20></image>](https://github.com/Nassimidir) | :2nd_place_medal: | :heavy_check_mark: |
+| 7 | [300151504](../300151504/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939073?s=460&v=4' width=20 height=20></image>](https://github.com/Nassimidir) | :1st_place_medal: | :heavy_check_mark: |
