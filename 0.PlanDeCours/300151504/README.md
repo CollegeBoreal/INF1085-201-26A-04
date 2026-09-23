@@ -15,3 +15,4 @@ Ce dépôt contient mes travaux et exercices du cours INF1085 – Administration
 
 ## Session
 Session 3
+<img width="567" height="352" alt="image" src="https://github.com/user-attachments/assets/9aaec768-bf78-4c6d-8d20-c1fa825a3eff" />
