@@ -16,7 +16,7 @@
 
 |:hash:| Boréal :id: | README.md | images |
 |------|-------------|-----------|--------|
-| 0 | [300142542](../300142542/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/157492270?s=460&v=4' width=20 height=20></image>](https://github.com/anouarairn) | :2nd_place_medal: | :x: |
+| 0 | [300142542](../300142542/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/157492270?s=460&v=4' width=20 height=20></image>](https://github.com/anouarairn) | :2nd_place_medal: | :heavy_check_mark: |
 | 1 | [300145955](../300145955/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501283?s=460&v=4' width=20 height=20></image>](https://github.com/arianemaeva03-star) | :2nd_place_medal: | :x: |
 | 2 | [300150410](../300150410/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 3 | [300150468](../300150468/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
@@ -46,4 +46,4 @@
 | 27 | [300158052](../300158052/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 28 | [300158185](../300158185/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 29 | [300158383](../300158383/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501135?s=460&v=4' width=20 height=20></image>](https://github.com/salmabaali) | :1st_place_medal: | :heavy_check_mark: |
-| :abacus: | \$\frac{8}{30}\$ = 26.67% | \$\displaystyle\sum_{i=1}^{30} s_i\$ = 8 |
+| :abacus: | \$\frac{9}{30}\$ = 30% | \$\displaystyle\sum_{i=1}^{30} s_i\$ = 9 |
