@@ -1,0 +1,80 @@
+name: Participations
+
+on:
+  push:
+
+jobs:
+  presence:
+    name: Vérification de la participation
+    runs-on: ubuntu-latest
+
+    steps:
+      # ------------------------------------------------------------------
+      # Checkout repository
+      # ------------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ------------------------------------------------------------------
+      # Evaluate all chapters
+      # ------------------------------------------------------------------
+      - name: Évaluer les chapitres
+        shell: pwsh
+        run: |
+          $chapters = @(
+            "0.PlanDeCours"
+            "1.diagnostic"
+          )
+
+          foreach ($chapter in $chapters) {
+              Write-Host "--------------------------------------------"
+              Write-Host "Evaluating chapter $chapter Participation"
+              Push-Location $chapter
+              pwsh .scripts/run.ps1
+              Pop-Location
+          }
+
+      # ------------------------------------------------------------------
+      # Push Grades to LMS
+      # ------------------------------------------------------------------
+      - name: Noter les chapitres
+        shell: pwsh
+        env:
+          LMS_URL: ${{ secrets.LMS_URL }}
+          API_SYNC_TOKEN: ${{ secrets.API_SYNC_TOKEN }}
+        run: |
+          $chapters = @(
+            "0.PlanDeCours"
+            "1.diagnostic"
+          )
+
+          foreach ($chapter in $chapters) {
+              Write-Host "--------------------------------------------"
+              Write-Host "Grading chapter $chapter"
+              Push-Location $chapter
+              # pwsh .scripts/grading/push_grades.ps1
+              Pop-Location
+          }
+
+      # ------------------------------------------------------------------
+      # Commit generated files
+      # ------------------------------------------------------------------
+      - name: Commit files
+        shell: pwsh
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          if (git status --porcelain) {
+              git commit -am "Vérification de la participation"
+          } else {
+              Write-Host "No changes to commit"
+          }
+
+      # ------------------------------------------------------------------
+      # Push changes back to repository
+      # ------------------------------------------------------------------
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
