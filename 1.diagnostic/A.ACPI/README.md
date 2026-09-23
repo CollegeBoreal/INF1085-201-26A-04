@@ -1,16 +1,18 @@
 # ⚙️ ACPI = Advanced Configuration and Power Interface
 
-C'est bien :
+⚠️ Attention: C'est bien
 
+```
 acpi=off
-
+```
 
 ✅ ACPI = Advanced Configuration and Power Interface
 
 Ce n'est pas :
 
+```
 apci=off
-
+```
 
 ❌ apci n'existe pas comme paramètre de démarrage Linux.
 
