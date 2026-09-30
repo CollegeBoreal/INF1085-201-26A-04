@@ -25,6 +25,48 @@ Processeur détecté : 1 Processor(s) detected, 4 total cores enabled, Hyperthre
 Modèle : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz (ou E5540 @ 2.53GHz).
 Statut de démarrage : Progression de l'étalonnage thermique (Power and Thermal Calibration in Progress...) et chargement du BIOS sans erreur critique de socket.
 # B. Diagnostic de la mémoire BIOS (BIOS Memory Diagnostic)
-Accès à l'utilitaire de diagnostic mémoire pour valider la configuration des bancs RAM :   PROC 1 DIMM 3 : 8192 MB détectés.   Tous les autres emplacements (PROC 1 et PROC 2) indiquent Not Installed.   Mémoire totale configurée / disponible : 8192 MB OK.   C. Configuration système BIOS (RBSU - Utility)Dans le ROM-Based Setup Utility (Version 3.00) :   Proc 1 : Intel 2.53GHz, 8MB L3 Cache.   Proc 2 : Not Installed.   Mémoire totale : Détection confirmée jusqu'à 65 536 MB (64 GB) selon la configuration finale de barrettes réinstallées. 
+Accès à l'utilitaire de diagnostic mémoire pour valider la configuration des bancs RAM :   PROC 1 DIMM 3 : 8192 MB détectés.   Tous les autres emplacements (PROC 1 et PROC 2) indiquent Not Installed.   Mémoire totale configurée / disponible : 8192 MB OK.   C. Configuration système BIOS (RBSU - Utility)Dans le ROM-Based Setup Utility (Version 3.00) :   Proc 1 : Intel 2.53GHz, 8MB L3 Cache.   Proc 2 : Not Installed.   Mémoire totale : Détection confirmée jusqu'à 65 536 MB (64 GB) selon la configuration finale de barrettes réinstallées.
+# D. Utilitaire de diagnostic système (Diagnostic Utility v2.15)
+Le menu principal du diagnostic HP est accessible pour exécuter les tests ciblés :   Memory TestCPU TestBoot Disk Test4. Conclusion du diagnosticValidation du processeur et du Socket 1 : Le processeur testé dans le Socket 1 démarre correctement et valide le POST.   Cause identifiée : Le test confirme que le processeur utilisé est fonctionnel. Si le serveur ne démarrait pas lorsque le second socket était occupé, le problème est localisé au niveau du Socket 2 (broches pliées/endommagées) ou de son canal mémoire dédié.
+# HP ProLiant DL360 G6 - Diagnostic et Résolution de Panne
+
+## Description
+Ce projet documente le dépannage d'un serveur HP ProLiant DL360 G6 qui ne démbrait pas. L'objectif était de procéder par élimination en testant la configuration minimale POST et en vérifiant l'état du processeur et du socket.
+
+## Étape de test : Isolation CPU & Configuration Minimale POST
+- **Processeur :** 1x Intel Xeon (Socket 1)
+- **Mémoire :** 1x 8 GB DIMM (Proc 1 Slot 3 / White Slot A1)
+- **Alimentation :** Bay 1 alimentée
+
+## Résultats obtenus
+1. **Power-On Self-Test (POST) :** Réussi (`1 Processor(s) detected`).
+2. **Diagnostic Mémoire BIOS :** Barrette de 8192 MB détectée sur `PROC 1 DIMM 3`.
+3. **Statut RBSU :** Proc 1 reconnu, Proc 2 indiqué comme non installé.
+4. **Conclusion :** Le CPU et le Socket 1 sont pleinement fonctionnels. Le défaut de démarrage initial est attribué au Socket 2 ou à ses broches.
+
+## Captures d'écran du diagnostic
+- `POST Screen` : Détection du CPU Xeon et vitesse QPI.
+- `Memory Diagnostic` : Validation du slot DIMM 3.
+- `RBSU Utility` : Configuration générale et mémoire système.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
