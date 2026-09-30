@@ -8,6 +8,8 @@ Le serveur présentait un problème de démarrage (absence de POST / serveur ne 
 l'objectif était de tester individuellement le second processeur (CPU2) dans le premier emplacement (Socket 1 / Proc 1)
 afin d'exclure un dysfonctionnement de Socket 2 ou un composant défectueux.
 
+
+
 # 2. Configuration matérielle de test (Configuration minimale POST)
 Conformément aux prérequis de configuration minimale (Minimum POST Configuration) :
 # Processeur (Proc 1) : 
