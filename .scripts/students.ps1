@@ -9,7 +9,7 @@ param(
 $STUDENTS = @(
 "300142542|anouarairn|157492270"
 "300145955|arianemaeva03-star|231501283"
-"300150410|octocat|583231"
+"300150410|lahlou06|231570554"
 "300150468|octocat|583231"
 "300150470|hacene-ifticene|277295412"
 "300150496|mohamedaymenmedjras-dev|231500876"
@@ -32,10 +32,10 @@ $STUDENTS = @(
 "300156627|rougaiyatoudiallo|118176543"
 "300157287|Cheikau|231501940"
 "300157334|laalahamdaoui16-alt|231569676"
-"300157440|octocat|583231"
-"300157736|octocat|583231"
+"300157440|Houssam-eddinerachdi|231572378"
+"300157736|souhilaazzouz036-tech|231500022"
 "300158052|octocat|583231"
-"300158185|octocat|583231"
+"300158185|Mohammed-mati|232939280"
 "300158383|salmabaali|231501135"
 )
 
@@ -142,4 +142,4 @@ $LAB_GROUPS = for ($i = 0; $i -lt $GROUPS.Count; $i++) {
 # --------------------------------------
 
 $PK_PROF="b300098957@ramena"
-$LMS_COURSE=6
+$LMS_COURSE=10
