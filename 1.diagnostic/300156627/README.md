@@ -3,6 +3,8 @@
 
 # Rapport de dépannage et validation POST – HP ProLiant DL360 G6
 
+<img width="900" height="1600" alt="WhatsApp Image 2026-09-24 at 9 26 28 AM (1)" src="https://github.com/user-attachments/assets/f1f0bbcb-b8b7-4eb7-8bcf-b33f2063bbc0" />
+
 # 1. Contexte et Problématique
 Le serveur présentait un problème de démarrage (absence de POST / serveur ne démarre pas). Dans la démarche d'isolation de la panne conseillée,
 l'objectif était de tester individuellement le second processeur (CPU2) dans le premier emplacement (Socket 1 / Proc 1)
@@ -32,6 +34,9 @@ Statut de démarrage : Progression de l'étalonnage thermique (Power and Thermal
 
 # B. Diagnostic de la mémoire BIOS (BIOS Memory Diagnostic)
 Accès à l'utilitaire de diagnostic mémoire pour valider la configuration des bancs RAM :   PROC 1 DIMM 3 : 8192 MB détectés.   Tous les autres emplacements (PROC 1 et PROC 2) indiquent Not Installed.   Mémoire totale configurée / disponible : 8192 MB OK.   C. Configuration système BIOS (RBSU - Utility)Dans le ROM-Based Setup Utility (Version 3.00) :   Proc 1 : Intel 2.53GHz, 8MB L3 Cache.   Proc 2 : Not Installed.   Mémoire totale : Détection confirmée jusqu'à 65 536 MB (64 GB) selon la configuration finale de barrettes réinstallées.
+<img width="900" height="1600" alt="WhatsApp Image 2026-09-24 at 9 26 28 AM (1)" src="https://github.com/user-attachments/assets/d4a12ef6-8e92-4b71-bf51-f8b6561e9ad3" />
+<img width="1600" height="900" alt="WhatsApp Image 2026-09-24 at 9 26 28 AM (4)" src="https://github.com/user-attachments/assets/8665282a-9f1f-4f7b-924e-63c2d3ae11d8" />
+
 # D. Utilitaire de diagnostic système (Diagnostic Utility v2.15)
 Le menu principal du diagnostic HP est accessible pour exécuter les tests ciblés :   Memory TestCPU TestBoot Disk Test4. Conclusion du diagnosticValidation du processeur et du Socket 1 : Le processeur testé dans le Socket 1 démarre correctement et valide le POST.   Cause identifiée : Le test confirme que le processeur utilisé est fonctionnel. Si le serveur ne démarrait pas lorsque le second socket était occupé, le problème est localisé au niveau du Socket 2 (broches pliées/endommagées) ou de son canal mémoire dédié.
 # HP ProLiant DL360 G6 - Diagnostic et Résolution de Panne
