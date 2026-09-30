@@ -27,6 +27,9 @@ Lors du démarrage, le serveur passe l'étape POST (Power-On Self-Test) :
 Processeur détecté : 1 Processor(s) detected, 4 total cores enabled, Hyperthreading is enabled
 Modèle : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz (ou E5540 @ 2.53GHz).
 Statut de démarrage : Progression de l'étalonnage thermique (Power and Thermal Calibration in Progress...) et chargement du BIOS sans erreur critique de socket.
+
+<img width="900" height="1600" alt="WhatsApp Image 2026-09-24 at 9 26 28 AM (3)" src="https://github.com/user-attachments/assets/314dfa2a-058b-415f-abf8-a7b79094e17c" />
+
 # B. Diagnostic de la mémoire BIOS (BIOS Memory Diagnostic)
 Accès à l'utilitaire de diagnostic mémoire pour valider la configuration des bancs RAM :   PROC 1 DIMM 3 : 8192 MB détectés.   Tous les autres emplacements (PROC 1 et PROC 2) indiquent Not Installed.   Mémoire totale configurée / disponible : 8192 MB OK.   C. Configuration système BIOS (RBSU - Utility)Dans le ROM-Based Setup Utility (Version 3.00) :   Proc 1 : Intel 2.53GHz, 8MB L3 Cache.   Proc 2 : Not Installed.   Mémoire totale : Détection confirmée jusqu'à 65 536 MB (64 GB) selon la configuration finale de barrettes réinstallées.
 # D. Utilitaire de diagnostic système (Diagnostic Utility v2.15)
