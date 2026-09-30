@@ -8,12 +8,13 @@ Le serveur présentait un problème de démarrage (absence de POST / serveur ne 
 l'objectif était de tester individuellement le second processeur (CPU2) dans le premier emplacement (Socket 1 / Proc 1)
 afin d'exclure un dysfonctionnement de Socket 2 ou un composant défectueux.
 
-
+<img width="950" height="1600" alt="WhatsApp Image 2026-09-24 at 9 26 28 AM (2)" src="https://github.com/user-attachments/assets/711d79cc-311e-4659-9e52-26cedcc67b84" />
 
 # 2. Configuration matérielle de test (Configuration minimale POST)
 Conformément aux prérequis de configuration minimale (Minimum POST Configuration) :
 # Processeur (Proc 1) : 
-1 processeur Intel Xeon E5620 (2.40 GHz) / E5540 (2.53 GHz) installé dans le Socket 1.   
+1 processeur Intel Xeon E5620 (2.40 GHz) / E5540 (2.53 GHz) installé dans le Socket 1.   ![Uploading WhatsApp Image 2026-09-24 at 9.26.28 AM (2).jpeg…]()
+
 # Mémoire (DIMM) : 
 1 barrette de mémoire installée dans le premier slot blanc de CPU1 (PROC 1 DIMM 3 / Slot A1).
 # Stockage & Cartes : 
