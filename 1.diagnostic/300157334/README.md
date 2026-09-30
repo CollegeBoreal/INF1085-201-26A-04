@@ -41,6 +41,7 @@ La barrette de 8 Go fonctionne donc dans la configuration testée.
 ### BIOS
 
 Dans le RBSU, le processeur installé dans **Proc 1** est reconnu correctement.
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/f38b194e-d894-4e8e-810a-8f35b23f0958" />
 
 ### diagnostic
 
