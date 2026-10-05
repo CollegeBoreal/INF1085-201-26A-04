@@ -6,12 +6,12 @@
 
 🉑 Credentials: root/Boreal@2️⃣02️⃣6
 
-| IP | S/N  | 🩹 | 🧻 NVMe | Comments |
-|-|-|-|-|-|
+| POS | IP | S/N  | 🩹 | 🧻 NVMe | Comments |
+|-|-|-|-|-|-|
 | 10.7.236.237 | MXQ0390MBX | S21 | ✅ 
 | 10.7.236.238 | USE025N785 | S13 | ✅ | ⚠️ P2 DIMM 9 Error
-| 10.7.236.239 | MXQ00309PP | S19 | ✅ | G6️⃣ ⚠️ 1 CPU
-| 10.7.236.240 | MXQ02302FC | S25 | ✅ | G6️⃣ ⚠️ 1 CPU
+| 10.7.236.239 | MXQ1170T6R | S26 | ✅ | G7️⃣
+| 2️⃣-3️⃣:one:| 10.7.236.240 | USE044N2AL | S20 | ✅ | G7️⃣
 
 - [ ] 10.7.236.0/23 Network
 - [ ] 10.7.237.1 Gateway
@@ -519,3 +519,15 @@ nomodeset acpi=off
 4. Pourquoi le paramètre `nolapic` peut-il réduire le nombre de processeurs visibles ?
 
 5. Quelle commande permet de vérifier les paramètres réellement utilisés lors du démarrage du noyau Linux ?
+
+---
+
+# 📚 Reference
+
+| IP | S/N  | 🩹 | 🧻 NVMe | Comments |
+|-|-|-|-|-|
+|              | MXQ0390MBX | S21 | ✅ 
+|              | USE025N785 | S13 | ✅ | ⚠️ P2 DIMM 9 Error
+|              | MXQ00309PP | S19 | ✅ | G6️⃣ ⚠️ 1 CPU
+|              | MXQ02302FC | S25 | ✅ | G6️⃣ ⚠️ 1 CPU
+
