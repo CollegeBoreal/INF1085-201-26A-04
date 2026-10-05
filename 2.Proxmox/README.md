@@ -1,429 +1,521 @@
-# 🎌 Proxmox
+# Installation de Proxmox VE 9 sur un HP ProLiant DL360 G6
 
-### **Proxmox VE (Virtual Environment) 🌐💻**
-
-**Proxmox** est une **plateforme open-source 🆓** qui permet de **virtualiser des serveurs 🖥️**.
-Avec Proxmox, tu peux créer, gérer et surveiller à la fois :
-
-* des **machines virtuelles (VMs) 🖥️➡️🖥️**
-* des **containers légers 🐳**
-
-Il est basé sur **Linux Debian 🐧** et combine plusieurs technologies de virtualisation dans **un seul environnement centralisé 🗂️**.
+[:tada: Participation](.scripts/Participation.md)
 
 ---
 
-### **1. Définition**
+🉑 Credentials: root/Boreal@2️⃣02️⃣6
 
-**Proxmox VE (Virtual Environment)** est une **plateforme open-source de virtualisation** qui permet de créer, gérer et superviser des **machines virtuelles (VMs) et des containers** sur un serveur physique.
-Il est basé sur **Debian Linux** et combine plusieurs technologies de virtualisation dans un seul environnement.
+| IP | S/N  | 🩹 |
+|-|-|-|
+| 10.7.236.197 | MXQO390BMX |
+| 10.7.236.198 | USE025N7B5 | 
+| 10.7.236.199 | MXQOO30BLP | S13
+| 10.7.236.200 | MXQO16001V | 
 
----
+- [ ] 10.7.236.0/23 Network
+- [ ] 10.7.237.1 Gateway
+- [ ] 8.8.8.8 DNS
 
-### **2. Ses composants principaux**
+## 🎯 Objectif
 
-1. **Hyperviseur** :
+À la fin de ce laboratoire, vous serez capable de :
 
-   * Proxmox utilise **KVM** pour la virtualisation complète des machines (VMs) et **LXC** pour les containers légers.
-   * KVM = Hyperviseur type 1 intégré au noyau Linux.
-   * LXC = Conteneurs Linux isolés, plus légers qu’une VM complète.
-
-2. **Interface Web (GUI)** :
-
-   * Proxmox fournit une **interface web complète** pour créer, gérer et surveiller vos VMs et containers, sans passer par la ligne de commande.
-
-3. **Services intégrés** :
-
-   * Gestion des snapshots, backups et restauration.
-   * Réplication et haute disponibilité (HA).
-   * Gestion de stockage local et distant (ZFS, Ceph, NFS, etc.).
-
-4. **API et outils CLI** :
-
-   * Vous pouvez automatiser les tâches avec l’**API REST** ou les commandes en ligne (`pve*`).
+- Installer Proxmox VE 9 sur un HP ProLiant DL360 G6.
+- Comprendre les problèmes de compatibilité entre un ancien serveur et un noyau Linux moderne.
+- Utiliser des paramètres de démarrage avancés.
+- Diagnostiquer les problèmes liés à ACPI et APIC.
+- Vérifier que tous les processeurs sont correctement détectés.
 
 ---
 
-### **3. Avantages**
+# 📖 Contexte
 
-* **Open-source** et gratuit (avec option d’abonnement pour support officiel).
-* **Gestion centralisée** de plusieurs serveurs Proxmox (cluster).
-* Supporte **KVM + LXC** dans un seul outil.
-* **Snapshots, backups et migration à chaud** des VMs.
+Le HP ProLiant DL360 G6 est un serveur datant d'environ 2009-2010.
 
----
+Bien que ce matériel soit toujours capable d'exécuter Proxmox VE 9, sa plateforme matérielle est beaucoup plus ancienne que le noyau Linux utilisé par Proxmox.
 
-### **4. Comparaison simple**
+Lors de l'installation, il est fréquent d'observer :
 
-| Proxmox       | VMware ESXi       | VirtualBox    |
-| ------------- | ----------------- | ------------- |
-| Open-source   | Propriétaire      | Open-source   |
-| Serveur Linux | Hyperviseur dédié | Desktop/local |
-| KVM + LXC     | VM uniquement     | VM uniquement |
-| Cluster et HA | Oui               | Non           |
+- Écran noir.
+- Blocage du démarrage.
+- Erreurs liées aux tables ACPI.
+- Mauvaise détection des processeurs.
+- Erreurs PCI.
 
+Dans notre environnement de laboratoire, les paramètres suivants ont permis d'assurer un démarrage stable :
 
-## 1️⃣ Les services Proxmox essentiels (qui fait quoi)
-
-### 🧠 Cœur Proxmox
-
-| Service        | Rôle                                           |
-| -------------- | ---------------------------------------------- |
-| `pve-cluster`  | Gère la config partagée (`/etc/pve`)           |
-| `pvedaemon`    | API backend (création VM, permissions, tâches) |
-| `pveproxy`     | Interface Web (HTTPS :8006)                    |
-| `pvestatd`     | Stats CPU/RAM/disques                          |
-| `pve-firewall` | Pare-feu Proxmox                               |
-
-👉 **Sans `pve-cluster`, Proxmox est cassé** (même en mono-nœud).
+```text
+nomodeset acpi=off
+```
 
 ---
 
-### 🖥️ Virtualisation
+# 🛠 Prérequis
 
-| Service       | Rôle                       |
-| ------------- | -------------------------- |
-| `qemu-server` | Gestion des VM KVM         |
-| `lxc`         | Gestion des conteneurs LXC |
-| `ksmtuned`    | Optimisation mémoire       |
+## Matériel
 
----
+- HP ProLiant DL360 G6
+- 2 × Xeon E5540 (optionnel mais recommandé)
+- 64 Go RAM
+- SSD ou disque système
+- Clé USB de 8 Go ou plus
 
-### 🌐 Cluster (si applicable)
+## Logiciel
 
-| Service    | Rôle                              |
-| ---------- | --------------------------------- |
-| `corosync` | Communication entre nœuds         |
-| `pmxcfs`   | FS cluster (monté sur `/etc/pve`) |
+- Proxmox VE 9 ISO
+- Rufus (Windows) ou balenaEtcher
 
 ---
 
-## 2️⃣ Proxmox est-il un *service systemd* ?
+# Étape 1 – Préparer la clé USB
 
-👉 **Non**, Proxmox **n’est pas un service unique**, mais une **suite de services systemd**.
+Télécharger l'image ISO de Proxmox VE 9.
 
-Il n’existe PAS :
+Créer une clé USB bootable.
+
+## Sous Windows
+
+Utiliser :
+
+```text
+Rufus
+```
+
+## Sous Linux
 
 ```bash
-systemctl restart proxmox ❌
+sudo dd if=proxmox-ve_9.iso of=/dev/sdX bs=4M status=progress
 ```
 
-Mais OUI :
+Remplacer :
 
-```bash
-systemctl restart pveproxy
+```text
+/dev/sdX
+```
+
+par votre clé USB.
+
+---
+
+# Étape 2 – Démarrer le serveur
+
+Au démarrage :
+
+```text
+F11
+```
+
+Choisir :
+
+```text
+USB Drive
+```
+
+Le menu de démarrage de Proxmox apparaît.
+
+---
+
+# Étape 3 – Modifier les paramètres de démarrage
+
+Sélectionner :
+
+```text
+Install Proxmox VE
+```
+
+Ne pas appuyer immédiatement sur Entrée.
+
+Appuyer sur :
+
+```text
+e
+```
+
+pour modifier la ligne de démarrage.
+
+---
+
+## Ajouter les paramètres
+
+Repérer la ligne contenant :
+
+```text
+linux
+```
+
+Ajouter à la fin :
+
+```text
+nomodeset acpi=off
+```
+
+Exemple :
+
+```text
+linux ... nomodeset acpi=off
+```
+
+Puis démarrer avec :
+
+```text
+Ctrl + X
+```
+
+ou
+
+```text
+F10
 ```
 
 ---
 
-## 3️⃣ Redémarrage propre (sans arrêter les VM)
+# 📘 Explication des paramètres
 
-### 🔄 Redémarrer uniquement l’interface Web
+## nomodeset
 
-```bash
-systemctl restart pveproxy
+### Fonction
+
+Empêche Linux d'initialiser les pilotes graphiques avancés.
+
+Normalement, Linux utilise :
+
+```text
+Kernel Mode Setting (KMS)
 ```
 
-✔️ Aucun impact sur les VM
+pour la vidéo.
+
+Avec :
+
+```text
+nomodeset
+```
+
+Linux utilise un mode vidéo minimal.
+
+### Pourquoi ?
+
+Sur le DL360 G6, le contrôleur graphique intégré est très ancien.
+
+Sans ce paramètre, l'installation peut :
+
+- afficher un écran noir;
+- rester figée;
+- échouer à démarrer.
 
 ---
 
-### 🔄 Redémarrer les services Proxmox (safe)
+## acpi=off
 
-```bash
-systemctl restart pvedaemon
-systemctl restart pvestatd
-systemctl restart pveproxy
+### Fonction
+
+Désactive complètement ACPI.
+
+ACPI signifie :
+
+```text
+Advanced Configuration and Power Interface
 ```
 
-✔️ Les VM continuent de tourner
+ACPI est responsable de :
+
+- la gestion d'énergie;
+- la détection du matériel;
+- les tables processeurs;
+- les interruptions;
+- les ressources PCI.
+
+### Pourquoi ?
+
+Le BIOS P64 (2010) du DL360 G6 fournit parfois des informations incompatibles avec les noyaux Linux récents.
+
+Sans :
+
+```text
+acpi=off
+```
+
+on peut observer :
+
+```text
+Illegal Opcode
+NMI PCI Error
+Boot Failure
+```
+
+ou d'autres problèmes matériels.
 
 ---
 
-### ⚠️ Redémarrage plus lourd (attention)
+# Étape 4 – Installer Proxmox
 
-```bash
-systemctl restart pve-cluster
-```
+Poursuivre l'installation normalement.
 
-⚠️ Peut bloquer l’UI temporairement
-⚠️ À éviter en prod si cluster actif
+Configurer :
 
----
+- Le disque système.
+- Le mot de passe root.
+- Le réseau.
+- Le nom d'hôte.
 
-## 4️⃣ Vérifier l’état global
-
-```bash
-systemctl list-units --type=service | grep pve
-```
-<details>
-
-```lua
-  pve-cluster.service                loaded active running The Proxmox VE cluster filesystem
-  pve-firewall.service               loaded active running Proxmox VE firewall
-  pve-guests.service                 loaded active exited  PVE guests
-  pve-ha-crm.service                 loaded active running PVE Cluster HA Resource Manager Daemon
-  pve-ha-lrm.service                 loaded active running PVE Local HA Resource Manager Daemon
-  pve-lxc-syscalld.service           loaded active running Proxmox VE LXC Syscall Daemon
-  pvebanner.service                  loaded active exited  Proxmox VE Login Banner
-  pvedaemon.service                  loaded active running PVE API Daemon
-  pvefw-logger.service               loaded active running Proxmox VE firewall logger
-  pvenetcommit.service               loaded active exited  Commit Proxmox VE network changes
-  pveproxy.service                   loaded active running PVE API Proxy Server
-  pvescheduler.service               loaded active running Proxmox VE scheduler
-  pvestatd.service                   loaded active running PVE Status Daemon
-```
-  
-</details>
-
-Ou plus ciblé :
-
-```bash
-systemctl status pveproxy pvedaemon pve-cluster
-```
-<details>
-
-```lua
-● pveproxy.service - PVE API Proxy Server
-     Loaded: loaded (/lib/systemd/system/pveproxy.service; enabled; vendor preset: enabled)
-     Active: active (running) since Wed 2026-02-04 23:55:51 EST; 18h ago
-    Process: 1572964 ExecStartPre=/usr/bin/pvecm updatecerts --silent (code=exited, status=0/SUCCESS)
-    Process: 1572966 ExecStart=/usr/bin/pveproxy start (code=exited, status=0/SUCCESS)
-    Process: 1573652 ExecReload=/usr/bin/pveproxy restart (code=exited, status=0/SUCCESS)
-   Main PID: 1572967 (pveproxy)
-      Tasks: 4 (limit: 77175)
-     Memory: 224.6M
-        CPU: 3min 14.648s
-     CGroup: /system.slice/pveproxy.service
-             ├─1572967 pveproxy
-             ├─1718755 pveproxy worker
-             ├─1730495 pveproxy worker
-             └─1734182 pveproxy worker
-
-Feb 05 14:15:36 labinfo pveproxy[1572967]: starting 1 worker(s)
-Feb 05 14:15:36 labinfo pveproxy[1572967]: worker 1718755 started
-Feb 05 15:19:45 labinfo pveproxy[1715532]: worker exit
-Feb 05 15:19:45 labinfo pveproxy[1572967]: worker 1715532 finished
-Feb 05 15:19:45 labinfo pveproxy[1572967]: starting 1 worker(s)
-Feb 05 15:19:45 labinfo pveproxy[1572967]: worker 1730495 started
-Feb 05 15:41:03 labinfo pveproxy[1718592]: worker exit
-Feb 05 15:41:03 labinfo pveproxy[1572967]: worker 1718592 finished
-Feb 05 15:41:03 labinfo pveproxy[1572967]: starting 1 worker(s)
-Feb 05 15:41:03 labinfo pveproxy[1572967]: worker 1734182 started
-
-● pvedaemon.service - PVE API Daemon
-     Loaded: loaded (/lib/systemd/system/pvedaemon.service; enabled; vendor preset: enabled)
-     Active: active (running) since Wed 2026-02-04 23:55:49 EST; 18h ago
-    Process: 1572958 ExecStart=/usr/bin/pvedaemon start (code=exited, status=0/SUCCESS)
-   Main PID: 1572960 (pvedaemon)
-      Tasks: 4 (limit: 77175)
-     Memory: 224.2M
-        CPU: 5min 24.741s
-     CGroup: /system.slice/pvedaemon.service
-             ├─1572960 pvedaemon
-             ├─1657260 pvedaemon worker
-             ├─1658835 pvedaemon worker
-             └─1718468 pvedaemon worker
-
-Feb 05 14:39:50 labinfo pvedaemon[1657260]: <tofu@pve!opentofu> starting task UPID:labinfo:001A4C86:049F7F20:6984F206:qmshutdown:100:tofu@pve!opentofu:
-Feb 05 14:39:56 labinfo pvedaemon[1657260]: <tofu@pve!opentofu> end task UPID:labinfo:001A4C86:049F7F20:6984F206:qmshutdown:100:tofu@pve!opentofu: OK
-Feb 05 14:39:56 labinfo pvedaemon[1723581]: start VM 100: UPID:labinfo:001A4CBD:049F8181:6984F20C:qmstart:100:tofu@pve!opentofu:
-Feb 05 14:39:56 labinfo pvedaemon[1718468]: <tofu@pve!opentofu> starting task UPID:labinfo:001A4CBD:049F8181:6984F20C:qmstart:100:tofu@pve!opentofu:
-Feb 05 14:39:57 labinfo pvedaemon[1718468]: <tofu@pve!opentofu> end task UPID:labinfo:001A4CBD:049F8181:6984F20C:qmstart:100:tofu@pve!opentofu: OK
-Feb 05 14:56:13 labinfo pvedaemon[1658835]: <root@pam> successful auth for user 'root@pam'
-Feb 05 15:08:39 labinfo pvedaemon[1718468]: <root@pam> successful auth for user 'root@pam'
-Feb 05 15:11:13 labinfo pvedaemon[1718468]: <root@pam> successful auth for user 'root@pam'
-Feb 05 15:26:14 labinfo pvedaemon[1657260]: <root@pam> successful auth for user 'root@pam'
-Feb 05 15:41:15 labinfo pvedaemon[1657260]: <root@pam> successful auth for user 'root@pam'
-
-● pve-cluster.service - The Proxmox VE cluster filesystem
-     Loaded: loaded (/lib/systemd/system/pve-cluster.service; enabled; vendor preset: enabled)
-     Active: active (running) since Tue 2026-01-27 15:13:06 EST; 1 weeks 2 days ago
-    Process: 978 ExecStart=/usr/bin/pmxcfs (code=exited, status=0/SUCCESS)
-   Main PID: 1016 (pmxcfs)
-      Tasks: 9 (limit: 77175)
-     Memory: 66.5M
-        CPU: 7min 19.075s
-     CGroup: /system.slice/pve-cluster.service
-             └─1016 /usr/bin/pmxcfs
-
-Jan 27 15:13:05 labinfo systemd[1]: Starting The Proxmox VE cluster filesystem...
-Jan 27 15:13:06 labinfo systemd[1]: Started The Proxmox VE cluster filesystem.
-```
-  
-</details>
+Compléter l'installation.
 
 ---
 
-## 5️⃣ Phrase parfaite pour un examen 💯
+# Étape 5 – Premier démarrage
 
-> *Proxmox VE est une plateforme de virtualisation basée sur Debian qui repose sur plusieurs services systemd, notamment pve-cluster, pvedaemon et pveproxy, permettant la gestion des machines virtuelles, des conteneurs et du clustering.*
-
----
-
-## 🈷️ Problème de connection root UI
-
-Tu as un problème pour te connecter à l’interface web de Proxmox en tant que **root**. La commande que tu montres :
+Après le redémarrage :
 
 ```bash
-systemctl restart pveproxy pvedaemon
+login: root
 ```
 
-**fait partie de la procédure**, mais voyons un peu plus en détail pour corriger ton problème de connexion root UI.
-
----
-
-### Étapes de diagnostic et correction
-
-1. **Vérifier que les services essentiels tournent :**
+Vérifier :
 
 ```bash
-systemctl status pveproxy
-systemctl status pvedaemon
-systemctl status pve-cluster
-systemctl status corosync   # si cluster
+cat /proc/cmdline
 ```
 
-* `pveproxy` → sert l’interface web.
-* `pvedaemon` → gère les tâches et l’authentification.
-* `pve-cluster` → stocke la configuration.
-* `corosync` → uniquement si tu as un cluster.
+Résultat attendu :
 
-Si l’un est **inactive** ou **failed**, tu peux le redémarrer :
-
-```bash
-systemctl restart pveproxy pvedaemon pve-cluster
+```text
+BOOT_IMAGE=/boot/vmlinuz-7.x.x-pve root=/dev/mapper/pve-root ro nomodeset acpi=off quiet
 ```
 
 ---
 
-2. **Vérifier la connexion root**
+# Étape 6 – Vérifier les processeurs
 
-* Assure-toi que tu utilises **root@pam** ou **root@pve** correctement dans l’UI.
-* Exemple :
-
-  * **Utilisateur :** `root@pam`
-  * **Mot de passe :** celui défini avec `passwd root`
-
-Si tu veux **changer le mot de passe root** :
+Afficher les informations CPU :
 
 ```bash
-passwd root
+lscpu
 ```
 
-⚠️ Si tu as essayé `pveum passwd root@pve` et que ça ne fonctionne pas, utilise plutôt :
+Exemple :
 
-```bash
-pveum user list   # pour lister les users
-pveum passwd root@pam
+```text
+CPU(s):                8
+Socket(s):             2
+Core(s) per socket:    4
+Thread(s) per core:    1
 ```
 
 ---
 
-3. **Vérifier le certificat SSL (si nécessaire)**
-
-Si l’UI te refuse la connexion, parfois c’est dû au certificat auto-signé :
+Afficher le nombre de processeurs détectés :
 
 ```bash
-ls -l /etc/pve/local/pve-ssl.*
+nproc
 ```
 
-Tu peux régénérer le certificat :
+Résultat attendu :
 
-```bash
-pvecm updatecerts
-systemctl restart pveproxy
+```text
+8
 ```
 
 ---
 
-4. **Vérifier les logs**
+# Étape 7 – Vérifier le matériel
 
-Si après tout ça ça ne marche toujours pas :
-
-```bash
-journalctl -u pveproxy -f
-journalctl -u pvedaemon -f
-```
-
-Ça te donnera la raison exacte de l’échec (mot de passe, permission, SSL, etc.).
-
-# :books: References 
-
----
-
-##  Prereqs on Proxmox (PVE 7) (Déjâ fait sur le serveur)
-
-### ✔ Enable API access
-
-You need either:
-
-* a **user + password**, or
-* **API token** (recommended)
-
-**Recommended (API token):**
+## Processeurs
 
 ```bash
-pveum user add tofu@pve
-pveum aclmod / -user tofu@pve -role Administrator
-pveum user token add tofu@pve opentofu --privsep 0
-```
-
-Save:
-
-* **Token ID**: `tofu@pve!opentofu`
-* **Token Secret**: (shown once)
-
-## refresh Token
-
-```bash
-pveum user token remove tofu@pve opentofu
-```
-
-```bash
-pveum user token add tofu@pve opentofu --privsep 0
-```
-```lua
-user config - ignore invalid acl token 'tofu@pve!opentofu'
-┌──────────────┬──────────────────────────────────────┐
-│ key          │ value                                │
-╞══════════════╪══════════════════════════════════════╡
-│ full-tokenid │ tofu@pve!opentofu                    │
-├──────────────┼──────────────────────────────────────┤
-│ info         │ {"privsep":"0"}                      │
-├──────────────┼──────────────────────────────────────┤
-│ value        │ 63cd5a0b-2xxxxxxxxxxxxx-993a2d9de8dd │
-└──────────────┴──────────────────────────────────────┘
+lscpu
 ```
 
 ---
 
-### ✔ Create VM Template (cloud-init_template.sh)
+## Mémoire
 
-```lua
-# Download cloud image
-wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
-
-# Create VM
-qm create 9000 --name ubuntu-jammy-template --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0
-
-# Import disk
-qm importdisk 9000 jammy-server-cloudimg-amd64.img local-lvm
-
-# Attach disk
-qm set 9000 --scsihw virtio-scsi-pci --scsi0 local-lvm:vm-9000-disk-0
-
-# Cloud-init disk
-qm set 9000 --ide2 local-lvm:cloudinit
-
-# Boot settings
-qm set 9000 --boot c --bootdisk scsi0
-qm set 9000 --serial0 socket --vga serial0
-
-# Convert to template
-qm template 9000
+```bash
+lsmem
 ```
 
-## 🏗️ Installation
+---
 
-- [ ] [💻 Proxmox VE Installation – HP ProLiant DL360 G6](https://github.com/CollegeBoreal/Laboratoires/tree/main/D.DC/S.Servers/Proliant/Proxmox)
+## Disques
 
+```bash
+lsblk
+```
+
+---
+
+## Cartes PCI
+
+```bash
+lspci
+```
+
+---
+
+## Modules du noyau
+
+```bash
+lsmod
+```
+
+---
+
+# Dépannage
+
+## Le serveur démarre avec un seul CPU
+
+Vérifier que les paramètres suivants ne sont PAS utilisés :
+
+```text
+nolapic
+```
+
+ou
+
+```text
+noapic
+```
+
+Ces paramètres peuvent empêcher Linux d'utiliser les processeurs multiples.
+
+---
+
+## Vérifier les paramètres actifs
+
+```bash
+cat /proc/cmdline
+```
+
+---
+
+## Vérifier le nombre de CPU activés
+
+```bash
+cat /sys/devices/system/cpu/online
+```
+
+Exemple :
+
+```text
+0-7
+```
+
+---
+
+## Vérifier les interruptions
+
+```bash
+cat /proc/interrupts
+```
+
+---
+
+# Concepts importants
+
+## ACPI
+
+```text
+Advanced Configuration and Power Interface
+```
+
+Permet au BIOS de transmettre des informations matérielles à Linux.
+
+---
+
+## APIC
+
+```text
+Advanced Programmable Interrupt Controller
+```
+
+Permet de distribuer les interruptions entre les différents processeurs.
+
+---
+
+## Local APIC (LAPIC)
+
+Chaque processeur possède son propre APIC local.
+
+Désactiver LAPIC avec :
+
+```text
+nolapic
+```
+
+peut provoquer :
+
+```text
+smpboot: SMP disabled
+```
+
+et limiter le système à un seul processeur logique.
+
+---
+
+## SMP
+
+```text
+Symmetric Multiprocessing
+```
+
+Permet l'utilisation simultanée de plusieurs processeurs ou cœurs.
+
+---
+
+# Vérification finale
+
+Effectuer les commandes suivantes :
+
+```bash
+cat /proc/cmdline
+```
+
+```bash
+lscpu
+```
+
+```bash
+nproc
+```
+
+```bash
+lsblk
+```
+
+```bash
+ip a
+```
+
+---
+
+# Résultat attendu
+
+✅ Proxmox VE 9 installé
+
+✅ Paramètres permanents :
+
+```text
+nomodeset acpi=off
+```
+
+✅ Système stable
+
+✅ Les deux Xeon E5540 détectés
+
+✅ 8 cœurs physiques disponibles
+
+✅ Prêt à héberger plusieurs machines virtuelles Linux pour les laboratoires INF1085
+
+---
+
+# Questions de réflexion
+
+1. À quoi sert le paramètre `nomodeset` ?
+
+2. Pourquoi un ancien BIOS peut-il nécessiter `acpi=off` ?
+
+3. Quelle est la différence entre ACPI et APIC ?
+
+4. Pourquoi le paramètre `nolapic` peut-il réduire le nombre de processeurs visibles ?
+
+5. Quelle commande permet de vérifier les paramètres réellement utilisés lors du démarrage du noyau Linux ?
