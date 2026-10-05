@@ -6,12 +6,12 @@
 
 🉑 Credentials: root/Boreal@2️⃣02️⃣6
 
-| IP | S/N  | 🩹 | Comments |
+| IP | S/N  | 🩹 | 🧻 NVMe | Comments |
 |-|-|-|-|
-| 10.7.236.237 |  |
-| 10.7.236.238 | USE025N785 |     | ⚠️ P2 DIMM 9 Error
-| 10.7.236.239 | MXQ00309PP | S19 | ⚠️ 1 CPU
-| 10.7.236.240 | MXQ02302FC | S17 | 
+| 10.7.236.237 |            | S21 | ✅ 
+| 10.7.236.238 | USE025N785 |     | ✅ | ⚠️ P2 DIMM 9 Error
+| 10.7.236.239 | MXQ00309PP | S19 | ✅ | ⚠️ 1 CPU
+| 10.7.236.240 | MXQ02302FC | S17 | ✅ | 
 
 - [ ] 10.7.236.0/23 Network
 - [ ] 10.7.237.1 Gateway
