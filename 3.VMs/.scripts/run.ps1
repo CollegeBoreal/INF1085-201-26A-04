@@ -3,7 +3,7 @@
 # Dynamic Participation Generator
 # --------------------------------------
 
-$GROUP_SIZE = 8   # 👈 change here
+$GROUP_SIZE = 9   # 👈 change here
 
 # Load students + compute groups
 . ../.scripts/students.ps1 -GroupSize $GROUP_SIZE

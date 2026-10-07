@@ -30,4 +30,5 @@
 | 6 | [300150468](../300150468/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939143?s=460&v=4' width=20 height=20></image>](https://github.com/sahebmohandsaid97-oss) | :x: | :x: |  |  | ~  10.7.236.206  |
 | 7 | [300150470](../300150470/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/277295412?s=460&v=4' width=20 height=20></image>](https://github.com/hacene-ifticene) | :x: | :x: |  |  | ~  10.7.236.207  |
 | 8 | [300150496](../300150496/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231500876?s=460&v=4' width=20 height=20></image>](https://github.com/mohamedaymenmedjras-dev) | :x: | :x: |  |  | ~  10.7.236.208  |
-| :abacus: | \$\frac{0}{8}\$ = 0% | \$\displaystyle\sum_{i=1}^{8} s_i\$ = 0 |
+| 9 | [300151483](../300151483/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231570852?s=460&v=4' width=20 height=20></image>](https://github.com/arnauld-ttad) | :x: | :x: |  |  | ~  10.7.236.209  |
+| :abacus: | \$\frac{0}{9}\$ = 0% | \$\displaystyle\sum_{i=1}^{9} s_i\$ = 0 |
