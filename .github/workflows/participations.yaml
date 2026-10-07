@@ -53,7 +53,7 @@ jobs:
               Write-Host "--------------------------------------------"
               Write-Host "Grading chapter $chapter"
               Push-Location $chapter
-              # pwsh .scripts/grading/push_grades.ps1
+              pwsh .scripts/grading/push_grades.ps1
               Pop-Location
           }
 
