@@ -16,6 +16,4 @@
 | 2️⃣   | 32 | 🅰️ G7️⃣      | S26 | MXQ1170T6R❌ | 10.7.236.239                 | 64GB | 16  | 273.4G  | $\color{green}\text{1TBNVMe}$  
 | 2️⃣   | 31 | 🅰️ G7️⃣      | S20 | USE044N2AL✅ | 10.7.236.240                 | 64GB | 16  | 273.4G  | $\color{green}\text{1TBNVMe}$  
 
-🉑 Credentials: root/Boreal@2️⃣02️⃣6
-
 - [ ] Créer sa propre VM sur le serveur Proxmox de votre groupe
