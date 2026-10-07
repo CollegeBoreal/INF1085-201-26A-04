@@ -1,48 +1,59 @@
-# Rapport d’installation et de câblage de Proxmox
-user:300157334
-name :laala hamdaoui
 
+# Rapport de mise en place et d’installation de Proxmox
+
+
+
+**Utilisateur :** 300157334  
+
+**Nom :** Laala Hamdaoui
 
 <img width="700" height="600" alt="WhatsApp Image 2026-10-07 at 10 16 18 (1)" src="https://github.com/user-attachments/assets/dca11dde-1110-494c-bf7f-d0251e393757" />
 
-## 1. Introduction
+## 1. Présentation
 
-Dans ce laboratoire, nous avons installé Proxmox VE sur un serveur et réalisé le câblage nécessaire pour permettre sa connexion au réseau.
+L’objectif de ce laboratoire était de préparer un serveur, effectuer les branchements nécessaires et installer le système **Proxmox VE**.
 
-## 2. Câblage
+## 2. Préparation du serveur
 
-Nous avons effectué les branchements suivants :
+Avant de commencer l’installation, nous avons préparé le serveur et effectué les branchements nécessaires.
 
-- Branchement du câble d’alimentation du serveur.
-- Branchement du câble réseau Ethernet.
-- Branchement du clavier et de l’écran.
-- Connexion du serveur au réseau.
+Nous avons connecté :
 
+- Le câble d’alimentation.
+- Le câble réseau.
+- L’écran.
+- Le clavier.
+- La clé USB contenant Proxmox.
 <img width="700" height="600" alt="WhatsApp Image 2026-10-07 at 10 16 18" src="https://github.com/user-attachments/assets/87d131a3-b41d-4aea-b96b-5f6621eb7236" />
 
-## 3. Installation de Proxmox
+## 3. Installation
 
+Le serveur a été démarré à partir de la clé USB contenant l’image ISO de Proxmox.
+
+Nous avons ensuite suivi les différentes étapes de l’installation :
 <img width="700" height="600" alt="WhatsApp Image 2026-09-24 at 9 26 30 AM (4)" src="https://github.com/user-attachments/assets/ce42434b-2da6-4005-ba16-298912a7038c" />
 
 
-Nous avons démarré le serveur à partir d’une clé USB contenant l’image ISO de Proxmox.
+- Démarrage de l’installateur.
+- Choix du disque.
+- Configuration du système.
+- Configuration du réseau.
+- Création du mot de passe administrateur.
+- Installation de Proxmox.
+- Redémarrage du serveur.
 <img width="700" height="600" alt="WhatsApp Image 2026-09-24 at 9 26 30 AM (2)" src="https://github.com/user-attachments/assets/cdaed6be-c8ce-4501-829f-2eb4b0a71ff4" />
 
-Les étapes principales étaient :
-
-- Démarrer le serveur avec la clé USB.
-- Lancer l’installation de Proxmox.
-- Sélectionner le disque.
-- Configurer le mot de passe administrateur.
-- Configurer le réseau.
-- Installer Proxmox.
-- Redémarrer le serveur.
+## 4. Connexion réseau
 <img width="700" height="699" alt="WhatsApp Image 2026-09-24 at 9 26 30 AM (5)" src="https://github.com/user-attachments/assets/deaa3558-2d22-4151-97fe-aa4273dcfe73" />
 
-## 4. Vérification
+Une fois l’installation terminée, nous avons vérifié la connexion réseau du serveur.
 
-Après l’installation, nous avons vérifié que le serveur était correctement connecté au réseau et que l’interface Web de Proxmox était accessible.
+Le serveur a été connecté au réseau à l’aide du câble Ethernet. Nous avons ensuite vérifié l’accès à l’interface Web de Proxmox à partir d’un ordinateur.
 
-## 5. Conclusion
+## 5. Résultat
 
-L’installation de Proxmox ainsi que le câblage du serveur ont été réalisés avec succès. Le serveur est maintenant correctement connecté au réseau et prêt à être utilisé.
+L’installation s’est terminée correctement. Le serveur démarre avec Proxmox et la connexion réseau fonctionne correctement.
+
+## 6. Conclusion
+
+Ce laboratoire nous a permis de mettre en pratique les étapes de préparation d’un serveur, de réaliser son câblage et d’installer Proxmox VE. Le serveur est maintenant fonctionnel et accessible sur le réseau.
