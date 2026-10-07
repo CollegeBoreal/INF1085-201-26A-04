@@ -7,7 +7,9 @@ param(
 )
 
 $STUDENTS = @(
+"300139389|octocat|583231"
 "300142542|anouarairn|157492270"
+"300142636|octocat|583231"
 "300145955|arianemaeva03-star|231501283"
 "300150410|lahlou06|231570554"
 "300150468|sahebmohandsaid97-oss|232939143"
@@ -15,6 +17,7 @@ $STUDENTS = @(
 "300150496|mohamedaymenmedjras-dev|231500876"
 "300151483|arnauld-ttad|231570852"
 "300151504|Nassimidir|232939073"
+"300151548|octocat|583231"
 "300151588|belhAmine|58528251"
 "300151589|walidwolf31|231501417"
 "300151753|kheloufinourdine48-rgb|266413355"
@@ -107,6 +110,9 @@ $SERVERS = @(
 "10.7.236.228"
 "10.7.236.229"
 "10.7.236.230"
+"10.7.236.231"
+"10.7.236.232"
+"10.7.236.233"
 )
 
 $SERVER_GROUPS = New-Groups -Items $SERVERS -Size $GROUP_SIZE
