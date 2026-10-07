@@ -113,6 +113,7 @@ $SERVERS = @(
 "10.7.236.231"
 "10.7.236.232"
 "10.7.236.233"
+"10.7.236.234"
 )
 
 $SERVER_GROUPS = New-Groups -Items $SERVERS -Size $GROUP_SIZE
