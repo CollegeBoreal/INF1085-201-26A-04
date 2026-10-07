@@ -3,7 +3,7 @@ user:300157334
 name :laala hamdaoui
 
 
-<img width="1200" height="1600" alt="WhatsApp Image 2026-10-07 at 10 16 18 (1)" src="https://github.com/user-attachments/assets/dca11dde-1110-494c-bf7f-d0251e393757" />
+<img width="700" height="900" alt="WhatsApp Image 2026-10-07 at 10 16 18 (1)" src="https://github.com/user-attachments/assets/dca11dde-1110-494c-bf7f-d0251e393757" />
 
 ## 1. Introduction
 
@@ -18,7 +18,7 @@ Nous avons effectué les branchements suivants :
 - Branchement du clavier et de l’écran.
 - Connexion du serveur au réseau.
 
-<img width="1200" height="1600" alt="WhatsApp Image 2026-10-07 at 10 16 18" src="https://github.com/user-attachments/assets/87d131a3-b41d-4aea-b96b-5f6621eb7236" />
+<img width="700" height="900" alt="WhatsApp Image 2026-10-07 at 10 16 18" src="https://github.com/user-attachments/assets/87d131a3-b41d-4aea-b96b-5f6621eb7236" />
 
 ## 3. Installation de Proxmox
 
