@@ -25,7 +25,7 @@
 | 6 | [300150470](../300150470/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/277295412?s=460&v=4' width=20 height=20></image>](https://github.com/hacene-ifticene) | :x: | :x: |
 | 7 | [300150496](../300150496/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231500876?s=460&v=4' width=20 height=20></image>](https://github.com/mohamedaymenmedjras-dev) | :x: | :x: |
 | 8 | [300151483](../300151483/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231570852?s=460&v=4' width=20 height=20></image>](https://github.com/arnauld-ttad) | :x: | :x: |
-| 9 | [300151504](../300151504/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939073?s=460&v=4' width=20 height=20></image>](https://github.com/Nassimidir) | :x: | :x: |
+| 9 | [300151504](../300151504/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939073?s=460&v=4' width=20 height=20></image>](https://github.com/Nassimidir) | :2nd_place_medal: | :heavy_check_mark: |
 | 10 | [300151548](../300151548/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 11 | [300151588](../300151588/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/58528251?s=460&v=4' width=20 height=20></image>](https://github.com/belhAmine) | :x: | :x: |
 | 12 | [300151589](../300151589/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501417?s=460&v=4' width=20 height=20></image>](https://github.com/walidwolf31) | :x: | :x: |
@@ -50,4 +50,4 @@
 | 31 | [300158052](../300158052/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 32 | [300158185](../300158185/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939280?s=460&v=4' width=20 height=20></image>](https://github.com/Mohammed-mati) | :x: | :x: |
 | 33 | [300158383](../300158383/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501135?s=460&v=4' width=20 height=20></image>](https://github.com/salmabaali) | :x: | :x: |
-| :abacus: | \$\frac{2}{34}\$ = 5.88% | \$\displaystyle\sum_{i=1}^{34} s_i\$ = 2 |
+| :abacus: | \$\frac{3}{34}\$ = 8.82% | \$\displaystyle\sum_{i=1}^{34} s_i\$ = 3 |
