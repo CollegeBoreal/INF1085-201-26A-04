@@ -353,7 +353,7 @@ nproc
 Résultat attendu :
 
 ```text
-8
+16
 ```
 
 ---
@@ -400,7 +400,7 @@ lsmod
 
 ---
 
-# Dépannage
+# :x: Dépannage
 
 ## Le serveur démarre avec un seul CPU
 
@@ -437,7 +437,7 @@ cat /sys/devices/system/cpu/online
 Exemple :
 
 ```text
-0-7
+0-15
 ```
 
 ---
@@ -447,6 +447,94 @@ Exemple :
 ```bash
 cat /proc/interrupts
 ```
+
+<details><summary>🪵 Print </summary>
+
+```lua
+
+           CPU0       CPU1       CPU2       CPU3       CPU4       CPU5       CPU6       CPU7       CPU8       CPU9       CPU10      CPU11      CPU12      CPU13      CPU14      CPU15      
+  0:     480594          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IO-APIC   2-edge      timer
+  1:          4          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IO-APIC   1-edge      i8042
+  8:          0          0          1          0          0          0          0          0          0          0          0          0          0          0          0          0  IO-APIC   8-edge      rtc0
+  9:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IO-APIC   9-fasteoi   acpi
+ 12:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          6          0  IO-APIC  12-edge      i8042
+ 17:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IO-APIC  17-fasteoi   hpilo
+ 20:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IO-APIC  20-fasteoi   ehci_hcd:usb1, uhci_hcd:usb2
+ 22:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IO-APIC  22-fasteoi   uhci_hcd:usb4
+ 23:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IO-APIC  23-fasteoi   uhci_hcd:usb3, uhci_hcd:usb5
+ 24:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 DMAR-MSI   0-edge      dmar0
+ 25:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:01.0   0-edge      PCIe bwctrl
+ 26:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:02.0   0-edge      PCIe bwctrl
+ 27:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:03.0   0-edge      PCIe bwctrl
+ 28:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:04.0   0-edge      PCIe bwctrl
+ 29:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:05.0   0-edge      PCIe bwctrl
+ 30:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:06.0   0-edge      PCIe bwctrl
+ 31:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:07.0   0-edge      PCIe bwctrl
+ 32:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:08.0   0-edge      PCIe bwctrl
+ 33:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:09.0   0-edge      PCIe bwctrl
+ 34:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:00:0a.0   0-edge      PCIe bwctrl
+ 40:          0          0          0        586          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:05:00.0   0-edge      hpsa0-msix0
+ 41:          0          0          0          0          0          0          0          0          0          0          0       1122          0          0          0          0 PCI-MSIX-0000:05:00.0   1-edge      hpsa0-msix1
+ 42:          0          0          0          0          0          0          0        675          0          0          0          0          0          0          0          0 PCI-MSIX-0000:05:00.0   2-edge      hpsa0-msix2
+ 43:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0       2209 PCI-MSIX-0000:05:00.0   3-edge      hpsa0-msix3
+ 44:          0          0          0          0          0        287          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:05:00.0   4-edge      hpsa0-msix4
+ 45:          0          0          0          0          0          0          0          0          0          0          0          0          0       1260          0          0 PCI-MSIX-0000:05:00.0   5-edge      hpsa0-msix5
+ 46:          0        657          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:05:00.0   6-edge      hpsa0-msix6
+ 47:          0          0          0          0          0          0          0          0          0        809          0          0          0          0          0          0 PCI-MSIX-0000:05:00.0   7-edge      hpsa0-msix7
+ 48:          0          0        651          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:05:00.0   8-edge      hpsa0-msix8
+ 49:          0          0          0          0          0          0          0          0          0          0       1123          0          0          0          0          0 PCI-MSIX-0000:05:00.0   9-edge      hpsa0-msix9
+ 50:          0          0          0          0          0          0        850          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:05:00.0  10-edge      hpsa0-msix10
+ 51:          0          0          0          0          0          0          0          0          0          0          0          0          0          0        686          0 PCI-MSIX-0000:05:00.0  11-edge      hpsa0-msix11
+ 52:          0          0          0          0        525          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:05:00.0  12-edge      hpsa0-msix12
+ 53:          0          0          0          0          0          0          0          0          0          0          0          0        493          0          0          0 PCI-MSIX-0000:05:00.0  13-edge      hpsa0-msix13
+ 54:       1043          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:05:00.0  14-edge      hpsa0-msix14
+ 55:          0          0          0          0          0          0          0          0        685          0          0          0          0          0          0          0 PCI-MSIX-0000:05:00.0  15-edge      hpsa0-msix15
+ 57:          0          0          0          0          0          0         48          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:06:00.0   0-edge      nvme0q0
+ 58:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSI-0000:02:00.4   0-edge      uhci_hcd:usb6
+ 59:          0          0          0         26          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:06:00.0   1-edge      nvme0q1
+ 60:          0          0          0          0          0          0          0          0          0          0          0          1          0          0          0          0 PCI-MSIX-0000:06:00.0   2-edge      nvme0q2
+ 61:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:06:00.0   3-edge      nvme0q3
+ 62:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          4 PCI-MSIX-0000:06:00.0   4-edge      nvme0q4
+ 63:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:06:00.0   5-edge      nvme0q5
+ 64:          0          0          0          0          0          0          0          0          0          0          0          0          0         63          0          0 PCI-MSIX-0000:06:00.0   6-edge      nvme0q6
+ 65:          0         62          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:06:00.0   7-edge      nvme0q7
+ 66:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:06:00.0   8-edge      nvme0q8
+ 67:          0          0         38          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:06:00.0   9-edge      nvme0q9
+ 68:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:06:00.0  10-edge      nvme0q10
+ 69:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:06:00.0  11-edge      nvme0q11
+ 70:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          2          0 PCI-MSIX-0000:06:00.0  12-edge      nvme0q12
+ 71:          0          0          0          0         10          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:06:00.0  13-edge      nvme0q13
+ 72:          0          0          0          0          0          0          0          0          0          0          0          0         31          0          0          0 PCI-MSIX-0000:06:00.0  14-edge      nvme0q14
+ 73:         28          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:06:00.0  15-edge      nvme0q15
+ 74:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:06:00.0  16-edge      nvme0q16
+ 75:          0          0          0          0          0      12047          0          0          0          0          0          0          0          0          0          0 PCI-MSIX-0000:03:00.0   0-edge      enp3s0f0-0
+ 76:          0          0          0          0          0          0          0       8620          0          0          0          0          0          0          0          0 PCI-MSIX-0000:03:00.0   1-edge      enp3s0f0-1
+ 77:          0          0          0          0          0          0          0          0      15299          0          0          0          0          0          0          0 PCI-MSIX-0000:03:00.0   2-edge      enp3s0f0-2
+ 78:          0          0          0          0          0          0          0          0          0      16274          0          0          0          0          0          0 PCI-MSIX-0000:03:00.0   3-edge      enp3s0f0-3
+ 79:          0          0          0          0          0          0          0          0          0          0      11734          0          0          0          0          0 PCI-MSIX-0000:03:00.0   4-edge      enp3s0f0-4
+NMI:         66         18         20         24         15         17         12         16         32         17         14         15         10         15         13         15   Non-maskable interrupts
+LOC:      26058      67178      70371      68726      65133      85681      54984      73131     123063      78992      64294      60727      42190      72013      54664      84573   Local timer interrupts
+SPU:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Spurious interrupts
+PMI:         66         18         20         24         15         17         12         16         32         17         14         15         10         15         13         15   Performance monitoring interrupts
+IWI:         13         40         49         13          7         18         12          9          8         13          8          4         14          2         22          2   IRQ work interrupts
+RTR:          7          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0   APIC ICR read retries
+RES:        195        175        147        159        168        152        172        153        165        167        168        184        156        150        188        141   Rescheduling interrupts
+CAL:      21160      13425      16064      14711      15335      16376      16128      17144      15984      11419      15534      15813      15549      16251      15814      12729   Function call interrupts
+TLB:       1067        918       1106        840        876        813        769        807        687        908        706        866        669        822        816        777   TLB shootdowns
+TRM:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Thermal event interrupts
+THR:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Threshold APIC interrupts
+DFR:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Deferred Error APIC interrupts
+MCE:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Machine check exceptions
+MCP:         17         18         18         18         18         18         18         18         18         18         18         18         18         18         18         18   Machine check polls
+ERR:          0
+MIS:          0
+PIN:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Posted-interrupt notification event
+NPI:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Nested posted-interrupt event
+PIW:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0   Posted-interrupt wakeup event
+VPMI:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  Perf Guest Mediated PMI
+```
+
+</details>
 
 ---
 
