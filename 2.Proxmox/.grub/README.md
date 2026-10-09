@@ -1,3 +1,6 @@
+
+> grep -R "GRUB_CMDLINE" /etc
+
 Parfait. On a trouvé exactement d'où vient le paramètre :
 
 ```
