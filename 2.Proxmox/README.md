@@ -623,7 +623,7 @@ ip a
 ✅ Paramètres permanents :
 
 ```text
-nomodeset acpi=off
+nomodeset
 ```
 
 ✅ Système stable
