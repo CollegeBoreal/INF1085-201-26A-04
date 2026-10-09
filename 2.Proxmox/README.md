@@ -1,4 +1,4 @@
-# Installation de Proxmox VE 9 sur un HP ProLiant DL360 G6
+# Installation de Proxmox VE 9 sur un HP ProLiant DL360 G7️⃣
 
 [:tada: Participation](.scripts/Participation.md)
 
@@ -21,17 +21,17 @@
 
 À la fin de ce laboratoire, vous serez capable de :
 
-- Installer Proxmox VE 9 sur un HP ProLiant DL360 G6.
+- Installer Proxmox VE 9 sur un HP ProLiant DL360 G7️⃣.
 - Comprendre les problèmes de compatibilité entre un ancien serveur et un noyau Linux moderne.
 - Utiliser des paramètres de démarrage avancés.
-- Diagnostiquer les problèmes liés à ACPI et APIC.
+- Diagnostiquer si problèmes liés à ACPI et APIC.
 - Vérifier que tous les processeurs sont correctement détectés.
 
 ---
 
 # 📖 Contexte
 
-Le HP ProLiant DL360 G6 est un serveur datant d'environ 2009-2010.
+Le HP ProLiant DL360 G7️⃣ est un serveur datant d'environ 2009-2010.
 
 Bien que ce matériel soit toujours capable d'exécuter Proxmox VE 9, sa plateforme matérielle est beaucoup plus ancienne que le noyau Linux utilisé par Proxmox.
 
@@ -55,7 +55,7 @@ nomodeset acpi=off
 
 ## Matériel
 
-- HP ProLiant DL360 G6
+- HP ProLiant DL360 G7️⃣
 - 2 × Xeon E5540 (optionnel mais recommandé)
 - 64 Go RAM
 - SSD ou disque système
@@ -147,13 +147,13 @@ linux
 Ajouter à la fin :
 
 ```text
-nomodeset acpi=off
+nomodeset
 ```
 
 Exemple :
 
 ```text
-linux ... nomodeset acpi=off
+linux ... nomodeset
 ```
 
 Puis démarrer avec :
@@ -196,7 +196,7 @@ Linux utilise un mode vidéo minimal.
 
 ### Pourquoi ?
 
-Sur le DL360 G6, le contrôleur graphique intégré est très ancien.
+Sur le DL360 G7️⃣, le contrôleur graphique intégré est très ancien.
 
 Sans ce paramètre, l'installation peut :
 
@@ -225,26 +225,6 @@ ACPI est responsable de :
 - les tables processeurs;
 - les interruptions;
 - les ressources PCI.
-
-### Pourquoi ?
-
-Le BIOS P64 (2010) du DL360 G6 fournit parfois des informations incompatibles avec les noyaux Linux récents.
-
-Sans :
-
-```text
-acpi=off
-```
-
-on peut observer :
-
-```text
-Illegal Opcode
-NMI PCI Error
-Boot Failure
-```
-
-ou d'autres problèmes matériels.
 
 ---
 
@@ -280,7 +260,7 @@ cat /proc/cmdline
 Résultat attendu :
 
 ```text
-BOOT_IMAGE=/boot/vmlinuz-7.x.x-pve root=/dev/mapper/pve-root ro nomodeset acpi=off quiet
+BOOT_IMAGE=/boot/vmlinuz-7.x.x-pve root=/dev/mapper/pve-root ro nomodeset quiet
 ```
 
 ---
@@ -296,11 +276,71 @@ lscpu
 Exemple :
 
 ```text
-CPU(s):                8
+CPU(s):                16
 Socket(s):             2
 Core(s) per socket:    4
-Thread(s) per core:    1
+Thread(s) per core:    2
 ```
+
+<details><summary>🪵 Print </summary>
+
+```lua
+Architecture:                x86_64
+  CPU op-mode(s):            32-bit, 64-bit
+  Address sizes:             40 bits physical, 48 bits virtual
+  Byte Order:                Little Endian
+CPU(s):                      16
+  On-line CPU(s) list:       0-15
+Vendor ID:                   GenuineIntel
+  Model name:                Intel(R) Xeon(R) CPU           X5550  @ 2.67GHz
+    CPU family:              6
+    Model:                   26
+    Thread(s) per core:      2
+    Core(s) per socket:      4
+    Socket(s):               2
+    Stepping:                5
+    CPU(s) scaling MHz:      90%
+    CPU max MHz:             2666.0000
+    CPU min MHz:             1600.0000
+    BogoMIPS:                5334.12
+    Flags:                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ht tm pbe syscall nx r
+                             dtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni dtes64 monitor ds_cpl vmx es
+                             t tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt lahf_lm pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid dtherm ida 
+                             vnmi flush_l1d
+Virtualization features:     
+  Virtualization:            VT-x
+Caches (sum of all):         
+  L1d:                       256 KiB (8 instances)
+  L1i:                       256 KiB (8 instances)
+  L2:                        2 MiB (8 instances)
+  L3:                        16 MiB (2 instances)
+NUMA:                        
+  NUMA node(s):              2
+  NUMA node0 CPU(s):         0,2,4,6,8,10,12,14
+  NUMA node1 CPU(s):         1,3,5,7,9,11,13,15
+Vulnerabilities:             
+  Gather data sampling:      Not affected
+  Ghostwrite:                Not affected
+  Indirect target selection: Not affected
+  Itlb multihit:             KVM: Mitigation: Split huge pages
+  L1tf:                      Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
+  Mds:                       Vulnerable: Clear CPU buffers attempted, no microcode; SMT vulnerable
+  Meltdown:                  Mitigation; PTI
+  Mmio stale data:           Not affected
+  Old microcode:             Not affected
+  Reg file data sampling:    Not affected
+  Retbleed:                  Not affected
+  Spec rstack overflow:      Not affected
+  Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+  Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+  Spectre v2:                Mitigation; Retpolines; IBPB conditional; IBRS_FW; STIBP conditional; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected
+  Srbds:                     Not affected
+  Tsa:                       Not affected
+  Tsx async abort:           Not affected
+  Vmscape:                   Not affected
+```
+
+</details>
 
 ---
 
