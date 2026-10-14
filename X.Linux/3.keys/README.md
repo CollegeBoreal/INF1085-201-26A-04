@@ -26,8 +26,6 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD2pLhMqFGKffSdYvNCMAyM7598oBY+m/3q5AMXmb7I
 
 ##  :two: Participation
 
-[:tada: Participation](.scripts/Participation.md)
-
 ## :three: [keygen](https://www.ssh.com/academy/ssh/keygen) Gestion des clés publique et privée
 
 avec ssh-`keygen`
