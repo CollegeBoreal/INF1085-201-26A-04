@@ -37,12 +37,16 @@ Fichier ISO	debian-13.7.0-amd64-netinst.iso
 
 Étape 1 : Accès à Proxmox
 Connexion à l’interface Web de Proxmox avec un compte utilisateur autorisé.
+
 Étape 2 : Importation du fichier ISO
 Téléchargement de l’image ISO de Debian 13.7, puis importation du fichier dans le stockage local de Proxmox.
+
 Étape 3 : Création de la machine virtuelle
 Création de la VM numéro 100 avec le nom laala, puis sélection de l’image ISO de Debian.
+
 Étape 4 : Configuration matérielle
 Configuration de la mémoire vive, du processeur, du disque dur virtuel et de l’interface réseau.
+
 Étape 5 : Correction de la configuration du processeur
 Lors du premier démarrage, une erreur liée à la fonctionnalité AES du processeur a été détectée. Le modèle du processeur virtuel a ensuite été modifié à l’aide de la commande :
 qm set 100 --cpu x86-64-v2
