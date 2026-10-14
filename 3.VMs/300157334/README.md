@@ -1,13 +1,17 @@
 Hamdaoui laala 
+
 Id :300157334
 
     Rapport d’installation d’une machine virtuelle avec Proxmox VE
 
 1. Introduction
-L’objectif de ce travail est de créer et de configurer une machine virtuelle sur un serveur Proxmox VE. La machine virtuelle est destinée à installer le système d’exploitation Debian 13.7.
+2. 
+L’objectif de ce travail est de créer et de configurer une machine virtuelle sur un serveur Proxmox VE.
+La machine virtuelle est destinée à installer le système d’exploitation Debian 13.7.
 
 
-2. Configuration de la machine virtuelle
+3. Configuration de la machine virtuelle
+   
 La machine virtuelle a été créée avec les caractéristiques suivantes :
 Caractéristique	Configuration
 Nom de la VM	laala
