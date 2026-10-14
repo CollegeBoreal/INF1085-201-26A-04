@@ -39,16 +39,16 @@ Chaque administrateur possède son propre compte.
 
 # 👤 Créer un utilisateur Linux
 
-:id:
+* avec son compte boreal 🆔
 
 ```bash
-adduser B
+adduser B🆔
 ```
 
 Vérifier :
 
 ```bash
-id alice
+id 🆔
 ```
 
 ---
@@ -56,7 +56,7 @@ id alice
 # 🖥️ Ajouter l'utilisateur à Proxmox
 
 ```bash
-pveum user add alice@pam
+pveum user add B🆔@pam
 ```
 
 Afficher les utilisateurs :
@@ -71,7 +71,7 @@ pveum user list
 
 ```bash
 pveum aclmod / \
-    -user alice@pam \
+    -user B🆔@pam \
     -role Administrator
 ```
 
@@ -100,7 +100,7 @@ https://10.7.237.200:8006
 Connexion :
 
 ```text
-Utilisateur : alice@pam
+Utilisateur : B🆔@pam
 Mot de passe : ********
 ```
 
@@ -109,7 +109,7 @@ Mot de passe : ********
 # 💻 Connexion SSH
 
 ```bash
-ssh alice@10.7.237.200
+ssh B🆔@10.7.237.200
 ```
 
 ---
@@ -125,13 +125,13 @@ ssh-keygen -t ed25519
 Copier la clé sur le serveur :
 
 ```bash
-ssh-copy-id alice@10.7.237.200
+ssh-copy-id B🆔@10.7.237.200
 ```
 
 Tester :
 
 ```bash
-ssh alice@10.7.237.200
+ssh B🆔@10.7.237.200
 ```
 
 ✅ Aucun mot de passe ne devrait être demandé.
@@ -191,7 +191,7 @@ pveum acl list
 Tester SSH :
 
 ```bash
-ssh alice@10.7.237.200
+ssh BB🆔@10.7.237.200
 ```
 
 ---
