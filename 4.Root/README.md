@@ -116,6 +116,8 @@ ssh B🆔@10.7.237.200
 
 # 🔐 Utiliser une clé SSH
 
+⚠️ Si tu as déjà une clé publique (i.e. ma_cle.pub) refère toi à [🔐](../X.Linux/3.keys)
+
 Créer une paire de clés :
 
 ```bash
