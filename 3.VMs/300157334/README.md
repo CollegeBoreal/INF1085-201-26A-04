@@ -58,10 +58,15 @@ L’état de la machine doit être vérifié pour confirmer que le démarrage a 
 <img width="945" height="342" alt="image" src="https://github.com/user-attachments/assets/a52b0ed9-a4e4-43cf-a13f-590c6c1115bc" />
 
 <img width="1365" height="541" alt="Capture d’écran 2026-10-14 121104" src="https://github.com/user-attachments/assets/f5a1aae8-3615-4841-bde2-ac41cee0be3b" />
+  
+   et voila 
+
+   <img width="1342" height="569" alt="Capture d’écran 2026-10-14 124443" src="https://github.com/user-attachments/assets/e1f1a619-f2e9-458a-83f5-fd9fe6ffef34" />
 
 5. Conclusion
 
 La machine virtuelle laala, identifiée par le numéro 100, a été créée dans Proxmox VE. Le système Debian 13.7 a été sélectionné et les ressources matérielles virtuelles ont été configurées. Une incompatibilité liée au modèle du processeur a été rencontrée, puis une modification de ce modèle a été effectuée.
 Le démarrage final doit être confirmé avant de conclure que l’installation de Debian est terminée. Une fois le démarrage réussi, l’installation du système d’exploitation pourra être poursuivie depuis la console de la machine virtuelle.
+  
 
 
