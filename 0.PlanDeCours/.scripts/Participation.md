@@ -28,7 +28,7 @@
 | 9 | [300151504](../300151504/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939073?s=460&v=4' width=20 height=20></image>](https://github.com/Nassimidir) | :1st_place_medal: | :heavy_check_mark: |
 | 10 | [300151548](../300151548/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
 | 11 | [300151588](../300151588/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/58528251?s=460&v=4' width=20 height=20></image>](https://github.com/belhAmine) | :x: | :heavy_check_mark: |
-| 12 | [300151589](../300151589/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501417?s=460&v=4' width=20 height=20></image>](https://github.com/walidwolf31) | :x: | :x: |
+| 12 | [300151589](../300151589/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501417?s=460&v=4' width=20 height=20></image>](https://github.com/walidwolf31) | :2nd_place_medal: | :heavy_check_mark: |
 | 13 | [300151753](../300151753/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266413355?s=460&v=4' width=20 height=20></image>](https://github.com/kheloufinourdine48-rgb) | :x: | :x: |
 | 14 | [300151834](../300151834/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266591188?s=460&v=4' width=20 height=20></image>](https://github.com/amirlounaci-bit) | :x: | :x: |
 | 15 | [300152247](../300152247/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/236670407?s=460&v=4' width=20 height=20></image>](https://github.com/aniss-djahid) | :2nd_place_medal: | :heavy_check_mark: |
@@ -47,7 +47,7 @@
 | 28 | [300157334](../300157334/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231569676?s=460&v=4' width=20 height=20></image>](https://github.com/laalahamdaoui16-alt) | :1st_place_medal: | :heavy_check_mark: |
 | 29 | [300157440](../300157440/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231572368?s=460&v=4' width=20 height=20></image>](https://github.com/Houssam-eddinerachdi) | :x: | :x: |
 | 30 | [300157736](../300157736/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231500022?s=460&v=4' width=20 height=20></image>](https://github.com/souhilaazzouz036-tech) | :x: | :x: |
-| 31 | [300158052](../300158052/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
+| 31 | [300158052](../300158052/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :2nd_place_medal: | :heavy_check_mark: |
 | 32 | [300158185](../300158185/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939280?s=460&v=4' width=20 height=20></image>](https://github.com/Mohammed-mati) | :x: | :x: |
 | 33 | [300158383](../300158383/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501135?s=460&v=4' width=20 height=20></image>](https://github.com/salmabaali) | :x: | :x: |
-| :abacus: | \$\frac{6}{34}\$ = 17.65% | \$\displaystyle\sum_{i=1}^{34} s_i\$ = 6 |
+| :abacus: | \$\frac{8}{34}\$ = 23.53% | \$\displaystyle\sum_{i=1}^{34} s_i\$ = 8 |
