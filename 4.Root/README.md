@@ -39,8 +39,10 @@ Chaque administrateur possède son propre compte.
 
 # 👤 Créer un utilisateur Linux
 
+:id:
+
 ```bash
-adduser alice
+adduser B
 ```
 
 Vérifier :
