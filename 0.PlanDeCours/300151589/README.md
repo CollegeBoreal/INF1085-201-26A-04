@@ -2,6 +2,6 @@ Bienvenue sur ma page GitHub.
 
 ## Mes images
 
-![Linux](images/linux.png)
+![Linux](images/linux.jpg)
 
-![Terminal](images/terminal.png)
+![Terminal](images/terminal.jpg)
