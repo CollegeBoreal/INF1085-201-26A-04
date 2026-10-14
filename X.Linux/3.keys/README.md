@@ -5,7 +5,7 @@
 * Connectez vous à votre machine avec `git bash` ou `putty`
 
 ```
-$ ssh monID@monAdresseIP
+ssh monID@monAdresseIP
 ```
 
 * Ouvrir le fichier d'authorisation de clés publiques suivant avec Nano 
@@ -13,7 +13,7 @@ $ ssh monID@monAdresseIP
 :warning: si le répertoire `~/.ssh` n'existe pas, veuillez le créer
 
 ```
-$ nano ~/.ssh/authorized_keys
+nano ~/.ssh/authorized_keys
 ```
 
 * copier la clé publique ci-dessous dans une nouvelle ligne 
