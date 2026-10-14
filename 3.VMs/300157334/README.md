@@ -53,6 +53,7 @@ qm set 100 --cpu x86-64-v2
  
 
 Étape 6 : Tentative de démarrage
+
  <img width="945" height="638" alt="image" src="https://github.com/user-attachments/assets/6365b66a-0a31-4b77-9b69-6ab6a169cc22" />
 
 Une nouvelle tentative de démarrage a été effectuée avec la commande :
