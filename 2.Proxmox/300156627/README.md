@@ -1,5 +1,5 @@
         
-                #### Nom #### : ##### ROUGAIYATOU DIALLO ##### 
+                #### Nom  : ##### ROUGAIYATOU DIALLO  
                 
                 ##### COURS : ##### INF1085  
                 
