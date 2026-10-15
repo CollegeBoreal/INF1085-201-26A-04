@@ -17,7 +17,7 @@
 |:hash:| Boréal :id: | README.md | images |
 |------|-------------|-----------|--------|
 | 0 | [300139389](../300139389/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: |
-| 1 | [300142542](../300142542/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/157492270?s=460&v=4' width=20 height=20></image>](https://github.com/anouarairn) | :x: | :x: |
+| 1 | [300142542](../300142542/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/157492270?s=460&v=4' width=20 height=20></image>](https://github.com/anouarairn) | :2nd_place_medal: | :x: |
 | 2 | [300142636](../300142636/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/185518351?s=460&v=4' width=20 height=20></image>](https://github.com/murtada-Nmd) | :x: | :x: |
 | 3 | [300145955](../300145955/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501283?s=460&v=4' width=20 height=20></image>](https://github.com/arianemaeva03-star) | :x: | :x: |
 | 4 | [300150410](../300150410/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231570554?s=460&v=4' width=20 height=20></image>](https://github.com/lahlou06) | :x: | :x: |
