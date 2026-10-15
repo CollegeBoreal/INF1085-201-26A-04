@@ -19,6 +19,9 @@
 
 L’objectif de ce laboratoire est d’installer Proxmox VE 9 sur un serveur HP ProLiant DL360 G7, de résoudre les problèmes de compatibilité liés à l’ancien matériel et de vérifier la détection des processeurs et des autres ressources matérielles.
 
+<img width="1600" height="900" alt="WhatsApp Image 2026-09-24 at 9 26 28 AM (7)" src="https://github.com/user-attachments/assets/e2afbc87-1ad8-48e5-9dd4-e968c5213e71" />
+
+
 ## 2. Matériel et logiciels
 
 - Serveur HP ProLiant DL360 G7.
@@ -26,23 +29,39 @@ L’objectif de ce laboratoire est d’installer Proxmox VE 9 sur un serveur HP 
 - Clé USB d’au moins 8 Go.
 - Image ISO de Proxmox VE 9 et logiciel Rufus.
 
+  <img width="2048" height="1536" alt="WhatsApp Image 2026-10-07 at 12 17 09 PM (1)" src="https://github.com/user-attachments/assets/978f2eb5-f1dd-4c34-8465-959364120b2c" />
+
+
 ## 3. Étapes de l’installation
 
 **Étape 1 : Préparation de la clé USB**
 
 Télécharger l’image ISO de Proxmox VE 9 et créer une clé USB amorçable avec Rufus.
 
+<img width="1536" height="1146" alt="WhatsApp Image 2026-10-07 at 12 17 11 PM (7)" src="https://github.com/user-attachments/assets/790b2b95-6282-4a64-84de-337b1b4dc7b1" />
+
+
 **Étape 2 : Démarrage du serveur**
 
 Brancher la clé USB, démarrer le serveur et appuyer sur F11 pour sélectionner le périphérique de démarrage.
+
+<img width="1536" height="1059" alt="WhatsApp Image 2026-10-07 at 1 16 39 PM" src="https://github.com/user-attachments/assets/7b831330-aaa6-4884-9d46-5ca57aa20326" />
+
 
 **Étape 3 : Paramètres de démarrage**
 
 Si nécessaire, modifier la ligne de démarrage du noyau et ajouter `nomodeset` pour contourner certains problèmes d’affichage. Le paramètre `acpi=off` peut également être testé si le démarrage présente des problèmes liés à l’ACPI.
 
+<img width="1872" height="1066" alt="WhatsApp Image 2026-10-07 at 1 16 37 PM (3)" src="https://github.com/user-attachments/assets/3085f9ba-5c1c-4ba5-8a71-44bbc64bb0c4" />
+
+
 **Étape 4 : Installation**
 
 Choisir le disque système, définir le mot de passe `root`, configurer le réseau et terminer l’installation.
+
+<img width="2048" height="1237" alt="WhatsApp Image 2026-10-07 at 1 16 36 PM" src="https://github.com/user-attachments/assets/4397e2c0-0b7b-472e-b3c6-aa99fc350e9a" />
+
+
 
 **Étape 5 : Vérification**
 
@@ -55,6 +74,9 @@ nproc
 lsblk
 ip a
 ```
+
+<img width="1566" height="893" alt="WhatsApp Image 2026-10-07 at 1 16 30 PM (1)" src="https://github.com/user-attachments/assets/83fa8683-54e6-4995-811f-a1962e63345b" />
+
 
 Ces commandes permettent de vérifier les paramètres de démarrage, les processeurs, les disques et les interfaces réseau.
 
