@@ -1,9 +1,9 @@
         
-#### Nom  : ###### ROUGAIYATOU DIALLO  
+###### Nom  :  ROUGAIYATOU DIALLO  
                 
-##### COURS : ###### INF1085  
+###### COURS : INF1085  
                 
-##### DATE :##### 14/10/2026
+###### DATE : 14/10/2026
 
 
 ## # Rapport de Laboratoire : Installation de Proxmox VE 9 sur HP ProLiant DL360 G6
