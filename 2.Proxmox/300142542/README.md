@@ -21,81 +21,77 @@ Le serveur est un HP ProLiant DL360 G7. Les informations affichées au démarrag
 | Mémoire | 64 Go installés (Advanced ECC Support) |
 | Gestion à distance | iLO 3 |
 
-![Figure 1](<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 50" src="https://github.com/user-attachments/assets/f2a87749-d87a-4dce-a8c8-6056deb788e7" />)
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 50" src="https://github.com/user-attachments/assets/4815ab83-73bd-4b81-9edf-fcfb78822b49" />
 
-*Figure 1 : le serveur HP ProLiant DL360 G7 avec la clé USB branchée à l'avant.*
+ le serveur HP ProLiant DL360 G7 avec la clé USB branchée à l'avant.*
 
-![Figure 2](<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 52" src="https://github.com/user-attachments/assets/42849ba3-9ef0-4f4f-8a61-6da5a10bce67" />)
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 51" src="https://github.com/user-attachments/assets/4460cfc8-a233-4641-ba7b-acaf47e96766" />
 
-*Figure 2 : écran de démarrage du BIOS HP ProLiant (calibration de l'alimentation et de la température).*
+ écran de démarrage du BIOS HP ProLiant (calibration de l'alimentation et de la température).*
 
-![Figure 3](<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 52 (1)" src="https://github.com/user-attachments/assets/6096b41a-b146-4d82-9603-66f1f5cbfdbc" />)
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 524" src="https://github.com/user-attachments/assets/87ae1915-e328-4354-9521-2aa92ea31d99" />
 
-*Figure 3 : informations du BIOS (processeurs, mémoire).*
+ informations du BIOS (processeurs, mémoire).*
 
 ## 3. Démarrage à partir de la clé USB
 
 La clé USB contenant l'image ISO de Proxmox VE a été branchée sur le port USB à l'avant du serveur. Au démarrage, nous avons ouvert le menu de démarrage du BIOS (Boot Override) et choisi l'option **One Time Boot to USB DriveKey**. Ce choix s'applique seulement pour ce démarrage et ne modifie pas l'ordre normal de démarrage du serveur.
 
-![Figure 4](<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 53" src="https://github.com/user-attachments/assets/ebfcd41f-f291-4eaf-8920-c24ddf2532ed" />)
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 53" src="https://github.com/user-attachments/assets/d2b5cc8c-a65d-4562-b9bf-d64c23c03230" />
 
-*Figure 4 : menu « Default Boot Override Options » du BIOS.*
+menu « Default Boot Override Options » du BIOS.*
 
 ## 4. Menu de démarrage de Proxmox (GRUB)
 
 Le serveur a démarré sur le menu de Proxmox VE 9.2. Nous avons sélectionné l'option **Install Proxmox VE (Graphical)** pour lancer l'installation graphique.
 
-![Figure 5](images/fig05.jpg)
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 54" src="https://github.com/user-attachments/assets/bf8c226c-ea1f-4852-bd28-4f53afc74e72" />
 
-*Figure 5 : menu d'accueil de Proxmox VE 9.2.*
+menu d'accueil de Proxmox VE 9.2.*
 
 Avant de lancer l'installation, nous avons modifié l'entrée avec la touche **e** pour ajouter le paramètre `nomodeset` à la ligne de démarrage du noyau. Ce paramètre désactive la gestion avancée de l'affichage et évite les problèmes d'affichage sur ce matériel ancien. Le démarrage s'est ensuite fait avec **Ctrl+X**.
 
-![Figure 6](images/fig06.jpg)
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 55" src="https://github.com/user-attachments/assets/0d45f4e6-7d6d-4464-93f5-7ef214d3b09f" />
 
-*Figure 6 : modification de l'entrée GRUB (ajout de `nomodeset`).*
 
-![Figure 7](images/fig07.jpg)
+modification de l'entrée GRUB (ajout de `nomodeset`).*
 
-*Figure 7 : message « Loading Proxmox VE Installer … ».*
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 56" src="https://github.com/user-attachments/assets/3ad1168a-a5cc-436b-9c4a-6ee46422dcc0" />
+
+ message « Loading Proxmox VE Installer … ».*
 
 ## 5. Chargement de l'installateur
 
 Pendant le chargement, le système a recherché le support contenant l'ISO : il a d'abord testé le lecteur `/dev/sr0`, puis a trouvé l'image Proxmox VE sur `/dev/sdb` (la clé USB). Il a ensuite détecté les cartes réseau et obtenu des offres DHCP (« DHCPOFFERS received »), ce qui confirme que le réseau est accessible.
 
-![Figure 8](images/fig08.jpg)
 
-*Figure 8 : détection de l'ISO sur `/dev/sdb`.*
-
-![Figure 9](images/fig09.jpg)
-
-*Figure 9 : détection des cartes réseau et réception des offres DHCP.*
 
 ## 6. Contrat de licence (EULA)
 
 L'installateur graphique affiche le contrat de licence de Proxmox VE. Nous avons cliqué sur **I agree** pour l'accepter.
 
-![Figure 10](images/fig10.jpg)
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 57" src="https://github.com/user-attachments/assets/440ecb65-0870-4dd5-9782-7d84d26d58b2" />
 
-*Figure 10 : contrat de licence (EULA).*
+contrat de licence (EULA).*
 
 ## 7. Choix du disque d'installation
 
 Par défaut, l'installateur propose le disque `/dev/nvme0n1` (953,87 GiB, SK hynix PC811 1024 Go). Nous avons ouvert la liste déroulante **Target Harddisk** et sélectionné `/dev/sda` (273,40 GiB, volume logique). L'installateur avertit que toutes les partitions et données du disque choisi seront perdues.
 
-![Figure 11](images/fig11.jpg)
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 59" src="https://github.com/user-attachments/assets/7858d57f-d3b0-48b9-a69c-532da9ccfed1" />
 
-*Figure 11 : disque proposé par défaut (`/dev/nvme0n1`).*
 
-![Figure 12](images/fig12.jpg)
 
-*Figure 12 : sélection de `/dev/sda` dans la liste.*
+
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 46 00" src="https://github.com/user-attachments/assets/19f61c65-725e-483d-a4b9-5d0bfacb537b" />
+
+ sélection de `noom\deset` dans la liste.*
 
 ## 8. Mot de passe administrateur et courriel
 
 L'installateur demande de définir le mot de passe du compte administrateur **root** et une adresse courriel qui servira à recevoir les notifications importantes du serveur (par exemple les échecs de sauvegarde). Le mot de passe doit contenir au moins 8 caractères avec des lettres, des chiffres et des symboles.
 
-![Figure 13](images/fig13.jpg)
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 46 03" src="https://github.com/user-attachments/assets/df5dd717-10a5-4f1d-a20c-f0f95a11444c" />
 
 *Figure 13 : saisie du mot de passe root et de l'adresse courriel (champs floutés).*
 
@@ -113,9 +109,9 @@ Nous avons ensuite configuré l'interface de gestion du serveur :
 
 L'option **Pin network interface names** est cochée : elle fixe les noms des interfaces réseau pour qu'ils ne changent pas après un redémarrage.
 
-![Figure 14](images/fig14.jpg)
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 46 06" src="https://github.com/user-attachments/assets/d54a3a5c-8375-4ff3-a8ca-fa457a38cd15" />
 
-*Figure 14 : configuration du réseau de gestion.*
+ configuration du réseau de gestion.*
 
 ## 10. Résumé avant l'installation
 
@@ -136,9 +132,9 @@ Avant de lancer l'installation, l'installateur affiche un résumé des choix :
 
 L'option **Automatically reboot after successful installation** est cochée. Nous avons cliqué sur **Install**.
 
-![Figure 15](images/fig15.jpg)
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-1478547 at 21 46 07" src="https://github.com/user-attachments/assets/d369b635-e012-4be5-9b7d-6b92416abe9d" />
 
-*Figure 15 : résumé de l'installation (courriel flouté).*
+ résumé de l'installation (courriel flouté).*
 
 ## 11. Installation de Proxmox
 
@@ -152,27 +148,20 @@ Les principales étapes exécutées par l'installateur sont :
 
 Pendant la création des volumes logiques, l'installateur a détecté un groupe de volumes `pve` existant (sur `/dev/nvme0n1p3`), provenant d'une installation précédente. Il a proposé de le renommer en `pve-OLD-810787F6` ou d'annuler l'installation. Nous avons choisi **OK** pour renommer l'ancien groupe de volumes et poursuivre.
 
-![Figure 16](images/fig16.jpg)
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 46 0578" src="https://github.com/user-attachments/assets/225829a0-37ee-4c0b-9704-c07eab2befae" />
 
-*Figure 16 : création des partitions.*
+ création des partitions.*
 
-![Figure 17](images/fig17.jpg)
 
-*Figure 17 : détection d'un groupe de volumes `pve` existant.*
-
-![Figure 18](images/fig18.jpg)
-
-*Figure 18 : création des volumes logiques.*
-
-![Figure 19](images/fig19.jpg)
-
-*Figure 19 : extraction des paquets (51 %).*
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 46 09" src="https://github.com/user-attachments/assets/fd6586bb-2220-42e3-a139-6179607cbfc1" />
+extraction des paquets (51 %).*
 
 ## 12. Connexion réseau
 
 Une fois l'installation terminée, le serveur a redémarré. Il utilise l'adresse IP **10.7.236.237**. L'interface Web de Proxmox est accessible depuis un navigateur à l'adresse :
 
 `https://10.7.236.237:8006`
+<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 46 10" src="https://github.com/user-attachments/assets/62dc6876-3732-40b9-82f1-2072af7a4dc3" />
 
 Cette interface permet d'administrer le serveur à distance. La connexion se fait avec l'utilisateur `root` et le mot de passe défini pendant l'installation (realm Linux PAM).
 
