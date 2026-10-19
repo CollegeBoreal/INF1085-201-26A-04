@@ -1,10 +1,15 @@
 # =====================================================================
 # RUBRIC / EMOJI HELPERS
 # =====================================================================
-# These helper functions translate README or grading emojis into
-# rubric level IDs used by the LMS.
+# Translates README or grading emojis into rubric level IDs for the LMS.
+#
+# Usage:
+#   2 levels → pass/fail  (any non-❌ emoji = pass)
+#   3 levels → ❌ 🥈 🥇
+#   4 levels → ❌ 🥉 🥈 🥇
+#   5 levels → ❌ 🥉 🥈 🥇 🏆
 # =====================================================================
-function Get-RubricLevelIdFromReadmeEmoji {
+function Get-RubricLevelId {
     param (
         [Parameter(Mandatory)]
         [string]$Emoji,
@@ -17,90 +22,63 @@ function Get-RubricLevelIdFromReadmeEmoji {
 
     switch ($Levels.Count) {
 
+        2 {
+            $fail = $Levels[0]
+            $pass = $Levels[1]
+
+            if ($Emoji -match ':x:|❌') { return $fail }
+            return $pass
+        }
+
         3 {
-            $fail   = $Levels[0]
+            $fail = $Levels[0]
             $silver = $Levels[1]
-            $gold   = $Levels[2]
+            $gold = $Levels[2]
 
             switch -Regex ($Emoji) {
-                ':x:|❌'               { return $fail }
+                ':x:|❌' { return $fail }
                 ':2nd_place_medal:|🥈' { return $silver }
                 ':1st_place_medal:|🥇' { return $gold }
-                default {
-                    throw "Unknown README emoji for 3-level rubric: $Emoji"
-                }
+                default { throw "Unknown emoji for 3-level rubric: $Emoji" }
             }
         }
 
         4 {
-            $fail   = $Levels[0]
+            $fail = $Levels[0]
             $bronze = $Levels[1]
             $silver = $Levels[2]
-            $gold   = $Levels[3]
+            $gold = $Levels[3]
 
             switch -Regex ($Emoji) {
-                ':x:|❌'               { return $fail }
+                ':x:|❌' { return $fail }
                 ':3rd_place_medal:|🥉' { return $bronze }
                 ':2nd_place_medal:|🥈' { return $silver }
                 ':1st_place_medal:|🥇' { return $gold }
-                default {
-                    throw "Unknown README emoji for 4-level rubric: $Emoji"
-                }
+                default { throw "Unknown emoji for 4-level rubric: $Emoji" }
             }
         }
 
         5 {
-            $fail   = $Levels[0]
+            $fail = $Levels[0]
             $bronze = $Levels[1]
             $silver = $Levels[2]
-            $gold   = $Levels[3]
-            $champ  = $Levels[4]
+            $gold = $Levels[3]
+            $champ = $Levels[4]
 
             switch -Regex ($Emoji) {
-                ':x:|❌'               { return $fail }
+                ':x:|❌' { return $fail }
                 ':3rd_place_medal:|🥉' { return $bronze }
                 ':2nd_place_medal:|🥈' { return $silver }
                 ':1st_place_medal:|🥇' { return $gold }
-                ':trophy:|🏆'          { return $champ }
-                default {
-                    throw "Unknown README emoji for 5-level rubric: $Emoji"
-                }
+                ':trophy:|🏆' { return $champ }
+                default { throw "Unknown emoji for 5-level rubric: $Emoji" }
             }
         }
 
         default {
-            throw "Levels must contain either 3 values [fail,silver,gold] or 4 values [fail,bronze,silver,gold] or 5 values [fail,bronze,silver,gold,trophy]"
+            throw "Levels must have 2 [fail,pass], 3 [fail,silver,gold], 4 [fail,bronze,silver,gold], or 5 [fail,bronze,silver,gold,trophy] values."
         }
     }
-}
-
-function Get-RubricLevelIdFromEmoji {
-    <#
-        Simple pass/fail emoji mapping.
-
-        ❌ or :x:      → Fail level
-        Any other emoji → Pass level
-    #>
-    param (
-        [Parameter(Mandatory)]
-        [string]$Emoji,
-
-        [Parameter(Mandatory)]
-        [int]$FailLevelId,
-
-        [Parameter(Mandatory)]
-        [int]$PassLevelId
-    )
-
-    $Emoji = $Emoji.Trim()
-
-    # Explicit failure detection
-    if ($Emoji -match ':x:' -or $Emoji -match '❌') {
-        return $FailLevelId
-    }
-
-    # Default to pass
-    return $PassLevelId
 }
 
 # =====================================================================
@@ -126,15 +104,16 @@ function Get-LMSGradableUsers {
         $responseLMS = Invoke-RestMethod -Method Post `
             -Uri "https://$($env:LMS_URL)/webservice/rest/server.php" `
             -Body @{
-                wstoken            = $env:API_SYNC_TOKEN
-                wsfunction         = "core_grades_get_gradable_users"
-                courseid           = $LMS_COURSE
-                moodlewsrestformat = "json"
-            }
+            wstoken            = $env:API_SYNC_TOKEN
+            wsfunction         = "core_grades_get_gradable_users"
+            courseid           = $LMS_COURSE
+            moodlewsrestformat = "json"
+        }
 
         return $responseLMS
 
-    } catch {
+    }
+    catch {
         throw "Failed to call Moodle API: $($_.Exception.Message)"
     }
 }
@@ -167,11 +146,11 @@ function Get-LMSStudentInfo {
     }
 
     $LMSResponse.users | Where-Object { $_.idnumber } | ForEach-Object {
-            $LMSStudents[$_.idnumber] = [PSCustomObject]@{
-                moodleId = $_.id
-                email    = $_.email
-            }
+        $LMSStudents[$_.idnumber] = [PSCustomObject]@{
+            moodleId = $_.id
+            email    = $_.email
         }
+    }
 
     return $LMSStudents
 }
@@ -236,8 +215,8 @@ function Send-LMSRubricGrade {
         }
 
         $body["rubric[criteria][$i][criterionid]"] = $entry.criterionid
-        $body["rubric[criteria][$i][levelid]"]     = $entry.levelid
-        $body["rubric[criteria][$i][remark]"]      = $entry.remark
+        $body["rubric[criteria][$i][levelid]"] = $entry.levelid
+        $body["rubric[criteria][$i][remark]"] = $entry.remark
     }
 
     if ($DEBUG) { $body | ConvertTo-Json -Depth 10 }
