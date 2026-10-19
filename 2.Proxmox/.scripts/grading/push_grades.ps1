@@ -4,6 +4,9 @@
 # This script reads participation data from Markdown,
 # maps students to Moodle users, builds rubric payloads,
 # and submits grades to the LMS.
+#
+# All assignment-specific IDs (assignmentId, criterionid, levelids)
+# are loaded from rubric.json — never hardcoded here.
 # =====================================================================
 
 # Exit immediately on any unhandled error
@@ -14,14 +17,32 @@ $ErrorActionPreference = "Stop"
 # LOAD DEPENDENCIES
 # ---------------------------------------------------------------------
 
-# repo/0.PlanDeCours/.scripts/grading -> repo
+# 0.PlanDeCours/.scripts/grading -> repo root
 $RepoRoot = Resolve-Path (Join-Path $PSScriptRoot "../../..")
 
 . (Join-Path $RepoRoot ".scripts/students.ps1")
 . (Join-Path $RepoRoot ".scripts/grading/functions.ps1")
+. (Join-Path $RepoRoot ".scripts/grading/WSFunctions.ps1")
 
-# Fichier local au script
-. (Join-Path $PSScriptRoot "WSFunctions.ps1")
+# =====================================================================
+# LOAD RUBRIC CONFIG (assignment-specific, sourced from API)
+# =====================================================================
+$config = Get-Content "$PSScriptRoot/rubric.json" -Raw | ConvertFrom-Json
+$LMSAssignmentID = $config.assignmentId
+$Criteria = $config.criteria
+$ImpliedPass = $config.impliedPass   # may be $null
+
+# ---------------------------------------------------------------------
+# LOAD FEEDBACK (per-student remarks from feedback.csv)
+# ---------------------------------------------------------------------
+# Keyed by StudentID → { Appreciation, Comments }
+$FeedbackLookup = @{}
+$feedbackPath = Join-Path $PSScriptRoot "feedback.csv"
+if (Test-Path $feedbackPath) {
+    Import-Csv $feedbackPath | ForEach-Object {
+        $FeedbackLookup[$_.StudentID] = $_
+    }
+}
 
 # ---------------------------------------------------------------------
 # FETCH GRADABLE USERS FROM LMS
@@ -35,26 +56,12 @@ $responseLMS = Get-LMSGradableUsers -LMS_COURSE $LMS_COURSE
 # }
 $LMSStudents = Get-LMSStudentInfo -LMSResponse $responseLMS
 
-# =====================================================================
-# CONFIGURATION
-# =====================================================================
-# Static IDs and flags used throughout participation grading
-# =====================================================================
-
-# LMS assignment ID where participation grades will be submitted
-$LMSAssignmentID = 32
-
 # ---------------------------------------------------------------------
 # READ PARTICIPATION FILES
 # ---------------------------------------------------------------------
-# List of Markdown files containing participation tables
-$files = @(
-    "./.scripts/Participation.md"
-)
-
-# Parse participation entries from each file
-$participation = $files | ForEach-Object {
-    Get-ParticipationGrades -Path $_
+# File list is driven by rubric.json so it varies per assignment
+$participation = $config.files | ForEach-Object {
+    Get-ParticipationGrades -Path $_ -Criteria $Criteria -ImpliedPass $ImpliedPass
 }
 
 # Optional debug output to validate extracted data
@@ -87,8 +94,16 @@ foreach ($entry in $participation) {
         Write-Output $moodleId, $entry.borealId
     }
 
-    # Build LMS-compatible rubric payload
-    $rubric = New-LMSRubricFromEntry -Entry $entry
+    # Merge per-student feedback remark into entry
+    # (used as the remark on criteria whose rubric.json "remark" points to "comments")
+    if ($FeedbackLookup.ContainsKey($entry.borealId)) {
+        $entry | Add-Member -NotePropertyName comments `
+            -NotePropertyValue $FeedbackLookup[$entry.borealId].Comments `
+            -Force
+    }
+
+    # Build LMS-compatible rubric payload from config-driven criteria
+    $rubric = New-LMSRubricFromEntry -Entry $entry -Criteria $Criteria
 
     # -----------------------------------------------------------------
     # SUBMIT GRADE TO LMS
