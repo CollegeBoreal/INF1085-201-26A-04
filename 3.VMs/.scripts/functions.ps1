@@ -6,9 +6,9 @@ function Write-ConfigurationSection {
     Write-Output "## :gear: Configuration"
     Write-Output ""
 
-    Write-Output "| Proxmox V9.2           | User/Pwd                   |"
-    Write-Output "|------------------------|----------------------------|"
-    Write-Output "| ${Server}              | root/Boreal@2️⃣02️⃣6          |"
+    Write-Output "| Proxmox V9.2                        | User/Pwd                   |"
+    Write-Output "|-------------------------------------|----------------------------|"
+    Write-Output "| [${Server}](https://${Server}:8006) | root/Boreal@2️⃣02️⃣6          |"
     Write-Output ""
 
 }
@@ -24,8 +24,8 @@ function Write-LabHeader {
     Write-Output ""
 
     if ($FeedbackLookup.Count -gt 0) {
-        Write-Output "|:hash:| Boréal :id: | README.md | images | Appréciation | Commentaires | :link: IP |"
-        Write-Output "|------|-------------|-----------|--------|--------------|--------------|-----------|"
+        Write-Output "|:hash:| Boréal :id: | README.md | images | Appréc. | Commentaires | :link: IP |"
+        Write-Output "|------|-------------|-----------|--------|---------|--------------|-----------|"
     }
     else {
         Write-Output "|:hash:| Boréal :id: | README.md | images | :link: IP |"

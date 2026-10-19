@@ -62,9 +62,12 @@ for ($i = 0; $i -lt $ACTIVE_GROUP.Count; $i++) {
     $checks = Get-StudentChecks -Paths $paths
     $url    = Get-GitHubAvatarLink -GitHubID $GitHubID -AvatarID $AvatarID
 
-    $ServerIP = $WINDOWS_SERVER[$i]
+    $server_parts = $WINDOWS_SERVER[$i] -split '\|'
+    $ServerIP = $server_parts[0]
+    $AdminIP  = $server_parts[1]
+
     # $RdpStatus = Get-RdpStatus -ServerIP $ServerIP
-    $RdpStatus = "~ "
+    $RdpStatus = "🏙️ "
     
     Write-LabStudentRow `
         -Index ($i + 1) `
@@ -73,7 +76,7 @@ for ($i = 0; $i -lt $ACTIVE_GROUP.Count; $i++) {
         -ReadmePath $Paths.README `
         -Checks $Checks `
         -FeedbackLookup $FeedbackLookup `
-        -Server "$RdpStatus $ServerIP "
+        -Server "$RdpStatus $AdminIP@$ServerIP "
 
     if (Test-AllRequiredFilesPresent -Checks $checks) {
         $s++

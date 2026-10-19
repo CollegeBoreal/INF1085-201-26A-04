@@ -10,34 +10,44 @@ $ErrorActionPreference = "Stop"
 . ../.scripts/functions.ps1
 . ../.scripts/commons.ps1
 
-Write-ParticipationHeader
-Write-PresenceHeader
+# Importer les fonctions du lab
+. .scripts/functions.ps1
 
-$i = 0
+# --------------------------------------
+# FEEDBACK
+# --------------------------------------
+
+$FeedbackLookup = Get-FeedbackLookup -Students $STUDENTS
+
+Write-LabParticipationHeader
+Write-PresenceHeader -FeedbackLookup $FeedbackLookup
+
 $s = 0
 
-foreach ($entry in $STUDENTS) {
-    $parts = $entry -split '\|'
+for ($i = 0; $i -lt $STUDENTS.Count; $i++) {
+
+    $parts = $STUDENTS[$i] -split '\|'
+
     $StudentID = $parts[0]
-    $GitHubID  = $parts[1]
-    $AvatarID  = $parts[2]
+    $GitHubID = $parts[1]
+    $AvatarID = $parts[2]
 
-    $paths  = Get-StudentPaths -StudentID $StudentID
+    $paths = Get-StudentPaths -StudentID $StudentID
     $checks = Get-StudentChecks -Paths $paths
-    $url    = Get-GitHubAvatarLink -GitHubID $GitHubID -AvatarID $AvatarID
+    $url = Get-GitHubAvatarLink -GitHubID $GitHubID -AvatarID $AvatarID
 
-    Write-StudentRow `
-        -Index $i `
+    Write-LabStudentRow `
+        -Index ($i + 1) `
         -StudentID $StudentID `
         -GitHubLink $url `
-        -ReadmePath $paths.README `
-        -Checks $checks
+        -ReadmePath $Paths.README `
+        -Checks $Checks `
+        -FeedbackLookup $FeedbackLookup 
 
     if (Test-AllRequiredFilesPresent -Checks $checks) {
         $s++
     }
 
-    $i++
 }
 
 Write-Summary -SuccessCount $s -TotalCount $i
