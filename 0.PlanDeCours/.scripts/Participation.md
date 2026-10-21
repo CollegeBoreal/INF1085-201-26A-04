@@ -37,7 +37,7 @@
 | 18 | [300153605](../300153605/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266167340?s=460&v=4' width=20 height=20></image>](https://github.com/siham-sys) | :2nd_place_medal: | :heavy_check_mark: |
 | 19 | [300153932](../300153932/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231499661?s=460&v=4' width=20 height=20></image>](https://github.com/yakss132-sys) | :x: | :x: |
 | 20 | [300153972](../300153972/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/173731510?s=460&v=4' width=20 height=20></image>](https://github.com/rimfive) | :x: | :x: |
-| 21 | [300154479](../300154479/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/260781405?s=460&v=4' width=20 height=20></image>](https://github.com/dylanengabou-beep) | :2nd_place_medal: | :heavy_check_mark: |
+| 21 | [300154479](../300154479/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/260781405?s=460&v=4' width=20 height=20></image>](https://github.com/dylanengabou-beep) | :1st_place_medal: | :heavy_check_mark: |
 | 22 | [300155045](../300155045/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232956639?s=460&v=4' width=20 height=20></image>](https://github.com/chouaibait) | :x: | :x: |
 | 23 | [300155881](../300155881/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231500665?s=460&v=4' width=20 height=20></image>](https://github.com/fairouz97) | :x: | :x: |
 | 24 | [300155884](../300155884/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266604081?s=460&v=4' width=20 height=20></image>](https://github.com/patricia-nguemedzi) | :x: | :x: |
