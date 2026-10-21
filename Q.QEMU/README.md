@@ -219,6 +219,7 @@ Résultat attendu :
 20G disque virtuel
 ```
 
+
 ---
 
 ## Résultat attendu
@@ -236,3 +237,147 @@ Résultat attendu :
 ✅ Linux installé à partir d'un fichier ISO
 
 ✅ Machine virtuelle opérationnelle
+
+---
+
+# 💿 Proxmox VE – `ide2` vs `scsi0`
+
+Dans Proxmox, `ide2` et `scsi0` représentent deux périphériques virtuels différents attachés à une machine virtuelle.
+
+---
+
+## 💿 `ide2` – Lecteur CD/DVD virtuel
+
+Dans notre laboratoire :
+
+```bash
+qm set 101 \
+    --ide2 local:iso/ubuntu-24.04-live-server-amd64.iso,media=cdrom
+```
+
+`ide2` contient l'image ISO utilisée pour installer Linux.
+
+```text
+ide2
+  │
+  └── 💿 ubuntu-24.04.iso
+```
+
+Il joue le rôle d'un **lecteur CD/DVD virtuel**.
+
+---
+
+## 💾 `scsi0` – Disque dur virtuel
+
+Dans notre laboratoire :
+
+```bash
+qm set 101 --scsi0 nvme-storage:20
+```
+
+`scsi0` représente le disque virtuel sur lequel Linux sera installé.
+
+```text
+scsi0
+  │
+  └── 💾 Disque virtuel 20 Go
+           │
+           └── nvme-storage
+```
+
+---
+
+## ⚙️ Contrôleur SCSI
+
+Le contrôleur utilisé pour le disque est :
+
+```bash
+qm set 101 --scsihw virtio-scsi-pci
+```
+
+La VM utilise donc un contrôleur **VirtIO SCSI** pour accéder au disque `scsi0`.
+
+---
+
+# 🚀 Pendant l'installation
+
+La VM possède deux périphériques principaux :
+
+```text
+VM 101
+│
+├── 💿 ide2
+│      └── ubuntu.iso
+│
+└── 💾 scsi0
+       └── 20 Go sur nvme-storage
+```
+
+L'ISO sert à **installer** Linux.
+
+Le disque SCSI sert à **recevoir** l'installation Linux.
+
+---
+
+# 🔢 Ordre de démarrage
+
+Pendant l'installation :
+
+```bash
+qm set 101 --boot order=ide2\;scsi0
+```
+
+Ordre :
+
+```text
+1️⃣ ide2  → ISO d'installation
+2️⃣ scsi0 → Disque Linux
+```
+
+---
+
+# ✅ Après l'installation
+
+Retirer l'ISO :
+
+```bash
+qm set 101 --delete ide2
+```
+
+Puis démarrer directement sur le disque :
+
+```bash
+qm set 101 --boot order=scsi0
+```
+
+La VM démarre maintenant depuis :
+
+```text
+💾 scsi0
+```
+
+---
+
+# 🧠 À retenir
+
+| Périphérique | Fonction | Exemple |
+|---|---|---|
+| 💿 `ide2` | Lecteur CD/DVD virtuel | ISO Ubuntu |
+| 💾 `scsi0` | Disque virtuel | Linux installé |
+| ⚙️ `virtio-scsi-pci` | Contrôleur SCSI virtuel | Contrôle `scsi0` |
+
+## Résumé
+
+```text
+        VM Proxmox
+             │
+      ┌──────┴──────┐
+      │             │
+   💿 ide2        💾 scsi0
+      │             │
+ Ubuntu ISO      Disque 20 Go
+      │             │
+      └── Installer Linux ──►
+```
+
+> 💡 **`ide2` contient l'installateur, tandis que `scsi0` contient le système Linux installé.**
