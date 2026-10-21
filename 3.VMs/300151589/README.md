@@ -1,23 +1,27 @@
-# Laboratoire Proxmox VE
+# Création d'une machine virtuelle Debian sur Proxmox VE
 
-Nom : Walid Dahmane
-Numéro étudiant : 300151589
+## 1. Objectif
+Créer une machine virtuelle Debian sur Proxmox VE.
 
-## Travail réalisé
-- Création d'un utilisateur Linux
-- Ajout de l'utilisateur à Proxmox
-- Attribution du rôle Administrator
-- Connexion SSH
-- Vérification des utilisateurs et permissions
+## 2. Connexion à Proxmox
+Je me suis connecté au serveur Proxmox à l'adresse :
+https://10.7.236.235:8006
 
+## 3. Création de la VM
+J'ai sélectionné le serveur server238, puis cliqué sur Create VM.
 
+J'ai configuré le système d'exploitation Debian,
+le disque, le processeur, la mémoire RAM et le réseau.
 
-![Utilisateur Linux](images/1.png)
+## 4. Installation de Debian
+J'ai démarré la VM et installé Debian depuis la console.
 
-![Utilisateurs Proxmox](images/2.png)
+## 5. Vérification de la VM
+Après l'installation, j'ai vérifié que ma machine
+virtuelle était bien créée dans Proxmox.
 
-![Permissions](images/3.png)
+![Machine virtuelle Debian](images/VM.png)
 
-![Connexion SSH](images/4.png)
-
-![Interface Proxmox](images/5.png)
+## 6. Conclusion
+Ce TP m'a permis d'apprendre à créer et configurer
+une machine virtuelle Debian sur Proxmox VE.
