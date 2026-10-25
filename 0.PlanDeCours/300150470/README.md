@@ -1,4 +1,4 @@
-Bienvenue au cours Linux!
+Bienvenue au cours Linux
 Session 3
 Numéro d'étudiant : 300150470
 Nom et prénom :Ifticene Hacene
