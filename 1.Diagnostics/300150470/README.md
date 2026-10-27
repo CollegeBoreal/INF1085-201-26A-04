@@ -131,7 +131,3 @@ et la mémoire fonctionnent : le POST passe, le BIOS détecte le Xeon E5620 et
 les 64 Go de RAM sont confirmés par le diagnostic mémoire. Le serveur n'a pas
 démarré sur un système à ce stade parce qu'aucun disque bootable n'était
 installé pendant les tests, ce que l'erreur PXE montre clairement.
-
-**À compléter si possible avant la remise :** une capture de la configuration
-ou du formatage des disques, une fois les disques réinstallés. C'est la seule
-preuve qui manque dans ce lot de photos.
