@@ -33,7 +33,7 @@
 | 12 | [300151588](../300151588/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/58528251?s=460&v=4' width=20 height=20></image>](https://github.com/belhAmine) | :x: | :x: | :x: | 0️⃣ Rien à corriger |
 | 13 | [300151589](../300151589/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501417?s=460&v=4' width=20 height=20></image>](https://github.com/walidwolf31) | :x: | :x: | :x: | 0️⃣ Rien à corriger |
 | 14 | [300151753](../300151753/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266413355?s=460&v=4' width=20 height=20></image>](https://github.com/kheloufinourdine48-rgb) | :x: | :x: | :x: | 0️⃣ Rien à corriger |
-| 15 | [300151834](../300151834/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266591188?s=460&v=4' width=20 height=20></image>](https://github.com/amirlounaci-bit) | :2nd_place_medal: | :x: | :x: | 0️⃣ Rien à corriger |
+| 15 | [300151834](../300151834/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266591188?s=460&v=4' width=20 height=20></image>](https://github.com/amirlounaci-bit) | :2nd_place_medal: | :heavy_check_mark: | :x: | 0️⃣ Rien à corriger |
 | 16 | [300152247](../300152247/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/236670407?s=460&v=4' width=20 height=20></image>](https://github.com/aniss-djahid) | :2nd_place_medal: | :x: | 🥉 | 1️⃣ Courage - On continue la documentation |
 | 17 | [300153401](../300153401/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266600832?s=460&v=4' width=20 height=20></image>](https://github.com/youneschaghica-hub) | :x: | :x: | :x: | 0️⃣ Rien à corriger |
 | 18 | [300153602](../300153602/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266413722?s=460&v=4' width=20 height=20></image>](https://github.com/meryemabdedou83-ux) | :x: | :x: | :x: | 0️⃣ Rien à corriger |
@@ -53,4 +53,4 @@
 | 32 | [300158052](../300158052/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/121287922?s=460&v=4' width=20 height=20></image>](https://github.com/zizoubouchelkia) | :1st_place_medal: | :heavy_check_mark: | 🥇 | 1️⃣ Bonne séquence mais manque étapes tests |
 | 33 | [300158185](../300158185/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939280?s=460&v=4' width=20 height=20></image>](https://github.com/Mohammed-mati) | :x: | :x: | :x: | 0️⃣ Rien à corriger |
 | 34 | [300158383](../300158383/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501135?s=460&v=4' width=20 height=20></image>](https://github.com/salmabaali) | :x: | :x: | :x: | 0️⃣ Rien à corriger |
-| :abacus: | \$\frac{7}{34}\$ = 20.59% | \$\displaystyle\sum_{i=1}^{34} s_i\$ = 7 |
+| :abacus: | \$\frac{8}{34}\$ = 23.53% | \$\displaystyle\sum_{i=1}^{34} s_i\$ = 8 |
