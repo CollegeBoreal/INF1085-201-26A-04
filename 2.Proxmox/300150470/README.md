@@ -128,4 +128,3 @@ Le serveur est donc bien connecté au réseau du laboratoire et à Internet.
 
 Proxmox VE est installé et opérationnel sur le serveur : démarrage, disque, réseau, accès web et SSH ont tous été vérifiés. Le serveur est prêt à héberger des machines virtuelles pour les prochains travaux.
 
-**À compléter si possible :** ce dossier ne contient pas encore de capture de l'interface web ouverte dans un navigateur, ni de sorties complètes `lscpu`, `lsmem`, `lspci` ou `lsmod`. Rien n'a été inventé pour ces points.
