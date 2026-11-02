@@ -99,6 +99,16 @@ Le système affiche également l’invite :
 root@server1:~#
 
 Cela confirme que Proxmox fonctionne correctement et que le serveur a réussi à charger le système d’exploitation.
+10. Préparation et formatage des disques
+
+Avant l’installation de Proxmox VE, nous avons préparé les disques du serveur avec le contrôleur HP Smart Array P410i.
+
+Les trois disques SAS de 146,8 Go ont été sélectionnés afin de créer un volume logique en RAID 5.
+
+Le volume RAID 5 obtenu possède une capacité d’environ 293,56 Go. Cette configuration prépare l’espace de stockage qui sera utilisé pour l’installation de Proxmox VE.
+<img width="2048" height="2048" alt="image" src="https://github.com/user-attachments/assets/241f6118-a928-4373-8596-d35a9b722c0a" />
+
+Figure  : Sélection des trois disques SAS et configuration du RAID 5
 11. Validation du fonctionnement du serveur
 Le démarrage de Proxmox constitue une étape importante dans la validation du serveur.
 Cela permet de confirmer que plusieurs composants fonctionnent correctement :
