@@ -8,15 +8,22 @@ Le serveur HP ProLiant DL360 G6 ne démarrait pas correctement et ne réussissai
 
 L’objectif était d’identifier le composant responsable à l’aide d’une méthode d’élimination.
 
-## 2. Méthode utilisée
 
-Une configuration minimale a été réalisée :
+##  2. Configuration matérielle et composants
 
-* 1 processeur Intel Xeon
-* 1 barrette RAM de 8 Go
-* Processeur installé dans le Socket 1
-* Aucune carte PCIe supplémentaire
-* Une seule alimentation utilisée
+Le serveur HP ProLiant DL360 G6 contient les composants suivants :
+- Carte mère (System Board).
+- Processeur Intel Xeon.
+- Deux sockets pour processeurs (CPU 1 et CPU 2).
+- Emplacements mémoire RAM (DIMM).
+- Alimentations électriques.
+- Ventilateurs de refroidissement.
+- Dissipateurs thermiques des processeurs.
+- Contrôleur RAID.
+- Baies pour disques durs.
+- Carte réseau intégrée.
+- Connecteurs PCIe (selon la configuration).
+
 
 Les composants ont ensuite été vérifiés individuellement.
 
