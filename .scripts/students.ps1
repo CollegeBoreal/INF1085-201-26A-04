@@ -81,7 +81,7 @@ $GROUPS = New-Groups -Items $STUDENTS -Size $GROUP_SIZE
 
 $SERVERS = @(
 "10.7.236.201|ubuntu"
-"10.7.236.202|ubuntu"
+"10.7.236.202|b300142542"
 "10.7.236.203|ubuntu"
 "10.7.236.204|ubuntu"
 "10.7.236.205|ubuntu"
