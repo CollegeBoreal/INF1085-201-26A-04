@@ -49,8 +49,10 @@ Configuration de la mémoire vive, du processeur, du disque dur virtuel et de l�
 
 Étape 5 : Correction de la configuration du processeur
 Lors du premier démarrage, une erreur liée à la fonctionnalité AES du processeur a été détectée. Le modèle du processeur virtuel a ensuite été modifié à l’aide de la commande :
+
+```bash
 qm set 100 --cpu x86-64-v2
- 
+ ```
 
 Étape 6 : Tentative de démarrage
 
