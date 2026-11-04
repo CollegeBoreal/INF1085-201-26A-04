@@ -113,6 +113,7 @@ ping -c 3 8.8.8.8
 L’interface ens18 avait bien l’adresse 10.7.236.202/23, mais ip route ne montrait aucune ligne default via, et le ping retournait Network is unreachable. Ma VM n’avait donc pas de passerelle par défaut.
 <img width="745" height="462" alt="image" src="https://github.com/user-attachments/assets/4ed936e9-06a8-4949-953e-936c7a55371a" />
 <img width="743" height="459" alt="image" src="https://github.com/user-attachments/assets/e01608d2-6c48-47bf-b47c-5bbb19cda526" />
+
 J’ai essayé de redémarrer le réseau avec systemctl restart networking, sans succès. La commande dhclient n’est pas installée par défaut sur Debian 13.
 
 #### 6.3. Recherche de la bonne passerelle
