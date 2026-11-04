@@ -64,8 +64,7 @@ Chaque travail peut comprendre :
 
 Illustration associée aux travaux du cours :
 
-<img src="https://github.com/user-attachments/assets/d0daad12-0c4f-45b4-84c8-02a1ced7efc6" width="900" alt="Capture des travaux pratiques d’administration Linux">
-
+<img src="https://github.com/user-attachments/assets/d0daad12-0c4f-45b4-84c8-02a1ced7efc6" width="900" alt="Travail Administration Linux">
 ## 📝 Suivi de l’apprentissage
 
 Ce dépôt sera enrichi au fil de la session avec les nouveaux exercices,
