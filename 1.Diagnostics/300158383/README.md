@@ -15,7 +15,7 @@ Ce travail consiste à examiner un serveur HP ProLiant qui présente un problèm
 
 La première photographie montre le serveur HP ProLiant ouvert, avec les baies de disques en façade et les composants internes visibles.
 
-![Vue du serveur HP ProLiant](images/01-dessus-serveur.jpg)
+![Vue du serveur HP ProLiant](images/01-vue-generale-serveur.jpg)
 
 *Photo 1 : Vue du dessus et de la façade du serveur.*
 
