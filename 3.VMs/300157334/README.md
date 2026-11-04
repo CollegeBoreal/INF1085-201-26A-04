@@ -67,7 +67,7 @@ L’état de la machine doit être vérifié pour confirmer que le démarrage a 
 <img width="1365" height="541" alt="Capture d’écran 2026-10-14 121104" src="https://github.com/user-attachments/assets/f5a1aae8-3615-4841-bde2-ac41cee0be3b" />
 
   
-   et voila  avec   user name... et passwd....  ......connecte
+   et voila  avec   user name... `laala2000` et passwd....  ......connecte
 
    <img width="1342" height="569" alt="Capture d’écran 2026-10-14 124443" src="https://github.com/user-attachments/assets/e1f1a619-f2e9-458a-83f5-fd9fe6ffef34" />
 
