@@ -1,81 +1,164 @@
-# 🚡 Hamdaoui laala 
+# 🖥️ Rapport d'installation et de configuration d'une machine virtuelle Debian sur Proxmox VE
 
-Id :300157334
+**👨‍🎓 Étudiant :** Hamdaoui Laala  
+**🆔 Numéro d'étudiant :** 300157334  
+**📚 Projet :** Installation et administration d'une machine virtuelle  
+**🛠️ Technologies :** Proxmox VE, Debian GNU/Linux, SSH et Linux
 
-    Rapport d’installation d’une machine virtuelle avec Proxmox VE
+---
 
-1. Introduction
-2. 
-L’objectif de ce travail est de créer et de configurer une machine virtuelle sur un serveur Proxmox VE.
-La machine virtuelle est destinée à installer le système d’exploitation Debian 13.7.
+## 📌 1. Introduction
 
+Dans le cadre de ce laboratoire, j'ai réalisé l'installation et la configuration d'une machine virtuelle Debian sur un serveur utilisant l'hyperviseur Proxmox VE.
 
-3. Configuration de la machine virtuelle
-   
-La machine virtuelle a été créée avec les caractéristiques suivantes :
-Caractéristique	Configuration
-Nom de la VM	laala
-Identifiant (VM ID)	100
-Hyperviseur	Proxmox VE 7.0.2
-Système d’exploitation	Debian 13.7 64 bits
-Mémoire vive (RAM)	2048 Mo (2 Go)
-Processeur	1 cœur
-Type de processeur	x86-64-v2
-Disque dur virtuel	32 Go
-Contrôleur de disque	VirtIO SCSI
-Interface réseau	VirtIO
-Pont réseau	vmbr0
-Fichier ISO	debian-13.7.0-amd64-netinst.iso
- 
-	
-<img width="890" height="370" alt="image" src="https://github.com/user-attachments/assets/c14aa222-0991-49dd-8dc6-69ef3b73257f" />
+L'objectif principal de ce travail était d'apprendre à créer une machine virtuelle, installer un système d'exploitation Linux, configurer les ressources matérielles et mettre en place une connexion réseau permettant l'administration à distance.
 
-<img width="873" height="289" alt="image" src="https://github.com/user-attachments/assets/d04a0ac0-7cc2-477e-80cc-05eca9616eb3" />
+Durant ce laboratoire, j'ai également rencontré plusieurs difficultés techniques que j'ai pu résoudre progressivement.
 
-3. Étapes de réalisation
- <img width="945" height="497" alt="image" src="https://github.com/user-attachments/assets/0d5512ab-8b17-4a16-886b-77c6e945a44b" />
+## ⚙️ 2. Configuration de la machine virtuelle
 
-Étape 1 : Accès à Proxmox
-Connexion à l’interface Web de Proxmox avec un compte utilisateur autorisé.
+| Caractéristique | Configuration |
+|---|---|
+| 🖥️ Nom de la VM | laala |
+| 🆔 Identifiant VM | 100 |
+| 🛠️ Hyperviseur | Proxmox VE 7.0.2 |
+| 🐧 Système d'exploitation | Debian GNU/Linux 13 |
+| 💾 Mémoire vive | 2048 Mo (2 Go) |
+| ⚡ Processeur | 2 cœurs virtuels (configuration demandée) |
+| 🔧 Type de processeur | x86-64-v2 |
+| 💽 Disque virtuel | 32 Go |
+| 📂 Contrôleur de disque | VirtIO SCSI |
+| 🌐 Interface réseau | VirtIO |
+| 🔗 Pont réseau | vmbr0 |
+| 📀 Fichier ISO | debian-13.7.0-amd64-netinst.iso |
+| 👤 Utilisateur Debian | laala2000 |
+| 🔐 Accès distant | OpenSSH |
+| 🌍 Adresse IP initiale | 10.7.237.151 |
+| 🌍 Nouvelle adresse IP configurée | 10.7.236.229 |
+| 🚪 Passerelle | 10.7.237.1 |
+| 📡 Interface Debian | ens18 |
 
-Étape 2 : Importation du fichier ISO
-Téléchargement de l’image ISO de Debian 13.7, puis importation du fichier dans le stockage local de Proxmox.
+### 📸 Captures de la configuration
 
-Étape 3 : Création de la machine virtuelle
-Création de la VM numéro 100 avec le nom laala, puis sélection de l’image ISO de Debian.
+![Configuration de la VM](https://github.com/user-attachments/assets/c14aa222-0991-49dd-8dc6-69ef3b73257f)
 
-Étape 4 : Configuration matérielle
-Configuration de la mémoire vive, du processeur, du disque dur virtuel et de l’interface réseau.
+![Paramètres de la machine virtuelle](https://github.com/user-attachments/assets/d04a0ac0-7cc2-477e-80cc-05eca9616eb3)
 
-Étape 5 : Correction de la configuration du processeur
-Lors du premier démarrage, une erreur liée à la fonctionnalité AES du processeur a été détectée. Le modèle du processeur virtuel a ensuite été modifié à l’aide de la commande :
+---
+
+## 🚀 3. Étapes de réalisation
+
+### ✅ Étape 1 : Connexion au serveur Proxmox
+
+J'ai commencé par accéder à l'interface Web de Proxmox VE à l'aide d'un navigateur.
+
+**Adresse du serveur :**
+
+`https://10.7.236.240:8006`
+
+Après l'authentification, j'ai pu accéder aux différentes fonctionnalités permettant la gestion des machines virtuelles.
+
+### ✅ Étape 2 : Importation de l'image ISO Debian
+
+J'ai téléchargé l'image ISO de Debian 13, puis je l'ai importée dans le stockage local de Proxmox.
+
+Le fichier utilisé était :
+
+`debian-13.7.0-amd64-netinst.iso`
+
+Cette image a servi à installer le système d'exploitation dans la machine virtuelle.
+
+### ✅ Étape 3 : Création de la machine virtuelle
+
+Depuis l'interface Proxmox, j'ai créé une nouvelle machine virtuelle avec les paramètres suivants :
+
+- Nom : **laala**
+- VM ID : **100**
+- Système : Debian GNU/Linux
+- Mémoire : 2048 Mo
+- Disque : 32 Go
+- Réseau : VirtIO connecté à vmbr0
+
+![Création de la VM](https://github.com/user-attachments/assets/0d5512ab-8b17-4a16-886b-77c6e945a44b)
+
+### ✅ Étape 4 : Résolution du problème de processeur
+
+Lors du premier démarrage, la machine virtuelle ne pouvait pas démarrer correctement.
+
+Le serveur physique ne prenait pas en charge certaines fonctionnalités demandées par le processeur virtuel, notamment AES.
+
+Pour résoudre ce problème, j'ai utilisé la commande suivante dans le terminal Proxmox :
 
 ```bash
 qm set 100 --cpu x86-64-v2
- ```
+```
 
-Étape 6 : Tentative de démarrage
+Après cette modification, le démarrage de la VM a pu être effectué.
 
- <img width="945" height="638" alt="image" src="https://github.com/user-attachments/assets/6365b66a-0a31-4b77-9b69-6ab6a169cc22" />
+### ✅ Étape 5 : Démarrage de la machine virtuelle
 
-Une nouvelle tentative de démarrage a été effectuée avec la commande :
+J'ai démarré ma machine virtuelle avec la commande :
+
+```bash
 qm start 100
-L’état de la machine doit être vérifié pour confirmer que le démarrage a réussi.
+```
 
-<img width="945" height="342" alt="image" src="https://github.com/user-attachments/assets/a52b0ed9-a4e4-43cf-a13f-590c6c1115bc" />
+Pour vérifier son état :
 
-<img width="1365" height="541" alt="Capture d’écran 2026-10-14 121104" src="https://github.com/user-attachments/assets/f5a1aae8-3615-4841-bde2-ac41cee0be3b" />
+```bash
+qm list
+```
 
-  
-   et voila  avec   user name... `laala2000` et passwd....  ......connecte
+La machine virtuelle **100 (laala)** apparaissait avec l'état :
 
-   <img width="1342" height="569" alt="Capture d’écran 2026-10-14 124443" src="https://github.com/user-attachments/assets/e1f1a619-f2e9-458a-83f5-fd9fe6ffef34" />
+`running`
 
+![Démarrage de Debian](https://github.com/user-attachments/assets/6365b66a-0a31-4b77-9b69-6ab6a169cc22)
 
-5. Conclusion
+![Vérification de la VM](https://github.com/user-attachments/assets/a52b0ed9-a4e4-43cf-a13f-590c6c1115bc)
 
-La machine virtuelle laala, identifiée par le numéro 100, a été créée dans Proxmox VE. Le système Debian 13.7 a été sélectionné et les ressources matérielles virtuelles ont été configurées. Une incompatibilité liée au modèle du processeur a été rencontrée, puis une modification de ce modèle a été effectuée.
-Le démarrage final doit être confirmé avant de conclure que l’installation de Debian est terminée. Une fois le démarrage réussi, l’installation du système d’exploitation pourra être poursuivie depuis la console de la machine virtuelle.
-  
+### ✅ Étape 6 : Installation et connexion à Debian
 
+Après le démarrage, j'ai poursuivi l'installation de Debian et configuré mon compte utilisateur.
 
+**Nom d'utilisateur :** `laala2000`
+
+J'ai ensuite pu accéder à l'interface graphique de Debian 13.
+
+![Installation Debian](https://github.com/user-attachments/assets/f5a1aae8-3615-4841-bde2-ac41cee0be3b)
+
+![Connexion à Debian](https://github.com/user-attachments/assets/e1f1a619-f2e9-458a-83f5-fd9fe6ffef34)
+
+---
+
+## ⚡ 4. Modification des ressources CPU
+
+Afin d'améliorer les ressources disponibles pour la machine virtuelle, j'ai entrepris de passer de **1 à 2 cœurs CPU virtuels**.
+
+Les commandes utilisées pour cette opération sont :
+
+```bash
+qm shutdown 100
+qm set 100 --cores 2
+qm start 100
+```
+
+Pour vérifier la configuration :
+
+```bash
+qm config 100 | grep cores
+```
+
+Le résultat attendu est :
+
+```text
+cores: 2
+```
+
+Cette modification permet à Debian de disposer de deux cœurs virtuels pour exécuter ses processus.
+
+---
+
+## 🌐 5. Configuration du réseau Debian
+
+### 5.1 Vérification de
