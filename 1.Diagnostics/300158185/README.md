@@ -1,144 +1,245 @@
 # INF1085 – Administration Linux
 
-Rapport de dépannage, validation matérielle et installation Proxmox
-Serveur HP ProLiant DL360 G6
-1. Introduction
-Dans le cadre de ce travail pratique, nous avons effectué le diagnostic et la remise en fonctionnement d’un serveur HP ProLiant DL360 G6.
-Le serveur présentait des problèmes de démarrage. Pour trouver l’origine du problème, nous avons procédé étape par étape en vérifiant les principaux composants matériels comme les processeurs, la mémoire RAM et les disques durs.
-Après les tests matériels et la validation du POST, nous avons également réussi à démarrer le serveur et à accéder à Proxmox Virtual Environment.
+## Rapport de dépannage, de validation matérielle et d’installation de Proxmox VE
 
-3. Inspection du matériel
-La première étape consistait à ouvrir le serveur afin d’accéder aux composants internes.
-Nous avons identifié les processeurs, les emplacements de mémoire RAM, les ventilateurs et les autres composants de la carte mère.
-<img width="2048" height="2048" alt="image" src="https://github.com/user-attachments/assets/5554cc80-df92-4897-a395-72c773bf9dec" />
+**Nom :** Mohammed Mati  
+**Numéro d’étudiant :** 300158185  
+**Serveur :** HP ProLiant DL360 G6  
 
-Figure 1 : Vue interne du serveur et des deux emplacements processeurs
-Cette inspection permet de vérifier si les processeurs sont correctement installés et s’il existe un problème visible au niveau des sockets ou de la carte mère.
-3. Vérification des processeurs
-Le serveur possède deux emplacements pour processeurs appelés Processor 1 et Processor 2.
-Pendant le diagnostic, les processeurs ont été retirés et réinstallés afin de vérifier leur fonctionnement.
-<img width="2048" height="2048" alt="image" src="https://github.com/user-attachments/assets/2821acaf-60b5-45a7-8027-53584006310f" />
+---
 
-Figure 2 : Processeur installé dans son socket
-Cette étape permet de vérifier le positionnement du processeur ainsi que le système de fixation.
-Nous avons également observé le processeur après son retrait.
-<img width="2048" height="2048" alt="image" src="https://github.com/user-attachments/assets/4159be66-2469-4538-8f32-2884a83064b6" />
+## 1. Introduction
 
-Figure 3 : Processeur retiré du serveur pour inspection
-Cette vérification est importante afin de s’assurer que les contacts du processeur ne sont pas endommagés.
-4. Installation des dissipateurs thermiques
-Après avoir vérifié les processeurs, les dissipateurs thermiques ont été remis en place.
-Ils permettent d’évacuer la chaleur produite par les processeurs pendant le fonctionnement.
-<img width="2048" height="2048" alt="image" src="https://github.com/user-attachments/assets/d6dd21c5-7bb3-481e-b28f-a5180b72191a" />
+Dans le cadre de ce travail pratique, nous avons effectué le diagnostic et la remise en fonctionnement d’un serveur HP ProLiant DL360 G6 présentant des problèmes de démarrage.
 
-Figure 4 : Dissipateurs thermiques installés sur les processeurs
-Une mauvaise installation du dissipateur peut provoquer une surchauffe et empêcher le serveur de fonctionner normalement.
-5. Vérification de la mémoire RAM
-La mémoire RAM a également été vérifiée pendant le diagnostic.
-Les barrettes doivent être placées dans les bons emplacements DIMM selon la configuration du serveur et les processeurs utilisés.
-<img width="2048" height="2048" alt="image" src="https://github.com/user-attachments/assets/ed2457af-e6a4-42ee-aff0-db00e5a06951" />
+Nous avons procédé progressivement en inspectant les principaux composants : les processeurs, la mémoire RAM, les disques et le système de refroidissement.
 
-Figure 5 : Mémoire RAM installée dans les emplacements DIMM
-Pour faciliter le dépannage, il est possible de commencer avec une seule barrette de mémoire puis d’ajouter progressivement les autres barrettes.
-Cette méthode permet de vérifier si une barrette ou un emplacement mémoire est responsable du problème.
-6. Composants retirés pendant le diagnostic
-Les disques durs et plusieurs barrettes de RAM ont également été retirés pendant les tests.
-<img width="2048" height="2048" alt="image" src="https://github.com/user-attachments/assets/bb12bc21-a606-4ff2-85e3-c0c4c76d279e" />
+Après les vérifications matérielles, nous avons préparé le stockage avec le contrôleur HP Smart Array P410i, puis installé et démarré Proxmox Virtual Environment.
 
-Figure 6 : Disques durs HP et barrettes de mémoire retirés pendant le diagnostic
-Le retrait des disques permet de réaliser le POST indépendamment du système de stockage.
-Il devient alors plus facile de déterminer si le problème vient du processeur, de la mémoire ou du stockage.
-7. Démarrage du serveur et test POST
-Après avoir réinstallé les composants nécessaires, le serveur a été mis sous tension.
-Le serveur affiche l’écran HP ProLiant et commence l’étape :
-Power and Thermal Calibration in Progress
-<img width="2048" height="2048" alt="1" src="https://github.com/user-attachments/assets/c7bfeec7-673e-4861-9473-f646a1668090" />
+## 2. Objectifs du travail
 
-Figure 7 : Démarrage du HP ProLiant et calibration thermique
-Cette étape montre que le serveur est capable de commencer correctement sa séquence de démarrage.
-Le POST, ou Power-On Self-Test, permet au serveur de vérifier les principaux composants avant de lancer le système d’exploitation.
-8. Diagnostic de la mémoire avec le BIOS
-Nous avons ensuite utilisé l’utilitaire BIOS Memory Diagnostic.
-<img width="2048" height="2048" alt="2" src="https://github.com/user-attachments/assets/dcc7ecf2-1d36-4a39-a506-28deb7b4d997" />
+- Inspecter les composants internes du serveur.
+- Vérifier l’installation des processeurs et de la mémoire RAM.
+- Observer la séquence de démarrage et les informations du BIOS.
+- Préparer un volume de stockage en RAID 5.
+- Installer et démarrer Proxmox VE.
+- Relever les informations nécessaires à son administration.
 
-Figure 8 : Diagnostic de la mémoire dans le BIOS
-Le diagnostic montre plusieurs barrettes de 16 384 MB, soit 16 Go chacune, installées sur le processeur 1.
-La mémoire totale configurée affichée est de :
-65 536 MB, soit environ 64 Go de RAM.
-Sur la photo, le test mémoire est toujours en cours. Le BIOS affiche également la quantité de mémoire déjà testée avec succès.
-Cette étape permet de vérifier que les barrettes sont reconnues par le serveur et que le BIOS peut accéder à la mémoire installée.
-9. Vérification finale du matériel
-Après la vérification des processeurs et de la mémoire, les dissipateurs ont été correctement remontés et les ventilateurs ont été remis en place.
+## 3. Inspection du matériel
 
-Le serveur peut ensuite fonctionner avec sa configuration normale.
-À cette étape, les principaux composants ont été vérifiés :
-Composant	Résultat
-Processeur 1	Détecté et fonctionnel
-Processeur 2	Installé et vérifié
-Sockets processeurs	Vérifiés
-Mémoire RAM	Détectée
-Mémoire configurée	65 536 MB / 64 Go
-Disques durs	Vérifiés et réinstallés
-Ventilateurs	Fonctionnels
-POST	Réussi
-BIOS	Accessible
+Nous avons commencé par ouvrir le serveur pour accéder aux composants internes.
 
+Nous avons repéré les deux emplacements des processeurs, les emplacements DIMM de la mémoire RAM, les ventilateurs et les connexions de la carte mère.
 
-10. Installation et démarrage de Proxmox
-Après avoir terminé le diagnostic matériel, nous avons installé et démarré Proxmox Virtual Environment sur le serveur.
-<img width="2048" height="2048" alt="image" src="https://github.com/user-attachments/assets/d9d05c3e-1e72-47cd-9c99-fff5d9b313a6" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5554cc80-df92-4897-a395-72c773bf9dec" alt="Vue interne du serveur HP ProLiant DL360 G6" width="700">
+</p>
 
-Figure 9 : Proxmox Virtual Environment démarré sur le serveur
-L’écran affiche :
-Welcome to the Proxmox Virtual Environment
+*Figure 1 : Vue interne du serveur et des deux emplacements des processeurs.*
 
-Le serveur est accessible à partir d’un navigateur Web à l’adresse :
-https://192.168.100.2:8006/
+Cette inspection visuelle permet de rechercher un composant mal installé, une connexion débranchée ou un dommage apparent.
 
-Le système affiche également l’invite :
-root@server1:~#
+## 4. Vérification des processeurs
 
-Cela confirme que Proxmox fonctionne correctement et que le serveur a réussi à charger le système d’exploitation.
-10. Préparation et formatage des disques
+Le serveur possède deux emplacements de processeurs, identifiés **Processor 1** et **Processor 2**.
 
-Avant l’installation de Proxmox VE, nous avons préparé les disques du serveur avec le contrôleur HP Smart Array P410i.
+Pendant le diagnostic, nous avons retiré puis réinstallé les processeurs afin de vérifier leur positionnement et leur fixation.
 
-Les trois disques SAS de 146,8 Go ont été sélectionnés afin de créer un volume logique en RAID 5.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2821acaf-60b5-45a7-8027-53584006310f" alt="Processeur installé dans son socket" width="700">
+</p>
 
-Le volume RAID 5 obtenu possède une capacité d’environ 293,56 Go. Cette configuration prépare l’espace de stockage qui sera utilisé pour l’installation de Proxmox VE.
-<img width="2048" height="2048" alt="image" src="https://github.com/user-attachments/assets/241f6118-a928-4373-8596-d35a9b722c0a" />
+*Figure 2 : Processeur installé dans son socket.*
 
-Figure  : Sélection des trois disques SAS et configuration du RAID 5
-11. Validation du fonctionnement du serveur
-Le démarrage de Proxmox constitue une étape importante dans la validation du serveur.
-Cela permet de confirmer que plusieurs composants fonctionnent correctement :
-- les processeurs
-- la mémoire RAM
-- le contrôleur de stockage
-- les disques
-- la carte réseau
-- le BIOS
-- le système de refroidissement
-Le serveur dispose maintenant d’un environnement de virtualisation fonctionnel qui peut être administré depuis un navigateur Web.
-12. Résultats obtenus
+Nous avons également inspecté visuellement un processeur après son retrait.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/4159be66-2469-4538-8f32-2884a83064b6" alt="Processeur retiré pour inspection" width="700">
+</p>
+
+*Figure 3 : Processeur retiré pour inspection.*
+
+Cette vérification permet de rechercher des dommages apparents sur les contacts du processeur et dans le socket. L’inspection visuelle seule ne permet toutefois pas de confirmer le fonctionnement complet de chaque processeur.
+
+## 5. Remontage des dissipateurs thermiques
+
+Après la réinstallation des processeurs, nous avons remis en place les dissipateurs thermiques.
+
+Ces composants évacuent la chaleur produite par les processeurs. Leur fixation correcte est nécessaire pour assurer un refroidissement adéquat.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d6dd21c5-7bb3-481e-b28f-a5180b72191a" alt="Dissipateurs thermiques remontés" width="700">
+</p>
+
+*Figure 4 : Dissipateurs thermiques remontés sur les processeurs.*
+
+Une mauvaise installation peut entraîner une surchauffe, une instabilité ou un arrêt de protection du serveur.
+
+## 6. Vérification de la mémoire RAM
+
+Nous avons vérifié l’installation des barrettes de mémoire dans les emplacements DIMM.
+
+Le placement des barrettes doit respecter les indications du serveur et tenir compte des processeurs installés.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ed2457af-e6a4-42ee-aff0-db00e5a06951" alt="Barrettes de mémoire dans les emplacements DIMM" width="700">
+</p>
+
+*Figure 5 : Barrettes de mémoire installées dans les emplacements DIMM.*
+
+Pour isoler une panne de mémoire, la méthode consiste à commencer avec une configuration minimale conforme aux recommandations du constructeur, puis à ajouter progressivement les autres barrettes.
+
+Cette démarche aide à repérer une barrette ou un emplacement pouvant être à l’origine du problème.
+
+## 7. Retrait temporaire des composants
+
+Pendant les tests, nous avons retiré les disques durs ainsi que plusieurs barrettes de mémoire.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/bb12bc21-a606-4ff2-85e3-c0c4c76d279e" alt="Disques HP et barrettes de mémoire retirés" width="700">
+</p>
+
+*Figure 6 : Disques HP et barrettes de mémoire retirés pendant le diagnostic.*
+
+Le retrait temporaire des disques permet d’observer le démarrage matériel sans tenter de charger le système d’exploitation installé sur ceux-ci.
+
+Cette méthode facilite la distinction entre un problème matériel au démarrage et un problème lié au stockage ou au système d’exploitation.
+
+## 8. Démarrage et séquence POST
+
+Après avoir réinstallé les composants nécessaires, nous avons mis le serveur sous tension.
+
+L’écran HP ProLiant est apparu avec le message suivant :
+
+> Power and Thermal Calibration in Progress
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c7bfeec7-673e-4861-9473-f646a1668090" alt="Démarrage et calibration du serveur" width="700">
+</p>
+
+*Figure 7 : Démarrage du serveur et calibration de l’alimentation et du système thermique.*
+
+Cet écran montre que le serveur a commencé sa séquence de démarrage.
+
+Le **POST**, ou *Power-On Self-Test*, correspond aux vérifications réalisées à la mise sous tension.
+
+La présence de cet écran ne prouve pas, à elle seule, que toutes les vérifications sont terminées. Le démarrage ultérieur de Proxmox montre cependant que le serveur a pu poursuivre sa séquence jusqu’au chargement du système.
+
+## 9. Diagnostic de la mémoire dans le BIOS
+
+Nous avons utilisé l’utilitaire **BIOS Memory Diagnostic** pour vérifier la reconnaissance de la mémoire installée.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/dcc7ecf2-1d36-4a39-a506-28deb7b4d997" alt="Diagnostic de la mémoire dans le BIOS" width="700">
+</p>
+
+*Figure 8 : Diagnostic de la mémoire dans le BIOS.*
+
+| Élément | Valeur affichée |
+|---|---|
+| Capacité des barrettes indiquées | 16 384 MB chacune |
+| Mémoire totale configurée | 65 536 MB |
+| Capacité correspondante | Environ 64 Go |
+| État du diagnostic sur la capture | Test en cours |
+
+Le BIOS reconnaît la mémoire dans la configuration testée.
+
+Puisque le diagnostic est encore en cours sur la capture, celle-ci ne permet pas de conclure que l’ensemble de la mémoire a terminé le test sans erreur.
+
+## 10. Préparation du stockage en RAID 5
+
+Avant l’installation de Proxmox VE, nous avons utilisé le contrôleur **HP Smart Array P410i** pour préparer le stockage.
+
+Trois disques SAS de **146,8 Go chacun** ont été sélectionnés pour constituer un volume logique en **RAID 5**.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/241f6118-a928-4373-8596-d35a9b722c0a" alt="Sélection des disques SAS et configuration du RAID 5" width="700">
+</p>
+
+*Figure 9 : Sélection des trois disques SAS pour la configuration du RAID 5.*
+
+| Élément | Configuration |
+|---|---|
+| Contrôleur | HP Smart Array P410i |
+| Nombre de disques | 3 |
+| Type de disques | SAS |
+| Capacité par disque | 146,8 Go |
+| Niveau RAID | RAID 5 |
+| Capacité du volume indiquée | Environ 293,56 Go |
+
+Le RAID 5 répartit les données et les informations de parité sur les disques. Une capacité équivalente à celle d’un disque est consacrée à la parité.
+
+La création du volume logique prépare le stockage pour l’installation. Le partitionnement et le formatage nécessaires au système sont ensuite réalisés pendant l’installation de Proxmox.
+
+## 11. Installation et démarrage de Proxmox VE
+
+Après la préparation du stockage, nous avons installé et démarré **Proxmox Virtual Environment**.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d9d05c3e-1e72-47cd-9c99-fff5d9b313a6" alt="Console de Proxmox VE après le démarrage" width="700">
+</p>
+
+*Figure 10 : Console de Proxmox VE après le démarrage.*
+
+L’écran affiche le message :
+
+> Welcome to the Proxmox Virtual Environment
+
+Il indique également l’adresse d’administration suivante :
+
+**https://192.168.100.2:8006/**
+
+L’invite de commande affichée est :
+
+    root@server1:~#
+
+Ces éléments confirment que Proxmox a chargé son système et qu’une session locale avec le compte **root** est ouverte.
+
+L’adresse affichée correspond à l’interface d’administration Web prévue. Pour confirmer son accessibilité, il faut l’ouvrir depuis un ordinateur disposant d’une connexion réseau appropriée au serveur.
+
+## 12. Bilan des vérifications
+
+| Élément | Résultat ou observation |
+|---|---|
+| Processeurs | Retirés, inspectés et réinstallés |
+| Sockets des processeurs | Inspection visuelle effectuée |
+| Dissipateurs thermiques | Remontés |
+| Mémoire RAM | Reconnue par le BIOS |
+| Mémoire configurée | 65 536 MB, soit environ 64 Go |
+| Diagnostic mémoire | En cours sur la capture fournie |
+| Disques SAS | Trois disques sélectionnés pour le RAID 5 |
+| Stockage logique | Volume d’environ 293,56 Go indiqué |
+| BIOS | Accessible |
+| Séquence de démarrage | Poursuivie jusqu’au chargement de Proxmox |
+| Proxmox VE | Démarré en console |
+| Compte root | Session locale ouverte |
+| Accès Web | Adresse affichée ; connexion à vérifier depuis un navigateur |
+
+Le démarrage de Proxmox constitue un résultat positif. Il montre que le matériel nécessaire au chargement du système fonctionne dans la configuration utilisée.
+
+Il ne remplace toutefois pas un diagnostic complet de chaque composant.
+
+## 13. Résultats obtenus
+
 À la fin du travail, nous avons réussi à :
-1. Ouvrir et inspecter le serveur.
-2. Retirer les processeurs pour les vérifier.
-3. Vérifier les sockets des processeurs.
-4. Réinstaller correctement les processeurs.
-5. Vérifier les barrettes de mémoire.
-6. Tester la mémoire avec le BIOS.
-7. Vérifier les disques durs.
-8. Réinstaller les dissipateurs thermiques.
-9. Réussir le POST du serveur.
-10. Démarrer correctement le serveur.
-11. Installer et lancer Proxmox Virtual Environment.
-12. Accéder au système avec le compte root.
-13. Conclusion
-Ce travail pratique nous a permis de réaliser le dépannage complet d’un serveur HP ProLiant DL360 G6.
-Nous avons commencé par vérifier les composants matériels un par un afin d’isoler la cause du problème de démarrage.
-Les processeurs ont été retirés puis vérifiés et réinstallés. La mémoire RAM a également été testée à l’aide de l’utilitaire de diagnostic du BIOS.
-Le serveur a finalement réussi son POST et le BIOS a détecté jusqu’à 64 Go de mémoire RAM dans la configuration testée.
-Après la validation du matériel, nous avons pu démarrer Proxmox Virtual Environment. L’interface indique que le serveur est disponible sur le réseau à l’adresse 192.168.100.2 avec le port 8006.
-Le serveur est donc maintenant fonctionnel et prêt à être utilisé comme plateforme de virtualisation.
-Cette activité nous a permis de comprendre qu’un dépannage efficace doit être réalisé progressivement en testant les composants séparément avant de remettre le serveur dans sa configuration complète.
+
+1. Ouvrir le serveur et identifier ses principaux composants.
+2. Inspecter et réinstaller les processeurs.
+3. Remonter les dissipateurs thermiques.
+4. Vérifier l’installation des barrettes de mémoire.
+5. Accéder au BIOS et lancer le diagnostic mémoire.
+6. Observer une mémoire configurée d’environ 64 Go.
+7. Préparer un volume RAID 5 avec trois disques SAS.
+8. Poursuivre le démarrage jusqu’au système d’exploitation.
+9. Installer et démarrer Proxmox VE.
+10. Accéder à la console locale avec le compte root.
+
+## 14. Conclusion
+
+Ce travail pratique nous a permis de remettre en fonctionnement un serveur HP ProLiant DL360 G6 en suivant une démarche progressive de dépannage.
+
+Nous avons inspecté les processeurs, la mémoire, le stockage et les composants de refroidissement. Le BIOS a reconnu environ 64 Go de mémoire dans la configuration testée. Nous avons ensuite préparé un volume RAID 5 et démarré Proxmox VE.
+
+Le résultat principal est le chargement réussi de Proxmox et l’accès à sa console locale. Pour compléter la validation, il reste à relever le résultat final du diagnostic mémoire et à confirmer l’accès à l’interface Web depuis un autre ordinateur.
+
+Cette activité nous a appris à isoler les problèmes étape par étape et à distinguer une observation, un test en cours et un résultat confirmé.
