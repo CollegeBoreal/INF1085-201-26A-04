@@ -1,3 +1,7 @@
+<img width="1026" height="567" alt="image" src="https://github.com/user-attachments/assets/a4095a5b-795c-42bf-b670-11c50ddc2148" />
+<img width="1021" height="567" alt="image" src="https://github.com/user-attachments/assets/44bcd14b-f92c-4df0-9b4d-19462295219a" />
+<img width="1020" height="568" alt="image" src="https://github.com/user-attachments/assets/2f50d63f-d6a1-4631-9c3d-47bf27d9c9fa" />
+<img width="1018" height="567" alt="image" src="https://github.com/user-attachments/assets/ccd5e2df-c830-4b6c-ad8f-8e0d71df18dd" />
 
 ## 1. À quoi sert le paramètre `nomodeset` ?
 
