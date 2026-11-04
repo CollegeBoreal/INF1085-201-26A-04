@@ -51,6 +51,6 @@
 | 30 | [300157440](../300157440/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231572368?s=460&v=4' width=20 height=20></image>](https://github.com/Houssam-eddinerachdi) | :x: | :x: | :x: | 0️⃣ Rien à corriger |
 | 31 | [300157736](../300157736/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231500022?s=460&v=4' width=20 height=20></image>](https://github.com/souhilaazzouz036-tech) | :1st_place_medal: | :heavy_check_mark: | :x: | 0️⃣ Rien à corriger |
 | 32 | [300158052](../300158052/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/121287922?s=460&v=4' width=20 height=20></image>](https://github.com/zizoubouchelkia) | :1st_place_medal: | :heavy_check_mark: | 🥇 | 1️⃣ Bonne séquence mais manque étapes tests |
-| 33 | [300158185](../300158185/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939280?s=460&v=4' width=20 height=20></image>](https://github.com/Mohammed-mati) | :x: | :x: | :x: | 0️⃣ Rien à corriger |
+| 33 | [300158185](../300158185/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939280?s=460&v=4' width=20 height=20></image>](https://github.com/Mohammed-mati) | :2nd_place_medal: | :heavy_check_mark: | :x: | 0️⃣ Rien à corriger |
 | 34 | [300158383](../300158383/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501135?s=460&v=4' width=20 height=20></image>](https://github.com/salmabaali) | :x: | :x: | :x: | 0️⃣ Rien à corriger |
-| :abacus: | \$\frac{15}{34}\$ = 44.12% | \$\displaystyle\sum_{i=1}^{34} s_i\$ = 15 |
+| :abacus: | \$\frac{16}{34}\$ = 47.06% | \$\displaystyle\sum_{i=1}^{34} s_i\$ = 16 |
