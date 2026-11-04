@@ -1,4 +1,5 @@
-RAPPORT DE LABORATOIRE
+# 🧪 RAPPORT DE LABORATOIRE
+
 Installation et sécurisation d’une machine virtuelle Debian 13 avec Proxmox VE
 Nassim Idir  |  No étudiant : 300151504 nassimidir2000@10.7.236.210
 Cours : INF1085 — Linux / Proxmox  |  Date : 2 novembre 2026
