@@ -92,8 +92,85 @@ Preuve : L'écran de connexion graphique de Debian 13 est désormais fonctionnel
 <img width="1242" height="772" alt="image" src="https://github.com/user-attachments/assets/8f6b2e39-927c-42f5-877d-1ab05da7b60c" />
 Preuve : Bureau XFCE opérationnel avec un terminal ouvert.
 
-## 6. Conclusion
-Ce laboratoire a permis de déployer avec succès une machine virtuelle Debian 13 sur Proxmox VE. Malgré les défis liés à l'installation d'un environnement graphique sur une base minimale (résolution des dépendances Xorg et D-Bus), la VM est désormais pleinement fonctionnelle. Elle est connectée au réseau, sécurisée par authentification SSH, et prête à être utilisée pour d'autres travaux pratiques.
+## 6 Installation du serveur SSH sur la VM
+#### 6.1. Passage en root
+
+Depuis la console Proxmox, j’ai essayé d’exécuter sudo apt update, mais le système m’a répondu que mon utilisateur b300142542 n’est pas dans le fichier sudoers. J’ai donc utilisé le compte root :
+```bash
+su -
+```
+<img width="1150" height="713" alt="Screenshot 2026-11-04 104553" src="https://github.com/user-attachments/assets/cfa947ba-23a2-465f-8441-4e7180a2d44c" />
+
+#### 6.2. Problème réseau : pas de passerelle par défaut
+
+Après apt update, j’ai obtenu l’erreur Temporary failure resolving 'deb.debian.org'. J’ai vérifié la configuration réseau :
+
+```bash
+ip a
+ip route
+ping -c 3 8.8.8.8
+```
+L’interface ens18 avait bien l’adresse 10.7.236.202/23, mais ip route ne montrait aucune ligne default via, et le ping retournait Network is unreachable. Ma VM n’avait donc pas de passerelle par défaut.
+<img width="745" height="462" alt="image" src="https://github.com/user-attachments/assets/4ed936e9-06a8-4949-953e-936c7a55371a" />
+<img width="743" height="459" alt="image" src="https://github.com/user-attachments/assets/e01608d2-6c48-47bf-b47c-5bbb19cda526" />
+J’ai essayé de redémarrer le réseau avec systemctl restart networking, sans succès. La commande dhclient n’est pas installée par défaut sur Debian 13.
+
+#### 6.3. Recherche de la bonne passerelle
+J’ai testé plusieurs passerelles manuellement :
+```bash
+ip route add default via 10.7.236.1
+ping -c 3 8.8.8.8
+```
+Cela a retourné Destination Host Unreachable, donc cette adresse n’est pas la bonne passerelle. J’ai ensuite essayé l’adresse du nœud Proxmox :
+```bash
+ip route del default
+ip route add default via 10.7.236.237
+ping -c 3 8.8.8.8
+```
+
+Cette fois, le ping a fonctionné (64 bytes from 8.8.8.8 ... time=3.73 ms). Le message Redirect Host (New nexthop: 10.7.237.1) m’a indiqué la vraie passerelle du réseau, que j’ai configurée :
+```bash
+ip route del default
+ip route add default via 10.7.237.1
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+apt update
+```
+
+#### 6.4. Installation et activation de SSH
+
+Une fois Internet disponible, j’ai installé OpenSSH et je l’ai activé au démarrage :
+```bash
+apt install openssh-server -y
+systemctl enable --now ssh
+systemctl status ssh
+```
+<img width="657" height="411" alt="image" src="https://github.com/user-attachments/assets/7afadb87-925d-49e7-8187-6333e49d8491" />
+
+#### 6.5. Connexion depuis Windows PowerShell
+Depuis mon poste Windows, je me suis connecté à la VM par SSH avec son adresse IP :
+```bash
+ssh b300142542@10.7.236.202
+```
+La connexion a réussi et le prompt est devenu b300142542@b300142542-vm:~$. J’ai ensuite travaillé depuis PowerShell, car le copier-coller y est possible par simple clic droit, alors qu’il ne fonctionne pas dans la console noVNC de Proxmox.
+<img width="932" height="413" alt="image" src="https://github.com/user-attachments/assets/5694b3e7-0031-45e6-8024-e899a2621618" />
+
+## 7. Ajout de la clé SSH publique de l’enseignant
+Pour que l’enseignant puisse accéder à ma VM sans mot de passe, j’ai ajouté sa clé publique dans le fichier authorized_keys de mon utilisateur :
+```bash
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+echo 'ssh-rsa AAAAB3NzaC1yc2E... b300098957@ramena' >> ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+cat ~/.ssh/authorized_keys
+```
+#### L’enseignant peut maintenant se connecter avec :
+```bash
+ssh b300142542@10.7.236.202
+```
+
+## 8. Conclusion
+
+Dans ce laboratoire, j’ai déployé une VM Debian 13 sur Proxmox VE et installé l’interface XFCE. J’ai ensuite diagnostiqué un problème réseau (absence de passerelle par défaut et de DNS), installé le serveur SSH, et configuré l’accès par clé publique pour l’enseignant. La VM est accessible à distance et prête pour les prochains travaux pratiques.
 
 
 
