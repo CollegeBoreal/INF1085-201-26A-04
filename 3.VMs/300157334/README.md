@@ -18,7 +18,7 @@
 
 ### 🔑 Commande de connexion SSH
 
-Pour accéder à ma machine virtuelle depuis Git Bash :
+Pour accéder  à ma machine virtuelle depuis Git Bash :
 
 ```bash
 ssh laala2000@10.7.236.229
