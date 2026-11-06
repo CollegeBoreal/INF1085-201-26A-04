@@ -122,7 +122,8 @@ echo "$XDG_CURRENT_DESKTOP"
 ![Bureau GNOME utilisé avant le passage à Xfce](images/05-bureau-gnome.png)
 
 
-## 1.A Plusieurs difficultés ont empêché l’installation de Xfce au premier essai :
+## 1.A : PROBLEME Rencontrer
+Plusieurs difficultés ont empêché l’installation de Xfce au premier essai :
 
 | Erreur observée | Diagnostic et correction |
 | --- | --- |
