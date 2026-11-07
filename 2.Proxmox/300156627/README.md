@@ -87,7 +87,7 @@ Ces commandes permettent de vérifier les paramètres de démarrage, les process
 - **nomodeset :** évite l’initialisation du mode graphique avancé par le noyau Linux.
 
 ### Connexion réseau
-Une fois l'installation terminée, le serveur a redémarré. Il utilise l'adresse IP 10.7.236.237.
+Une fois l'installation terminée, le serveur a redémarré. Il utilise l'adresse IP 10.7.236.239.
 L'interface Web de Proxmox est accessible depuis un navigateur à l'adresse :
 
 <img width="2048" height="1536" alt="WhatsApp Image 2026-10-07 at 12 17 10 PM (4)" src="https://github.com/user-attachments/assets/5301d04a-47cc-4d64-acad-c1c68b139d8b" />
