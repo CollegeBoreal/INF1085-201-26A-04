@@ -18,10 +18,15 @@
 > Ce projet consiste à créer une machine virtuelle Debian 13 sur le serveur Proxmox server237, puis à la préparer pour un accès SSH, avec une adresse fixe et la clé du professeur.
 
 📛 **Nom du projet :** 3.VMs — Création d'une machine virtuelle Debian
+
 👤 **Nom et prénom :** Ifticene Hacene
+
 🎓 **Numéro étudiant :** 300150470
+
 📚 **Cours :** INF1085 — Administration Linux
+
 👥 **Groupe :** 1
+
 
 
 
@@ -111,7 +116,7 @@ ssh b300150470@10.7.236.207
 
 > La VM 102 fonctionne : Debian 13 est installée, l'adresse fixe `10.7.236.207` est vérifiée, et la clé du professeur est ajoutée. Le seul point restant est la vérification du contenu de `authorized_keys` par `cat`, pas visible sur la capture 10.
 
-🔒 Aucun mot de passe dans ce rapport.
+
 
 <div align="center">
 
