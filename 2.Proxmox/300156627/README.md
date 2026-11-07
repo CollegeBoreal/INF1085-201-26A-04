@@ -67,9 +67,7 @@ Choisir le disque système, définir le mot de passe `root`, configurer le rése
 
 Après le redémarrage, exécuter les commandes suivantes :
 
-```bash
-cat /proc/cmdline
-lscpu
+```bash<img width="2048" height="1536" alt="WhatsApp Image 2026-10-07 at 12 17 10 PM (4)" src="https://github.com/user-attachments/assets/5320c3a1-4568-4b75-b30c-c90c5ebbb9c4" />
 nproc
 lsblk
 ip a
@@ -88,6 +86,14 @@ Ces commandes permettent de vérifier les paramètres de démarrage, les process
 - **SMP :** permet l’utilisation simultanée de plusieurs processeurs ou cœurs.
 - **nomodeset :** évite l’initialisation du mode graphique avancé par le noyau Linux.
 
+### Connexion réseau
+Une fois l'installation terminée, le serveur a redémarré. Il utilise l'adresse IP 10.7.236.237.
+L'interface Web de Proxmox est accessible depuis un navigateur à l'adresse :
+
+<img width="2048" height="1536" alt="WhatsApp Image 2026-10-07 at 12 17 10 PM (4)" src="https://github.com/user-attachments/assets/5301d04a-47cc-4d64-acad-c1c68b139d8b" />
+
+
+
 ## 5. Résultats attendus
 
 Avec deux Xeon E5540, le serveur devrait pouvoir présenter :
@@ -98,6 +104,22 @@ Avec deux Xeon E5540, le serveur devrait pouvoir présenter :
 - la mémoire, les disques et les interfaces réseau correctement détectés.
 
 Les résultats réels doivent être vérifiés sur le serveur.
+
+## Vérification et Résultats des Tests Matériels 
+Après l'installation et le redémarrage du serveur HP ProLiant DL360 G7, nous avons procédé à la validation matérielle directement dans la console locale de Proxmox VE. La séquence de commandes suivante a été exécutée pour valider la détection et la configuration des ressources :
+
+Vérification du noyau (cat /proc/cmdline) : Pour confirmer les paramètres de démarrage appliqués.
+
+Configuration des processeurs (lscpu et nproc) : Pour valider la détection des sockets, des cœurs physiques, de l'Hyper-Threading (16 CPUs totaux) et du support VT-x.
+
+Stockage (lsblk) : Pour confirmer l'arborescence des disques et la configuration LVM par défaut.
+
+Réseau (ip a) : Pour vérifier l'état des interfaces physiques et du pont virtuel vmbr0.
+
+Validation de la séquence de tests matériels :
+
+<img width="1302" height="657" alt="12345" src="https://github.com/user-attachments/assets/f5021bad-8ba2-409c-ab57-5d3f8f1690a6" />
+
 
 ## 6. Questions de réflexion
 
