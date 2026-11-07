@@ -1,5 +1,9 @@
 
-### 300156627
+##### Rapport de dépannage et validation POST – HP ProLiant DL360 G6
+
+##### Numéro d'étudiant : 300156627
+
+##### Nom : ROUGAIYATOU DIALLO
 
 # Rapport de dépannage et validation POST – HP ProLiant DL360 G6
 
