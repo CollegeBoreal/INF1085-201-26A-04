@@ -42,6 +42,15 @@ Accès à l'utilitaire de diagnostic mémoire pour valider la configuration des 
 Le menu principal du diagnostic HP est accessible pour exécuter les tests ciblés :   Memory TestCPU TestBoot Disk Test4. Conclusion du diagnosticValidation du processeur et du Socket 1 : Le processeur testé dans le Socket 1 démarre correctement et valide le POST.   Cause identifiée : Le test confirme que le processeur utilisé est fonctionnel. Si le serveur ne démarrait pas lorsque le second socket était occupé, le problème est localisé au niveau du Socket 2 (broches pliées/endommagées) ou de son canal mémoire dédié.
 # HP ProLiant DL360 G6 - Diagnostic et Résolution de Panne
 
+* **E. Configuration et Formatage des Disques (Array Configuration Utility - ACU)**
+  Avant de pouvoir installer un système d'exploitation ou lancer des tests de stockage, les disques durs insérés dans les baies du serveur ont été configurés et formatés via le contrôleur RAID matériel (HP Smart Array) :
+  * **Accès à l'utilitaire ACU :** Utilisation de la touche F5 au démarrage lors de l'initialisation du contrôleur Smart Array.
+  * **Création du volume logique :** Configuration des disques physiques en un volume logique (RAID 0 ou RAID 1) pour allouer l'espace de stockage.
+  * **Initialisation et formatage :** Lancement de l'initialisation logique (*Logical Drive Initialization*) et formatage des partitions pour structurer les blocs et préparer le disque à recevoir un système d'exploitation.
+
+    <img width="690" height="472" alt="Screenshot 2026-11-06 235700" src="https://github.com/user-attachments/assets/10ce405e-5109-448c-9986-e19d1c53c90c" />
+
+
 ## Description
 Ce projet documente le dépannage d'un serveur HP ProLiant DL360 G6 qui ne démbrait pas. L'objectif était de procéder par élimination en testant la configuration minimale POST et en vérifiant l'état du processeur et du socket.
 
@@ -60,6 +69,17 @@ Ce projet documente le dépannage d'un serveur HP ProLiant DL360 G6 qui ne démb
 - `POST Screen` : Détection du CPU Xeon et vitesse QPI.
 - `Memory Diagnostic` : Validation du slot DIMM 3.
 - `RBSU Utility` : Configuration générale et mémoire système.
+
+## Conclusion du diagnostic :
+
+## Validation du processeur et du Socket 1 :
+Le processeur testé dans le Socket 1 démarre correctement et valide le POST.
+
+## Validation du stockage : 
+La configuration et le formatage des disques via le contrôleur Smart Array confirment que le sous-système de disques est intègre et prêt.
+
+## Cause identifiée :
+Le test confirme que le processeur utilisé est fonctionnel. Si le serveur ne démarrait pas lorsque le second socket était occupé, le problème est localisé au niveau du Socket 2 (broches pliées/endommagées) ou de son canal mémoire dédié.
 
 
 
