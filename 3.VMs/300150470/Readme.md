@@ -114,7 +114,7 @@ ssh b300150470@10.7.236.207
 
 ## ✅ Conclusion
 
-> La VM 102 fonctionne : Debian 13 est installée, l'adresse fixe `10.7.236.207` est vérifiée, et la clé du professeur est ajoutée. Le seul point restant est la vérification du contenu de `authorized_keys` par `cat`, pas visible sur la capture 10.
+> La VM 102 fonctionne : Debian 13 est installée, l'adresse fixe `10.7.236.207` est vérifiée, et la clé du professeur est ajoutée.
 
 
 
