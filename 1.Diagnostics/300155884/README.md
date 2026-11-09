@@ -94,7 +94,7 @@ Cette configuration prépare le serveur à l'installation de Proxmox, réalisée
 
 ## 8. Conclusion
 
-(À écrire avec tes mots)
+Ce travail nous a permis de diagnostiquer des serveurs HP ProLiant DL360 de façon méthodique, en vérifiant les composants un par un. Cette démarche nous a permis d'identifier la cause du problème sur le premier serveur : un socket de processeur dont les broches étaient pliées. Nous avons ensuite fait fonctionner les serveurs jusqu'à l'écran POST, utilisé le BIOS et les options de démarrage, vérifié la mémoire et configuré les disques en RAID 5. Ce travail prépare l'installation de Proxmox et des machines virtuelles prévues dans les prochains devoirs.
 
 ## 9. Références
 
