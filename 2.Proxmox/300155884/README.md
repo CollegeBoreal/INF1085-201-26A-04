@@ -34,7 +34,7 @@ Une fois le téléchargement terminé, nous avons utilisé cette image ISO pour 
 
 Cette clé USB constitue le support d'installation qui permet de démarrer le serveur HP ProLiant DL360 G7 et de lancer l'installation de Proxmox VE 9.2.
 
-![Téléchargement de l'image ISO](imagesproxmox/isodownload.jpeg)
+![Téléchargement de l'image ISO](images/isodownload.jpeg)
 
 *Figure 1 – Téléchargement de l'image ISO de Proxmox VE 9.2 sur un ordinateur.*
 
@@ -56,7 +56,7 @@ Ses principales caractéristiques matérielles sont les suivantes :
 - **Contrôleur de stockage :** Contrôleur RAID HP
 - **Support d'installation :** Clé USB bootable
 
-![Serveur HP ProLiant DL360 G7](imagesproxmox/serveurphysique.jpeg)
+![Serveur HP ProLiant DL360 G7](images/serveurphysique.jpeg)
 
 *Figure 2 – Serveur physique HP ProLiant DL360 G7 utilisé pour le laboratoire.*
 
@@ -83,7 +83,7 @@ Ce volume logique sera le disque cible à sélectionner lors de l'installation d
 
 Lors de la mise sous tension du serveur, le système effectue le test POST (*Power-On Self-Test*). Cette étape permet au BIOS de vérifier et d'initialiser les composants matériels.
 
-![Initialisation du serveur](imagesproxmox/powercalibration.jpeg)
+![Initialisation du serveur](images/powercalibration.jpeg)
 
 *Figure 3 – Initialisation du serveur HP ProLiant et calibration de l'alimentation et du système thermique.*
 
@@ -97,7 +97,7 @@ Le BIOS identifie la configuration matérielle suivante :
 - **Technologie :** Hyper-Threading activé
 - **Mode mémoire :** Advanced ECC Support
 
-![BIOS HP ProLiant](imagesproxmox/biosdetection.jpeg)
+![BIOS HP ProLiant](images/biosdetection.jpeg)
 
 *Figure 4 – Détection des deux processeurs Intel Xeon E5540 au niveau du BIOS.*
 
@@ -111,7 +111,7 @@ Au démarrage du serveur, nous avons utilisé la touche **F11** pour accéder au
 
 Dans ce menu, nous avons sélectionné le périphérique USB correspondant à notre clé d'installation.
 
-![Menu Boot Override F11](imagesproxmox/bootmenu.jpeg)
+![Menu Boot Override F11](images/bootmenu.jpeg)
 
 *Figure 5 – Menu de sélection du périphérique de démarrage à l'aide de la touche F11.*
 
@@ -119,7 +119,7 @@ Dans ce menu, nous avons sélectionné le périphérique USB correspondant à no
 
 Après la sélection de la clé USB, le menu de démarrage de l'installateur Proxmox VE 9.2 apparaît à l'écran.
 
-![Menu de démarrage Proxmox](imagesproxmox/proxmoxboot.jpeg)
+![Menu de démarrage Proxmox](images/proxmoxboot.jpeg)
 
 *Figure 6 – Menu de démarrage de l'installateur Proxmox VE 9.2.*
 
@@ -141,7 +141,7 @@ Le serveur HP ProLiant DL360 G7 utilise une puce graphique intégrée ATI ES1000
 
 Le paramètre `nomodeset` désactive le réglage automatique du mode graphique par le noyau afin de favoriser un démarrage avec un affichage de base.
 
-![Modification GRUB nomodeset](imagesproxmox/grubnomodeset.jpeg)
+![Modification GRUB nomodeset](images/grubnomodeset.jpeg)
 
 *Figure 7 – Modification de la ligne de commande GRUB avec l'ajout du paramètre `nomodeset`.*
 
@@ -161,7 +161,7 @@ Plusieurs opérations sont visibles dans la console :
 
 Les messages `DHCPDISCOVER` indiquent que le système tente de découvrir un serveur DHCP afin d'obtenir une configuration réseau automatiquement.
 
-![Démarrage de Proxmox](imagesproxmox/proxmoxstartup.jpeg)
+![Démarrage de Proxmox](images/proxmoxstartup.jpeg)
 
 *Figure 8 – Séquence de démarrage de l'environnement d'installation Proxmox VE 9.2, avec initialisation des pilotes matériels et détection des interfaces réseau.*
 
@@ -183,7 +183,7 @@ Nous avons poursuivi la procédure sans modifier cette sélection.
 
 Cependant, ce disque ne correspondait pas au volume logique RAID 5 que nous avions préparé pour accueillir Proxmox VE.
 
-![Disque présélectionné](imagesproxmox/defaultdiskselection.jpeg)
+![Disque présélectionné](images/defaultdiskselection.jpeg)
 
 *Figure 9 – Écran de sélection du stockage lors de la première tentative, avec le disque NVMe présélectionné par l'installateur.*
 
@@ -201,7 +201,7 @@ Cette erreur a marqué l'échec de la première tentative d'installation.
 
 Le problème identifié dans notre procédure était la sélection du disque de destination : nous avions conservé le disque NVMe présélectionné au lieu de choisir le volume logique RAID 5 préparé pour le système.
 
-![Échec de l'installation](imagesproxmox/installationfailed.jpeg)
+![Échec de l'installation](images/installationfailed.jpeg)
 
 *Figure 10 – Message d'erreur affiché à la suite de l'échec de la première tentative d'installation.*
 
@@ -217,7 +217,7 @@ Cette fois, nous avons porté une attention particulière à l'étape de sélect
 
 Après avoir relancé l'installateur, nous avons accédé à l'écran de validation du contrat de licence utilisateur (*End User License Agreement – EULA*).
 
-![Contrat de licence EULA](imagesproxmox/eula.jpeg)
+![Contrat de licence EULA](images/eula.jpeg)
 
 *Figure 11 – Écran de validation du contrat de licence utilisateur de Proxmox VE 9.2.*
 
@@ -234,7 +234,7 @@ Ce périphérique correspond au volume logique créé précédemment à l'aide d
 
 Il s'agit du disque destiné à recevoir l'installation de Proxmox VE 9.2.
 
-![Sélection du disque RAID 5](imagesproxmox/targetdisk.jpeg)
+![Sélection du disque RAID 5](images/targetdisk.jpeg)
 
 *Figure 12 – Sélection explicite du volume logique RAID 5 `/dev/sda` comme disque de destination.*
 
@@ -248,7 +248,7 @@ Après avoir sélectionné le bon disque, nous avons poursuivi la configuration 
 
 Nous avons renseigné les informations nécessaires à l'administration du serveur, notamment le mot de passe du compte `root` et l'adresse courriel de l'administrateur.
 
-![Configuration des identifiants](imagesproxmox/credentials.jpeg)
+![Configuration des identifiants](images/credentials.jpeg)
 
 *Figure 13 – Saisie du mot de passe administrateur root et de l'adresse courriel.*
 
@@ -268,7 +268,7 @@ Les paramètres renseignés sont les suivants :
 | Serveur DNS | 8.8.8.8 |
 | Courriel administrateur | 300155884@monboreal.ca |
 
-![Configuration réseau](imagesproxmox/networkconfig.jpeg)
+![Configuration réseau](images/networkconfig.jpeg)
 
 *Figure 14 – Configuration de l'adresse IP statique, de la passerelle, du DNS et du nom d'hôte du serveur.*
 
@@ -278,7 +278,7 @@ Avant de lancer l'installation définitive, nous avons vérifié le résumé des
 
 Cette étape permet de confirmer les informations relatives au disque cible, au réseau et aux paramètres administratifs avant leur application.
 
-![Résumé de l'installation](imagesproxmox/installationsummary.jpeg)
+![Résumé de l'installation](images/installationsummary.jpeg)
 
 *Figure 15 – Résumé des paramètres de configuration avant le lancement de l'installation.*
 
@@ -290,13 +290,13 @@ Après la validation des paramètres, nous avons lancé l'installation sur le vo
 
 Le programme a procédé à l'extraction et à l'installation des différents paquets nécessaires au fonctionnement de la plateforme de virtualisation.
 
-![Progression de l'installation](imagesproxmox/installprogress.jpeg)
+![Progression de l'installation](images/installprogress.jpeg)
 
 *Figure 16 – Progression de l'installation et de l'extraction des paquets de Proxmox VE 9.2.*
 
 À la fin du processus, l'installateur a affiché le message confirmant la réussite de l'installation.
 
-![Installation réussie](imagesproxmox/installsuccess.jpeg)
+![Installation réussie](images/installsuccess.jpeg)
 
 *Figure 17 – Confirmation de la réussite de l'installation de Proxmox VE 9.2 et affichage de l'URL d'accès à l'interface Web.*
 
@@ -322,7 +322,7 @@ Version du noyau observée :
 Linux server239 7.0.2-6-pve #1 SMP PREEMPT_DYNAMIC PMX 7.0.2-6 x86_64
 ```
 
-![Connexion console Proxmox](imagesproxmox/consolelogin.jpeg)
+![Connexion console Proxmox](images/consolelogin.jpeg)
 
 *Figure 18 – Écran de connexion TTY1 après le redémarrage du serveur Proxmox VE 9.2.*
 
@@ -347,7 +347,7 @@ PING 10.7.237.1 (10.7.237.1) 56(84) bytes of data.
 
 Les réponses reçues confirment que le serveur communique correctement avec sa passerelle réseau.
 
-![Test Ping](imagesproxmox/pingtest.jpeg)
+![Test Ping](images/pingtest.jpeg)
 
 *Figure 19 – Exécution de la commande ping et validation de la connectivité réseau avec la passerelle 10.7.237.1.*
 
