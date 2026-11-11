@@ -178,6 +178,10 @@ nvme0n1
 
 Une partition permet d'organiser l'espace disque.
 
+```bash
+fdisk /dev/nvme0n1
+```
+
 ---
 
 ## 🗂️ Les systèmes de fichiers
