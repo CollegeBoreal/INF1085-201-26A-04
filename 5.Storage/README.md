@@ -12,7 +12,7 @@
 
 ---
 
-# 📖 Pourquoi le stockage est-il important ?
+## 📖 Pourquoi le stockage est-il important ?
 
 Le stockage permet de conserver de façon permanente :
 
@@ -32,7 +32,7 @@ Pas de machines virtuelles
 
 ---
 
-# 🧱 Architecture générale
+## 🧱 Architecture générale
 
 ```text
 Disque physique
@@ -64,7 +64,7 @@ Disques des VM
 
 ---
 
-# 💽 Types de stockage
+## 💽 Types de stockage
 
 ## Disque dur (HDD)
 
@@ -83,7 +83,7 @@ Caractéristiques :
 
 ---
 
-## SSD SATA
+### SSD SATA
 
 Exemple :
 
@@ -98,7 +98,7 @@ Caractéristiques :
 
 ---
 
-## SSD NVMe
+### SSD NVMe
 
 Exemple :
 
@@ -116,7 +116,7 @@ Caractéristiques :
 
 ---
 
-# 🔍 Voir les disques
+## 🔍 Voir les disques
 
 Afficher les périphériques de stockage :
 
@@ -133,7 +133,7 @@ nvme0n1  954G
 
 ---
 
-# 📊 Informations détaillées
+## 📊 Informations détaillées
 
 ```bash
 fdisk -l
