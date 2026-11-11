@@ -34,7 +34,7 @@ J’ai également configuré l’authentification SSH par clé publique, ajouté
 
 J’ai commencé par accéder à l’interface Web Proxmox VE du collège.
 
-J’ai utilisé le nœud `server237` pour installer ma machine virtuelle numéro `104`, nommée `lahlou`.
+J’ai utilisé le nœud `server237` pour installer ma machine virtuelle numéro `104`, nommée `B300150410VM`.
 
 Après l’installation de Debian 13, j’ai démarré la machine virtuelle et vérifié que le système fonctionnait correctement.
 

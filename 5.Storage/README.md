@@ -178,6 +178,80 @@ nvme0n1
 
 Une partition permet d'organiser l'espace disque.
 
+### 🛠️ Créer la partition
+
+Ouvrir le disque avec :
+
+```bash
+fdisk /dev/nvme0n1
+```
+
+---
+
+### Créer une table GPT
+
+Dans `fdisk` :
+
+```text
+g
+```
+
+Résultat :
+
+```text
+Created a new GPT disklabel
+```
+
+---
+
+### Créer la partition
+
+Entrer :
+
+```text
+n
+```
+
+Puis accepter les valeurs par défaut :
+
+```text
+Partition number: Enter
+First sector:     Enter
+Last sector:      Enter
+```
+
+---
+
+### Sauvegarder
+
+Entrer :
+
+```text
+w
+```
+
+Résultat :
+
+```text
+The partition table has been altered.
+Syncing disks.
+```
+
+---
+
+### ✅ Vérifier la partition
+
+```bash
+lsblk
+```
+
+Résultat attendu :
+
+```text
+nvme0n1
+└── nvme0n1p1 953.9G
+```
+
 ---
 
 ## 🗂️ Les systèmes de fichiers
