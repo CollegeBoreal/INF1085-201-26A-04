@@ -320,7 +320,7 @@ lvcreate -l 100%FREE -T nvme-vg/data
 
 ---
 
-# 🖥️ Les stockages Proxmox
+# 🖥️ Les stockages Proxmox: [pvesm (Storage Manager)](.prep/S.SM)
 
 Afficher les stockages :
 
