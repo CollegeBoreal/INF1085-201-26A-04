@@ -286,7 +286,7 @@ lvs
 
 ---
 
-# 🚀 Thin Provisioning
+## 🚀 Thin Provisioning
 
 Proxmox utilise souvent :
 
