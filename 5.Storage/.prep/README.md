@@ -302,7 +302,7 @@ Afficher les LV :
 lvs
 ```
 
-Afficher les stockages Proxmox : [pvesm](.prep/S.SM)
+Afficher les stockages Proxmox : 
 
 ```bash
 pvesm status
