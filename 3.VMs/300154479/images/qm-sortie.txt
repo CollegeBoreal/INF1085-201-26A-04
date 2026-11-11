@@ -1,0 +1,30 @@
+# qm list
+      VMID NAME                 STATUS     MEM(MB)    BOOTDISK(GB) PID       
+       100 SihamIghmouracene    running    2048              20.00 232871    
+       107 B300156627           stopped    2048              32.00 0         
+ 300153932 yacoub-vm            running    2048              20.00 239737    
+ 300153972 B300153972           running    4096              32.00 395176    
+ 300154479 ubuntu-300154479     running    2048              20.00 2175664   
+ 300155884 ubuntu-300155884     stopped    2048              20.00 0         
+ 300156533 Abderraouf           running    2048              32.00 586513    
+ 300156627 vm-300156627         running    2048              20.00 657726    
+
+# qm config 300154479
+boot: order=ide2;scsi0
+cores: 1
+cpu: host
+ide2: local:iso/ubuntu-24.04.5-live-server-amd64.iso,media=cdrom,size=3984850K
+memory: 2048
+meta: creation-qemu=11.0.0,ctime=1794408506
+name: ubuntu-300154479
+net0: virtio=BC:24:11:AE:5F:5D,bridge=vmbr0
+ostype: l26
+scsi0: local-lvm:vm-300154479-disk-0,size=20G
+scsihw: virtio-scsi-pci
+smbios1: uuid=15c21520-4a84-4f77-bbcf-9e37f44dea38
+vmgenid: 6a0026bd-2cf2-4616-a6a7-e71aefc21626
+
+# pvesm status
+Name             Type     Status     Total (KiB)      Used (KiB) Available (KiB)        %
+local             dir     active        80028220        10585212        65332060   13.23%
+local-lvm     lvmthin     active       175005696        38851264       136154431   22.20%

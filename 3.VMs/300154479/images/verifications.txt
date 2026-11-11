@@ -1,0 +1,46 @@
++ hostnamectl
++ grep -E 'Static hostname|Operating System|Kernel|Virtualization'
+ Static hostname: ubuntu-300154479
+  Virtualization: kvm
+Operating System: Ubuntu 24.04.5 LTS
+          Kernel: Linux 6.8.0-149-generic
++ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           1,9Gi       296Mi       1,5Gi       996Ki       283Mi       1,6Gi
+Swap:          1,8Gi          0B       1,8Gi
++ grep -E '^CPU\(s\)|Model name'
++ lscpu
+CPU(s):                                  1
+Model name:                              Intel(R) Xeon(R) CPU           E5540  @ 2.53GHz
++ lsblk
+NAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sda                         8:0    0   20G  0 disk 
+├─sda1                      8:1    0    1M  0 part 
+├─sda2                      8:2    0  1,8G  0 part /boot
+└─sda3                      8:3    0 18,2G  0 part 
+  └─ubuntu--vg-ubuntu--lv 252:0    0   10G  0 lvm  /
++ ip -br a
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+ens18            UP             10.7.236.222/23 fe80::be24:11ff:feae:5f5d/64 
++ ip r
+default via 10.7.237.1 dev ens18 proto static 
+10.7.236.0/23 dev ens18 proto kernel scope link src 10.7.236.222 
++ cat /etc/netplan/50-cloud-init.yaml
++ sudo -n cat /etc/netplan/50-cloud-init.yaml
+sudo: a password is required
++ ping -c 2 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=115 time=3.18 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=115 time=2.99 ms
+
+--- 8.8.8.8 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 2.990/3.083/3.177/0.093 ms
+active
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD2
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGxP
+drwx------ 2 ubuntu ubuntu 4096 nov.  11 15:14 /home/ubuntu/.ssh
+-rw------- 1 ubuntu ubuntu  492 nov.  11 15:16 /home/ubuntu/.ssh/authorized_keys
++ systemctl is-active ssh
++ cut -c1-40 /home/ubuntu/.ssh/authorized_keys
++ ls -ld /home/ubuntu/.ssh /home/ubuntu/.ssh/authorized_keys
