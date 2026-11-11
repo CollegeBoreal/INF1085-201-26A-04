@@ -12,6 +12,7 @@ INF 1085-201 Administration Linux
 | :two:   | 30-sep | [2.Proxmox](2.Proxmox)                 | [🎉](2.Proxmox/.scripts/Participation.md)             |
 | :three:  | 07-oct | [3.VMs](3.VMs)                         | [🎉 1️⃣ ](3.VMs/.scripts/Participation-group1.md) :curly_loop: [🎉 :two:](3.VMs/.scripts/Participation-group2.md) :curly_loop: [🎉 3️⃣ ](3.VMs/.scripts/Participation-group3.md) :curly_loop: [🎉 4️⃣](3.VMs/.scripts/Participation-group4.md) |
 | :four: | 14-oct | [4.Root](4.Root)                       | [🎉 1️⃣ ](4.Root/.scripts/Participation-group1.md) :curly_loop: [🎉 :two:](4.Root/.scripts/Participation-group2.md) :curly_loop: [🎉 3️⃣ ](4.Root/.scripts/Participation-group3.md) :curly_loop: [🎉 4️⃣](4.Root/.scripts/Participation-group4.md) |
+| :five: | 21-oct | [5.Storage](5.Storage)                       | [🎉 1️⃣ ](5.Storage/.scripts/Participation-group1.md) :curly_loop: [🎉 :two:](5.Storage/.scripts/Participation-group2.md) :curly_loop: [🎉 3️⃣ ](5.Storage/.scripts/Participation-group3.md) :curly_loop: [🎉 4️⃣](4.Root/.scripts/Participation-group4.md) |
 
 
 ## 🎯 Résultats d'apprentissage du cours (RAC)
