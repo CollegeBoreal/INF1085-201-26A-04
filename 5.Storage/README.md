@@ -483,3 +483,117 @@ pvesm status
 ```bash
 pvesm status
 ```
+---
+
+# 🧪 lab – Déplacer une machine virtuelle vers le stockage NVMe
+
+:round_pushpin: Créer une page 
+
+- [ ] créer un répertoire avec son :id: et ajouter le fichier `README.md`
+- [ ] créer un répertoire dans son répertoire :id:, ajouter le répertoire `images` et ajouter le fichier `.gitkeep`
+- [ ] Ajouter des images dans le répertoire `images`
+- [ ] Ajouter les images au fichier `README.md`
+
+## 🎯 Objectif
+
+Déplacer le disque d'une machine virtuelle vers :
+
+```text
+nvme-storage
+```
+
+afin d'améliorer les performances.
+
+---
+
+# 🔍 Vérifier la VM
+
+Afficher les VM :
+
+```bash
+qm list
+```
+
+Exemple :
+
+```text
+101  ubuntu01
+```
+
+---
+
+# 🔍 Vérifier le disque actuel
+
+```bash
+qm config 101
+```
+
+Exemple :
+
+```text
+scsi0: local-lvm:vm-101-disk-0,size=20G
+```
+
+---
+
+# 🚀 Déplacer le disque
+
+```bash
+qm move_disk 101 scsi0 nvme-storage
+```
+
+Attendre la fin de la copie.
+
+---
+
+# ✅ Vérifier le résultat
+
+```bash
+qm config 101
+```
+
+Résultat attendu :
+
+```text
+scsi0: nvme-storage:vm-101-disk-0,size=20G
+```
+
+---
+
+# 📋 Vérifier le stockage NVMe
+
+```bash
+pvesm list nvme-storage
+```
+
+Le disque de la VM doit apparaître.
+
+---
+
+# 🧠 Résumé
+
+Avant :
+
+```text
+local-lvm
+   │
+   └── VM 101
+```
+
+Après :
+
+```text
+nvme-storage
+   │
+   └── VM 101
+```
+
+---
+
+# ✅ Résultat attendu
+
+- ✅ VM identifiée
+- ✅ Disque déplacé vers `nvme-storage`
+- ✅ Configuration mise à jour
+- ✅ VM opérationnelle
+- ✅ Stockage NVMe utilisé
