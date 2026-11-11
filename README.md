@@ -7,10 +7,12 @@ INF 1085-201 Administration Linux
 
 |  :hash: | Date   | Cours                                  | 🎉 Participations                                     |
 |---------|--------|:---------------------------------------|:----------------------------------------------------- |
-| :one:   | 16-sep | [0.PlanDeCours](0.PlanDeCours)         | [🎉](0.PlanDeCours/.scripts/Participation.md)         |
-| :two:   | 23-sep | [1.Diagnostics](1.Diagnostics)           | [🎉](1.Diagnostics/.scripts/Participation.md)          |
-| :three: | 30-sep | [2.Proxmox](2.Proxmox)                 | [🎉](2.Proxmox/.scripts/Participation.md)             |
-| :four:  | 07-oct | [3.VMs](3.VMs)                         | [🎉 1️⃣ ](3.VMs/.scripts/Participation-group1.md) :curly_loop: [🎉 :two:](3.VMs/.scripts/Participation-group2.md) :curly_loop: [🎉 3️⃣ ](3.VMs/.scripts/Participation-group3.md) :curly_loop: [🎉 4️⃣](3.VMs/.scripts/Participation-group4.md) |
+| 0️⃣      | 16-sep | [0.PlanDeCours](0.PlanDeCours)         | [🎉](0.PlanDeCours/.scripts/Participation.md)         |
+| :one:   | 23-sep | [1.Diagnostics](1.Diagnostics)           | [🎉](1.Diagnostics/.scripts/Participation.md)          |
+| :two:   | 30-sep | [2.Proxmox](2.Proxmox)                 | [🎉](2.Proxmox/.scripts/Participation.md)             |
+| :three:  | 07-oct | [3.VMs](3.VMs)                         | [🎉 1️⃣ ](3.VMs/.scripts/Participation-group1.md) :curly_loop: [🎉 :two:](3.VMs/.scripts/Participation-group2.md) :curly_loop: [🎉 3️⃣ ](3.VMs/.scripts/Participation-group3.md) :curly_loop: [🎉 4️⃣](3.VMs/.scripts/Participation-group4.md) |
+| :four: | 14-oct | [4.Root](4.Root)                       | [🎉 1️⃣ ](4.Root/.scripts/Participation-group1.md) :curly_loop: [🎉 :two:](4.Root/.scripts/Participation-group2.md) :curly_loop: [🎉 3️⃣ ](4.Root/.scripts/Participation-group3.md) :curly_loop: [🎉 4️⃣](4.Root/.scripts/Participation-group4.md) |
+
 
 ## 🎯 Résultats d'apprentissage du cours (RAC)
 
