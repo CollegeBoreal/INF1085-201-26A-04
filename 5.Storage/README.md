@@ -377,9 +377,9 @@ Créé sur un SSD NVMe.
 
 ---
 
-# 💾 Ajouter un NVMe à Proxmox
+## 💾 Ajouter un NVMe à Proxmox
 
-## Créer le PV
+### Créer le PV
 
 ```bash
 pvcreate /dev/nvme0n1p1
@@ -387,7 +387,7 @@ pvcreate /dev/nvme0n1p1
 
 ---
 
-## Créer le VG
+### Créer le VG
 
 ```bash
 vgcreate nvme-vg /dev/nvme0n1p1
@@ -395,7 +395,7 @@ vgcreate nvme-vg /dev/nvme0n1p1
 
 ---
 
-## Créer le Thin Pool
+### Créer le Thin Pool
 
 ```bash
 lvcreate -l 100%FREE -T nvme-vg/data
@@ -403,7 +403,7 @@ lvcreate -l 100%FREE -T nvme-vg/data
 
 ---
 
-## Ajouter à Proxmox
+### Ajouter à Proxmox
 
 ```bash
 pvesm add lvmthin nvme-storage \
@@ -414,7 +414,7 @@ pvesm add lvmthin nvme-storage \
 
 ---
 
-# 🔍 Vérifications
+### 🔍 Vérifications
 
 Afficher les disques :
 
@@ -448,7 +448,7 @@ pvesm status
 
 ---
 
-# 🧪 Questions de réflexion
+## 🧪 Questions de réflexion
 
 1. Quelle est la différence entre un HDD, un SSD SATA et un NVMe ?
 
@@ -466,7 +466,7 @@ pvesm status
 
 ---
 
-# ✅ Résultat attendu
+### ✅ Résultat attendu
 
 À la fin du laboratoire, vous devez être capable de :
 
