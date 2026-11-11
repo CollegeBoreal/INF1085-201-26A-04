@@ -107,7 +107,7 @@ $SERVERS = @(
 "10.7.236.225|ubuntu"
 "10.7.236.226|ubuntu"
 "10.7.236.227|rougaiyatoudiallo"
-"10.7.236.228|ubuntu"
+"10.7.236.228|ibrahim"
 "10.7.236.229|laala2000"
 "10.7.236.230|ubuntu"
 "10.7.236.231|ubuntu"
