@@ -84,12 +84,30 @@ Le partitionnement assisté a été exécuté sur le disque dur virtuel sda de 2
 
    <img width="1516" height="735" alt="10" src="https://github.com/user-attachments/assets/c0722e64-7c38-4fe3-a19b-b2fd68050dd4" />
 
+   <img width="1492" height="722" alt="11" src="https://github.com/user-attachments/assets/478ad1ad-3876-4baa-994f-f95f96b647c8" />
+
+   <img width="1502" height="551" alt="12" src="https://github.com/user-attachments/assets/d677aa16-6a33-4640-9922-6837bedc2063" />
+
+#### 4.6 Premier démarrage, Connexion graphique et Bureau XfceAprès:
+l'installation et le retrait du support ISO, le système a redémarré sur disque, affichant l'écran de connexion graphique de l'environnement Xfce. 
+
+<img width="1522" height="687" alt="13" src="https://github.com/user-attachments/assets/d4761640-bab8-439c-9d6c-fe39a28a7460" />
+
+<img width="1526" height="675" alt="14" src="https://github.com/user-attachments/assets/e5fef366-30e2-4bd6-8ea4-b97d2fd84747" />
+
+#### 4.7 Connexion à distance et gestion du projet (PowerShell & Git)
+L'accès au dépôt de travail et les tests de communication avec le serveur Proxmox ont été validés depuis l'environnement Windows hôte via PowerShell et Git.
+
+<img width="947" height="1007" alt="11111Screenshot 2026-11-04 233831" src="https://github.com/user-attachments/assets/9caa954d-e54c-4269-8565-89f363efd6e3" />
+
+<img width="1295" height="477" alt="333333Screenshot 2026-11-04 234105" src="https://github.com/user-attachments/assets/32210429-3168-451e-ad34-77aeeb618169" />
 
 #### 4.5 Post-installation et Tests de Connexion
 Après l'installation de l'environnement graphique Xfce et des paquets de base, les tests de connexion et l'administration à distance ont été validés via le terminal PowerShell hôte.
 
    
-1.png
+<img width="1817" height="1031" alt="22222Screenshot 2026-11-04 234001" src="https://github.com/user-attachments/assets/9871b429-0faf-471c-bcb8-352d2b0d8cde" />
+
 
  ##### 5. Configuration Réseau & Services Avancés
  
@@ -108,22 +126,27 @@ Redémarrage de la pile réseau via sudo systemctl restart networking.
 #### 5.2 Activation du Service OpenSSH
 Installation et mise en service du serveur SSH pour autoriser les connexions distantes sécurisées :
 
-Bash
 sudo apt update && sudo apt install -y openssh-server
 sudo systemctl enable --now ssh
+
 #### 6. Matrice de Dépannage & Incidents Résolus
 Incident rencontré	Cause racine	Action corrective appliquée
 Boucle de redémarrage sur l'ISO	Priorité de boot conservée sur le lecteur optique	Arrêt de la VM et désassociation du média CD/DVD dans Proxmox.
 Échec d'authentification graphique	Inversion de caractères / disposition clavier	Passage en Recovery mode via GRUB et réinitialisation avec passwd.
 Erreur de privilèges sudo	Compte non rattaché au groupe sudoers	Élévation temporaire en su - et exécution de usermod -aG sudo rougaiyatoudiallo.
+
 #### 7. Validation & Vérifications Finales
 Les commandes de contrôle exécutées dans le terminal confirment la bonne santé du système :
 
-Vérification de l'IP : ip a (Validation de la présence de 10.7.236.227/23 sur ens18).
+#### Vérification de l'IP :
+ip a (Validation de la présence de 10.7.236.227/23 sur ens18).
 
-Statut du démon SSH : sudo systemctl status ssh (Retour : active (running)).
+#### Statut du démon SSH : 
+sudo systemctl status ssh (Retour : active (running)).
 
-Test de la passerelle : ping -c 4 10.7.236.1 (Aucune perte de paquets).
+#### Test de la passerelle : 
+
+ping -c 4 10.7.236.1 (Aucune perte de paquets).
 
 #### 8. Conclusion
 Ce projet pratique m'a permis d'appréhender l'ensemble du cycle de vie d'une machine virtuelle sous Proxmox VE 9, de sa création matérielle initiale à sa configuration logicielle et réseau sous Debian 13. La gestion des incidents de démarrage et des droits d'accès m'a permis de consolider mes compétences fondamentales en administration système Linux.
