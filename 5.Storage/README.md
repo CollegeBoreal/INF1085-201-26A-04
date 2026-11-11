@@ -147,7 +147,7 @@ Permet de voir :
 
 ---
 
-# 🧩 Les partitions
+## 🧩 Les partitions
 
 Un disque peut être divisé en plusieurs partitions.
 
@@ -163,7 +163,7 @@ Une partition permet d'organiser l'espace disque.
 
 ---
 
-# 🗂️ Les systèmes de fichiers
+## 🗂️ Les systèmes de fichiers
 
 Un système de fichiers organise les données.
 
@@ -214,7 +214,7 @@ LV
 
 ---
 
-# 🧱 Physical Volume (PV)
+## 🧱 Physical Volume (PV)
 
 Le PV représente un disque ou une partition.
 
@@ -238,7 +238,7 @@ pvs
 
 ---
 
-# 📦 Volume Group (VG)
+## 📦 Volume Group (VG)
 
 Le VG regroupe un ou plusieurs PV.
 
@@ -262,7 +262,7 @@ vgs
 
 ---
 
-# 📁 Logical Volume (LV)
+## 📁 Logical Volume (LV)
 
 Le LV est un volume logique utilisé comme espace de stockage.
 
