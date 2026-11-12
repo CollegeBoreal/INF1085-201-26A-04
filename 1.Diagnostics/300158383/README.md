@@ -144,7 +144,7 @@ Interprétation indiquée dans le document de référence :
 
 Ce test doit être effectué uniquement selon les consignes du professeur et la procédure de maintenance appropriée. **Ne pas déclarer le socket 2 ou CPU2 défectueux sans avoir réalisé et documenté ce test.**
 
-![Test du processeur dans le socket 1](../images/20260917_140052.jpg)
+![Test du processeur dans le socket 1](images/20260917_140052.jpg)
 
 *Figure 9 — Image de référence du test croisé fournie dans le dossier du laboratoire.*
 
