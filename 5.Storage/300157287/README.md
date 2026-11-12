@@ -254,10 +254,3 @@ Un NVMe peut accélérer les lectures et écritures, réduire les temps d’atte
 
 La partie en groupe a permis de préparer un NVMe d’environ 953,9 Gio, de créer son organisation LVM-Thin et de l’enregistrer comme stockage actif dans Proxmox. Dans ma partie individuelle, le disque de 20 Gio de la VM 101 a été transféré avec succès vers `nvme-storage`, puis retrouvé avec `pvesm list`. La configuration finale confirme que `scsi0` utilise ce stockage et la session Debian confirme que le système invité fonctionne après le déplacement. Les résultats attendus de la partie individuelle sont ainsi validés.
 
-## 15. Références et remise
-
-- Consignes, résultats attendus et captures du laboratoire fournis par l’étudiant.
-- [Documentation officielle Proxmox – Stockage LVM-Thin](https://github.com/proxmox/pve-docs/blob/master/pve-storage-lvmthin.adoc)
-- [Documentation officielle Proxmox – Gestion des stockages](https://github.com/proxmox/pve-docs/blob/master/pvesm.adoc)
-
-Pour la remise sur GitHub, placer ce `README.md` dans le répertoire `300157287` du laboratoire, avec le dossier `images` qui l’accompagne. Les images doivent être déposées comme fichiers PNG après extraction de l’archive pour que les liens relatifs du rapport fonctionnent.
