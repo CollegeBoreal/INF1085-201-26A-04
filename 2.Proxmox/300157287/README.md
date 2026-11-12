@@ -160,12 +160,4 @@ L’installation a permis d’atteindre la console Proxmox, de se connecter en r
 
 La validation reste partielle : le nombre de processeurs visibles sous Linux diffère du POST, les paramètres permanents ne sont pas prouvés et l’accès web n’est pas illustré. Les vérifications complémentaires à réaliser concernent le lien entre server1 et server237, les options de démarrage réellement actives et l’action exacte ayant rétabli le réseau.
 
-## Références techniques
 
-[1] Documentation officielle Proxmox, installation : https://github.com/proxmox/pve-docs/blob/master/pve-installation.adoc
-
-[2] Documentation Linux, paramètres du noyau : https://docs.kernel.org/admin-guide/kernel-parameters.html
-
-[3] Documentation Linux, système de fichiers /proc : https://docs.kernel.org/filesystems/proc.html
-
-Les observations du laboratoire proviennent des captures fournies ; les références expliquent les notions techniques et ne constituent pas des preuves des manipulations effectuées.
