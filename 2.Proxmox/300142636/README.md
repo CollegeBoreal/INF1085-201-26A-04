@@ -1,179 +1,260 @@
+# Installation de Proxmox VE 9.2 sur un HP ProLiant DL360 G7
 
-# Rapport de mise en place et d'installation de Proxmox VE
+> **TP INF1085 — Administration Linux et virtualisation**  
+> Documentation basée sur les consignes du professeur et les captures du laboratoire.
 
-**Cours :** INF1085
-**Serveur :** HP ProLiant DL360 G7 (server237)
-**Version :** Proxmox VE 9.2
+## 1. Objectif
 
-## 1. Présentation
+Installer l'hyperviseur **Proxmox Virtual Environment (VE) 9.2** sur un serveur physique **HP ProLiant DL360 G7**, préparer le stockage et configurer l'interface réseau de gestion pour l'administration ultérieure des machines virtuelles.
 
-L'objectif de ce laboratoire était de préparer un serveur physique et d'y installer Proxmox VE afin de l'utiliser comme plateforme de virtualisation. Nous avons créé une clé USB contenant l'image ISO de Proxmox VE, démarré le serveur à partir de cette clé, puis suivi les étapes de l'installateur graphique : choix du disque, mot de passe administrateur, configuration du réseau et installation.
+## 2. Matériel et environnement
 
-## 2. Matériel utilisé
-
-Le serveur est un HP ProLiant DL360 G7. Les informations affichées au démarrage (BIOS) sont les suivantes :
-
-| Élément | Valeur |
+| Composant | Valeur observée |
 |---|---|
-| Modèle | HP ProLiant DL360 G7 |
-| BIOS | ProLiant System BIOS P68 (05/05/2011) |
-| Processeurs | 2 × Intel Xeon E5540 @ 2,53 GHz |
-| Cœurs | 8 cœurs au total, Hyperthreading activé |
-| Mémoire | 64 Go installés (Advanced ECC Support) |
-| Gestion à distance | iLO 3 |
+| Serveur | HP ProLiant DL360 G7 |
+| Processeurs | 2 × Intel Xeon E5540 à 2,53 GHz |
+| Cœurs physiques | 8 au total (4 par processeur) |
+| Hyper-Threading | Activé |
+| RAM | 64 Go |
+| BIOS | ProLiant System BIOS P68, daté du 05/05/2011 |
+| Hyperviseur | Proxmox VE 9.2 (ISO release 1) |
+| Support cible | `/dev/sda`, volume logique de 273,40 GiB |
+| Autre disque visible | `/dev/nvme0n1`, SK hynix 1024 GB, 953,87 GiB |
+| Système de fichiers | ext4 |
 
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 50" src="https://github.com/user-attachments/assets/4815ab83-73bd-4b81-9edf-fcfb78822b49" />
+![Serveur HP ProLiant DL360 G7](images/01-serveur-hp-dl360-g7.jpg)
 
- le serveur HP ProLiant DL360 G7 avec la clé USB branchée à l'avant.*
+![Informations BIOS](images/02-bios-configuration.jpg)
 
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 51" src="https://github.com/user-attachments/assets/4460cfc8-a233-4641-ba7b-acaf47e96766" />
+**Observation matérielle :** le BIOS indique une alimentation débranchée ou défaillante dans la baie 1 (`1615-Power Supply Failure or Power Supply Unplugged in Bay 1`). Ce message doit être signalé à l'administrateur du laboratoire. Le système affiche également un BIOS de secours valide (`Redundant ROM Detected`).
 
- écran de démarrage du BIOS HP ProLiant (calibration de l'alimentation et de la température).*
+## 3. Démarrage sur le support d'installation
 
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 524" src="https://github.com/user-attachments/assets/87ae1915-e328-4354-9521-2aa92ea31d99" />
+À partir du menu de démarrage ponctuel du serveur, sélectionner le support qui contient l'ISO de Proxmox VE. Le menu propose notamment **CD-ROM**, **USB DriveKey**, **HDD** et **Network**. Les captures ne permettent pas d'établir avec certitude lequel a été utilisé.
 
- informations du BIOS (processeurs, mémoire).*
+![Menu de démarrage](images/03-menu-demarrage.jpg)
 
-## 3. Démarrage à partir de la clé USB
+Le serveur procède à une phase de calibration matérielle, puis lance l'installateur Proxmox VE.
 
-La clé USB contenant l'image ISO de Proxmox VE a été branchée sur le port USB à l'avant du serveur. Au démarrage, nous avons ouvert le menu de démarrage du BIOS (Boot Override) et choisi l'option **One Time Boot to USB DriveKey**. Ce choix s'applique seulement pour ce démarrage et ne modifie pas l'ordre normal de démarrage du serveur.
+![Calibration matérielle](images/04-calibration-materielle.jpg)
 
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 53" src="https://github.com/user-attachments/assets/d2b5cc8c-a65d-4562-b9bf-d64c23c03230" />
+![Chargement de l'installateur](images/05-chargement-installateur.jpg)
 
-menu « Default Boot Override Options » du BIOS.*
+## 4. Lancement de l'installation
 
-## 4. Menu de démarrage de Proxmox (GRUB)
+Depuis le menu d'accueil de Proxmox VE 9.2, l'installation graphique a été utilisée. Les captures montrent le chargement du programme d'installation et l'affichage du contrat de licence (EULA).
 
-Le serveur a démarré sur le menu de Proxmox VE 9.2. Nous avons sélectionné l'option **Install Proxmox VE (Graphical)** pour lancer l'installation graphique.
+![Contrat de licence](images/06-licence-eula.jpg)
 
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 54" src="https://github.com/user-attachments/assets/bf8c226c-ea1f-4852-bd28-4f53afc74e72" />
+L'installateur demande ensuite de sélectionner le disque de destination.
 
-menu d'accueil de Proxmox VE 9.2.*
+## 5. Choix du disque et du système de fichiers
 
-Avant de lancer l'installation, nous avons modifié l'entrée avec la touche **e** pour ajouter le paramètre `nomodeset` à la ligne de démarrage du noyau. Ce paramètre désactive la gestion avancée de l'affichage et évite les problèmes d'affichage sur ce matériel ancien. Le démarrage s'est ensuite fait avec **Ctrl+X**.
+Deux périphériques de stockage sont visibles :
 
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 55" src="https://github.com/user-attachments/assets/0d45f4e6-7d6d-4464-93f5-7ef214d3b09f" />
+- `/dev/nvme0n1` : **953,87 GiB**, SK hynix 1024 GB ;
+- `/dev/sda` : **273,40 GiB**, volume logique.
 
+Le récapitulatif de l'installation confirme le choix de **`/dev/sda`** avec le système de fichiers **ext4**.
 
-modification de l'entrée GRUB (ajout de `nomodeset`).*
+![Écran de sélection du disque](images/07-choix-disque.jpg)
 
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 56" src="https://github.com/user-attachments/assets/3ad1168a-a5cc-436b-9c4a-6ee46422dcc0" />
+![Disques détectés](images/08-disques-disponibles.jpg)
 
- message « Loading Proxmox VE Installer … ».*
+> **Attention :** l'installation partitionne et efface les données du disque cible. Toujours vérifier le périphérique choisi avant de confirmer.
 
-## 5. Chargement de l'installateur
+## 6. Particularités rencontrées pendant l'installation
 
-Pendant le chargement, le système a recherché le support contenant l'ISO : il a d'abord testé le lecteur `/dev/sr0`, puis a trouvé l'image Proxmox VE sur `/dev/sdb` (la clé USB). Il a ensuite détecté les cartes réseau et obtenu des offres DHCP (« DHCPOFFERS received »), ce qui confirme que le réseau est accessible.
+Une capture montre une modification des paramètres de démarrage GRUB, notamment l'option `nomodeset`, puis le chargement de l'installateur. Cette option est souvent employée pour contourner des problèmes d'affichage pendant l'installation ; les captures ne permettent toutefois pas de confirmer la cause exacte de son utilisation ici.
 
+![Paramètres GRUB](images/09-parametres-grub.jpg)
 
+![Messages de démarrage](images/10-journal-demarrage.jpg)
 
-## 6. Contrat de licence (EULA)
+L'installateur a aussi détecté un ancien groupe de volumes LVM nommé `pve` et proposé de le renommer en `pve-OLD-810787F6`. La capture atteste de l'apparition de cette boîte de dialogue, mais pas du choix final effectué.
 
-L'installateur graphique affiche le contrat de licence de Proxmox VE. Nous avons cliqué sur **I agree** pour l'accepter.
+![Ancien volume pve détecté](images/11-ancien-volume-pve.jpg)
 
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 57" src="https://github.com/user-attachments/assets/440ecb65-0870-4dd5-9782-7d84d26d58b2" />
+## 7. Configuration du réseau de gestion
 
-contrat de licence (EULA).*
-
-## 7. Choix du disque d'installation
-
-Par défaut, l'installateur propose le disque `/dev/nvme0n1` (953,87 GiB, SK hynix PC811 1024 Go). Nous avons ouvert la liste déroulante **Target Harddisk** et sélectionné `/dev/sda` (273,40 GiB, volume logique). L'installateur avertit que toutes les partitions et données du disque choisi seront perdues.
-
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 45 59" src="https://github.com/user-attachments/assets/7858d57f-d3b0-48b9-a69c-532da9ccfed1" />
-
-
-
-
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 46 00" src="https://github.com/user-attachments/assets/19f61c65-725e-483d-a4b9-5d0bfacb537b" />
-
- sélection de `noom\deset` dans la liste.*
-
-## 8. Mot de passe administrateur et courriel
-
-L'installateur demande de définir le mot de passe du compte administrateur **root** et une adresse courriel qui servira à recevoir les notifications importantes du serveur (par exemple les échecs de sauvegarde). Le mot de passe doit contenir au moins 8 caractères avec des lettres, des chiffres et des symboles.
-
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 46 03" src="https://github.com/user-attachments/assets/df5dd717-10a5-4f1d-a20c-f0f95a11444c" />
-
-*Figure 13 : saisie du mot de passe root et de l'adresse courriel (champs floutés).*
-
-## 9. Configuration du réseau
-
-Nous avons ensuite configuré l'interface de gestion du serveur :
+Les paramètres saisis dans l'installateur sont :
 
 | Paramètre | Valeur |
 |---|---|
-| Interface de gestion | nic0 (3c:d9:2b:ec:fb:a4, pilote bnx2) |
-| Nom d'hôte (FQDN) | server237.labinfo.local |
-| Adresse IP (CIDR) | 10.7.236.237/23 |
-| Passerelle (Gateway) | 10.7.237.1 |
-| Serveur DNS | 8.8.8.8 |
+| Interface | `nic0` |
+| FQDN | `server237.labinfo.local` |
+| Adresse IPv4 | `10.7.236.237/23` |
+| Masque | `255.255.254.0` |
+| Passerelle | `10.7.237.1` |
+| DNS | `8.8.8.8` |
+| Pays / fuseau | Canada / America/Toronto |
+| Clavier | `en-us` |
 
-L'option **Pin network interface names** est cochée : elle fixe les noms des interfaces réseau pour qu'ils ne changent pas après un redémarrage.
+![Configuration réseau](images/12-configuration-reseau.jpg)
 
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 46 06" src="https://github.com/user-attachments/assets/d54a3a5c-8375-4ff3-a8ca-fa457a38cd15" />
+Le masque `/23` correspond au réseau `10.7.236.0/23`. Cette adresse est celle de l'hôte Proxmox et ne doit pas être attribuée à une VM.
 
- configuration du réseau de gestion.*
+## 8. Lancement de l'installation
 
-## 10. Résumé avant l'installation
+Après validation du récapitulatif, l'installateur lance la création des volumes logiques puis l'extraction des paquets. Une capture montre la progression à environ **3 %** lors de l'étape `create LVs`, et une autre montre l'extraction de paquets à **51 %**. Ces étapes ne constituent pas à elles seules une preuve de fin d'installation.
 
-Avant de lancer l'installation, l'installateur affiche un résumé des choix :
+![Progression de l'installation](images/13-progression-installation.jpg)
 
-| Option | Valeur |
+## 9. Validation après installation
+
+Le serveur a redémarré sur le système installé et affiche l'adresse de l'interface Web de gestion : **`https://10.7.236.237:8006/`**. Une session locale avec l'utilisateur `root` est visible.
+
+![Console Proxmox opérationnelle](images/14-console-proxmox.jpg)
+
+### 9.1 Paramètres de démarrage du noyau
+
+```bash
+cat /proc/cmdline
+```
+
+La sortie visible indique notamment :
+
+```text
+BOOT_IMAGE=/boot/vmlinuz-7.0.2-6-pve root=/dev/mapper/pve-root ro nomodeset quiet
+```
+
+Le paramètre **`nomodeset`** est actif. Les options **`nolapic`** et **`noapic`** ne figurent pas dans la ligne affichée. Le paramètre `acpi=off`, présenté dans les consignes comme une solution possible aux problèmes de compatibilité, n'est pas non plus présent dans cette capture.
+
+![Paramètres du noyau](images/15-parametres-noyau.jpg)
+
+### 9.2 Détection des processeurs
+
+```bash
+nproc
+```
+
+**Résultat : `16` processeurs logiques disponibles.** Ce résultat correspond à l'objectif du TP. Il ne confirme toutefois pas à lui seul le nombre de sockets et de cœurs physiques : `lscpu` est la commande appropriée pour contrôler cette topologie.
+
+![Nombre de processeurs logiques](images/16-processeurs-logiques.jpg)
+
+### 9.3 Mémoire et stockage
+
+```bash
+lsmem
+lsblk
+```
+
+La commande `lsmem` affiche **66G de mémoire en ligne** et **0B hors ligne**. La commande `lsblk` affiche un disque système `sda` de **273,4G**, contenant notamment `pve-root` (78G), `pve-swap` (8G) et `pve-data` (166,6G), ainsi qu'un périphérique `nvme0n1` de **953,9G** avec des volumes LVM préexistants nommés `pve-OLD-...`.
+
+![Stockage et partitions](images/17-disques-lsblk.jpg)
+
+### 9.4 Périphériques PCI et modules du noyau
+
+```bash
+lspci
+lsmod
+```
+
+`lspci` permet d'identifier les contrôleurs PCI, notamment les contrôleurs mémoire Intel. `lsmod` montre le chargement de modules tels que `nvme`, `nvme_core`, `hpsa` et `scsi_transport_sas`, liés notamment à la prise en charge du stockage.
+
+![Périphériques PCI](images/18-peripheriques-pci.jpg)
+
+![Modules chargés](images/19-modules-linux.jpg)
+
+Une autre capture confirme l'utilisation correcte de `cat /proc/cmdline` après correction d'une erreur de syntaxe (espace manquant entre `cat` et le chemin).
+
+![Vérification de la ligne de commande](images/20-cmdline-verification.jpg)
+
+### 9.5 Interruptions matérielles
+
+```bash
+cat /proc/interrupts
+```
+
+Cette commande affiche les compteurs d'interruptions du noyau, notamment des événements liés aux APIC et aux vérifications matérielles. Elle contribue au diagnostic du fonctionnement multiprocesseur.
+
+![Interruptions matérielles](images/21-interruptions.jpg)
+
+## 10. Configuration et tests réseau
+
+L'interface `vmbr0` porte l'adresse **`10.7.236.237/23`**. La passerelle prévue par le TP est **`10.7.237.1`** et le DNS indiqué dans les consignes est **`8.8.8.8`**. La capture du ping vers `8.8.8.8` valide la connectivité IP, mais ne suffit pas à confirmer le paramétrage du résolveur DNS.
+
+### 10.1 Premier essai : échec
+
+```bash
+ping -c 4 8.8.8.8
+```
+
+Le premier essai a produit `Destination Host Unreachable` et `No route to host`. Un ping de la passerelle `10.7.237.1` a ensuite été lancé.
+
+![Premier diagnostic réseau](images/22-test-ping-initial.jpg)
+
+### 10.2 Vérification réussie
+
+Les captures montrent **12 paquets reçus sur 12** vers la passerelle (`0 %` de perte), puis **4 paquets reçus sur 4** vers `8.8.8.8` (`0 %` de perte). La connectivité était donc fonctionnelle lors du second test.
+
+![Tests réseau réussis](images/23-tests-reseau-reussis.jpg)
+
+### 10.3 Accès SSH depuis Windows
+
+Depuis le terminal Windows :
+
+```powershell
+ssh root@10.7.236.237
+```
+
+Les premières tentatives ont expiré, puis une connexion a été établie avec succès après validation de l'empreinte SSH et authentification. Le terminal affiche alors `root@server237:~#`.
+
+![Connexion SSH depuis Windows](images/24-connexion-ssh.jpg)
+
+Les photos suivantes documentent également le contexte physique du laboratoire, notamment le commutateur Cisco et les connexions à l'arrière des serveurs.
+
+![Commutateur réseau du laboratoire](images/25-switch-reseau.jpg)
+
+![Arrière des serveurs](images/26-arriere-serveurs.jpg)
+
+## 11. Difficultés rencontrées
+
+- **Compatibilité graphique :** utilisation du paramètre `nomodeset` pour démarrer avec un affichage minimal.
+- **Multiprocesseur :** contrôle de l'absence de `nolapic` et `noapic`, puis vérification de `16` processeurs logiques avec `nproc`.
+- **Connectivité réseau :** échec initial vers `8.8.8.8`, suivi de tests concluants vers la passerelle et Internet.
+- **Accès distant :** premières tentatives SSH expirées, puis connexion réussie.
+- **Syntaxe Linux :** correction de commandes mal saisies, dont `cat /proc/cmdline`.
+
+## 12. Questions de réflexion
+
+**1. À quoi sert `nomodeset` ?**  
+Il empêche le noyau Linux d'activer le *Kernel Mode Setting* graphique. Cela peut contourner des problèmes d'affichage sur un matériel ancien.
+
+**2. Pourquoi un ancien BIOS peut-il nécessiter `acpi=off` ?**  
+Certaines tables ACPI anciennes peuvent être incompatibles avec un noyau récent. `acpi=off` désactive ACPI pour contourner certains blocages, mais peut aussi désactiver des fonctionnalités matérielles importantes.
+
+**3. Quelle est la différence entre ACPI et APIC ?**  
+ACPI fournit des informations de configuration matérielle et de gestion d'énergie. APIC sert à gérer et distribuer les interruptions matérielles, notamment dans un système multiprocesseur.
+
+**4. Pourquoi `nolapic` peut-il réduire le nombre de processeurs visibles ?**  
+La désactivation du contrôleur local APIC peut empêcher le fonctionnement normal du SMP et limiter Linux à un seul processeur logique.
+
+**5. Quelle commande affiche les paramètres réellement utilisés au démarrage ?**
+
+```bash
+cat /proc/cmdline
+```
+
+## 13. Bilan des objectifs
+
+| Objectif | Résultat documenté |
 |---|---|
-| Système de fichiers | ext4 |
-| Disque | /dev/sda |
-| Pays | Canada |
-| Fuseau horaire | America/Toronto |
-| Disposition du clavier | en-us |
-| Interface de gestion | nic0 |
-| Nom d'hôte | server237 |
-| Adresse IP | 10.7.236.237/23 |
-| Passerelle | 10.7.237.1 |
-| DNS | 8.8.8.8 |
+| Installer Proxmox VE 9 | Installation et console fonctionnelles visibles |
+| Activer `nomodeset` | Confirmé par `/proc/cmdline` |
+| Éviter `nolapic` et `noapic` | Options absentes de la ligne affichée |
+| Vérifier 16 processeurs logiques | Confirmé par `nproc` |
+| Vérifier la mémoire | `lsmem` : 66G en ligne |
+| Vérifier les disques et modules | Confirmé par `lsblk`, `lspci`, `lsmod` |
+| Tester la passerelle et Internet | Pings réussis, 0 % de perte |
+| Accéder au serveur en SSH | Connexion réussie depuis Windows |
+| Confirmer deux sockets avec `lscpu` | Non démontré directement par les captures sélectionnées |
+| Vérifier le DNS réellement configuré | Non démontré par les captures sélectionnées |
 
-L'option **Automatically reboot after successful installation** est cochée. Nous avons cliqué sur **Install**.
+## 14. Conclusion
 
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-1478547 at 21 46 07" src="https://github.com/user-attachments/assets/d369b635-e012-4be5-9b7d-6b92416abe9d" />
+Ce laboratoire nous a permis d'installer et de configurer **Proxmox VE** sur un serveur **HP ProLiant DL360 G7**, tout en explorant les contraintes de compatibilité entre un matériel ancien et un noyau Linux moderne. Les commandes de diagnostic ont permis de vérifier les paramètres de démarrage, la disponibilité de **16 processeurs logiques**, la mémoire, les disques et les modules du noyau. Après quelques difficultés de connectivité, nous avons également validé les échanges avec la passerelle, l'accès à une adresse Internet et l'administration à distance par SSH. Le serveur constitue désormais une base opérationnelle pour les futurs laboratoires de virtualisation Linux.
 
- résumé de l'installation (courriel flouté).*
+---
 
-## 11. Installation de Proxmox
-
-Les principales étapes exécutées par l'installateur sont :
-
-- création des partitions (2 %) ;
-- création des volumes logiques LVM (3 %) ;
-- extraction des paquets du système (par exemple `debian-faq_12.2_all.deb`, 51 %) ;
-- configuration du système et installation du chargeur de démarrage ;
-- redémarrage automatique du serveur.
-
-Pendant la création des volumes logiques, l'installateur a détecté un groupe de volumes `pve` existant (sur `/dev/nvme0n1p3`), provenant d'une installation précédente. Il a proposé de le renommer en `pve-OLD-810787F6` ou d'annuler l'installation. Nous avons choisi **OK** pour renommer l'ancien groupe de volumes et poursuivre.
-
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 46 0578" src="https://github.com/user-attachments/assets/225829a0-37ee-4c0b-9704-c07eab2befae" />
-
- création des partitions.*
-
-
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 46 09" src="https://github.com/user-attachments/assets/fd6586bb-2220-42e3-a139-6179607cbfc1" />
-extraction des paquets (51 %).*
-
-## 12. Connexion réseau
-
-Une fois l'installation terminée, le serveur a redémarré. Il utilise l'adresse IP **10.7.236.237**. L'interface Web de Proxmox est accessible depuis un navigateur à l'adresse :
-
-`https://10.7.236.237:8006`
-<img width="2048" height="1152" alt="WhatsApp Image 2026-10-17 at 21 46 10" src="https://github.com/user-attachments/assets/62dc6876-3732-40b9-82f1-2072af7a4dc3" />
-
-Cette interface permet d'administrer le serveur à distance. La connexion se fait avec l'utilisateur `root` et le mot de passe défini pendant l'installation (realm Linux PAM).
-
-## 13. Messages d'erreur observés au démarrage
-
-Pendant le chargement, deux messages d'erreur sont apparus (voir la figure 8) : le module `shpchp` est introuvable et le module `radeonfb` ne peut pas être inséré (« No such device »). Ils concernent du matériel absent ou des pilotes graphiques inutilisés et n'ont pas empêché l'installation de se poursuivre.
-
-## 14. Résultat
-
-L'installation de Proxmox VE s'est terminée correctement. Le serveur possède maintenant une configuration réseau fonctionnelle et peut être administré à partir de l'interface Web. Le compte administrateur root permet de gérer le serveur et de créer des machines virtuelles.
-
-## 15. Conclusion
-
-Ce laboratoire nous a permis d'apprendre les principales étapes pour installer Proxmox VE sur un serveur physique : démarrer à partir d'une clé USB, lancer l'installateur graphique, choisir le disque, définir le mot de passe administrateur et configurer le réseau. Après l'installation, le serveur est accessible sur le réseau grâce à son adresse IP et prêt à être utilisé pour créer et administrer des machines virtuelles.
+*Documentation rédigée à partir du README de consignes du professeur et des captures réalisées pendant le laboratoire. Les résultats non directement vérifiables sont signalés comme tels.*
