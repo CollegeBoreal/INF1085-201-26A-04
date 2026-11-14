@@ -2,7 +2,7 @@
 
 > **Projet / TP** — Gestion des comptes administrateurs, des permissions Proxmox (ACL), de l'accès SSH et des clés publiques.
 
-> Prenom et Nom : Ndiogou DIOUM Matricule : 300142636
+> Prenom et Nom : Ndiogou DIOUM | Matricule : 300142636
 > Machine virtuelle : 101 — B300142636
 
 > 
