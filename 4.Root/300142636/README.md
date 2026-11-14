@@ -1,7 +1,10 @@
 # 🔐 INF1085 — Sécuriser l'administration de Proxmox VE 9 avec des comptes individuels
 
-> **Nouveau projet / TP** — Gestion des comptes administrateurs, des permissions Proxmox (ACL), de l'accès SSH et des clés publiques.
->
+> **Projet / TP** — Gestion des comptes administrateurs, des permissions Proxmox (ACL), de l'accès SSH et des clés publiques.
+> Prenom et Nom : Ndiogou DIOUM Matricule : 300142636
+> Machine virtuelle : 101 — B300142636
+
+> 
 > **État de la documentation :** les trois vérifications ont été réalisées : compte Linux `B300142636` existant, compte Proxmox `B300142636@pam` activé, ACL `Administrator` attribuée sur `/` avec propagation active. Les captures correspondantes sont intégrées. Les connexions Web, SSH et SSH par clé **restent à confirmer**. Les commandes de création figurent uniquement à titre de référence.
 
 ## 1. Contexte et objectif
@@ -288,6 +291,3 @@ Ce laboratoire présente une méthode de gestion plus responsable des accès à 
 - [Proxmox VE — Référence de la commande `pveum`](https://github.com/proxmox/pve-docs/blob/master/generated/pveum.1-synopsis.adoc)
 - Consignes du laboratoire communiquées dans le cadre du TP « Comptes administrateurs Proxmox : bonnes pratiques ».
 
----
-
-**Sécurité de publication :** les captures d’utilisateurs et d’ACL de ce dépôt sont **recadrées** pour ne conserver que les informations de notre compte. Ne jamais committer de mot de passe, de clé SSH privée (`id_ed25519`), de fichier `authorized_keys` réel, de jeton, ni de capture exposant des secrets.
