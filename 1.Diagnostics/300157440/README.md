@@ -16,7 +16,7 @@ Les observations ci-dessous sont fondées sur les photographies disponibles. Les
 
 ## 2\. Inspection intérieure du serveur
 
-!\[Vue de la carte mère et des emplacements des processeurs](images/668216902-5554cc80-df92-4897-a395-72c773bf9dec.png)
+![Vue de la carte mère et des emplacements des processeurs](images/668216902-5554cc80-df92-4897-a395-72c773bf9dec.png)
 
 *Figure 1 — Carte mère et emplacements des deux processeurs.*
 
@@ -24,13 +24,13 @@ La première vue permet de repérer les supports des processeurs, les composants
 
 ## 3\. Vérification des processeurs
 
-!\[Processeur placé dans son support](images/668217194-2821acaf-60b5-45a7-8027-53584006310f.png)
+![Processeur placé dans son support](images/668217194-2821acaf-60b5-45a7-8027-53584006310f.png)
 
 *Figure 2 — Processeur installé dans son socket.*
 
 Le processeur doit être correctement positionné dans son support et retenu par son système de verrouillage. Un mauvais contact peut empêcher le serveur de terminer sa séquence d'initialisation.
 
-!\[Vue du processeur et de son support](images/668217443-4159be66-2469-4538-8f32-2884a83064b6.png)
+![Vue du processeur et de son support](images/668217443-4159be66-2469-4538-8f32-2884a83064b6.png)
 
 *Figure 3 — Vue rapprochée du processeur et du mécanisme de fixation.*
 
@@ -38,7 +38,7 @@ Cette étape permet d'examiner le socket et les éléments de fixation. Toute d�
 
 ## 4\. Refroidissement des processeurs
 
-!\[Dissipateurs thermiques installés](images/668217738-d6dd21c5-7bb3-481e-b28f-a5180b72191a.png)
+![Dissipateurs thermiques installés](images/668217738-d6dd21c5-7bb3-481e-b28f-a5180b72191a.png)
 
 *Figure 4 — Dissipateurs thermiques placés au-dessus des processeurs.*
 
@@ -46,7 +46,7 @@ Les dissipateurs transmettent la chaleur des processeurs vers le flux d'air du s
 
 ## 5\. Contrôle de la mémoire RAM
 
-!\[Emplacements DIMM de la mémoire](images/668218025-ed2457af-e6a4-42ee-aff0-db00e5a06951.png)
+![Emplacements DIMM de la mémoire](images/668218025-ed2457af-e6a4-42ee-aff0-db00e5a06951.png)
 
 *Figure 5 — Emplacements de mémoire DIMM sur la carte mère.*
 
@@ -54,7 +54,7 @@ Les barrettes doivent être installées dans les emplacements prévus par le con
 
 ## 6\. Vérification des disques et des barrettes retirées
 
-!\[Disques et modules mémoire posés sur la table](images/668218265-bb12bc21-a606-4ff2-85e3-c0c4c76d279e.png)
+![Disques et modules mémoire posés sur la table](images/668218265-bb12bc21-a606-4ff2-85e3-c0c4c76d279e.png)
 
 *Figure 6 — Disques de serveur et modules RAM examinés séparément.*
 
@@ -62,7 +62,7 @@ Le retrait temporaire de certains périphériques peut aider à isoler l'origine
 
 ## 7\. Mise sous tension et test POST
 
-!\[Écran de démarrage HP ProLiant](images/668219369-c7bfeec7-673e-4861-9473-f646a1668090.jpeg)
+![Écran de démarrage HP ProLiant](images/668219369-c7bfeec7-673e-4861-9473-f646a1668090.jpeg)
 
 *Figure 7 — Écran de démarrage du serveur HP ProLiant.*
 
@@ -70,7 +70,7 @@ Au démarrage, le serveur exécute le **POST** (*Power-On Self-Test*), qui contr
 
 ## 8\. Diagnostic de mémoire dans le BIOS
 
-!\[Écran BIOS de diagnostic de la mémoire](images/668219571-dcc7ecf2-1d36-4a39-a506-28deb7b4d997.jpeg)
+![Écran BIOS de diagnostic de la mémoire](images/668219571-dcc7ecf2-1d36-4a39-a506-28deb7b4d997.jpeg)
 
 *Figure 8 — Utilitaire de diagnostic mémoire accessible au démarrage.*
 
@@ -78,7 +78,7 @@ Cet écran sert à identifier les barrettes reconnues et à suivre la vérificat
 
 ## 9\. Configuration du stockage RAID
 
-!\[Interface du contrôleur RAID](images/692849236-241f6118-a928-4373-8596-d35a9b722c0a.png)
+![Interface du contrôleur RAID](images/692849236-241f6118-a928-4373-8596-d35a9b722c0a.png)
 
 *Figure 9 — Interface de configuration des disques du contrôleur RAID.*
 
@@ -86,7 +86,7 @@ L'interface permet de regrouper plusieurs disques physiques en un volume logique
 
 ## 10\. Démarrage de Proxmox Virtual Environment
 
-!\[Écran du serveur avec Proxmox](images/668218587-d9d05c3e-1e72-47cd-9c99-fff5d9b313a6.png)
+![Écran du serveur avec Proxmox](images/668218587-d9d05c3e-1e72-47cd-9c99-fff5d9b313a6.png)
 
 *Figure 10 — Écran de la console Proxmox Virtual Environment.*
 
