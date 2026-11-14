@@ -1,7 +1,7 @@
 # Installation de Proxmox VE 9.2 sur un HP ProLiant DL360 G7
 
 > **TP INF1085 — Administration Linux et virtualisation**  
-> Documentation basée sur les consignes du professeur et les captures du laboratoire.
+> Prenom et Nom : Ndiogou DIOUM Matricule : 300142636
 
 ## 1. Objectif
 
@@ -255,6 +255,3 @@ cat /proc/cmdline
 
 Ce laboratoire nous a permis d'installer et de configurer **Proxmox VE** sur un serveur **HP ProLiant DL360 G7**, tout en explorant les contraintes de compatibilité entre un matériel ancien et un noyau Linux moderne. Les commandes de diagnostic ont permis de vérifier les paramètres de démarrage, la disponibilité de **16 processeurs logiques**, la mémoire, les disques et les modules du noyau. Après quelques difficultés de connectivité, nous avons également validé les échanges avec la passerelle, l'accès à une adresse Internet et l'administration à distance par SSH. Le serveur constitue désormais une base opérationnelle pour les futurs laboratoires de virtualisation Linux.
 
----
-
-*Documentation rédigée à partir du README de consignes du professeur et des captures réalisées pendant le laboratoire. Les résultats non directement vérifiables sont signalés comme tels.*
