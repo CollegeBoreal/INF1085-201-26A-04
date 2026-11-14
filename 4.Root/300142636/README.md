@@ -1,6 +1,7 @@
 # 🔐 INF1085 — Sécuriser l'administration de Proxmox VE 9 avec des comptes individuels
 
 > **Projet / TP** — Gestion des comptes administrateurs, des permissions Proxmox (ACL), de l'accès SSH et des clés publiques.
+
 > Prenom et Nom : Ndiogou DIOUM Matricule : 300142636
 > Machine virtuelle : 101 — B300142636
 
