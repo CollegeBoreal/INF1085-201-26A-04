@@ -1,12 +1,11 @@
 
 
 
-# 🔐 racine
-# Création d’un compte administrateur personnel sur Proxmox VE pour la VM
+# 🔐 racine... Création d’un compte administrateur personnel sur Proxmox VE pour la VM
 
 **👨‍🎓 Nom :** Hamdaoui Laala  
 **🆔 Numéro étudiant :** 300157334  
-**📅 Date :** 14 octobre 2026  
+**📅 Date :** 14 nov 2026  
 **💻 Sujet :** Administration des utilisateurs Proxmox VE
 
 ---
