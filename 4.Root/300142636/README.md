@@ -5,7 +5,6 @@
 > Prenom et Nom : Ndiogou DIOUM | Matricule : 300142636
 > Machine virtuelle : 101 — B300142636
 
-> 
 > **État de la documentation :** les trois vérifications ont été réalisées : compte Linux `B300142636` existant, compte Proxmox `B300142636@pam` activé, ACL `Administrator` attribuée sur `/` avec propagation active. Les captures correspondantes sont intégrées. Les connexions Web, SSH et SSH par clé **restent à confirmer**. Les commandes de création figurent uniquement à titre de référence.
 
 ## 1. Contexte et objectif
