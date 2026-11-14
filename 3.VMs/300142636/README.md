@@ -1,6 +1,8 @@
 # Déploiement et administration d’une VM Linux Mint avec Proxmox VE 9
 
 > **Projet INF1085 — Laboratoire de virtualisation et d’administration Linux**  
+> Prenom et Nom : Ndiogou DIOUM
+> Matricule : 300142636
 > Machine virtuelle : **101 — B300142636**  
 > Système invité : **Linux Mint 22.3 Cinnamon (Zena)**  
 > État : **installation, réseau, SSH et QEMU Guest Agent validés**
