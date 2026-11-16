@@ -11,13 +11,13 @@
 
 ## 1. Présentation de l'atelier
 
-Dans le cadre du cours INF1085 – Administration Linux, j'ai installé **Proxmox VE 9.2** sur le serveur physique HP ProLiant DL360 G6 préparé lors de l'atelier précédent (RAID 5).
+Dans le cadre du cours INF1085 – Administration Linux, j'ai installé **Proxmox VE 9.2** sur le serveur physique HP ProLiant DL360 G7 préparé lors de l'atelier précédent (RAID 5).
 
 L'objectif était de préparer une clé USB d'installation, de démarrer le serveur à partir de cette clé, puis d'installer Proxmox VE sur le volume RAID.
 
 ## 2. Matériel utilisé
 
-- Un serveur physique HP ProLiant DL360 G6 (2 × Xeon E5540, volume RAID 5)
+- Un serveur physique HP ProLiant DL360 G7 (2 × Xeon E5540, volume RAID 5)
 - Un écran, un clavier et une souris
 - Une clé USB
 - Un ordinateur Windows
@@ -96,6 +96,6 @@ L'installation s'est terminée avec le message **« Installation successful! »*
 
 ## 10. Conclusion
 
-Proxmox VE 9.2 est installé sur le serveur HP ProLiant DL360 G6, sur le volume RAID 5. Le serveur est administrable par l'interface web à l'adresse `https://10.7.236.239:8006` et par SSH (`ssh root@10.7.236.239`).
+Proxmox VE 9.2 est installé sur le serveur HP ProLiant DL360 G7, sur le volume RAID 5. Le serveur est administrable par l'interface web à l'adresse `https://10.7.236.239:8006` et par SSH (`ssh root@10.7.236.239`).
 
 La prochaine étape est la création de machines virtuelles (atelier 3.VMs) et la création de comptes administrateurs individuels (atelier 4.Root).

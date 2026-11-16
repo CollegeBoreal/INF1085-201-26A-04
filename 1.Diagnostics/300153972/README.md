@@ -1,4 +1,4 @@
-# Rapport de laboratoire – Serveur HP ProLiant DL360 G6
+# Rapport de laboratoire – Serveur HP ProLiant DL360 G7
 
 ## Identification
 
@@ -13,7 +13,7 @@
 
 ## Introduction et objectifs
 
-Ce laboratoire consistait à démonter complètement un serveur rack HP ProLiant DL360 G6, à en identifier les composants, puis à le remonter et à valider son bon fonctionnement.
+Ce laboratoire consistait à démonter complètement un serveur rack HP ProLiant DL360 G7, à en identifier les composants, puis à le remonter et à valider son bon fonctionnement.
 
 Les objectifs visés étaient les suivants :
 
@@ -26,7 +26,7 @@ Les objectifs visés étaient les suivants :
 
 ## Inventaire du matériel
 
-Le serveur est un modèle 1U de génération 6 (G6), basé sur la plateforme Intel Xeon série 5500. Les composants suivants ont été identifiés.
+Le serveur est un modèle 1U de génération 7 (G7), basé sur la plateforme Intel Xeon série 5500. Les composants suivants ont été identifiés.
 
 | Composant | Quantité | Caractéristiques |
 | --- | --- | --- |
@@ -133,7 +133,7 @@ Après le remontage complet, le RBSU indique **61440MB Memory Configured**, alor
 
 | Composant | Configuration finale |
 | --- | --- |
-| Serveur | HP ProLiant DL360 G6 |
+| Serveur | HP ProLiant DL360 G7 |
 | Processeurs | 2 × Intel Xeon E5540 @ 2,53 GHz |
 | Mémoire installée | 2 × 16 Go + 8 × 4 Go (64 Go) |
 | Mémoire détectée | 60 Go (61 440 Mo) |

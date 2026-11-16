@@ -1,218 +1,115 @@
-# Création d'une VM Ubuntu Server sur Proxmox VE
+# Création d'une VM Ubuntu Server sur Proxmox
 
-| Champ | Information |
-| --- | --- |
-| Étudiant | Karim Bamba |
-| Matricule | 300153972 |
-| Programme | Techniques des systèmes informatiques – Collège Boréal |
-| Cours | INF1085 – Administration Linux |
-
----
+Karim Bamba – 300153972 – INF1085 Administration Linux, section 04, groupe 3
 
 ## Objectif
 
-Installer une machine virtuelle Ubuntu Server 24.04 LTS sur le serveur Proxmox VE de l'école, lui attribuer une adresse IP statique et l'administrer à distance par SSH avec une clé publique.
+Créer ma machine virtuelle Ubuntu Server 24.04 sur le serveur Proxmox de mon groupe, lui donner une adresse IP statique et m'y connecter en SSH avec ma clé.
 
-## Environnement
+## Mon environnement
 
-| Élément | Valeur |
-| --- | --- |
-| Hyperviseur | Proxmox VE 9.2.2 (noyau `7.0.2-6-pve`) |
-| Nœud | `server56` (`10.7.237.200/23`) |
-| Système invité | Ubuntu Server 24.04.5 LTS |
-| Accès hors campus | VPN FortiClient |
+- Serveur : **server239** (HP ProLiant DL360 G7), adresse `10.7.236.239/23`
+- Proxmox VE 9.2.2 (noyau `7.0.2-6-pve`)
+- Passerelle du réseau : `10.7.237.1`
+- Ma VM : **B300153972**, VM ID **300153972**
 
----
+## 1. Connexion au serveur
 
-## 1. Connexion au serveur Proxmox
-
-Depuis PowerShell, connexion SSH au nœud, puis vérification de son adresse et de sa version :
+Je me connecte au serveur avec mon compte (créé au lab 4.Root) :
 
 ```bash
-ssh root@10.7.237.200
-ip a
+ssh B300153972@10.7.236.239
 pveversion
 ```
 
-Les deux premiers essais ont échoué avec `Connection timed out` (problème réseau : le PC n'était pas encore sur le bon réseau). Au troisième essai, SSH demande de confirmer l'empreinte ED25519 du serveur, puis la connexion réussit.
+Résultat : `pve-manager/9.2.2/b9984c6d90a4bd80 (running kernel: 7.0.2-6-pve)`.
 
-Résultats :
+## 2. Création de la VM
 
-- `ip a` : le bridge `vmbr0` porte l'adresse `10.7.237.200/23`, et l'interface physique `nic0` est rattachée à `vmbr0`.
-- `pveversion` : `pve-manager/9.2.2` avec le noyau `7.0.2-6-pve`.
+J'ai créé la VM avec ces paramètres :
 
-![Connexion SSH, ip a et pveversion](Images/01-verification-ssh-proxmox.png)
+- Nom `B300153972`, VM ID `300153972`
+- 2 cœurs, type de CPU `x86-64-v2`
+- 4096 Mo de RAM
+- Disque de 32 Go sur `local-lvm`, contrôleur VirtIO SCSI single
+- Carte réseau VirtIO sur le bridge `vmbr0`
 
-L'interface Web est ensuite ouverte à l'adresse `https://10.7.237.200:8006`.
+Difficulté : au premier démarrage, la VM refusait de partir avec le type de CPU `x86-64-v2-AES`. Le processeur du serveur (Xeon E5540) ne gère pas l'instruction AES. J'ai mis le type `x86-64-v2` et la VM a démarré.
 
----
+## 3. Installation d'Ubuntu
 
-## 2. Téléversement de l'ISO Ubuntu
-
-**Chemin :** `server56` → `local` → **ISO Images** → **Upload**
-
-Le fichier `ubuntu-24.04.5-live-server-amd64.iso` est téléversé dans le stockage `local` pour pouvoir être monté dans la VM.
-
----
-
-## 3. Création de la VM
-
-Assistant **Create VM** :
-
-**General** : nœud `server56`, VM ID proposé par Proxmox (premier numéro libre).
-
-![Onglet General](Images/02-proxmox-interface.png)
-
-**OS** : ISO `ubuntu-24.04.5-live-server-amd64.iso` dans le stockage `local`, type **Linux**, version **7.x - 2.6 Kernel**.
-
-![Onglet OS](Images/03-iso-images.png)
-
-**System** : paramètres par défaut, carte graphique *Default*, machine *i440fx*, BIOS *SeaBIOS*, contrôleur SCSI **VirtIO SCSI single**.
-
-![Onglet System](Images/04-upload-iso-ubuntu.png)
-
-Récapitulatif des paramètres :
-
-| Onglet | Paramètre | Valeur |
-| --- | --- | --- |
-| General | Nom / VM ID | **À COMPLÉTER** / **À COMPLÉTER** |
-| OS | Image ISO | ubuntu-24.04.5-live-server-amd64.iso |
-| System | Contrôleur SCSI / BIOS | VirtIO SCSI single / SeaBIOS |
-| Disks | Taille | 32 GiB |
-| CPU | Cœurs / Type | **À COMPLÉTER** / **À COMPLÉTER** |
-| Memory | RAM | 4096 MiB |
-| Network | Bridge / Modèle | `vmbr0` / VirtIO (paravirtualized) |
-
-VirtIO est choisi parce que c'est un pilote paravirtualisé : il offre de meilleures performances qu'une carte émulée (ex. Intel E1000).
-
----
-
-## 4. Installation d'Ubuntu Server
-
-| Étape de l'installateur | Choix |
-| --- | --- |
-| Réseau | Interface `ens18` détectée (VirtIO), IP temporaire par DHCP |
-| Miroir | `http://ca.archive.ubuntu.com/ubuntu/` (test réussi) |
-| Stockage | Disque entier de 32 GiB avec LVM |
-| Profil | Utilisateur **À COMPLÉTER**, hostname **À COMPLÉTER** |
-| SSH | **Install OpenSSH server** coché |
-
-À la fin de l'installation, l'ISO est retirée du lecteur CD/DVD virtuel (**Hardware** → **CD/DVD Drive** → *Do not use any media*) pour éviter que la VM redémarre sur l'installateur.
-
----
-
-## 5. Premier démarrage et tests réseau
-
-Connexion avec mon utilisateur dans la console Proxmox, puis :
+J'avais d'abord monté l'ISO `ubuntu-24.04.5-live-server-amd64.iso`, mais l'installation n'avait pas été faite (le disque était encore vide). Pour finir, j'ai utilisé l'**image cloud officielle d'Ubuntu 24.04** avec **cloud-init**, qui permet de configurer la VM sans passer par l'installateur :
 
 ```bash
-ip a                 # vérifier l'IP de ens18
-ping -c 4 8.8.8.8    # tester l'accès Internet
+wget -O noble-cloud.img https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
+qm set 300153972 --scsi0 local-lvm:0,import-from=/var/lib/vz/template/noble-cloud.img,iothread=1
+qm disk resize 300153972 scsi0 32G
 ```
 
-Résultat : 4 paquets reçus, 0 % de perte.
-
----
-
-## 6. Configuration de la clé SSH
+Ensuite, j'ai ajouté le lecteur cloud-init et donné mon utilisateur, ma clé publique et mon adresse IP :
 
 ```bash
-mkdir -p ~/.ssh
-chmod 700 ~/.ssh
-nano ~/.ssh/authorized_keys      # coller la clé publique
-chmod 600 ~/.ssh/authorized_keys
-ls -ld ~/.ssh && ls -l ~/.ssh/authorized_keys
+qm set 300153972 --ide0 local-lvm:cloudinit --boot order=scsi0 \
+  --ciuser B300153972 --sshkeys karim.pub \
+  --ipconfig0 ip=10.7.236.221/23,gw=10.7.237.1 --nameserver 8.8.8.8
+qm start 300153972
 ```
 
-Résultat attendu :
+Avant de choisir l'adresse `10.7.236.221`, j'ai vérifié qu'aucune machine ne répondait déjà au ping sur cette adresse.
 
-```
-drwx------ ... .ssh
--rw------- ... authorized_keys
-```
+## 4. Adresse IP statique
 
-Ces permissions sont obligatoires : si le dossier ou le fichier est accessible par d'autres utilisateurs, OpenSSH refuse la clé.
-
-Vérification du service :
-
-```bash
-sudo systemctl status ssh
-```
-
-Le service est `active (running)` et écoute sur le port 22.
-
----
-
-## 7. Adresse IP statique avec Netplan
-
-Fichier : `/etc/netplan/50-cloud-init.yaml`
+Cloud-init a écrit la configuration Netplan dans `/etc/netplan/50-cloud-init.yaml` :
 
 ```yaml
 network:
   version: 2
   ethernets:
-    ens18:
-      dhcp4: false
+    eth0:
+      match:
+        macaddress: "bc:24:11:fd:d3:c5"
       addresses:
-        - <IP_STATIQUE>/23
-      routes:
-        - to: default
-          via: <PASSERELLE>
+      - "10.7.236.221/23"
       nameservers:
         addresses:
-          - 8.8.8.8
+        - 8.8.8.8
+      set-name: "eth0"
+      routes:
+      - to: "default"
+        via: "10.7.237.1"
 ```
 
-Application et vérification :
+L'interface s'appelle `eth0` (et pas `ens18`) parce que cloud-init la renomme avec `set-name`.
 
-```bash
-sudo netplan try      # applique avec retour arrière automatique si erreur
-sudo netplan apply
-ip a
-```
+## 5. Connexion SSH et tests
 
-> Netplan utilise le YAML : l'indentation se fait **uniquement avec des espaces**. Une tabulation ou un décalage provoque une erreur de syntaxe.
-
----
-
-## 8. Validation du réseau
-
-```bash
-ping -c 4 8.8.8.8      # passerelle + Internet
-ping -c 4 google.com   # résolution DNS
-```
-
-Les deux tests réussissent avec 0 % de perte : la passerelle, l'accès Internet, le DNS et l'IP statique sont fonctionnels.
-
----
-
-## 9. Connexion SSH depuis Windows
-
-Depuis PowerShell :
+Depuis PowerShell sur mon PC :
 
 ```powershell
-ssh <UTILISATEUR>@<IP_STATIQUE>
+ssh B300153972@10.7.236.221
 ```
 
-La connexion réussit : la VM est administrable à distance.
+La connexion marche directement avec ma clé, sans mot de passe. Les droits sont bons : `~/.ssh` est en `drwx------` et `authorized_keys` en `-rw-------`.
 
----
+Tests dans la VM :
 
-## Configuration finale
+```bash
+lsb_release -ds        # Ubuntu 24.04.5 LTS
+ip -4 -br a            # eth0  UP  10.7.236.221/23
+ip r                   # default via 10.7.237.1 dev eth0 proto static
+ping -c 2 8.8.8.8      # 2 reçus, 0 % de perte
+ping -c 1 google.com   # 1 reçu, 0 % de perte (le DNS marche)
+systemctl is-active ssh   # active
+```
 
-| Composant | Valeur |
-| --- | --- |
-| Nœud Proxmox | `server56` (`10.7.237.200`) – Proxmox VE 9.2.2 |
-| VM | **À COMPLÉTER** (ID **À COMPLÉTER**) |
-| OS | Ubuntu Server 24.04.5 LTS |
-| Ressources | 4 Go RAM, 32 GiB disque (LVM) |
-| Réseau | `ens18`, VirtIO, bridge `vmbr0` |
-| Adresse IP | **À COMPLÉTER**/23 |
-| Passerelle / DNS | **À COMPLÉTER** / 8.8.8.8 |
-| SSH | Actif, port 22, authentification par clé |
+## Captures
 
-## 10. Conclusion
+À ajouter dans le dossier `images/` :
 
-La VM Ubuntu Server est installée sur Proxmox, configurée avec une adresse IP statique et accessible par SSH depuis Windows.
+1. La VM 300153972 dans l'interface web de Proxmox (onglet Hardware).
+2. L'onglet Cloud-Init de la VM.
+3. Ma connexion `ssh B300153972@10.7.236.221` avec `ip a` et le ping.
 
-Les difficultés rencontrées (connexion SSH qui expire, type de CPU incompatible, syntaxe YAML) m'ont permis de comprendre plusieurs points pratiques : il faut être sur le bon réseau pour joindre le serveur, les ressources d'un serveur partagé (VM ID, IP) doivent être uniques, le CPU virtuel doit correspondre aux capacités du matériel réel, et la configuration Netplan doit être validée avant d'être appliquée.
+## Conclusion
+
+Ma VM Ubuntu Server 24.04 tourne sur server239. Elle a l'adresse statique `10.7.236.221/23` et je m'y connecte en SSH avec ma clé. J'ai appris que le type de CPU virtuel doit correspondre au vrai processeur, qu'il faut vérifier qu'une adresse IP est libre sur un serveur partagé, et que cloud-init permet de préparer une VM (utilisateur, clé, réseau) sans faire l'installation à la main.
