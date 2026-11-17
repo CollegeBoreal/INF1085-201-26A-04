@@ -104,11 +104,17 @@ systemctl is-active ssh   # active
 
 ## Captures
 
-À ajouter dans le dossier `images/` :
+L'onglet Hardware de ma VM dans l'interface web de Proxmox. Les captures ont été prises le 17 novembre, après le lab 5 : c'est pour ça que le disque est maintenant sur `nvme-storage` et que l'ancien disque apparaît en « Unused Disk 0 ».
 
-1. La VM 300153972 dans l'interface web de Proxmox (onglet Hardware).
-2. L'onglet Cloud-Init de la VM.
-3. Ma connexion `ssh B300153972@10.7.236.221` avec `ip a` et le ping.
+![Hardware de la VM](images/vm-hardware.jpg)
+
+L'onglet Cloud-Init, avec mon utilisateur, ma clé SSH et l'adresse IP statique :
+
+![Cloud-Init de la VM](images/vm-cloud-init.jpg)
+
+Ma connexion SSH depuis mon PC, avec l'adresse de `eth0`, la route par défaut et le ping vers Internet :
+
+![Connexion SSH et ip a](images/ssh-ip-a.png)
 
 ## Conclusion
 
