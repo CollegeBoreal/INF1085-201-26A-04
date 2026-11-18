@@ -23,7 +23,7 @@ wipefs -a /dev/nvme0n1
 Le premier wipefs échoue car le disque est occupé. Après suppression du VG, le second wipefs réussit et efface les signatures GPT/PMBR.
 
 <img width="851" height="525" alt="WhatsApp Image 2026-11-11 at 12 21 21" src="https://github.com/user-attachments/assets/3314a529-dfa4-42d1-91c4-ed305f3b0576" />
-<img width="802" height="480" alt="WhatsApp Image 2026-11-11 at 12 21 28" src="https://github.com/user-attachments/assets/3b80ecd9-60d7-404d-80b4-4b732db5a916" />
+
 
 
 #### 2.2. Création du stockage nvme-storage (LVM-Thin)
@@ -37,7 +37,8 @@ pvesm add lvmthin nvme-storage --vgname nvme-vg --thinpool data --content images
 ##### Preuve :
  La commande pvesm status affiche le nouveau stockage nvme-storage (Type lvmthin) avec un statut active et une capacité d'environ 953 Go.
  
-<img width="941" height="905" alt="WhatsApp Image 2026-11-11 at 12 21 38" src="https://github.com/user-attachments/assets/7e72100d-a751-47aa-ac1c-cb167af365fd" />
+<img width="1280" height="1229" alt="WhatsApp Image 2026-11-18 at 13 01 28" src="https://github.com/user-attachments/assets/e62b6c40-700a-4fc5-a15b-22f9d62e6e66" />
+
 
 
 #### 2.3. Migration de la VM 104 vers le NVMe
@@ -62,9 +63,9 @@ qm move_disk 104 scsi0 nvme-storage
 ```
 
 ##### Preuve (Déplacement en cours) :
-<img width="825" height="275" alt="image" src="https://github.com/user-attachments/assets/f88d19f3-3864-4c4d-84cf-1ac91d898f64" />
 
-<img width="886" height="462" alt="WhatsApp Image 2026-11-11 at 12 21 43" src="https://github.com/user-attachments/assets/75e5fcb8-59c1-43cd-a525-0b18eedf54b6" />
+<img width="1600" height="835" alt="WhatsApp Image 2026-11-18 at 13 06 38" src="https://github.com/user-attachments/assets/166798ae-d850-45e5-a220-c3816149e2e0" />
+
 
 
 ##### Résultat attendu (Après) : scsi0: "nvme-storage:vm-100-disk-0,size=20G"
