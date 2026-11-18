@@ -37,7 +37,7 @@ Le processeur est le **cerveau du serveur** : il exécute toutes les instruction
 
 ![Processeur Intel Xeon retiré, à côté des 3 disques](images/01-processeur-disques.jpeg)
 
-> ⚠️ **À retenir :** quand un seul processeur est installé, il doit **obligatoirement être dans l'emplacement n°1 (Proc 1)**. Sinon, le serveur refuse de démarrer (voir la section 3.4).
+> **NB :** quand un seul processeur est installé, il doit **obligatoirement être dans l'emplacement n°1 (Proc 1)**. Sinon, le serveur refuse de démarrer (voir la section 3.4).
 
 ### 2.2 Le dissipateur thermique et les ventilateurs
 
@@ -69,7 +69,7 @@ Ce module de **512 Mo** se branche sur le contrôleur de disques **HP Smart Arra
 
 ![Module de cache 512 Mo](images/06-module-cache.jpeg)
 
-> ⚠️ **Problème rencontré :** voir la section 3.1.
+>  **Problème rencontré :** voir la section 3.1.
 
 ### 2.6 Les blocs d'alimentation (PSU)
 
@@ -109,7 +109,7 @@ Au début du laboratoire, **le serveur n'arrivait pas à terminer le POST** (Pow
 
 **Résultat :** le serveur a pu avancer dans son démarrage.
 
-> 💡 **Conseil :** sur ces serveurs, il vaut mieux retirer le module de cache dès le début du diagnostic. Un module de cache défectueux ou dont la batterie est usée peut bloquer complètement le démarrage.
+> **Conseil :** sur ces serveurs, il vaut mieux retirer le module de cache dès le début du diagnostic. Un module de cache défectueux ou dont la batterie est usée peut bloquer complètement le démarrage.
 
 ### 3.2 Étape 2 – Remplacement de la pile CMOS
 
@@ -148,7 +148,7 @@ Ce message veut dire que **le processeur n'était pas dans le bon emplacement**.
 
 **Résultat :** le serveur a **démarré correctement**. Le BIOS fonctionnait bien : le vrai problème venait de l'emplacement du processeur.
 
-> ⚠️ **À retenir :** il faut toujours vérifier dans quel emplacement le processeur est installé. Une simple erreur de slot suffit à bloquer complètement le serveur.
+> **Tres important :** il faut toujours vérifier dans quel emplacement le processeur est installé. Une simple erreur de slot suffit à bloquer complètement le serveur.
 
 ---
 
