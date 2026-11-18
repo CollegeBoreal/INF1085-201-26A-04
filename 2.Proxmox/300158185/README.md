@@ -5,11 +5,15 @@
 |---|---|
 | Étudiant | Mohammed Mati |
 | Numéro d’étudiant | 300158185 |
-| Serveur indiqué dans le laboratoire | HP ProLiant DL360 G7 |
-| Nom du serveur | server237 |
-| Version indiquée dans le relevé | Proxmox VE 9.2 |
+| Serveur physique du relevé | HP ProLiant DL360 G7 — modèle à confirmer |
+| Nœud Proxmox utilisé pour ma VM | server1 |
+| Adresse Web observée pour ma VM | https://10.7.236.240:8006/ |
+| Version du relevé d’installation | Proxmox VE 9.2 |
+| Version visible dans mes captures de VM | Proxmox VE 9.2.2 |
 
 ---
+
+> **Identification des environnements :** les captures de ma VM montrent le nœud `server1` à l’adresse `10.7.236.240`. Le relevé d’installation ci-dessous mentionne `server237` et `10.7.236.237`. La correspondance entre ces deux environnements n’est pas établie ; les paramètres du relevé ne sont pas présentés comme ceux de mon serveur actuel.
 
 ## 1. Présentation du laboratoire
 
@@ -21,7 +25,7 @@ Nous avons également adapté les options de démarrage pour permettre le lancem
 
 ## 2. Matériel et informations relevées
 
-Les caractéristiques suivantes ont été consignées pendant le laboratoire :
+Le relevé d’installation fourni contient les caractéristiques suivantes. Elles restent à vérifier sur les captures matérielles originales :
 
 | Élément | Information relevée |
 |---|---|
@@ -170,9 +174,9 @@ Le mot de passe n’est pas reproduit dans ce rapport.
 
 *Figure 11 — Définition du mot de passe administrateur et de l’adresse courriel.*
 
-## 9. Configuration du réseau de gestion
+## 9. Paramètres réseau du relevé d’installation à confirmer
 
-Les paramètres suivants ont été renseignés :
+Le relevé fourni mentionne les paramètres suivants pour `server237`. Ils ne sont pas confirmés par les captures de ma VM sur `server1` :
 
 | Paramètre | Valeur |
 |---|---|
@@ -185,7 +189,7 @@ Les paramètres suivants ont été renseignés :
 | Passerelle | 10.7.237.1 |
 | Serveur DNS | 8.8.8.8 |
 
-L’option **Pin network interface names** a été cochée pour stabiliser les noms des interfaces réseau.
+Le relevé indique que l’option **Pin network interface names** a été cochée pour stabiliser les noms des interfaces réseau.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/d54a3a5c-8375-4ff3-a8ca-fa457a38cd15" alt="Paramètres réseau du serveur" width="800">
@@ -195,7 +199,7 @@ L’option **Pin network interface names** a été cochée pour stabiliser les n
 
 ## 10. Vérification du résumé
 
-Avant de lancer l’installation, nous avons vérifié les paramètres affichés dans le résumé.
+Le résumé du relevé d’installation reprend les paramètres ci-dessous. L’identité du serveur physique reste à confirmer avant de les considérer comme ma configuration d’installation.
 
 | Option | Valeur retenue |
 |---|---|
@@ -255,31 +259,47 @@ Cette opération de renommage ne constitue pas une validation de l’état des d
 
 *Figure 15 — Extraction des paquets pendant l’installation.*
 
-## 12. Démarrage et administration à distance
+## 12. Démarrage et environnement personnel vérifié
 
-Après l’installation, le serveur a redémarré avec l’adresse configurée :
-
-**10.7.236.237**
-
-L’adresse prévue pour l’administration Web est :
-
-**https://10.7.236.237:8006/**
+Le relevé d’installation prévoit l’accès à `https://10.7.236.237:8006/` pour `server237`. Cette adresse reste à confirmer pour cette installation physique.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/62dc6876-3732-40b9-82f1-2072af7a4dc3" alt="Écran du serveur après l’installation" width="800">
+  <img src="https://github.com/user-attachments/assets/62dc6876-3732-40b9-82f1-2072af7a4dc3" alt="Écran de fin d’installation du relevé source à vérifier" width="800">
 </p>
 
-*Figure 16 — Écran obtenu après l’installation et le redémarrage.*
+*Figure 16 — Écran de fin d’installation joint au relevé source.*
 
-Pour se connecter à l’interface Web, les paramètres sont :
+Mes captures de travail sur Debian confirment séparément l’environnement suivant :
 
-| Champ | Valeur |
+| Élément | Valeur observée le 4 novembre 2026 |
 |---|---|
-| Utilisateur | root |
-| Mot de passe | Celui défini pendant l’installation |
-| Domaine d’authentification | Linux PAM standard authentication |
+| Étudiant | Mohammed Mati |
+| Numéro étudiant | 300158185 |
+| Nœud Proxmox | server1 |
+| Interface Web | https://10.7.236.240:8006/ |
+| Version Proxmox visible | 9.2.2 |
+| Compte Proxmox visible | root@pam |
+| VM | 102 — Mohammed |
+| Ressources | 1 vCPU, 2 Gio RAM, disque 32 Gio |
+| Système invité | Debian 13 avec GNOME |
+| Nom de la machine Debian | mohammed |
+| Compte Debian | mohammed18 |
+| Interface Debian | ens18, UP |
+| Adresse IPv4 Debian | 10.7.236.185/23 |
 
-L’affichage de l’adresse de gestion ne suffit pas à confirmer l’accès depuis un autre ordinateur. Une connexion réussie dans le navigateur permet de compléter cette vérification.
+L’adresse `10.7.236.240` est celle de l’hyperviseur utilisé dans ces captures. L’adresse `10.7.236.185` est celle de la VM Debian. Ces valeurs observées doivent être revérifiées avant une nouvelle connexion.
+
+Le compte `root@pam` utilise l’authentification Linux PAM. Les captures ne démontrent pas la création ni les permissions d’un compte personnel `B300158185@pam`.
+
+### Accès SSH à la VM
+
+La commande à utiliser depuis Windows, après confirmation de l’adresse actuelle et du fonctionnement du service SSH, est :
+
+```powershell
+ssh mohammed18@10.7.236.185
+```
+
+Le test d’activation de SSH avec `sudo` a été refusé parce que `mohammed18` ne disposait pas des droits sudo. Les captures disponibles ne prouvent pas encore une connexion SSH réussie ou l’ajout de la clé du professeur.
 
 ## 13. Messages observés pendant le chargement
 
@@ -304,11 +324,14 @@ Leur cause exacte n’a pas été établie pendant le laboratoire. Ils ne permet
 | Lancement de l’installateur graphique | Réussi |
 | Choix du stockage | `/dev/sda` sélectionné |
 | Configuration du compte root | Réalisée |
-| Configuration réseau | Paramètres renseignés |
+| Réseau du serveur physique | Valeurs du relevé à confirmer |
+| Environnement utilisé pour la VM | server1, 10.7.236.240:8006 |
+| Réseau Debian observé | ens18 UP, 10.7.236.185/23 |
 | Gestion de l’ancien groupe LVM | Renommage accepté |
 | Installation du système | Terminée selon le déroulement rapporté |
 | Redémarrage | Effectué |
-| Accès Web depuis un poste client | À confirmer par une connexion réussie |
+| Accès Web observé dans mes captures | Interface Proxmox de server1 accessible |
+| Correspondance avec server237 | À confirmer |
 
 ## 15. Compétences développées
 
@@ -325,10 +348,12 @@ Ce laboratoire nous a permis de :
 
 ## 16. Conclusion
 
-Ce laboratoire nous a permis de suivre les principales étapes d’installation de Proxmox VE sur un serveur physique.
+Le relevé décrit la préparation d’un serveur physique, le démarrage sur une clé USB et les principales étapes d’installation de Proxmox VE. L’identité du matériel et les paramètres associés à `server237` doivent encore être confirmés.
 
-Nous avons démarré sur une clé USB, adapté les paramètres d’affichage, sélectionné le volume de stockage et configuré les paramètres d’administration et de réseau.
+Mes captures de travail confirment l’accès à Proxmox sur `server1` à l’adresse `10.7.236.240:8006`, ainsi que l’utilisation de la VM Debian 102. Le compte Debian est `mohammed18`, le nom de machine est `mohammed` et l’adresse IPv4 observée est `10.7.236.185/23`.
 
-L’installation et le redémarrage constituent les résultats principaux du travail. La connexion à l’interface Web depuis un poste client permettra de compléter la validation avant la création des premières machines virtuelles.
+La suite consiste à vérifier les droits d’administration du compte Debian, le service SSH et les accès par clé publique.
 
-Cette activité nous a également appris à relever les messages du système et à distinguer une configuration renseignée d’un fonctionnement effectivement vérifié.
+## Note sur les illustrations
+
+Les 16 liens d’images du fichier fourni sont conservés. Leur contenu n’a pas pu être revérifié lors de cette correction ; ils doivent être contrôlés avant la remise, particulièrement pour le matériel, les disques et la configuration réseau de l’installation physique.
