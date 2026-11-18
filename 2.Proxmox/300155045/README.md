@@ -91,7 +91,9 @@ Par défaut, l'installateur propose le disque `/dev/nvme0n1` (953,87 GiB, SK hyn
 
 L'installateur demande de définir le mot de passe du compte administrateur **root** et une adresse courriel qui servira à recevoir les notifications importantes du serveur (par exemple les échecs de sauvegarde). Le mot de passe doit contenir au moins 8 caractères avec des lettres, des chiffres et des symboles.
 
-<img width="1000" alt="Configuration du mot de passe et de l’adresse courriel dans Proxmox VE" src="COLLER_ICI_LE_LIEN_DE_LA_PHOTO_1" />
+
+
+
 *Figure 13 : saisie du mot de passe root et de l'adresse courriel (champs floutés).*
 
 ## 9. Configuration du réseau
