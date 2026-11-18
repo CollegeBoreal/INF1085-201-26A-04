@@ -38,7 +38,7 @@ Le serveur utilisé est un **HP ProLiant DL360 G7**, un serveur rack 1U. La **cl
 | Cartes réseau | 4 ports Broadcom NetXtreme II (pilote `bnx2`) |
 | Alimentations | 2 blocs de 460 W |
 
-> 💡 **Advanced ECC** (Error Correcting Code) : la mémoire d'un serveur sait **détecter et corriger elle-même** certaines erreurs. C'est indispensable pour une machine qui tourne jour et nuit et qui héberge des machines virtuelles.
+>  **Advanced ECC** (Error Correcting Code) : la mémoire d'un serveur sait **détecter et corriger elle-même** certaines erreurs. C'est indispensable pour une machine qui tourne jour et nuit et qui héberge des machines virtuelles.
 
 ---
 
@@ -50,7 +50,7 @@ Avant d'aller au serveur, il faut préparer une **clé USB d'installation** :
 2. Copier cette image sur une clé USB avec un logiciel prévu pour ça (par exemple **Rufus** ou **balenaEtcher**). Un simple copier-coller du fichier ne suffit pas : la clé doit devenir **démarrable**.
 3. Brancher la clé sur le port USB à l'avant du serveur.
 
-⚠️ Tout le contenu de la clé USB est effacé pendant cette opération.
+Tout le contenu de la clé USB est effacé pendant cette opération.
 
 ---
 
@@ -95,7 +95,7 @@ Sur ces anciens serveurs, la carte graphique intégrée est très vieille. Sans 
 2. À la fin de la ligne qui commence par `linux`, ajouter **`nomodeset`**.
 3. Appuyer sur **Ctrl + X** (ou **F10**) pour démarrer.
 
-> 💡 **`nomodeset`** demande à Linux de ne pas changer lui-même le mode d'affichage de la carte graphique. L'écran reste alors en mode simple et compatible.
+>  **`nomodeset`** demande à Linux de ne pas changer lui-même le mode d'affichage de la carte graphique. L'écran reste alors en mode simple et compatible.
 
 ![Ligne GRUB modifiée avec nomodeset](images/07-grub-nomodeset.jpeg)
 
@@ -123,7 +123,7 @@ On lit le contrat de licence, puis on clique sur **I agree**.
 
 ### 5.2 Choix du disque d'installation
 
-⚠️ **C'est l'étape la plus importante du laboratoire.**
+**C'est l'étape la plus importante du laboratoire.**
 
 Par défaut, l'installateur propose le disque **SSD NVMe** (`/dev/nvme0n1`, 1 To).
 
@@ -137,7 +137,7 @@ Par défaut, l'installateur propose le disque **SSD NVMe** (`/dev/nvme0n1`, 1 To
 
 ![Choix du disque /dev/sda](images/13-choix-disque-sda.jpeg)
 
-> 💡 Le **RAID 5** répartit les données et une information de contrôle (parité) sur les 3 disques. Si un disque tombe en panne, aucune donnée n'est perdue. On obtient l'espace de 2 disques sur 3, soit environ 273 Go.
+> Le **RAID 5** répartit les données et une information de contrôle (parité) sur les 3 disques. Si un disque tombe en panne, aucune donnée n'est perdue. On obtient l'espace de 2 disques sur 3, soit environ 273 Go.
 
 ### 5.3 Pays, fuseau horaire et clavier
 
@@ -161,7 +161,7 @@ On choisit le mot de passe de l'administrateur **root** : au moins 8 caractères
 | Gateway | `10.7.237.1` | Passerelle (routeur) pour sortir du réseau local |
 | DNS Server | `8.8.8.8` | Serveur DNS (celui de Google) pour traduire les noms en adresses IP |
 
-> 💡 Nous avons **choisi nous-mêmes une adresse IP fixe**, au lieu de garder celle donnée par le DHCP. Un serveur doit toujours garder la même adresse, sinon on ne le retrouve plus sur le réseau.
+>  Nous avons **choisi nous-mêmes une adresse IP fixe**, au lieu de garder celle donnée par le DHCP. Un serveur doit toujours garder la même adresse, sinon on ne le retrouve plus sur le réseau.
 >
 > La case **Pin network interface names** est cochée : elle « fige » les noms des cartes réseau (`nic0`, `nic1`…). Ainsi, ils ne changent pas après une mise à jour ou un redémarrage, et la configuration réseau ne se casse pas.
 
@@ -195,7 +195,7 @@ L'installation continue ensuite avec la création des volumes logiques (LVM), pu
 
 Ensuite, l'installateur configure le système et installe le **chargeur de démarrage (GRUB)** sur le disque, puis le serveur **redémarre automatiquement**.
 
-> ⚠️ Il faut **retirer la clé USB** au redémarrage, sinon le serveur risque de relancer l'installateur.
+> Il faut **retirer la clé USB** au redémarrage, sinon le serveur risque de relancer l'installateur.
 
 ---
 
@@ -209,7 +209,7 @@ Proxmox démarre et affiche l'écran de connexion. Il indique aussi l'adresse de
 
 On se connecte avec l'utilisateur **root** et le mot de passe choisi pendant l'installation.
 
-> 💡 Ce même compte sert à se connecter à l'**interface web** (https://10.7.236.237:8006). Sur la page de connexion, on choisit le domaine (realm) **Linux PAM standard authentication**, c'est-à-dire les comptes Linux du serveur. Le navigateur affiche un avertissement de sécurité, car le certificat est créé par le serveur lui-même : on peut l'accepter.
+> Ce même compte sert à se connecter à l'**interface web** (https://10.7.236.237:8006). Sur la page de connexion, on choisit le domaine (realm) **Linux PAM standard authentication**, c'est-à-dire les comptes Linux du serveur. Le navigateur affiche un avertissement de sécurité, car le certificat est créé par le serveur lui-même : on peut l'accepter.
 
 ![Connexion en root](images/22-connexion-root.jpeg)
 
@@ -225,7 +225,7 @@ Cette commande affiche les options avec lesquelles Linux a démarré. On voit qu
 
 ![Commande cat /proc/cmdline](images/23-cmdline.jpeg)
 
-> ⚠️ **Erreurs rencontrées :**
+> **Erreurs rencontrées :**
 > - `nolapic` et `noapic` ont donné **command not found**. Ce ne sont **pas des commandes** : ce sont des **options de démarrage**, qui se mettent dans GRUB comme `nomodeset`.
 > - `cat/proc/cmdline` a donné **No such file or directory** parce qu'il **manquait un espace** entre `cat` et `/proc/cmdline`.
 
