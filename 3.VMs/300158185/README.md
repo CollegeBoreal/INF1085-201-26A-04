@@ -3,7 +3,7 @@
 **Nom : Mohammed Mati**  
 **Numéro étudiant : 300158185**  
 **Cours : INF1085 — Linux / Proxmox**  
-**Dates des captures : 4 et 18 novembre 2026**
+**Dates des captures : 4 novembre 2026**
 
 ## 1. Objectif
 
