@@ -43,7 +43,7 @@ $WINDOWS_SERVER = $GROUP_DATA.Servers
 
 $FeedbackLookup = Get-FeedbackLookup -Students $Students
 
-Write-ParticipationHeader
+Write-LabParticipationHeader
 Write-ConfigurationSection -Server $WINDOWS_SERVERS[$Group - 1]
 Write-LabHeader -FeedbackLookup $FeedbackLookup
 
