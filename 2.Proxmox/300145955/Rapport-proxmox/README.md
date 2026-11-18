@@ -149,7 +149,7 @@ On choisit le mot de passe de l'administrateur **root** : au moins 8 caractères
 
 ![Mot de passe root et adresse courriel](images/14-mot-de-passe-courriel.jpeg)
 
-*(L'adresse courriel a été masquée sur la photo.)*
+*(J'ai masquee l'adresse courriel sur la photo car nous avons tous travailler ensemble et c'est celui de mon camarade.)*
 
 ### 5.5 Configuration du réseau
 
