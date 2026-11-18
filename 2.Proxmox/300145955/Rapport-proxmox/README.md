@@ -286,8 +286,8 @@ Cette commande affiche les **interruptions** du processeur, c'est-à-dire les si
 
 La commande `ip a` montre que l'adresse **10.7.236.237/23** est bien configurée sur **`vmbr0`**. C'est le **pont réseau** (bridge) créé par Proxmox : il permettra aux machines virtuelles d'utiliser la carte réseau physique.
 
-- `ping 10.7.237.1` (la passerelle) : ✅ **ça marche**.
-- `ping -c 4 8.8.8.8` (Internet) : ❌ au premier essai, **Destination Host Unreachable**.
+- `ping 10.7.237.1` (la passerelle) :  **ça marche**.
+- `ping -c 4 8.8.8.8` (Internet) : au premier essai, **Destination Host Unreachable**.
 
 ![Commande ip a et premiers ping](images/32-ip-ping-echec.jpeg)
 
@@ -342,9 +342,9 @@ Nous avons installé **Proxmox VE 9.2** sur un serveur **HP ProLiant DL360 G7**.
 
 ### Leçons apprises
 
-- ✅ Sur un vieux serveur, **vérifier que le BIOS peut démarrer sur le disque choisi** avant d'installer.
-- ✅ Bien **choisir le disque cible** dans l'installateur : tout le contenu du disque est effacé.
-- ✅ Le menu **F11 (Boot Override)** permet de démarrer une seule fois sur la clé USB ou sur le disque dur.
-- ✅ **`nomodeset`** règle les problèmes d'affichage sur le matériel ancien.
-- ✅ Bien faire la différence entre une **commande Linux** et une **option de démarrage**.
-- ✅ Toujours **tester le réseau** (passerelle, Internet, SSH) après l'installation.
+- Sur un vieux serveur, **vérifier que le BIOS peut démarrer sur le disque choisi** avant d'installer.
+- Bien **choisir le disque cible** dans l'installateur : tout le contenu du disque est effacé.
+- Le menu **F11 (Boot Override)** permet de démarrer une seule fois sur la clé USB ou sur le disque dur.
+- **`nomodeset`** règle les problèmes d'affichage sur le matériel ancien.
+- Bien faire la différence entre une **commande Linux** et une **option de démarrage**.
+- Toujours **tester le réseau** (passerelle, Internet, SSH) après l'installation.
