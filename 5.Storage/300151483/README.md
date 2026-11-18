@@ -15,7 +15,7 @@ Déplacer le disque de ma machine virtuelle de `local-lvm`, sur le disque systè
 
 ## Travail réalisé
 
-- [x] Stockage `nvme-storage` présent et actif sur server237 (🥉)
+- [x] Stockage `nvme-storage` créé en groupe sur server237 : nettoyage du NVMe, LVM-Thin, `pvesm add` (🥉)
 - [x] Disque de la VM 106 déplacé vers `nvme-storage` (🥈)
 - [x] Espace `local-lvm` libéré : plus aucun volume de la VM 106 (🥇)
 
@@ -33,16 +33,67 @@ pvesm status
 | `local-lvm` | lvmthin | disques de VM et conteneurs | 179 Go | thin pool `pve/data` sur le disque SAS |
 | `nvme-storage` | lvmthin | disques de VM et conteneurs | 1,02 To | thin pool `nvme-vg/data` sur `/dev/nvme0n1` |
 
-`nvme-storage` avait déjà été créé par l'équipe du groupe 1 :
+### Préparation du NVMe en groupe (séance de laboratoire)
+
+Le stockage `nvme-storage` a été créé **en groupe**, pendant la séance de laboratoire, avec le compte `root` du serveur, puisque `pvcreate`, `vgremove` et `pvesm add` demandent les droits root. Les captures ci-dessous viennent de cette séance de groupe. Elles montrent comment le stockage qu'utilise ma VM a été préparé.
+
+**1. Nettoyer le disque NVMe.** Il contenait une ancienne installation de Proxmox (groupe de volumes `pve-OLD-810787F6`).
+
+```bash
+umount /dev/nvme0n1p3
+wipefs -a /dev/nvme0n1           # échoue : disque occupé par l'ancien LVM
+vgchange -an pve-OLD-810787F6     # désactiver l'ancien groupe de volumes
+vgremove -f pve-OLD-810787F6      # le supprimer (data, swap, root)
+wipefs -a /dev/nvme0n1           # réussit : signatures GPT et PMBR effacées
+```
+
+![Nettoyage du NVMe](images/00a-nettoyage-nvme.jpg)
+
+*Figure 1 : `/dev/nvme0n1p3` n'était pas monté. Le premier `wipefs` échoue (`Device or resource busy`), parce que l'ancien groupe `pve-OLD-810787F6` utilise encore le disque. Après `vgchange -an` et `vgremove -f`, ses volumes `data`, `swap` et `root` sont supprimés, et le second `wipefs` efface les signatures GPT et PMBR.*
+
+![NVMe vide](images/00b-lsblk-nvme-vide.jpg)
+
+*Figure 2 : `lsblk` après le nettoyage : `nvme0n1` (953,9 Go) n'a plus aucune partition. Les VM 100 et 102 sont encore sur `local-lvm` (`pve-vm--100--disk--0`, `pve-vm--102--disk--0`), sur le disque SAS `sda`.*
+
+**2. Créer le LVM-Thin et l'ajouter à Proxmox.**
 
 ```bash
 pvcreate /dev/nvme0n1
 vgcreate nvme-vg /dev/nvme0n1
 lvcreate -l 100%FREE -T nvme-vg/data
 pvesm add lvmthin nvme-storage --vgname nvme-vg --thinpool data --content images,rootdir
+pvesm status
 ```
 
-Il apparaît dans la liste de la fenêtre **Move disk** avec 915 Go disponibles sur 1,02 To (figure 2).
+![Ajout de nvme-storage](images/00c-pvesm-add-move-disk-100.jpg)
+
+*Figure 3 : `pvesm status` affiche `nvme-storage` (lvmthin) `active`, avec 999 956 480 Kio et 0,00 % utilisés. `lsblk` montre le thin pool `nvme--vg-data` (953,6 Go) sur `nvme0n1`. Le premier déplacement commence ensuite : `qm move_disk 100 scsi0 nvme-storage`.*
+
+**3. Déplacer les disques des premières VM du groupe** (100, 102 et 104).
+
+![Déplacement de la VM 100 terminé](images/00d-move-disk-100-termine.jpg)
+
+*Figure 4 : La VM 100 a été déplacée en 1 min 4 s (20,0 Gio). **Delete source** n'étant pas utilisé, Proxmox garde l'ancien disque : `adding source volume 'local-lvm:vm-100-disk-0' as 'unused0' to config`.*
+
+![Configuration des VM 100, 102 et 104](images/00e-qm-config-100-102-104.jpg)
+
+*Figure 5 : `qm config` confirme que les VM 100, 102 et 104 ont leur `scsi0` sur `nvme-storage`.*
+
+**4. Libérer `local-lvm`.** Les anciens disques restés en `unused0` occupaient encore de l'espace sur le disque SAS :
+
+```bash
+qm set 100 --delete unused0
+qm set 102 --delete unused0
+qm set 104 --delete unused0
+```
+
+![Suppression des disques unused0](images/00f-delete-unused0-lsblk.jpg)
+
+*Figure 6 : Les volumes `vm-100-disk-0`, `vm-102-disk-0` et `vm-104-disk-0` sont supprimés de `local-lvm`. Dans `lsblk`, le pool `pve-data` sur `sda` n'a plus aucun disque de VM, et les trois disques sont dans `nvme--vg` sur `nvme0n1`.*
+
+> **Leçon retenue** : sans **Delete source** (ou `--delete 1`), `move_disk` garde une copie `unused0`, et `local-lvm` n'est pas libéré. C'est pour ça que, pour ma VM 106, j'ai coché **Delete source** dès le départ (section 3). Il n'a donc pas été nécessaire de nettoyer `unused0` ensuite.
+
+Dans la fenêtre **Move disk** de ma VM, `nvme-storage` apparaît avec 915 Go disponibles sur 1,02 To (figure 8).
 
 > **LVM-Thin** : le thin pool n'alloue l'espace qu'au fur et à mesure de l'écriture. Mon disque de 20 Go n'occupe donc que les ~860 Mo réellement utilisés par Debian.
 
@@ -58,7 +109,7 @@ ide2: local-lvm:vm-106-cloudinit,media=cdrom
 
 ![local-lvm avant le déplacement](images/01-local-lvm-avant.png)
 
-*Figure 1 : **local-lvm → VM Disks** avant le déplacement. On y voit `vm-106-disk-0` (20 Gio) et `vm-106-cloudinit` (4 Mio) de ma VM. `vm-103-disk-0` appartient à une autre VM.*
+*Figure 7 : **local-lvm → VM Disks** avant le déplacement. On y voit `vm-106-disk-0` (20 Gio) et `vm-106-cloudinit` (4 Mio) de ma VM. `vm-103-disk-0` appartient à une autre VM.*
 
 ---
 
@@ -71,7 +122,7 @@ Dans **VM 106 → Hardware**, je sélectionne **Hard Disk (scsi0)**, puis **Disk
 
 ![Fenêtre Move disk](images/02-move-disk-fenetre.png)
 
-*Figure 2 : Fenêtre **Move disk** : disque `scsi0`, cible `nvme-storage`, format `raw` (imposé par LVM-Thin), **Delete source** coché.*
+*Figure 8 : Fenêtre **Move disk** : disque `scsi0`, cible `nvme-storage`, format `raw` (imposé par LVM-Thin), **Delete source** coché.*
 
 Commande équivalente :
 
@@ -84,11 +135,11 @@ La VM est restée **allumée** pendant toute l'opération. Proxmox utilise un *d
 
 ![Progression du déplacement](images/03-move-disk-progression.png)
 
-*Figure 3 : Début de la tâche : création du volume `vm-106-disk-0` dans `nvme-vg`, puis copie par `mirror-scsi0` (20 Gio en 36 s, soit environ 570 Mio/s en moyenne).*
+*Figure 9 : Début de la tâche : création du volume `vm-106-disk-0` dans `nvme-vg`, puis copie par `mirror-scsi0` (20 Gio en 36 s, soit environ 570 Mio/s en moyenne).*
 
 ![Déplacement terminé](images/04-move-disk-termine.png)
 
-*Figure 4 : Fin de la tâche : 20,0 Gio sur 20,0 Gio copiés en **36 s**, `mirror-job finished`. Proxmox supprime ensuite la source : `removing source volume 'local-lvm:vm-106-disk-0' after successful copy`, `Logical volume "vm-106-disk-0" successfully removed`, puis `TASK OK`.*
+*Figure 10 : Fin de la tâche : 20,0 Gio sur 20,0 Gio copiés en **36 s**, `mirror-job finished`. Proxmox supprime ensuite la source : `removing source volume 'local-lvm:vm-106-disk-0' after successful copy`, `Logical volume "vm-106-disk-0" successfully removed`, puis `TASK OK`.*
 
 ---
 
@@ -104,7 +155,7 @@ pvesm free local-lvm:vm-106-cloudinit    # ancien volume de 4 Mio resté orpheli
 
 ![Matériel après le déplacement](images/05-materiel-apres.png)
 
-*Figure 5 : Onglet **Hardware** après l'opération : `scsi0` est sur `nvme-storage:vm-106-disk-0` (20 Go) et le lecteur cloud-init sur `nvme-storage:vm-106-cloudinit`.*
+*Figure 11 : Onglet **Hardware** après l'opération : `scsi0` est sur `nvme-storage:vm-106-disk-0` (20 Go) et le lecteur cloud-init sur `nvme-storage:vm-106-cloudinit`.*
 
 ---
 
@@ -120,11 +171,11 @@ Pas de ligne `unused0` : l'ancien disque a bien été supprimé, pas seulement d
 
 ![Disques sur nvme-storage](images/06-nvme-storage-disques.png)
 
-*Figure 6 : **nvme-storage → VM Disks** : `vm-106-disk-0` (20 Gio) et `vm-106-cloudinit` sont maintenant sur le NVMe, à côté des disques des autres VM du groupe (100 à 105).*
+*Figure 12 : **nvme-storage → VM Disks** : `vm-106-disk-0` (20 Gio) et `vm-106-cloudinit` sont maintenant sur le NVMe, à côté des disques des autres VM du groupe (100 à 105).*
 
 ![local-lvm après le déplacement](images/07-local-lvm-apres.png)
 
-*Figure 7 : **local-lvm → VM Disks** après l'opération : il ne reste plus aucun volume de la VM 106. Seul `vm-103-disk-0` (une autre VM) y figure encore.*
+*Figure 13 : **local-lvm → VM Disks** après l'opération : il ne reste plus aucun volume de la VM 106. Seul `vm-103-disk-0` (une autre VM) y figure encore.*
 
 Dans la VM, rien n'a changé pour le système : même disque, aucune interruption de service.
 
