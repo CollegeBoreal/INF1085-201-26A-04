@@ -3,13 +3,13 @@
 **Nom : Mohammed Mati**  
 **Numéro étudiant : 300158185**  
 **Cours : INF1085 — Linux / Proxmox**  
-**Date des captures : 4 novembre 2026**
+**Dates des captures : 4 et 18 novembre 2026**
 
 ## 1. Objectif
 
 Installer une machine virtuelle Debian 13 avec une interface graphique GNOME sur Proxmox VE, vérifier son réseau et préparer son accès distant par SSH.
 
-Ce document présente les résultats visibles dans mes captures. La configuration SSH et les clés publiques restent à vérifier : elles ne sont pas présentées comme des opérations réussies.
+J’ai vérifié l’adresse IP de la VM et l’état du service SSH le 18 novembre 2026. Le test de connexion avec la clé du professeur reste à faire.
 
 ## 2. Environnement observé
 
@@ -30,9 +30,9 @@ Ce document présente les résultats visibles dans mes captures. La configuratio
 | Interface réseau | ens18, UP |
 | Adresse IPv4 observée | 10.7.236.185/23 |
 
-L'adresse de la VM est différente de celle du serveur Proxmox. Elle devra être revérifiée avant une nouvelle connexion SSH.
+L’interface Web de Proxmox est à l’adresse `10.7.236.240:8006`. Pour se connecter en SSH à la VM Debian, l’adresse observée le 18 novembre est `10.7.236.185`.
 
-![Ressources et état de la VM 102]<img width="825" height="525" alt="image" src="https://github.com/user-attachments/assets/047da3df-360f-43fe-91f8-ad0b4c51bb49" />
+![Ressources et état de la VM 102](https://github.com/user-attachments/assets/047da3df-360f-43fe-91f8-ad0b4c51bb49)
 
 
 *Figure 1 — VM 102 en cours d'exécution : 1 vCPU, 2 Gio de mémoire et disque de 32 Gio.*
@@ -41,7 +41,7 @@ L'adresse de la VM est différente de celle du serveur Proxmox. Elle devra être
 
 Le premier démarrage a échoué avec un message indiquant que le serveur ne prenait pas en charge la fonction CPU AES demandée par la configuration virtuelle. Le réglage proposé a été de remplacer le type de processeur par `host`.
 
-![Erreur CPU AES]<img width="1035" height="348" alt="image" src="https://github.com/user-attachments/assets/f8dadf0e-1056-457c-a7df-3b585b325caf" />
+![Erreur CPU AES](https://github.com/user-attachments/assets/f8dadf0e-1056-457c-a7df-3b585b325caf)
 
 
 *Figure 2 — Message QEMU signalant une fonction AES non prise en charge.*
@@ -50,7 +50,7 @@ Le premier démarrage a échoué avec un message indiquant que le serveur ne pre
 
 Après des difficultés avec la saisie dans l'installateur en mode texte, l'installation a été relancée avec **Graphical install**. La configuration a ensuite progressé jusqu'au partitionnement et à l'installation des logiciels.
 
-![Configuration du nom de machine]<img width="923" height="525" alt="image" src="https://github.com/user-attachments/assets/ba15567e-1845-4d2e-b6e4-e80b0e3bf77e" />
+![Configuration du nom de machine](https://github.com/user-attachments/assets/ba15567e-1845-4d2e-b6e4-e80b0e3bf77e)
 
 *Figure 3 — Installateur graphique Debian : configuration du nom de machine.*
 
@@ -63,7 +63,7 @@ Le disque virtuel `sda` de 34,4 Go a été sélectionné avec le partitionnement
 | sda1 | 32,6 Go | ext4 | / |
 | sda5 | 1,8 Go | swap | swap |
 
-![Résumé des partitions]<img width="1035" height="485" alt="image" src="https://github.com/user-attachments/assets/a7d0d4d5-5acb-4440-bdad-14a3d0b5eab8" />
+![Résumé des partitions](https://github.com/user-attachments/assets/a7d0d4d5-5acb-4440-bdad-14a3d0b5eab8)
 
 *Figure 4 — Résumé du partitionnement avant application des changements.*
 
@@ -71,14 +71,14 @@ Le disque virtuel `sda` de 34,4 Go a été sélectionné avec le partitionnement
 
 Le pays sélectionné pour le miroir est le Canada et le miroir retenu est `deb.debian.org`. Le champ du mandataire HTTP peut rester vide lorsqu'aucun proxy n'est requis.
 
-![Configuration du miroir]<img width="1008" height="525" alt="image" src="https://github.com/user-attachments/assets/a4e025cd-725c-4b0d-96f2-eb1021053c8a" />
+![Configuration du miroir](https://github.com/user-attachments/assets/a4e025cd-725c-4b0d-96f2-eb1021053c8a)
 
 
 *Figure 5 — Sélection du Canada pour le miroir Debian.*
 
-La capture de sélection des logiciels montre l'environnement de bureau Debian, GNOME et les utilitaires usuels cochés. **Le serveur SSH n'est pas coché sur cette capture** ; sa présence doit donc être contrôlée après installation.
+La capture de sélection des logiciels montre l'environnement de bureau Debian, GNOME et les utilitaires usuels cochés. La case **Serveur SSH** est décochée sur cette capture de l’installateur. La section 7 confirme l’état du service dans la VM installée.
 
-![Sélection des logiciels]<img width="966" height="525" alt="image" src="https://github.com/user-attachments/assets/2fe3189f-9baf-499e-a161-8fdbe1c3420d" />
+![Sélection des logiciels](https://github.com/user-attachments/assets/2fe3189f-9baf-499e-a161-8fdbe1c3420d)
 
 
 *Figure 6 — Sélection des logiciels : GNOME et utilitaires usuels.*
@@ -87,7 +87,7 @@ La capture de sélection des logiciels montre l'environnement de bureau Debian, 
 
 L'installateur propose d'installer GRUB sur le disque principal. Après installation, le disque `scsi0` doit être placé avant le lecteur ISO `ide2` dans l'ordre de démarrage de la VM.
 
-![Installation de GRUB]<img width="926" height="525" alt="image" src="https://github.com/user-attachments/assets/0bcc5c71-aee3-4737-b378-77cf8ed9bb69" />
+![Installation de GRUB](https://github.com/user-attachments/assets/0bcc5c71-aee3-4737-b378-77cf8ed9bb69)
 
 
 *Figure 7 — Confirmation de l'installation du programme de démarrage GRUB.*
@@ -96,7 +96,7 @@ L'installateur propose d'installer GRUB sur le disque principal. Après installa
 
 Debian a atteint le bureau GNOME. Le terminal ouvert ensuite confirme l'utilisation du compte `mohammed18` sur la machine `mohammed`.
 
-![Bureau GNOME]<img width="934" height="525" alt="image" src="https://github.com/user-attachments/assets/128cdb8b-0605-4d9f-9132-a694d87ff773" />
+![Bureau GNOME](https://github.com/user-attachments/assets/128cdb8b-0605-4d9f-9132-a694d87ff773)
 
 
 *Figure 8 — Bureau GNOME après ouverture de session.*
@@ -120,117 +120,52 @@ Interface  : ens18 — UP
 IPv4       : 10.7.236.185/23
 ```
 
-![Compte et adresse IP Debian]<img width="950" height="525" alt="image" src="https://github.com/user-attachments/assets/af446784-066a-4f99-97bf-a1dcfc0f439f" />
+![Compte et adresse IP Debian](https://github.com/user-attachments/assets/af446784-066a-4f99-97bf-a1dcfc0f439f)
 
 
 *Figure 9 — Résultats de whoami, hostname et ip -br a.*
 
-## 7. Préparation de SSH : problème de droits
+La vérification du 18 novembre confirme les mêmes valeurs.
 
-La commande suivante a été tentée dans Debian :
+![Vérification du compte et de l’adresse IP le 18 novembre](captures/01-vm-ip.png)
 
-```bash
-sudo systemctl enable --now ssh
-```
+*Figure 10 — VM 102 sur `server1`. L’interface `ens18` est active et porte l’adresse `10.7.236.185/23`.*
 
-Elle a été refusée avec le message indiquant que `mohammed18` n'est pas dans le fichier sudoers. **Cette capture ne confirme donc ni l'activation de SSH, ni l'absence du paquet OpenSSH.**
+## 7. Vérification du service SSH
 
-![Refus des droits sudo]<img width="853" height="525" alt="image" src="https://github.com/user-attachments/assets/ffc01ee0-d9fc-48ba-99e1-63ac48904f63" />
-
-
-*Figure 10 — Le compte mohammed18 ne dispose pas des droits sudo au moment du test.*
-
-### Procédure restante — à exécuter et à documenter
-
-Dans le terminal de la **VM Debian**, ouvrir une session root avec le mot de passe root de cette VM, s'il a été défini :
+Une première tentative avec `sudo` a échoué parce que le compte `mohammed18` n’avait pas les droits nécessaires pour exécuter la commande. Le 18 novembre, j’ai vérifié l’état du service depuis le terminal Debian.
 
 ```bash
-su -
+systemctl status ssh --no-pager
 ```
 
-Après authentification root réussie, ajouter le compte au groupe sudo :
+Le service OpenSSH est **actif** (`active (running)`) et configuré pour démarrer automatiquement (`enabled`).
 
-```bash
-usermod -aG sudo mohammed18
-```
+![État du serveur OpenSSH dans Debian](captures/02-service-ssh.png)
 
-Se déconnecter de la session graphique, puis se reconnecter pour prendre en compte le nouveau groupe. Si l'accès root échoue, faire vérifier l'accès administrateur avant de poursuivre.
+*Figure 11 — Service SSH actif et activé au démarrage dans la VM Debian.*
 
-Dans la nouvelle session Debian :
+## 8. Test depuis Windows
 
-```bash
-sudo systemctl status ssh --no-pager
-```
-
-Si le service est introuvable :
-
-```bash
-sudo apt update
-sudo apt install openssh-server -y
-```
-
-Activer SSH et vérifier son état :
-
-```bash
-sudo systemctl enable --now ssh
-sudo systemctl status ssh --no-pager
-sudo ss -ltnp 'sport = :22'
-```
-
-Captures à ajouter : service `active (running)` et écoute sur le port 22.
-
-## 8. Connexion distante — à tester
-
-Sur le poste **Windows**, ouvrir PowerShell. Vérifier d'abord le réseau du poste :
-
-```powershell
-ipconfig
-```
-
-Revérifier l'IP de la VM avec `ip -br a`, puis lancer, si elle est toujours identique :
+J’ai lancé la commande suivante dans PowerShell.
 
 ```powershell
 ssh mohammed18@10.7.236.185
 ```
 
-À la première connexion, comparer l'empreinte annoncée avec celle de la VM. Cette dernière s'affiche dans Debian avec :
+Le serveur SSH de la VM a répondu et demandé le mot de passe. La tentative s’est terminée par `Permission denied (publickey,password)`. La VM est donc joignable en SSH depuis mon poste Windows. L’ouverture de session reste à valider.
 
-```bash
-sudo ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub
-```
+![Message d’authentification SSH refusée dans PowerShell](captures/03-test-ssh-windows.png)
 
-Après connexion distante réussie, exécuter :
+*Figure 12 — La VM répond à la demande de connexion, puis refuse l’authentification.*
 
-```bash
-whoami
-hostname
-```
+## 9. Clé publique du professeur
 
-Ajouter une capture du résultat avant d'indiquer que le test SSH est réussi.
+Lors de la vérification dans la VM, le fichier `/home/mohammed18/.ssh/authorized_keys` était absent. La clé publique du professeur a été ajoutée lors d’une session sur `server1` (`10.7.236.240`), sous le compte `B300158185`. Pour permettre l’accès à **la VM Debian**, la clé doit être enregistrée dans le fichier du compte `mohammed18` sur la VM (`10.7.236.185`).
 
-## 9. Clés publiques — à configurer
+### Configuration à terminer dans la VM
 
-### Clé personnelle
-
-Dans PowerShell Windows, vérifier si une clé existe :
-
-```powershell
-Test-Path "$env:USERPROFILE\.ssh\id_ed25519.pub"
-```
-
-Uniquement si elle n'existe pas, créer une paire de clés sans écraser une clé existante :
-
-```powershell
-ssh-keygen -t ed25519 -C "Mohammed Mati 300158185"
-```
-
-Afficher la **clé publique** et copier sa ligne complète :
-
-```powershell
-Get-Content "$env:USERPROFILE\.ssh\id_ed25519.pub"
-```
-
-Dans Debian, sous le compte `mohammed18` :
+Dans la console Proxmox de la **VM 102**, sous le compte `mohammed18` :
 
 ```bash
 mkdir -p ~/.ssh
@@ -238,62 +173,33 @@ chmod 700 ~/.ssh
 nano ~/.ssh/authorized_keys
 ```
 
-Coller la clé publique sur une ligne distincte, enregistrer avec `Ctrl+O`, valider avec Entrée et quitter avec `Ctrl+X`, puis appliquer :
+Ajouter la clé publique du professeur sur une seule ligne et conserver les clés déjà présentes. Enregistrer avec **Ctrl+O**, **Entrée**, puis quitter avec **Ctrl+X**.
 
 ```bash
-chmod 600 ~/.ssh/authorized_keys
-```
-
-Tester depuis PowerShell :
-
-```powershell
-ssh -i "$env:USERPROFILE\.ssh\id_ed25519" -o IdentitiesOnly=yes -o PreferredAuthentications=publickey mohammed18@10.7.236.185
-```
-
-La phrase secrète de la clé peut être demandée. Ne pas joindre la clé privée ni les mots de passe au rapport.
-
-### Clé du professeur
-
-Consulter la consigne officielle, puis ajouter la clé publique complète du professeur sur une nouvelle ligne de `~/.ssh/authorized_keys`, sans effacer la clé personnelle.
-
-```bash
-chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 ssh-keygen -lf ~/.ssh/authorized_keys
-ls -ld ~/.ssh
-ls -l ~/.ssh/authorized_keys
 ```
 
-La présence d'une clé ne suffit pas à confirmer une connexion du professeur : ce test doit être effectué avec sa clé privée correspondante.
+Comparer l’empreinte affichée à celle de la clé fournie par le professeur. Pour valider le critère « Accessible par clé du prof », faire confirmer une connexion du professeur à `mohammed18@10.7.236.185` avec sa clé, puis ajouter le résultat au rapport.
 
-## 10. Compte personnel Proxmox — à vérifier
+## 10. Accès au nœud Proxmox
 
-Les captures jointes montrent `root@pam`. Elles ne démontrent pas l'utilisation d'un compte personnel du collège. Cette partie doit être réalisée selon les consignes du professeur, avec vérification du compte et de ses permissions. Aucun compte ni rôle supplémentaire n'est déclaré comme créé dans ce document.
+Une session SSH sur `server1` est visible sous le compte Linux `B300158185`. Les captures de l’interface Web montrent le compte `root@pam`. Les permissions d’un compte individuel dans l’interface Web restent à vérifier si la consigne le demande.
 
-## 11. Bilan des preuves
+## 11. Bilan du laboratoire
 
-| Vérification | État d'après les captures |
+| Vérification | Résultat |
 |---|---|
-| VM 102 en exécution | Confirmé |
-| Ressources : 1 vCPU, 2 Gio, 32 Gio | Confirmé |
-| Installation graphique et partitionnement | Documentés |
-| Bureau GNOME accessible | Confirmé |
-| Compte mohammed18 et machine mohammed | Confirmés |
-| ens18 UP, IPv4 10.7.236.185/23 | Confirmé le jour de la capture |
-| Droits sudo | Refusés lors du test présenté |
-| Service SSH actif | À vérifier |
-| Connexion SSH depuis Windows | À tester |
-| Connexion avec une clé personnelle | À tester |
-| Clé publique du professeur | À ajouter et à vérifier |
-| Connexion du professeur | Non démontrée |
-| Compte individuel Proxmox | Non démontré |
+| 🥉 VM créée | Confirmé. La VM 102 est en marche et Debian ouvre le bureau GNOME. |
+| 🥈 Adresse IP assignée | Confirmé. L’interface `ens18` est active avec l’adresse `10.7.236.185/23`. |
+| Service SSH dans Debian | Confirmé. OpenSSH est actif et activé au démarrage. |
+| Connexion depuis Windows | Le serveur répond. L’authentification du compte `mohammed18` a échoué. |
+| 🥇 Accès à la VM par la clé du professeur | À valider. L’ajout de la clé dans la VM et la connexion du professeur restent à confirmer. |
 
 ## 12. Conclusion
 
-J'ai installé Debian 13 sur la VM 102 dans Proxmox VE et accédé au bureau GNOME. Les commandes de vérification ont permis de confirmer mon compte, le nom de la machine et son adresse réseau. La préparation de SSH a révélé un problème de droits sudo. La suite du laboratoire consiste à corriger ces droits, vérifier le service SSH et tester les accès par mot de passe et par clé publique.
+J’ai installé Debian 13 avec GNOME sur la VM 102 et confirmé son adresse IPv4. J’ai vérifié que le service SSH est actif. Mon poste Windows atteint la VM et la tentative d’ouverture de session a échoué à l’authentification. Il reste à confirmer l’ajout de la clé publique du professeur dans la VM et à faire tester sa connexion.
 
 ## Référence du cours
 
 [Collège Boréal — INF1085 — X.Linux/3.keys](https://github.com/CollegeBoreal/INF1085-201-26A-04/tree/main/X.Linux/3.keys)
-
-Les captures de ce dossier proviennent de la séance du 4 novembre 2026. Les procédures restantes doivent être adaptées à la consigne officielle et complétées par les nouvelles preuves obtenues.
