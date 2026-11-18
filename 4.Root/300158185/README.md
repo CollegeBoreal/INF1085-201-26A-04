@@ -15,7 +15,8 @@ Utiliser un compte administrateur individuel pour gérer Proxmox et se connecter
 
 J’ai réutilisé mon compte `B300158185@pam`, qui existait déjà. Je me suis connecté à l’interface Web avec le domaine **Linux PAM**, puis j’ai ouvert **server1 → Shell** et exécuté `whoami`. La commande a affiché `B300158185`.
 
-![Résultat de whoami dans le Shell de server1](captures/01-compte-linux.png)
+![Résultat de whoami dans le Shell de server1]<img width="1032" height="530" alt="image" src="https://github.com/user-attachments/assets/4599d5ef-1df3-4db3-b1a1-d24c13c22fb4" />
+
 
 Dans **Datacenter → Permissions**, j’ai vérifié les droits du compte.
 
@@ -23,7 +24,8 @@ Dans **Datacenter → Permissions**, j’ai vérifié les droits du compte.
 | --- | --- | --- | --- |
 | `/` | `B300158185@pam` | `Administrator` | `true` |
 
-![Compte B300158185@pam et rôle Administrator dans Proxmox](captures/02-permissions-proxmox.png)
+![Compte B300158185@pam et rôle Administrator dans Proxmox]<img width="1032" height="178" alt="image" src="https://github.com/user-attachments/assets/885a8b20-5a56-4fcd-99cf-8a686c53ae7a" />
+
 
 ## 2. Installation de la clé SSH
 
@@ -57,5 +59,6 @@ ssh -o PreferredAuthentications=publickey B300158185@10.7.236.240 whoami
 
 Le test a affiché `B300158185` après la saisie de la phrase secrète de la clé. SSH n’a pas demandé le mot de passe du compte Linux.
 
-![Test SSH par clé publique depuis PowerShell et résultat B300158185](captures/03-test-ssh.png)
+![Test SSH par clé publique depuis PowerShell et résultat B300158185]<img width="1032" height="488" alt="image" src="https://github.com/user-attachments/assets/6afda20b-7f54-4482-8c2b-a5685d92755f" />
+
 
