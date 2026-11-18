@@ -8,7 +8,7 @@
 | Serveur Proxmox | `server237` - [10.7.236.237](https://10.7.236.237:8006) (Rack 2, U34, HP G7, 64 Go, 16 CPU) |
 | Machine virtuelle | **VM 106** - `B300151483-vm` |
 | Adresse IP de ma VM | **`10.7.236.209/23`**, passerelle `10.7.237.1` |
-| Compte SSH de la VM | `b300151483@10.7.236.209` |
+| Comptes SSH de la VM | `b300151483@10.7.236.209` (le mien) · `ubuntu@10.7.236.209` (correction) |
 | Date | 18 novembre 2026 |
 
 ## 🎯 Objectif
@@ -20,6 +20,7 @@ Créer ma propre machine virtuelle sur le serveur Proxmox de mon groupe, lui don
 - [x] VM créée sur `server237` (🥉)
 - [x] Adresse IP fixe `10.7.236.209` assignée (🥈)
 - [x] Clé du professeur ajoutée, VM accessible par SSH (🥇)
+- [x] Compte `ubuntu` créé pour le script de correction du professeur
 
 ---
 
@@ -155,6 +156,53 @@ ssh-ed25519 300151483@monboreal.com
 
 ---
 
+## 6. Compte `ubuntu` pour la correction
+
+Dans le fichier `.scripts/students.ps1` du dépôt, le professeur associe mon adresse au compte **`ubuntu`** :
+
+```text
+"10.7.236.209|ubuntu"
+```
+
+Le tableau de participation affiche donc `ubuntu@10.7.236.209`. L'image cloud Debian ne crée pas ce compte (seulement `b300151483` via cloud-init), alors je l'ai ajouté, avec la même clé du professeur :
+
+```bash
+sudo useradd -m -s /bin/bash -c "Compte de correction (prof)" ubuntu
+sudo install -d -m 700 -o ubuntu -g ubuntu /home/ubuntu/.ssh
+sudo cp ~/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys
+sudo chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+sudo chmod 600 /home/ubuntu/.ssh/authorized_keys
+sudo usermod -aG sudo ubuntu
+echo "ubuntu ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/90-ubuntu
+sudo chmod 440 /etc/sudoers.d/90-ubuntu && sudo visudo -cf /etc/sudoers.d/90-ubuntu
+```
+
+Vérification :
+
+```text
+$ id ubuntu
+uid=1001(ubuntu) gid=1001(ubuntu) groups=1001(ubuntu),27(sudo)
+$ sudo awk '{print $1, $NF}' /home/ubuntu/.ssh/authorized_keys
+ssh-rsa b300098957@ramena
+ssh-ed25519 300151483@monboreal.com
+$ ssh -o BatchMode=yes ubuntu@10.7.236.209 'whoami; hostname; sudo -n true && echo sudo OK'
+ubuntu
+B300151483-vm
+sudo OK
+```
+
+Comme pour `b300151483`, ce compte n'a **pas de mot de passe** : on ne peut s'y connecter qu'avec une clé autorisée. Le `sudo` sans mot de passe est donc nécessaire pour administrer la VM.
+
+### La VM en fonctionnement
+
+La VM héberge aussi mon projet du chapitre 6 : une page web servie par Nginx, qui affiche l'état de la VM en direct.
+
+![Page servie par la VM](images/06-vm106-en-fonctionnement.jpg)
+
+*Figure 6 : http://10.7.236.209 ouvert dans mon navigateur. La page est générée par la VM elle-même : nom d'hôte `B300151483-vm`, IP `10.7.236.209/23`, Debian 13, services nginx et ssh `active`. Voir [6.Projects](../../6.Projects/300151483/README.md).*
+
+---
+
 ## 🛠️ Problèmes rencontrés
 
 | Problème | Cause | Solution |
@@ -169,4 +217,4 @@ ssh-ed25519 300151483@monboreal.com
 |---------|----------|
 | 🥉 VM créée | VM 106 `B300151483-vm`, Debian 13, 2 Go, 2 CPU, 20 Go |
 | 🥈 Adresse IP assignée | `10.7.236.209/23`, passerelle `10.7.237.1`, vérifiée par Proxmox et par `ip addr` |
-| 🥇 Accessible par la clé du prof | `b300098957@ramena` dans `~/.ssh/authorized_keys` (droits 600) |
+| 🥇 Accessible par la clé du prof | `b300098957@ramena` dans `authorized_keys` (600) de `b300151483` **et** de `ubuntu` |
