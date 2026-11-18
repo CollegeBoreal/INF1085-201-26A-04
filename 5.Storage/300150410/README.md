@@ -1,5 +1,5 @@
 # 💾 Gestion du Stockage sous Proxmox VE (NVMe & LVM)
-### Auteur : B300142542
+### Auteur : B300150410
 ### Environnement : Serveur Proxmox VE (server237)
 ### Sujet : Nettoyage d'un disque NVMe, création d'un stockage LVM-Thin et migration de machines virtuelles.
 
