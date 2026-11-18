@@ -33,7 +33,7 @@
 
 |:hash:| Boréal :id: | 📑 | 🖼️ | 💯 | 💬 | :link: IP |
 |------|-------------|----|---|----|----|-----------|
-| 1 | [300151504](../300151504/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939073?s=460&v=4' width=20 height=20></image>](https://github.com/Nassimidir) | :x: | :x: | :x: | :x: À corriger | 🏙️  nassimidir2000@10.7.236.210  |
+| 1 | [300151504](../300151504/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939073?s=460&v=4' width=20 height=20></image>](https://github.com/Nassimidir) | :2nd_place_medal: | :heavy_check_mark: | :x: | :x: À corriger | 🏙️  nassimidir2000@10.7.236.210  |
 | 2 | [300151548](../300151548/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: | :x: | :x: À corriger | 🏙️  ubuntu@10.7.236.211  |
 | 3 | [300151588](../300151588/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/58528251?s=460&v=4' width=20 height=20></image>](https://github.com/belhAmine) | :x: | :x: | :x: | :x: À corriger | 🏙️  kali@10.7.236.212  |
 | 4 | [300151589](../300151589/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501417?s=460&v=4' width=20 height=20></image>](https://github.com/walidwolf31) | :x: | :x: | :x: | :x: À corriger | 🏙️  ubuntu@10.7.236.213  |
@@ -42,4 +42,4 @@
 | 7 | [300152247](../300152247/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/236670407?s=460&v=4' width=20 height=20></image>](https://github.com/aniss-djahid) | :x: | :x: | :x: | :x: À corriger | 🏙️  ubuntu@10.7.236.216  |
 | 8 | [300153401](../300153401/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266600832?s=460&v=4' width=20 height=20></image>](https://github.com/youneschaghica-hub) | :x: | :x: | :x: | :x: À corriger | 🏙️  ubuntu@10.7.236.217  |
 | 9 | [300153602](../300153602/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266413722?s=460&v=4' width=20 height=20></image>](https://github.com/meryemabdedou83-ux) | :x: | :x: | :x: | :x: À corriger | 🏙️  ubuntu@10.7.236.218  |
-| :abacus: | \$\displaystyle\sum_{i=1}^{9} s_i\$ = 1 📈 11.11% |
+| :abacus: | \$\displaystyle\sum_{i=1}^{9} s_i\$ = 2 📈 22.22% |
