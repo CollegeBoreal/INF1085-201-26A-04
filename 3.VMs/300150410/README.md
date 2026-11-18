@@ -39,11 +39,13 @@ Après l’installation de Debian 13, j’ai démarré la machine virtuelle et v
 
 ### Figure 1 — Machine virtuelle Debian 104 dans Proxmox
 
-<!-- Coller ici ma capture Proxmox -->
+<img width="923" height="523" alt="image" src="https://github.com/user-attachments/assets/6f72489e-6827-4553-9e07-c8a76448e1e9" />
+
 
 ### Figure 2 — Démarrage de Debian 13
 
-<!-- Coller ici ma capture du démarrage Debian -->
+<img width="923" height="462" alt="image" src="https://github.com/user-attachments/assets/efb81b36-9f2c-4a9c-b83a-fc66875af77d" />
+
 
 ---
 
@@ -57,7 +59,7 @@ L’apparition du bureau GNOME confirme que le système est opérationnel.
 
 ### Figure 3 — Bureau GNOME après ouverture de session
 
-<!-- Coller ici ma capture GNOME -->
+<img width="923" height="518" alt="image" src="https://github.com/user-attachments/assets/28bd6f54-4993-43fd-b7a7-e9cc9381b3bb" />
 
 ---
 
@@ -78,9 +80,6 @@ Le résultat indique que mon interface réseau `ens18` possède l’adresse IPv4
 Cette adresse est utilisée pour établir une connexion SSH depuis mon ordinateur Windows.
 
 ### Figure 4 — Résultat de la commande ip a
-
-<!-- Coller ici ma capture de l'adresse IP Debian -->
-
 ---
 
 ## 5. Installation et activation du serveur SSH
@@ -106,9 +105,6 @@ Cela confirme que le serveur SSH est actif et que Debian peut accepter les conne
 
 ### Figure 5 — Vérification du service SSH actif
 
-<!-- Coller ici ma capture du service SSH -->
-
----
 
 ## 6. Première connexion SSH depuis Windows
 
@@ -130,9 +126,8 @@ Cette vérification confirme que mon ordinateur Windows peut accéder à ma mach
 
 ### Figure 6 — Connexion SSH réussie depuis Windows
 
-<!-- Coller ici ma capture de connexion SSH -->
+<img width="923" height="467" alt="image" src="https://github.com/user-attachments/assets/8c62ab6c-72cb-472f-9d87-7ebf9b61eabd" />
 
----
 
 ## 7. Création d’une clé SSH ED25519
 
@@ -153,9 +148,7 @@ J’ai protégé ma clé privée avec une phrase secrète.
 
 ### Figure 7 — Création de ma clé ED25519
 
-<!-- Coller ici ma capture de création ED25519 -->
-
----
+<img width="923" height="513" alt="image" src="https://github.com/user-attachments/assets/3a5ac588-558a-44a2-8946-4b52edd4d6c8" />
 
 ## 8. Authentification SSH avec ma clé publique
 
@@ -172,10 +165,8 @@ La connexion a réussi.
 Ce résultat confirme que ma clé publique est correctement configurée et que l’authentification fonctionne sans utiliser le mot de passe de mon compte Debian.
 
 ### Figure 8 — Connexion SSH avec la clé ED25519
+<img width="923" height="402" alt="image" src="https://github.com/user-attachments/assets/50a1e471-26f3-48af-8c4d-9a9b22ddb7e5" />
 
-<!-- Coller ici ma capture de connexion ED25519 -->
-
----
 
 ## 9. Vérification des permissions SSH
 
@@ -202,9 +193,7 @@ Le résultat confirmait la présence de ma clé ED25519 associée à mon numéro
 
 ### Figure 9 — Vérification des permissions et de ma clé SSH
 
-<!-- Coller ici ma capture des permissions SSH -->
-
----
+<img width="923" height="166" alt="image" src="https://github.com/user-attachments/assets/e60aa977-09d8-40b8-8afc-2e42abaed98d" />
 
 ## 10. Ajout de la clé publique du professeur
 
@@ -232,7 +221,8 @@ La deuxième correspond à la clé publique du professeur.
 
 ### Figure 10 — Vérification de la présence de la clé du professeur
 
-<!-- Coller ici ma capture des deux clés SSH -->
+<img width="923" height="252" alt="image" src="https://github.com/user-attachments/assets/5770bb9b-bdd4-4ef5-a2e9-7d28aea99a18" />
+
 
 J’ai également vérifié les permissions du dossier et du fichier :
 
@@ -244,7 +234,8 @@ Les permissions étaient toujours de `700` pour le dossier `.ssh` et de `600` po
 
 ### Figure 11 — Vérification des permissions après l’ajout
 
-<!-- Coller ici ma capture des permissions après ajout -->
+<img width="923" height="166" alt="image" src="https://github.com/user-attachments/assets/441584b9-77c9-4258-a2c9-4034b3ef56b7" />
+
 
 La présence de la clé du professeur a été confirmée localement. Sa connexion avec la clé privée correspondante n’a pas été testée.
 
@@ -302,9 +293,8 @@ La connexion a réussi.
 
 ### Figure 12 — Connexion SSH avec ma clé RSA 4096 bits
 
-<!-- Coller ici ma capture de connexion RSA -->
+<img width="923" height="299" alt="image" src="https://github.com/user-attachments/assets/ed684bf8-736c-4bd1-8d51-bf44c67d8303" />
 
----
 
 ## 13. Vérification des trois clés publiques
 
@@ -334,9 +324,8 @@ Ces résultats confirment la présence de trois clés :
 
 ### Figure 13 — Vérification des trois clés SSH
 
-<!-- Coller ici ma capture des trois clés -->
+<img width="923" height="249" alt="image" src="https://github.com/user-attachments/assets/eeb0443d-95d5-4eb0-8b4d-8a588b0116be" />
 
----
 
 ## 14. Configuration de SSH-Agent
 
@@ -368,9 +357,7 @@ Identity added: /c/Users/islem/.ssh/b300150410 (islem@PCDEMOMO)
 
 ### Figure 14 — Ajout de ma clé RSA dans SSH-Agent
 
-<!-- Coller ici ma capture ssh-add -->
-
----
+<img width="923" height="198" alt="image" src="https://github.com/user-attachments/assets/88d4118d-24e4-4c56-b57a-6abe61fe62d6" />
 
 ## 15. Vérification de SSH-Agent
 
@@ -390,9 +377,8 @@ Cela confirme que ma clé RSA de 4096 bits est correctement chargée dans SSH-Ag
 
 ### Figure 15 — Vérification de ma clé dans SSH-Agent
 
-<!-- Coller ici ma capture ssh-add -l -->
+<img width="923" height="132" alt="image" src="https://github.com/user-attachments/assets/aa004fbe-daac-4c98-8942-f178c06ae7ec" />
 
----
 
 ## 16. Connexion SSH avec SSH-Agent
 
@@ -416,9 +402,8 @@ Ce résultat confirme que SSH-Agent fonctionne correctement avec ma clé RSA.
 
 ### Figure 16 — Connexion SSH réussie avec SSH-Agent
 
-<!-- Coller ici ma capture de connexion SSH-Agent -->
+<img width="923" height="211" alt="image" src="https://github.com/user-attachments/assets/1a9365a6-42c7-4b58-9bfd-0c99e42217b2" />
 
----
 
 ## 17. Bilan du laboratoire
 
