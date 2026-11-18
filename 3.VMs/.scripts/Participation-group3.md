@@ -31,4 +31,4 @@
 | 7 | [300155884](../300155884/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266604081?s=460&v=4' width=20 height=20></image>](https://github.com/patricia-nguemedzi) | :1st_place_medal: | :heavy_check_mark: | :x: | 0️⃣ Rien à corriger | 🏙️  ubuntu@10.7.236.225  |
 | 8 | [300156533](../300156533/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231499534?s=460&v=4' width=20 height=20></image>](https://github.com/raoufrm-4) | :x: | :x: | :x: | 0️⃣ Rien à corriger | 🏙️  ubuntu@10.7.236.226  |
 | 9 | [300156627](../300156627/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/118176543?s=460&v=4' width=20 height=20></image>](https://github.com/rougaiyatoudiallo) | :1st_place_medal: | :heavy_check_mark: | :x: | 0️⃣ Rien à corriger | 🏙️  rougaiyatoudiallo@10.7.236.227  |
-| :abacus: | \$\frac{4}{9}\$ = 44.44% | \$\displaystyle\sum_{i=1}^{9} s_i\$ = 4 |
+| :abacus: | \$\displaystyle\sum_{i=1}^{9} s_i\$ = 4 📈 44.44% |

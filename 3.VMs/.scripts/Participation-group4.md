@@ -29,4 +29,4 @@
 | 5 | [300158052](../300158052/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/121287922?s=460&v=4' width=20 height=20></image>](https://github.com/zizoubouchelkia) | :x: | :x: | :x: | 0️⃣ Rien à corriger | 🏙️  ubuntu@10.7.236.232  |
 | 6 | [300158185](../300158185/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939280?s=460&v=4' width=20 height=20></image>](https://github.com/Mohammed-mati) | :2nd_place_medal: | :heavy_check_mark: | :x: | 0️⃣ Rien à corriger | 🏙️  ubuntu@10.7.236.233  |
 | 7 | [300158383](../300158383/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501135?s=460&v=4' width=20 height=20></image>](https://github.com/salmabaali) | :x: | :x: | :x: | 0️⃣ Rien à corriger | 🏙️  ubuntu@10.7.236.234  |
-| :abacus: | \$\frac{3}{7}\$ = 42.86% | \$\displaystyle\sum_{i=1}^{7} s_i\$ = 3 |
+| :abacus: | \$\displaystyle\sum_{i=1}^{7} s_i\$ = 3 📈 42.86% |
