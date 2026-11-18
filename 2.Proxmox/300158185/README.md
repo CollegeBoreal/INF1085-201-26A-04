@@ -186,7 +186,7 @@ Le relevé fourni mentionne les paramètres suivants pour `server237`. Ils ne so
 | Nom d’hôte complet | server240.labinfo.local |
 | Adresse IPv4 | 10.7.236.240/23 |
 | Masque correspondant | 255.255.254.0 |
-| Passerelle | 10.7.240.1 |
+| Passerelle | 10.7.236.1 |
 | Serveur DNS | 8.8.8.8 |
 
 Le relevé indique que l’option **Pin network interface names** a été cochée pour stabiliser les noms des interfaces réseau.
