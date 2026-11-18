@@ -32,7 +32,8 @@ Ce document présente les résultats visibles dans mes captures. La configuratio
 
 L'adresse de la VM est différente de celle du serveur Proxmox. Elle devra être revérifiée avant une nouvelle connexion SSH.
 
-![Ressources et état de la VM 102](images/01_ressources_vm.png)
+![Ressources et état de la VM 102]<img width="825" height="525" alt="image" src="https://github.com/user-attachments/assets/047da3df-360f-43fe-91f8-ad0b4c51bb49" />
+
 
 *Figure 1 — VM 102 en cours d'exécution : 1 vCPU, 2 Gio de mémoire et disque de 32 Gio.*
 
@@ -40,7 +41,8 @@ L'adresse de la VM est différente de celle du serveur Proxmox. Elle devra être
 
 Le premier démarrage a échoué avec un message indiquant que le serveur ne prenait pas en charge la fonction CPU AES demandée par la configuration virtuelle. Le réglage proposé a été de remplacer le type de processeur par `host`.
 
-![Erreur CPU AES](images/02_erreur_cpu.png)
+![Erreur CPU AES]<img width="1035" height="348" alt="image" src="https://github.com/user-attachments/assets/f8dadf0e-1056-457c-a7df-3b585b325caf" />
+
 
 *Figure 2 — Message QEMU signalant une fonction AES non prise en charge.*
 
@@ -48,7 +50,7 @@ Le premier démarrage a échoué avec un message indiquant que le serveur ne pre
 
 Après des difficultés avec la saisie dans l'installateur en mode texte, l'installation a été relancée avec **Graphical install**. La configuration a ensuite progressé jusqu'au partitionnement et à l'installation des logiciels.
 
-![Configuration du nom de machine](images/03_installation_graphique.png)
+![Configuration du nom de machine]<img width="923" height="525" alt="image" src="https://github.com/user-attachments/assets/ba15567e-1845-4d2e-b6e4-e80b0e3bf77e" />
 
 *Figure 3 — Installateur graphique Debian : configuration du nom de machine.*
 
@@ -61,7 +63,7 @@ Le disque virtuel `sda` de 34,4 Go a été sélectionné avec le partitionnement
 | sda1 | 32,6 Go | ext4 | / |
 | sda5 | 1,8 Go | swap | swap |
 
-![Résumé des partitions](images/04_partitionnement.png)
+![Résumé des partitions]<img width="1035" height="485" alt="image" src="https://github.com/user-attachments/assets/a7d0d4d5-5acb-4440-bdad-14a3d0b5eab8" />
 
 *Figure 4 — Résumé du partitionnement avant application des changements.*
 
@@ -69,13 +71,15 @@ Le disque virtuel `sda` de 34,4 Go a été sélectionné avec le partitionnement
 
 Le pays sélectionné pour le miroir est le Canada et le miroir retenu est `deb.debian.org`. Le champ du mandataire HTTP peut rester vide lorsqu'aucun proxy n'est requis.
 
-![Configuration du miroir](images/05_miroir_canada.png)
+![Configuration du miroir]<img width="1008" height="525" alt="image" src="https://github.com/user-attachments/assets/a4e025cd-725c-4b0d-96f2-eb1021053c8a" />
+
 
 *Figure 5 — Sélection du Canada pour le miroir Debian.*
 
 La capture de sélection des logiciels montre l'environnement de bureau Debian, GNOME et les utilitaires usuels cochés. **Le serveur SSH n'est pas coché sur cette capture** ; sa présence doit donc être contrôlée après installation.
 
-![Sélection des logiciels](images/06_logiciels.png)
+![Sélection des logiciels]<img width="966" height="525" alt="image" src="https://github.com/user-attachments/assets/2fe3189f-9baf-499e-a161-8fdbe1c3420d" />
+
 
 *Figure 6 — Sélection des logiciels : GNOME et utilitaires usuels.*
 
@@ -83,7 +87,8 @@ La capture de sélection des logiciels montre l'environnement de bureau Debian, 
 
 L'installateur propose d'installer GRUB sur le disque principal. Après installation, le disque `scsi0` doit être placé avant le lecteur ISO `ide2` dans l'ordre de démarrage de la VM.
 
-![Installation de GRUB](images/07_grub.png)
+![Installation de GRUB]<img width="926" height="525" alt="image" src="https://github.com/user-attachments/assets/0bcc5c71-aee3-4737-b378-77cf8ed9bb69" />
+
 
 *Figure 7 — Confirmation de l'installation du programme de démarrage GRUB.*
 
@@ -91,7 +96,8 @@ L'installateur propose d'installer GRUB sur le disque principal. Après installa
 
 Debian a atteint le bureau GNOME. Le terminal ouvert ensuite confirme l'utilisation du compte `mohammed18` sur la machine `mohammed`.
 
-![Bureau GNOME](images/08_bureau_gnome.png)
+![Bureau GNOME]<img width="934" height="525" alt="image" src="https://github.com/user-attachments/assets/128cdb8b-0605-4d9f-9132-a694d87ff773" />
+
 
 *Figure 8 — Bureau GNOME après ouverture de session.*
 
@@ -114,7 +120,8 @@ Interface  : ens18 — UP
 IPv4       : 10.7.236.185/23
 ```
 
-![Compte et adresse IP Debian](images/09_compte_reseau.png)
+![Compte et adresse IP Debian]<img width="950" height="525" alt="image" src="https://github.com/user-attachments/assets/af446784-066a-4f99-97bf-a1dcfc0f439f" />
+
 
 *Figure 9 — Résultats de whoami, hostname et ip -br a.*
 
@@ -128,7 +135,8 @@ sudo systemctl enable --now ssh
 
 Elle a été refusée avec le message indiquant que `mohammed18` n'est pas dans le fichier sudoers. **Cette capture ne confirme donc ni l'activation de SSH, ni l'absence du paquet OpenSSH.**
 
-![Refus des droits sudo](images/10_erreur_sudo.png)
+![Refus des droits sudo]<img width="853" height="525" alt="image" src="https://github.com/user-attachments/assets/ffc01ee0-d9fc-48ba-99e1-63ac48904f63" />
+
 
 *Figure 10 — Le compte mohammed18 ne dispose pas des droits sudo au moment du test.*
 
