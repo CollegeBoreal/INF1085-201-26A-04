@@ -91,7 +91,7 @@ Par défaut, l'installateur propose le disque `/dev/nvme0n1` (953,87 GiB, SK hyn
 
 L'installateur demande de définir le mot de passe du compte administrateur **root** et une adresse courriel qui servira à recevoir les notifications importantes du serveur (par exemple les échecs de sauvegarde). Le mot de passe doit contenir au moins 8 caractères avec des lettres, des chiffres et des symboles.
 
-
+<img width="1677" height="938" alt="images" src="https://github.com/user-attachments/assets/6c8bc6e8-e0ae-4a5e-b7cf-0a39fe4fb4ae" />
 
 
 *Figure 13 : saisie du mot de passe root et de l'adresse courriel (champs floutés).*
@@ -133,7 +133,8 @@ Avant de lancer l'installation, l'installateur affiche un résumé des choix :
 
 L'option **Automatically reboot after successful installation** est cochée. Nous avons cliqué sur **Install**.
 
-<img width="1000" alt="Résumé de la configuration avant l’installation de Proxmox VE" src="COLLER_ICI_LE_LIEN_DE_LA_PHOTO_2" />
+<img width="1679" height="937" alt="images (2)" src="https://github.com/user-attachments/assets/cbb7f876-9247-46bb-9434-3aa7a1515c0b" />
+
 
  résumé de l'installation (courriel flouté).*
 
