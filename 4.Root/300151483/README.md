@@ -20,6 +20,7 @@ Ne plus utiliser le compte partagé `root@pam` pour administrer Proxmox, et cré
 - [x] Attribution du rôle `Administrator`
 - [x] Vérification des utilisateurs et des permissions
 - [x] Vérification dans l'interface Web
+- [x] Clé SSH personnelle et clé du professeur autorisées sur mon compte (connexion sans mot de passe)
 
 ---
 
@@ -147,17 +148,49 @@ uname -m
 
 ---
 
-## 🔑 Prochaine étape : clé SSH
+## 7. Clé SSH : connexion sans mot de passe
 
-Pour éviter de saisir un mot de passe à chaque connexion :
+### Ma paire de clés
+
+J'avais déjà une paire de clés ED25519 sur mon PC (`~/.ssh/id_ed25519` et `~/.ssh/id_ed25519.pub`), créée avec :
 
 ```bash
-ssh-keygen -t ed25519
-ssh-copy-id B300151483@10.7.236.237
-ssh B300151483@10.7.236.237
+ssh-keygen -t ed25519 -C "300151483@monboreal.com"
 ```
 
-Si tout fonctionne, aucun mot de passe n'est demandé.
+Comme le recommande le guide [🔐 X.Linux/3.keys](../../X.Linux/3.keys), je n'en ai pas recréé une nouvelle.
+
+### Autoriser les clés sur mon compte du serveur
+
+Dans le **Shell** de `server237` (interface Web), connecté avec mon propre compte `B300151483` et non `root`, j'ai ajouté deux clés publiques dans `~/.ssh/authorized_keys` :
+
+- **ma clé** (`ssh-ed25519 ... 300151483@monboreal.com`) ;
+- **la clé du professeur** (`ssh-rsa ... b300098957@ramena`), fournie dans le guide `X.Linux/3.keys`.
+
+```bash
+mkdir -p ~/.ssh && chmod 700 ~/.ssh
+touch ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys
+echo 'ssh-rsa AAAAB3NzaC1yc2E...RP5N b300098957@ramena' >> ~/.ssh/authorized_keys
+echo 'ssh-ed25519 AAAAC3NzaC1lZDI1...31HqC 300151483@monboreal.com' >> ~/.ssh/authorized_keys
+```
+
+C'est l'équivalent de `ssh-copy-id -i ~/.ssh/id_ed25519.pub B300151483@10.7.236.237` lancé depuis mon PC.
+
+![Clés autorisées sur server237](images/07-cle-ssh-authorized-keys.png)
+
+*Figure 7 : Sur `server237`, avec le compte `B300151483` (uid 1003) : le dossier `~/.ssh` est en `drwx------` (700), `authorized_keys` en `-rw-------` (600), et le fichier contient les deux clés, `b300098957@ramena` (professeur) et `300151483@monboreal.com` (moi).*
+
+> **Pourquoi ces droits ?** OpenSSH refuse d'utiliser `authorized_keys` si d'autres utilisateurs peuvent le modifier (option `StrictModes`). Avec 700 sur le dossier et 600 sur le fichier, moi seul peux le lire et le modifier.
+
+### Test depuis mon PC
+
+```text
+$ ssh -o BatchMode=yes B300151483@10.7.236.237 'echo "Connexion par cle OK : $(whoami)@$(hostname)"; uname -r'
+Connexion par cle OK : B300151483@server237
+7.0.2-6-pve
+```
+
+L'option `BatchMode=yes` interdit toute demande de mot de passe. Si la clé n'était pas acceptée, la commande échouerait avec `Permission denied`. ✅ Aucun mot de passe n'a été demandé.
 
 ---
 
