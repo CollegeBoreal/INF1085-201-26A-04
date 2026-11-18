@@ -259,8 +259,7 @@ Les lignes au-dessus viennent de **cloud-init** : au premier démarrage, il cré
 
 ### 6.2 Connexion
 
-On se connecte avec l'utilisateur **b300145955** et son mot de passe. Sous Linux, **rien ne s'affiche** quand on tape un mot de passe, pas même des étoiles : c'est normal.
-
+On se connecte avec l'utilisateur **b300145955** et son mot de passe. 
 Le message d'accueil donne déjà des informations utiles :
 - **Welcome to Ubuntu 26.04.1 LTS (GNU/Linux 7.0.0-43-generic x86_64)** ;
 - **Usage of / : 24.1 % of 30.34 GB** ;
