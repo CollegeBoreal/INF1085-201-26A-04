@@ -156,7 +156,8 @@ Le compte root possède les privilèges nécessaires pour administrer Proxmox VE
 
 Pour des raisons de sécurité, les informations confidentielles ne sont pas affichées dans notre rapport.
 
-![Configuration root](https://github.com/user-attachments/assets/df5dd717-10a5-4f1d-a20c-f0f95a11444c)
+<img width="1448" height="1086" alt="image" src="https://github.com/user-attachments/assets/c9bac233-7629-4096-b6ac-40b6f500a3f9" />
+
 
 *Figure 11 : Configuration du compte root et de l'adresse courriel.*
 
@@ -209,7 +210,8 @@ L'option **Automatically reboot after successful installation** était activée.
 
 Après vérification, nous avons sélectionné **Install** pour commencer l'installation.
 
-![Résumé installation](https://github.com/user-attachments/assets/d369b635-e012-4be5-9b7d-6b92416abe9d)
+<img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/cd53f872-d55c-42a9-8591-4966bb6a76f5" />
+
 
 *Figure 13 : Résumé des paramètres avant l'installation.*
 
