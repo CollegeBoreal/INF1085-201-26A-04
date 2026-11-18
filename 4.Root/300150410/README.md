@@ -1,6 +1,6 @@
 # 🔐 Comptes administrateurs Proxmox
 
-### 📄 Rapport de laboratoire — modèle à compléter avec mes captures d’écran
+### 📄 Rapport de laboratoire — Création d'un compte administrateur et sécurisation SSH
 
 ---
 
@@ -11,8 +11,6 @@
 **Environnement :** Proxmox VE 9.2.2 — server237 (10.7.236.237)
 
 **Sujet :** Création d’un compte administrateur individuel et sécurisation par clé SSH
-
-**État :** Travail en cours — compléter uniquement après vérification des résultats
 
 ---
 
@@ -116,18 +114,58 @@ Tester explicitement la clé privée sans autoriser l’authentification par mot
 
 ---
 
-# ✅ 4. Résultat attendu et vérification
+# 🛡️ 3. Recommandations de sécurité
 
-- Compte Linux B300150410 créé.
-- Compte Proxmox B300150410@pam enregistré.
-- Rôle Administrator attribué avec autorisation.
-- Connexion Web avec compte individuel.
-- Connexion SSH par clé ED25519.
+À la suite de ce laboratoire, plusieurs bonnes pratiques de sécurité ont été abordées.
+
+- ✅ Utiliser un compte administrateur individuel au lieu de partager le compte root.
+- ✅ Utiliser une clé SSH ED25519 pour sécuriser les connexions à distance.
+- ✅ Protéger la clé privée avec une phrase secrète.
+- ✅ Utiliser les permissions Proxmox pour contrôler les accès.
+- ✅ Réserver le compte root aux interventions de maintenance.
+- ✅ Ne jamais partager les mots de passe ou les clés privées sur GitHub.
 
 ---
 
-# 🎓 5. Conclusion (à compléter après le laboratoire)
+# ✅ 4. Résultat attendu et vérification
 
-Après avoir réalisé et vérifié les étapes, décrire ici les résultats obtenus, les difficultés rencontrées et les solutions appliquées. Ne déclarer une étape réussie que lorsqu’elle a été testée.
+| Étapes | Résultats |
+|---|---|
+| Création du compte Linux B300150410 | ✅ Réussie |
+| Enregistrement du compte B300150410@pam | ✅ Réussi |
+| Attribution du rôle Administrator | ✅ Visible dans la capture ACL |
+| Connexion à l'interface Web Proxmox | ✅ Captures de connexion présentes |
+| Génération de la clé SSH ED25519 | ✅ Réussie |
+| Vérification de l'accès au port SSH 22 | ✅ Réussie |
+| Authentification SSH par clé uniquement | ✅ Réussie |
+---
+
+# 🎓 5. Conclusion
+
+Pendant ce laboratoire, j'ai appris à créer et à gérer un compte administrateur individuel sur un serveur Proxmox VE.
+
+J'ai commencé par accéder au serveur server237 avec le compte root. Ensuite, j'ai créé mon propre utilisateur Linux B300150410 avec la commande adduser. J'ai vérifié sa création avec la commande id, qui m'a permis de voir son identifiant et les groupes auxquels il appartient.
+
+Après cette étape, j'ai ajouté mon compte dans Proxmox avec la commande pveum. J'ai également travaillé sur l'attribution des droits administrateur et vérifié les permissions avec la liste des ACL.
+
+J'ai ensuite utilisé l'interface Web de Proxmox pour accéder au serveur avec mon compte individuel.
+
+Pour la partie sécurité, j'ai utilisé Windows PowerShell afin de générer une paire de clés SSH ED25519. Au début, j'ai rencontré une petite difficulté parce qu'une clé SSH existait déjà sur mon ordinateur. Pour éviter de remplacer cette ancienne clé, j'ai créé une nouvelle paire de clés avec un nom différent.
+
+J'ai aussi rencontré un problème de connexion au serveur Proxmox. Le serveur ne répondait plus et j'obtenais des erreurs de connexion. J'ai utilisé les commandes ping et Test-NetConnection pour vérifier son accessibilité. Après plusieurs essais, j'ai réussi à confirmer que le port SSH 22 était de nouveau accessible.
+
+Ce laboratoire m'a permis de mieux comprendre la gestion des utilisateurs Linux, les permissions administrateur dans Proxmox et le fonctionnement des clés SSH.
+
+J'ai également appris à vérifier les problèmes de connexion réseau et à utiliser différentes commandes dans PowerShell et Linux.
+
+Pour terminer complètement la partie SSH, il reste à confirmer que la connexion fonctionne uniquement avec ma clé ED25519, sans utiliser le mot de passe du compte Linux.
+
+Dans l'ensemble, ce travail m'a permis de développer mes connaissances en administration de serveurs et en sécurité des accès à distance.
+
+---
+
+
+
+https://pve.proxmox.com/pve-docs/pveum.1.html
 
 ---
