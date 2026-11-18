@@ -56,7 +56,8 @@ whoami
 # root
 ```
 
-![Shell root du serveur Proxmox](images/01_connexion_shell_root.png)
+<img width="1327" height="558" alt="image" src="https://github.com/user-attachments/assets/8acbeff9-bdc2-437c-8cae-b4f418266a4a" />
+
 
 *Figure 1 — Accès au Shell du nœud `server238` avec `root` pour les vérifications initiales.*
 
@@ -71,7 +72,8 @@ id B300151504
 
 Résultat observé : `uid=1000(B300151504)`, groupe principal `B300151504`.
 
-![Vérification de l'utilisateur Linux](images/02_verification_compte_linux.png)
+<img width="963" height="377" alt="image" src="https://github.com/user-attachments/assets/1d68a9eb-4809-4130-9168-10f738a037aa" />
+
 
 *Figure 2 — `adduser` indique que le compte existe déjà ; `id` confirme sa présence.*
 
@@ -87,7 +89,7 @@ pveum user list
 
 Dans la liste, `B300151504@pam` apparaît avec `enable = 1` et le domaine d'authentification `pam`.
 
-![Liste des utilisateurs Proxmox](images/03_utilisateurs_proxmox.png)
+<img width="1322" height="551" alt="image" src="https://github.com/user-attachments/assets/930dcb5f-119a-4456-b5e0-f3ab0d9f6ce6" />
 
 *Figure 3 — Compte personnel Proxmox existant et activé.*
 
@@ -110,8 +112,8 @@ pveum acl list
 | `type` | `user` |
 | `ugid` | `B300151504@pam` |
 | `propagate` | `1` |
+<img width="1527" height="597" alt="image" src="https://github.com/user-attachments/assets/8e43048c-ad2e-433b-b82d-2ee52eb950a1" />
 
-![ACL administrateur](images/04_permissions_administrateur.png)
 
 *Figure 4 — Les ACL confirment les droits d'administrateur de `B300151504@pam`.*
 
@@ -128,7 +130,7 @@ Adresse utilisée dans le laboratoire : `https://10.7.236.235:8006`
 
 Une fois connecté, l'interface affiche **`B300151504@pam`** en haut à droite.
 
-![Connexion Web au compte administrateur](images/05_connexion_interface_web.png)
+<img width="1907" height="768" alt="image" src="https://github.com/user-attachments/assets/f43aaf48-45d5-435c-8954-be2c93f9b131" />
 
 *Figure 5 — Interface Web Proxmox ouverte avec le compte individuel, sans `root@pam`.*
 
@@ -137,8 +139,8 @@ Une fois connecté, l'interface affiche **`B300151504@pam`** en haut à droite.
 ### Session Linux locale
 
 La console du nœud accepte le compte `B300151504`.
+<img width="1342" height="562" alt="image" src="https://github.com/user-attachments/assets/79a9d48b-c612-4f1e-9efc-b36574984fb3" />
 
-![Connexion à la console Linux](images/06_connexion_console_linux.png)
 
 *Figure 6 — Connexion locale au nœud : `B300151504@server238:~$`.*
 
@@ -150,7 +152,7 @@ ssh B300151504@10.7.236.235
 
 Le test initial a été réalisé depuis une session Linux du serveur vers son adresse IP et s'est terminé avec succès.
 
-![Connexion SSH avec mot de passe](images/07_connexion_ssh_mot_de_passe.png)
+<img width="1332" height="567" alt="image" src="https://github.com/user-attachments/assets/05ca80ba-d4b9-41b0-a9d3-76123581ab2d" />
 
 *Figure 7 — Authentification SSH avec mot de passe réussie.*
 
@@ -165,8 +167,8 @@ Get-ChildItem "$HOME\.ssh\*.pub"
 ```
 
 Le fichier `id_ed25519.pub` existait déjà ; **aucune nouvelle paire de clés n'a été générée**.
+<img width="1468" height="587" alt="image" src="https://github.com/user-attachments/assets/61d5917e-4ec7-4c96-85f2-3a2dae5ff61e" />
 
-![Clé publique ED25519 sur Windows](images/08_cle_publique_existante.png)
 
 *Figure 8 — Clé publique existante dans le répertoire `.ssh` de Windows.*
 
@@ -179,8 +181,8 @@ Get-Content "$HOME\.ssh\id_ed25519.pub" | ssh B300151504@10.7.236.235 "umask 077
 ```
 
 Cette commande transfère **uniquement la clé publique** et l'ajoute au fichier `~/.ssh/authorized_keys` du compte distant sans effacer les clés déjà présentes.
+<img width="1475" height="642" alt="image" src="https://github.com/user-attachments/assets/db7571ec-221b-4c3c-8301-7993f170310e" />
 
-![Copie de la clé publique sur le serveur](images/09_installation_cle_ssh.png)
 
 *Figure 9 — Transfert de la clé publique ; la commande se termine sans erreur visible.*
 
@@ -193,8 +195,7 @@ ssh -o PreferredAuthentications=publickey -o PasswordAuthentication=no B30015150
 ```
 
 **Résultat obtenu :** ouverture de session et affichage de `B300151504@server238:~$`. Comme l'authentification par mot de passe était désactivée pour ce test, la session démontre que **la clé SSH fonctionne**.
-
-![Connexion SSH avec clé publique validée](images/10_ssh_cle_publique_reussie.png)
+<img width="1477" height="752" alt="image" src="https://github.com/user-attachments/assets/9a2c3fd8-dc02-4e45-8e92-58dcffa36ba2" />
 
 *Figure 10 — Authentification SSH par clé publique réussie depuis Windows.*
 
