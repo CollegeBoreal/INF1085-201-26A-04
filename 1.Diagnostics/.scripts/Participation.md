@@ -20,7 +20,7 @@
 |:hash:| Boréal :id: | 📑 | 🖼️ | 💯 | 💬 |
 |------|-------------|----|---|----|----|
 | 1 | [300139389](../300139389/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: | :x: | 0️⃣ Rien à corriger |
-| 2 | [300142542](../300142542/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/157492270?s=460&v=4' width=20 height=20></image>](https://github.com/anouarairn) | :2nd_place_medal: | :heavy_check_mark: | 🥉 | 1️⃣ Courage - On continue la documentation |
+| 2 | [300142542](../300142542/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/157492270?s=460&v=4' width=20 height=20></image>](https://github.com/anouarairn) | :1st_place_medal: | :heavy_check_mark: | 🥉 | 1️⃣ Courage - On continue la documentation |
 | 3 | [300142636](../300142636/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/185518351?s=460&v=4' width=20 height=20></image>](https://github.com/murtada-Nmd) | :1st_place_medal: | :x: | :x: | 0️⃣ Rien à corriger |
 | 4 | [300145955](../300145955/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501283?s=460&v=4' width=20 height=20></image>](https://github.com/arianemaeva03-star) | :2nd_place_medal: | :x: | 🥉 | 1️⃣ Courage - On continue la documentation |
 | 5 | [300150410](../300150410/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231570554?s=460&v=4' width=20 height=20></image>](https://github.com/lahlou06) | :1st_place_medal: | :heavy_check_mark: | :x: | 0️⃣ Rien à corriger |
