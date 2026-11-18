@@ -40,13 +40,13 @@ pvesm add lvmthin nvme-storage --vgname nvme-vg --thinpool data --content images
 <img width="941" height="905" alt="WhatsApp Image 2026-11-11 at 12 21 38" src="https://github.com/user-attachments/assets/7e72100d-a751-47aa-ac1c-cb167af365fd" />
 
 
-#### 2.3. Migration de la VM 100 vers le NVMe
+#### 2.3. Migration de la VM 104 vers le NVMe
 
 ##### Étape 1 : Vérification de l'emplacement du disque AVANT la migration
 Avant de déplacer le disque, nous avons vérifié sur quel stockage il se trouvait.
 
 ```bash
-qm config 100 | grep scsi0
+qm config 104 | grep scsi0
 ```
 
 ###### Résultat attendu (Avant) :"scsi0: local-lvm:vm-100-disk-0,size=20G"
@@ -58,7 +58,7 @@ qm config 100 | grep scsi0
 #### Étape 2 : Déplacement du disque
 
 ```bash
-qm move_disk 100 scsi0 nvme-storage
+qm move_disk 104 scsi0 nvme-storage
 ```
 
 ##### Preuve (Déplacement en cours) :
@@ -75,7 +75,7 @@ Lors d'un move_disk, Proxmox conserve l'ancien volume par sécurité sous le nom
 
 #### Commandes exécutées :
 ```bash
-qm set 100 --delete unused0
+qm set 104 --delete unused0
 ```
 
  Les anciens volumes ont été supprimés avec succès. Le lsblk final montre que les VM sont maintenant hébergées sur nvme--vg.
