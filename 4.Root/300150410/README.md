@@ -162,10 +162,8 @@ Pour terminer complètement la partie SSH, il reste à confirmer que la connexio
 
 Dans l'ensemble, ce travail m'a permis de développer mes connaissances en administration de serveurs et en sécurité des accès à distance.
 
----
 
 
 
-https://pve.proxmox.com/pve-docs/pveum.1.html
 
----
+
