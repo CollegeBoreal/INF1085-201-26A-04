@@ -183,10 +183,10 @@ Le relevé fourni mentionne les paramètres suivants pour `server237`. Ils ne so
 | Interface de gestion | nic0 |
 | Adresse MAC | 3c:d9:2b:ec:fb:a4 |
 | Pilote indiqué | bnx2 |
-| Nom d’hôte complet | server237.labinfo.local |
-| Adresse IPv4 | 10.7.236.237/23 |
+| Nom d’hôte complet | server240.labinfo.local |
+| Adresse IPv4 | 10.7.236.240/23 |
 | Masque correspondant | 255.255.254.0 |
-| Passerelle | 10.7.237.1 |
+| Passerelle | 10.7.240.1 |
 | Serveur DNS | 8.8.8.8 |
 
 Le relevé indique que l’option **Pin network interface names** a été cochée pour stabiliser les noms des interfaces réseau.
@@ -210,8 +210,8 @@ Le résumé du relevé d’installation reprend les paramètres ci-dessous. L’
 | Clavier | en-us |
 | Interface de gestion | nic0 |
 | Nom court du serveur | server237 |
-| Adresse IP | 10.7.236.237/23 |
-| Passerelle | 10.7.237.1 |
+| Adresse IP | 10.7.236.240/23 |
+| Passerelle | 10.7.240.1 |
 | DNS | 8.8.8.8 |
 
 L’option **Automatically reboot after successful installation** était activée.
@@ -326,12 +326,12 @@ Leur cause exacte n’a pas été établie pendant le laboratoire. Ils ne permet
 | Configuration du compte root | Réalisée |
 | Réseau du serveur physique | Valeurs du relevé à confirmer |
 | Environnement utilisé pour la VM | server1, 10.7.236.240:8006 |
-| Réseau Debian observé | ens18 UP, 10.7.236.185/23 |
+| Réseau Debian observé | ens18 UP, 10.7.236.240/23 |
 | Gestion de l’ancien groupe LVM | Renommage accepté |
 | Installation du système | Terminée selon le déroulement rapporté |
 | Redémarrage | Effectué |
 | Accès Web observé dans mes captures | Interface Proxmox de server1 accessible |
-| Correspondance avec server237 | À confirmer |
+| Correspondance avec server240 | À confirmer |
 
 ## 15. Compétences développées
 
