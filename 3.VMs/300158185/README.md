@@ -127,7 +127,8 @@ IPv4       : 10.7.236.185/23
 
 La vérification du 18 novembre confirme les mêmes valeurs.
 
-![Vérification du compte et de l’adresse IP le 18 novembre](captures/01-vm-ip.png)
+![Vérification du compte et de l’adresse IP le 18 novembre]<img width="960" height="294" alt="image" src="https://github.com/user-attachments/assets/bdffc13c-d0d9-402a-a4a0-8b5e1ffb8481" />
+
 
 *Figure 10 — VM 102 sur `server1`. L’interface `ens18` est active et porte l’adresse `10.7.236.185/23`.*
 
@@ -141,7 +142,8 @@ systemctl status ssh --no-pager
 
 Le service OpenSSH est **actif** (`active (running)`) et configuré pour démarrer automatiquement (`enabled`).
 
-![État du serveur OpenSSH dans Debian](captures/02-service-ssh.png)
+![État du serveur OpenSSH dans Debian]<img width="900" height="320" alt="image" src="https://github.com/user-attachments/assets/aeeef97c-6bb7-4c32-86bd-8952ce5d7099" />
+
 
 *Figure 11 — Service SSH actif et activé au démarrage dans la VM Debian.*
 
@@ -155,7 +157,8 @@ ssh mohammed18@10.7.236.185
 
 Le serveur SSH de la VM a répondu et demandé le mot de passe. La tentative s’est terminée par `Permission denied (publickey,password)`. La VM est donc joignable en SSH depuis mon poste Windows. L’ouverture de session reste à valider.
 
-![Message d’authentification SSH refusée dans PowerShell](captures/03-test-ssh-windows.png)
+![Message d’authentification SSH refusée dans PowerShell]<img width="1587" height="818" alt="image" src="https://github.com/user-attachments/assets/6fc7b718-a98a-4210-b780-4a3c48988eff" />
+
 
 *Figure 12 — La VM répond à la demande de connexion, puis refuse l’authentification.*
 
