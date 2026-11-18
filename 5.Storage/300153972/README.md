@@ -97,7 +97,7 @@ nvme-storage:vm-300153972-disk-0 raw     images    34359738368 300153972
 status: running
 ```
 
-Le disque `scsi0` est maintenant sur `nvme-storage`. L'ancien disque n'a pas été supprimé : Proxmox l'a gardé en `unused0`, ce qui permet de revenir en arrière en cas de problème.
+Le disque `scsi0` est maintenant sur `nvme-storage`. Au début, je n'ai pas supprimé l'ancien disque : Proxmox l'a gardé en `unused0`, ce qui permettait de revenir en arrière en cas de problème. Je l'ai supprimé plus tard (voir la partie 5).
 
 Ensuite je me suis connecté à la VM en SSH pour vérifier qu'elle marche toujours :
 
@@ -114,7 +114,38 @@ df -h /
 
 La VM n'a pas redémarré (18 h 30 de fonctionnement) et le système de fichiers est normal. Pour Ubuntu, rien n'a changé : le disque s'appelle toujours `/dev/sda`, seul l'endroit où il est stocké sur le serveur a changé.
 
-## 5. Questions de réflexion
+## 5. Libérer local-lvm
+
+Le 18 novembre, après avoir vérifié que la VM marchait bien sur le NVMe, j'ai supprimé l'ancien disque qui restait sur `local-lvm`. Avant, j'ai vérifié que `scsi0` était bien sur `nvme-storage` et que `unused0` était seulement l'ancienne copie.
+
+```bash
+qm config 300153972 | grep -e scsi0 -e unused
+qm unlink 300153972 --idlist unused0 --force 1
+```
+
+```text
+scsi0: nvme-storage:vm-300153972-disk-0,iothread=1,size=32G
+unused0: local-lvm:vm-300153972-disk-1
+update VM 300153972: -delete unused0 -force 1
+  Logical volume "vm-300153972-disk-1" successfully removed.
+```
+
+L'option `--force 1` supprime vraiment le volume. Sans elle, Proxmox enlève seulement le disque de la configuration et le laisse sur le stockage. Ensuite j'ai vérifié :
+
+```bash
+pvesm list local-lvm | grep 300153972
+pvesm status | grep -e local-lvm -e nvme
+```
+
+```text
+local-lvm:vm-300153972-cloudinit raw     images        4194304 300153972
+local-lvm        lvmthin     active       175005696        27318389       147687306   15.61%
+nvme-storage     lvmthin     active       999956480        65297158       934659321    6.53%
+```
+
+L'utilisation de `local-lvm` est passée de 17,96 % à 15,61 %. Il ne reste sur `local-lvm` que le petit disque cloud-init de ma VM (4 Mo). Il sert à donner la configuration (utilisateur, clé SSH, IP) au démarrage, donc je l'ai laissé. La VM a continué de tourner pendant la suppression.
+
+## 6. Questions de réflexion
 
 **1. Différence entre HDD, SSD SATA et NVMe ?**
 Le HDD a des plateaux qui tournent : grande capacité, pas cher, mais lent. Le SSD SATA n'a pas de pièces mécaniques et il est beaucoup plus rapide, mais il est limité par l'interface SATA (environ 550 Mo/s). Le NVMe est branché directement sur le bus PCI Express, donc il est encore plus rapide et il gère beaucoup plus d'opérations en parallèle.
@@ -137,12 +168,16 @@ Avec le thin provisioning, un disque de VM ne prend que l'espace vraiment écrit
 **7. Avantage du NVMe pour les VM ?**
 Les VM font beaucoup de petites lectures et écritures en même temps. Le NVMe a une latence très basse et beaucoup d'IOPS, donc les VM démarrent et répondent plus vite que sur les disques SAS du RAID 5. En plus, ça libère de l'espace sur `local-lvm`, qui est plus petit (175 G).
 
-## 6. Captures
+## 7. Captures
 
-Dans l'interface web, l'onglet Hardware de ma VM montre le Hard Disk (scsi0) sur `nvme-storage` et l'ancien disque en « Unused Disk 0 » sur `local-lvm`. En bas, la tâche « VM 300153972 - Move disk » est terminée avec le statut OK.
+Dans l'interface web, l'onglet Hardware de ma VM montre le Hard Disk (scsi0) sur `nvme-storage` et l'ancien disque en « Unused Disk 0 » sur `local-lvm` (capture prise avant la suppression de la partie 5). En bas, la tâche « VM 300153972 - Move disk » est terminée avec le statut OK.
 
 ![Hardware de la VM après le déplacement](images/vm-hardware-nvme.jpg)
 
 Dans nvme-storage > VM Disks, mon disque `vm-300153972-disk-0` (32 Go) apparaît avec les disques des autres VM qui sont déjà sur le NVMe.
 
 ![Disques sur nvme-storage](images/nvme-storage-vm-disks.jpg)
+
+Après la suppression, dans le terminal : il n'y a plus de `unused0`, seul le disque cloud-init reste sur `local-lvm`, et `local-lvm` est à 15,61 %.
+
+![local-lvm libéré](images/storage-local-lvm-libere.png)

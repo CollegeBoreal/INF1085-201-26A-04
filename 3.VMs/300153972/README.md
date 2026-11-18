@@ -102,6 +102,22 @@ ping -c 1 google.com   # 1 reçu, 0 % de perte (le DNS marche)
 systemctl is-active ssh   # active
 ```
 
+## 6. Accès pour le prof
+
+Pour que le prof puisse vérifier ma VM, j'ai ajouté sa clé publique (celle donnée dans la partie « Clé du prof » du lab). Le tableau de participation du groupe 3 se connecte avec `ubuntu@10.7.236.221`, mais ma VM avait seulement l'utilisateur `B300153972`, créé par cloud-init. J'ai donc créé l'utilisateur `ubuntu` avec les droits sudo, et j'ai mis la clé du prof chez `ubuntu` et chez `B300153972` :
+
+```bash
+sudo useradd -m -s /bin/bash -G sudo ubuntu
+echo "ubuntu ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/90-ubuntu
+sudo chmod 440 /etc/sudoers.d/90-ubuntu
+sudo install -d -m 700 -o ubuntu -g ubuntu /home/ubuntu/.ssh
+# la clé du prof est ajoutée à la fin de chaque authorized_keys
+sudo chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+sudo chmod 600 /home/ubuntu/.ssh/authorized_keys
+```
+
+Vérification : `id ubuntu` donne `groups=1001(ubuntu),27(sudo)`, et `ssh-keygen -lf` montre la clé du prof (`b300098957@ramena`, RSA 2048) dans les deux fichiers `authorized_keys`. La connexion par mot de passe reste désactivée (`passwordauthentication no`), donc on entre seulement avec une clé.
+
 ## Captures
 
 L'onglet Hardware de ma VM dans l'interface web de Proxmox. Les captures ont été prises le 17 novembre, après le lab 5 : c'est pour ça que le disque est maintenant sur `nvme-storage` et que l'ancien disque apparaît en « Unused Disk 0 ».
@@ -115,6 +131,10 @@ L'onglet Cloud-Init, avec mon utilisateur, ma clé SSH et l'adresse IP statique 
 Ma connexion SSH depuis mon PC, avec l'adresse de `eth0`, la route par défaut et le ping vers Internet :
 
 ![Connexion SSH et ip a](images/ssh-ip-a.png)
+
+L'utilisateur `ubuntu` et la clé du prof dans les `authorized_keys` de la VM :
+
+![Clé du prof sur la VM](images/vm-cle-prof.png)
 
 ## Conclusion
 
