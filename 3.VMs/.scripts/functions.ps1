@@ -32,6 +32,7 @@ function Write-ConfigurationSection {
         [string]$Server
     )
 
+    Write-Output ""
     Write-Output "## :gear: Configuration"
     Write-Output ""
 

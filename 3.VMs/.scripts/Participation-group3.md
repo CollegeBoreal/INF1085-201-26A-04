@@ -21,6 +21,7 @@
 | 🥈                 | Addresse IP assignée                |
 | 🥇                 | Accessible par Clé du prof          |
 | 🏆                 | README.md impeccable              |
+
 ## :gear: Configuration
 
 | Proxmox V9.2                        | User/Pwd                   |

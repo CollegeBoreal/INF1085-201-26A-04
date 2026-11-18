@@ -11,6 +11,7 @@
 |--------------------|-------------------------------|
 | :heavy_check_mark: | Prêt à être corrigé           |
 | :x:                | Fichier inexistant            |
+
 ## :gear: Configuration
 
 | Proxmox V9.2                        | User/Pwd                   |
@@ -20,8 +21,8 @@
 
 ## :a: Présence
 
-|:hash:| Boréal :id: | README.md | images | Appréc. | Commentaires | :link: IP |
-|------|-------------|-----------|--------|---------|--------------|-----------|
+|:hash:| Boréal :id: | 📑 | 🖼️ | 💯 | 💬 | :link: IP |
+|------|-------------|----|---|----|----|-----------|
 | 1 | [300139389](../300139389/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/583231?s=460&v=4' width=20 height=20></image>](https://github.com/octocat) | :x: | :x: | :x: | 0️⃣ Rien à corriger | 🏙️  ubuntu@10.7.236.201  |
 | 2 | [300142542](../300142542/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/157492270?s=460&v=4' width=20 height=20></image>](https://github.com/anouarairn) | :1st_place_medal: | :x: | :x: | 0️⃣ Rien à corriger | 🏙️  b300142542@10.7.236.202  |
 | 3 | [300142636](../300142636/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/185518351?s=460&v=4' width=20 height=20></image>](https://github.com/murtada-Nmd) | :1st_place_medal: | :x: | :x: | 0️⃣ Rien à corriger | 🏙️  b300142636@10.7.236.203  |
