@@ -30,7 +30,7 @@
 | 11 | [300151588](../300151588/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/58528251?s=460&v=4' width=20 height=20></image>](https://github.com/belhAmine) | :1st_place_medal: | :heavy_check_mark: |
 | 12 | [300151589](../300151589/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501417?s=460&v=4' width=20 height=20></image>](https://github.com/walidwolf31) | :1st_place_medal: | :heavy_check_mark: |
 | 13 | [300151753](../300151753/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266413355?s=460&v=4' width=20 height=20></image>](https://github.com/kheloufinourdine48-rgb) | :x: | :x: |
-| 14 | [300151834](../300151834/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266591188?s=460&v=4' width=20 height=20></image>](https://github.com/amirlounaci-bit) | :1st_place_medal: | :x: |
+| 14 | [300151834](../300151834/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266591188?s=460&v=4' width=20 height=20></image>](https://github.com/amirlounaci-bit) | :1st_place_medal: | :heavy_check_mark: |
 | 15 | [300152247](../300152247/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/236670407?s=460&v=4' width=20 height=20></image>](https://github.com/aniss-djahid) | :2nd_place_medal: | :heavy_check_mark: |
 | 16 | [300153401](../300153401/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266600832?s=460&v=4' width=20 height=20></image>](https://github.com/youneschaghica-hub) | :1st_place_medal: | :heavy_check_mark: |
 | 17 | [300153602](../300153602/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/266413722?s=460&v=4' width=20 height=20></image>](https://github.com/meryemabdedou83-ux) | :x: | :x: |
@@ -50,4 +50,4 @@
 | 31 | [300158052](../300158052/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/121287922?s=460&v=4' width=20 height=20></image>](https://github.com/zizoubouchelkia) | :1st_place_medal: | :heavy_check_mark: |
 | 32 | [300158185](../300158185/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/232939280?s=460&v=4' width=20 height=20></image>](https://github.com/Mohammed-mati) | :1st_place_medal: | :heavy_check_mark: |
 | 33 | [300158383](../300158383/README.md) :point_right: [<image src='https://avatars0.githubusercontent.com/u/231501135?s=460&v=4' width=20 height=20></image>](https://github.com/salmabaali) | :1st_place_medal: | :heavy_check_mark: |
-| :abacus: | \$\displaystyle\sum_{i=1}^{34} s_i\$ = 24 📈 70.59% |
+| :abacus: | \$\displaystyle\sum_{i=1}^{34} s_i\$ = 25 📈 73.53% |
