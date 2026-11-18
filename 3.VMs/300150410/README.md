@@ -33,10 +33,6 @@ J’ai également configuré l’authentification SSH par clé publique, ajouté
 ## 2. Accès à Proxmox et installation de Debian
 
 J’ai commencé par accéder à l’interface Web Proxmox VE du collège.
-<img width="957" height="532" alt="image" src="https://github.com/user-attachments/assets/0b2e8321-d64b-4afd-ae47-61f23e7cb479" />
-<img width="943" height="200" alt="image" src="https://github.com/user-attachments/assets/af26e788-40aa-474a-b892-7823d6145757" />
-
-
 
 J’ai utilisé le nœud `server237` pour installer ma machine virtuelle numéro `104`, nommée `B300150410VM`.
 
