@@ -2,7 +2,6 @@
 
 ## Rapport de diagnostic et de validation matérielle — Serveur HP ProLiant
 
-**Par :** Amirouche Lounaci
 **Cours :** INF1085-201 — Administration Linux
 
 ## 1. Introduction
