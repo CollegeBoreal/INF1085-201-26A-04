@@ -191,9 +191,9 @@ Ce laboratoire nous a permis de connaître les principaux composants d'un serveu
 
 ### Leçons apprises
 
-- ✅ Toujours tester **un seul changement à la fois** pour isoler la panne.
-- ✅ Retirer le **module de cache** du contrôleur RAID dès le début du diagnostic.
-- ✅ Un seul processeur doit toujours être dans l'**emplacement n°1**.
-- ✅ Après une réinitialisation avec l'interrupteur **SW1 n°6**, toujours le **remettre en position OFF**.
-- ✅ Lire attentivement les **messages affichés au POST** : ils indiquent souvent directement la cause du problème.
-- ✅ Ne pas publier de photo montrant des **mots de passe** (l'étiquette iLO a été masquée sur la photo du serveur).
+- Toujours tester **un seul changement à la fois** pour isoler la panne.
+- Retirer le **module de cache** du contrôleur RAID dès le début du diagnostic.
+- Un seul processeur doit toujours être dans l'**emplacement n°1**.
+- Après une réinitialisation avec l'interrupteur **SW1 n°6**, toujours le **remettre en position OFF**.
+- Lire attentivement les **messages affichés au POST** : ils indiquent souvent directement la cause du problème.
+- Ne pas publier de photo montrant des **mots de passe** (l'étiquette iLO a été masquée sur la photo du serveur).
