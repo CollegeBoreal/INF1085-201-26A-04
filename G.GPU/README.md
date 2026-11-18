@@ -292,3 +292,5 @@ qm config 101
 # 📚 References
 
 - [ ] [CNBC: The Truth About How Data Centers Use Water And Power To Keep Cool](https://youtu.be/qxB2eeHud6Q?si=tBF4FHNxMWpCXSQ1)
+
+<image src=images/Liquid-Cooling_AMD.jpeg width=50% height=50% > </image>
