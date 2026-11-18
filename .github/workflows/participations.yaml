@@ -26,6 +26,8 @@ jobs:
             "1.Diagnostics"
             "2.Proxmox"
             "3.VMs"
+            "4.Root"
+            "5.Storage"
           )
 
           foreach ($chapter in $chapters) {
@@ -50,6 +52,8 @@ jobs:
             "1.Diagnostics"
             "2.Proxmox"
             "3.VMs"
+            "4.Root"
+            "5.Storage"
           )
 
           foreach ($chapter in $chapters) {
