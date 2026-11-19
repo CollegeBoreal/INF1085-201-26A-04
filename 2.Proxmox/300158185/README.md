@@ -263,8 +263,8 @@ Cette opération de renommage ne constitue pas une validation de l’état des d
 Le relevé d’installation prévoit l’accès à `https://10.7.236.237:8006/` pour `server237`. Cette adresse reste à confirmer pour cette installation physique.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/62dc6876-3732-40b9-82f1-2072af7a4dc3" alt="Écran de fin d’installation du relevé source à vérifier" width="800">
-</p>
+<img width="1024" height="576" alt="04_Console" src="https://github.com/user-attachments/assets/903e5f89-7000-4c6b-aa5f-580d7b9ffb66" />
+
 
 *Figure 16 — Écran de fin d’installation joint au relevé source.*
 
