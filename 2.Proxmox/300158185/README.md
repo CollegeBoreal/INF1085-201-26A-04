@@ -169,8 +169,7 @@ Le compte root permet d’effectuer les opérations d’administration du serveu
 Le mot de passe n’est pas reproduit dans ce rapport.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/df5dd717-10a5-4f1d-a20c-f0f95a11444c" alt="Configuration du compte root et du courriel" width="800">
-</p>
+ <img width="1024" height="576" alt="01_Courriel" src="https://github.com/user-attachments/assets/84065305-7dfc-4386-95aa-5a086f88d39a" />
 
 *Figure 11 — Définition du mot de passe administrateur et de l’adresse courriel.*
 
@@ -192,8 +191,8 @@ Le relevé fourni mentionne les paramètres suivants pour `server237`. Ils ne so
 Le relevé indique que l’option **Pin network interface names** a été cochée pour stabiliser les noms des interfaces réseau.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/d54a3a5c-8375-4ff3-a8ca-fa457a38cd15" alt="Paramètres réseau du serveur" width="800">
-</p>
+ <img width="1024" height="576" alt="02_Reseau" src="https://github.com/user-attachments/assets/f93c8709-1e0e-494a-9263-38774060186e" />
+
 
 *Figure 12 — Configuration du réseau de gestion.*
 
@@ -219,8 +218,8 @@ L’option **Automatically reboot after successful installation** était activé
 Après vérification, nous avons cliqué sur **Install**.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/d369b635-e012-4be5-9b7d-6b92416abe9d" alt="Résumé des paramètres d’installation" width="800">
-</p>
+ <img width="1024" height="576" alt="03_Resume" src="https://github.com/user-attachments/assets/921086c8-e0d2-4228-84c5-e53aa7f0aedd" />
+
 
 *Figure 13 — Vérification finale avant l’installation.*
 
@@ -236,8 +235,8 @@ L’installateur a effectué les principales opérations suivantes :
 6. Redémarrage du serveur après l’installation.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/225829a0-37ee-4c0b-9704-c07eab2befae" alt="Création des partitions pendant l’installation" width="800">
-</p>
+  <img width="1024" height="576" alt="04_Console" src="https://github.com/user-attachments/assets/62646a16-5738-4e6f-88a2-fda97f8a845c" />
+
 
 *Figure 14 — Préparation du stockage par l’installateur.*
 
