@@ -75,7 +75,8 @@ ssh ubuntu@10.7.236.223
 
 J’ai saisi le mot de passe du compte `ubuntu` et obtenu l’invite `ubuntu@ubuntu300155045:~$`.
 
-![Connexion SSH réussie à la VM](images/ssh-vm.png)
+<img width="948" height="1151" alt="ssh-vm" src="https://github.com/user-attachments/assets/6cd061d7-a99f-4bdc-8b45-b9687cc8ab3b" />
+
 
 ## 6. Bureau graphique XFCE
 
