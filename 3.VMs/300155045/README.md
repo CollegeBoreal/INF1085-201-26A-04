@@ -85,7 +85,8 @@ J’ai installé XFCE et LightDM avec `sudo apt install xfce4 lightdm`. Au premi
 
 J’ai défini `user-session=xfce` dans la section `[Seat:*]` du fichier `/etc/lightdm/lightdm.conf.d/90-xfce.conf`, puis relancé LightDM avec `sudo systemctl restart lightdm`. Après la connexion, le bureau s’est ouvert dans la console Proxmox.
 
-![Bureau XFCE de ma VM Ubuntu](images/bureau-xfce.png)
+<img width="1907" height="1132" alt="bureau-xfce" src="https://github.com/user-attachments/assets/b15eb40e-2490-402d-9c8d-5f2b3acd1535" />
+
 
 ## Conclusion
 
