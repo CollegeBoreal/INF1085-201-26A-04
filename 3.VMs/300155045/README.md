@@ -20,7 +20,8 @@ Créer ma VM Ubuntu Server sur le serveur Proxmox du groupe 3, lui attribuer une
 
 Je me suis connecté à l’interface Web avec mon compte `B300155045@pam`. J’ai aussi testé SSH depuis Windows PowerShell avec ma clé ED25519. La ligne `using "publickey"` confirme que le serveur Proxmox a accepté ma clé.
 
-![Connexion SSH par clé au serveur Proxmox](images/ssh-proxmox.png)
+<img width="939" height="1188" alt="ssh-proxmox" src="https://github.com/user-attachments/assets/dcc997da-45fc-4eb9-999c-a8437360787c" />
+
 
 ## 2. Création de la VM
 
