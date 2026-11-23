@@ -7,9 +7,8 @@
 | **Groupe** | 2-31 |
 | **Serveur** | HP ProLiant DL360 G7 — S/N USE044N2AL — étiquette S20 — nœud `server1` — `10.7.236.240` |
 | **Ressources du serveur** | 64 Go de RAM, 16 CPU, disque `sda` de 273,4 Go, NVMe de 1 To |
-| **Ma VM** | `104` |
 
-> **Note :** la partie 1 (préparation du NVMe) a été réalisée en équipe (groupe 2-31) sur `server1` : les captures sont celles du groupe.
+> **Note :** ce travail (préparation du NVMe) a été réalisé en équipe (groupe 2-31) sur `server1` : les captures sont celles du groupe.
 
 ---
 
@@ -17,11 +16,10 @@
 
 1. [Objectifs](#1-objectifs)
 2. [Notions importantes](#2-notions-importantes)
-3. [Partie 1 — Préparer le NVMe et créer `nvme-storage`](#3-partie-1--préparer-le-nvme-et-créer-nvme-storage)
-4. [Partie 2 — Déplacer le disque de la VM 104 vers le NVMe](#4-partie-2--déplacer-le-disque-de-la-vm-104-vers-le-nvme)
-5. [Problèmes rencontrés](#5-problèmes-rencontrés)
-6. [Questions de réflexion](#6-questions-de-réflexion)
-7. [Conclusion](#7-conclusion)
+3. [Préparer le NVMe et créer `nvme-storage`](#3-partie-1--préparer-le-nvme-et-créer-nvme-storage)
+4. [Problèmes rencontrés](#4-problèmes-rencontrés)
+5. [Questions de réflexion](#5-questions-de-réflexion)
+6. [Conclusion](#6-conclusion)
 
 ---
 
@@ -31,7 +29,6 @@
 - Comprendre partition, système de fichiers et LVM.
 - Créer un PV, un VG et un thin pool sur un disque NVMe.
 - Ajouter ce disque comme stockage Proxmox (`nvme-storage`).
-- Déplacer le disque d'une VM vers le stockage NVMe.
 
 ## 2. Notions importantes
 
@@ -140,40 +137,7 @@ pvesm status
 
 *Figure 6 — `pvs`, `vgs`, `lvs` puis `pvesm status` : `nvme-storage` est actif.*
 
-## 4. Partie 2 — Déplacer le disque de la VM 104 vers le NVMe
-
-Ma VM est la VM `104` (`salma`). Son disque `vm-104-disk-0` fait 32 G et se trouve sur `local-lvm` (thin pool `pve-data`, visible à la figure 6).
-
-```bash
-qm list
-qm config 104 | grep scsi0
-qm move_disk 104 scsi0 nvme-storage
-qm config 104 | grep scsi0
-pvesm list nvme-storage
-```
-
-**Résultat attendu :**
-- avant : `scsi0: local-lvm:vm-104-disk-0,size=32G` ;
-- après : `scsi0: nvme-storage:vm-104-disk-0,size=32G` ;
-- `pvesm list nvme-storage` affiche le disque de la VM.
-
-[À COMPLÉTER : exécuter ces commandes sur `server1` et ajouter les captures ci-dessous.]
-
-[CAPTURE 7 : `qm list` et `qm config 104` (avant)]
-
-[CAPTURE 8 : `qm move_disk 104 scsi0 nvme-storage` (déplacement terminé)]
-
-[CAPTURE 9 : `qm config 104` (après) et `pvesm list nvme-storage`]
-
-Après un `move_disk`, Proxmox garde l'ancien volume sous le nom `unused0`. Pour libérer l'espace sur `local-lvm` :
-
-```bash
-qm set 104 --delete unused0
-```
-
-[CAPTURE 10 : suppression de `unused0` et `lsblk` final avec `nvme--vg`]
-
-## 5. Problèmes rencontrés
+## 4. Problèmes rencontrés
 
 | Problème | Cause | Correction |
 |---|---|---|
@@ -183,7 +147,7 @@ qm set 104 --delete unused0
 | `pvesm add` → `400 Parameter verification failed … invalid content type` | Faute de frappe dans la valeur de `--content` (`rootdirt` au lieu de `rootdir`, d'après le groupe) | Commande refaite avec `--content images,rootdir` : `nvme-storage` apparaît ensuite dans `pvesm status` |
 | Avertissements `lvcreate` (zeroing, chunk 512 KiB) | Réglages par défaut du thin pool | Pas bloquants ; on peut utiliser `-Zn` ou un chunk plus petit |
 
-## 6. Questions de réflexion
+## 5. Questions de réflexion
 
 **1. Différence entre HDD, SSD SATA et NVMe ?**
 Le HDD est un disque mécanique : grande capacité, faible coût, plus lent. Le SSD SATA n'a pas de pièces mécaniques et est plus rapide. Le NVMe passe par le bus PCI Express et est le plus rapide.
@@ -206,8 +170,7 @@ Parce que l'espace est alloué seulement quand il est utilisé, ce qui permet de
 **7. Avantage d'un NVMe pour les VM ?**
 Il est beaucoup plus rapide (débit et latence), ce qui améliore les performances des machines virtuelles.
 
-## 7. Conclusion
+## 6. Conclusion
 
 Le disque NVMe de `server1` a été nettoyé (`wipefs`), partitionné en GPT, puis transformé en PV, VG `nvme-vg` et thin pool `data`. Le stockage `nvme-storage` (lvmthin) est actif dans Proxmox (`pvesm status`).
 
-[À COMPLÉTER APRÈS LA PARTIE 2 : confirmer que le disque de la VM 104 est sur `nvme-storage`, que la VM fonctionne et que `unused0` a été supprimé.]
