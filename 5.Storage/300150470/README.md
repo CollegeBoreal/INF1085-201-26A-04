@@ -30,9 +30,8 @@
 
 | VM | Nom | Disque | Taille | Stockage |
 | --- | --- | --- | --- | --- |
-| 100 | B300142542-vm | vm-100-disk-0 | 20 Go | ⚡ nvme-storage |
 | **102** | **B300150470-vm** | **vm-102-disk-0** | **32 Go** | **⚡ nvme-storage** |
-| 104 | B300150410-VM | vm-104-disk-0 | 32 Go | ⚡ nvme-storage |
+
 
 ---
 
