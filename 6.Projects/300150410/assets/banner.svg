@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420">
+
+<defs>
+  <linearGradient id="bg" x2="1" y2="1">
+    <stop stop-color="#030503"/>
+    <stop offset=".5" stop-color="#183500"/>
+    <stop offset="1" stop-color="#030503"/>
+  </linearGradient>
+
+  <linearGradient id="green" x2="0" y2="1">
+    <stop stop-color="#eaff90"/>
+    <stop offset=".5" stop-color="#b6ff00"/>
+    <stop offset="1" stop-color="#238900"/>
+  </linearGradient>
+
+  <linearGradient id="wallet" x2="1" y2="1">
+    <stop stop-color="#354035"/>
+    <stop offset="1" stop-color="#050805"/>
+  </linearGradient>
+
+  <filter id="glow">
+    <feGaussianBlur stdDeviation="5" result="blur"/>
+    <feMerge>
+      <feMergeNode in="blur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+
+  <pattern id="carbon" width="10" height="10"
+           patternUnits="userSpaceOnUse">
+    <path d="M0 0L10 10 M-5 5L5 15"
+          stroke="white" stroke-opacity=".04"/>
+  </pattern>
+</defs>
+
+<rect width="1200" height="420" rx="25"
+      fill="url(#bg)"/>
+
+<rect width="1200" height="420" rx="25"
+      fill="url(#carbon)"/>
+
+<rect x="3" y="3" width="1194" height="414"
+      rx="25" fill="none" stroke="#b6ff00"
+      stroke-width="2"/>
+
+<!-- Flammes vertes -->
+
+<g fill="url(#green)" opacity=".55" filter="url(#glow)">
+
+  <path d="M700 400 Q780 320 730 240
+           Q850 290 810 130
+           Q950 260 890 340
+           Q970 280 950 180
+           Q1060 300 1000 400 Z"/>
+
+  <path d="M950 400 Q1030 320 990 240
+           Q1100 270 1060 100
+           Q1190 230 1130 330
+           Q1180 300 1170 230
+           L1190 400 Z"/>
+
+</g>
+
+<!-- Titre principal -->
+
+<text x="60" y="85" font-family="Arial"
+      font-size="15" letter-spacing="5"
+      fill="#b6ff00">
+  NEXT GENERATION DIGITAL WALLET
+</text>
+
+<text x="55" y="160" font-family="Arial"
+      font-size="62" font-weight="900"
+      fill="white">
+  SMARTWALLET
+</text>
+
+<text x="60" y="235" font-family="Arial"
+      font-size="75" font-weight="900"
+      fill="#b6ff00" filter="url(#glow)">
+  // PRO
+</text>
+
+<text x="60" y="280" font-family="Arial"
+      font-size="23" letter-spacing="3"
+      fill="white">
+  YOUR LIFE. ONE WALLET.
+</text>
+
+<rect x="60" y="305" width="330" height="40"
+      rx="20" fill="#b6ff00"/>
+
+<text x="225" y="331" text-anchor="middle"
+      font-family="Arial" font-size="14"
+      font-weight="bold" fill="#071000">
+  PREMIUM DIGITAL EXPERIENCE
+</text>
+
+<!-- Carte RAMQ -->
+
+<g transform="translate(780 65) rotate(-15 140 85)">
+  <rect width="280" height="170" rx="18"
+        fill="#1269bd" stroke="#9edaff"
+        stroke-width="2"/>
+  <text x="20" y="35" fill="white"
+        font-family="Arial" font-size="26"
+        font-weight="bold">RAMQ</text>
+  <text x="20" y="60" fill="white"
+        font-family="Arial" font-size="12">
+    HEALTH / DEMO
+  </text>
+</g>
+
+<!-- Carte Boréal -->
+
+<g transform="translate(820 90) rotate(13 140 85)">
+  <rect width="280" height="170" rx="18"
+        fill="#7439b5" stroke="#c99aff"
+        stroke-width="2"/>
+  <text x="20" y="35" fill="white"
+        font-family="Arial" font-size="25"
+        font-weight="bold">BOREAL</text>
+  <text x="20" y="60" fill="white"
+        font-family="Arial" font-size="12">
+    STUDENT / DEMO
+  </text>
+</g>
+
+<!-- Carte Desjardins -->
+
+<g transform="translate(790 135) rotate(-4 140 85)">
+  <rect width="280" height="170" rx="18"
+        fill="url(#green)" stroke="#eaff90"
+        stroke-width="2"/>
+  <text x="20" y="35" fill="#071000"
+        font-family="Arial" font-size="25"
+        font-weight="bold">DESJARDINS</text>
+  <text x="20" y="60" fill="#071000"
+        font-family="Arial" font-size="13">
+    AUTO INSURANCE / DEMO
+  </text>
+  <rect x="20" y="80" width="45" height="32"
+        rx="6" fill="#d4c17d" stroke="#fff0ae"/>
+</g>
+
+<!-- Portefeuille noir carbone -->
+
+<rect x="750" y="235" width="380" height="145"
+      rx="22" fill="url(#wallet)"
+      stroke="#b6ff00" stroke-width="2"/>
+
+<rect x="760" y="245" width="360" height="125"
+      rx="16" fill="none" stroke="#b6ff00"
+      stroke-opacity=".6" stroke-dasharray="5 5"/>
+
+<rect x="750" y="235" width="380" height="145"
+      rx="22" fill="url(#carbon)"/>
+
+<text x="780" y="300" font-family="Arial"
+      font-size="42" font-weight="900"
+      fill="#b6ff00" filter="url(#glow)">
+  SW // PRO
+</text>
+
+<text x="780" y="335" font-family="Arial"
+      font-size="13" letter-spacing="4"
+      fill="#a4b29e">
+  DIGITAL COLLECTION
+</text>
+
+<path d="M1080 280 L1100 300 L1080 320 L1060 300 Z"
+      fill="none" stroke="#b6ff00"
+      stroke-width="3" filter="url(#glow)"/>
+
+<!-- Auteur -->
+
+<text x="60" y="390" font-family="Arial"
+      font-size="14" letter-spacing="2"
+      fill="white">
+  DEVELOPED BY LACHI LAHLOU / 2026
+</text>
+
+</svg>
