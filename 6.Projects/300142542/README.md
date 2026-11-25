@@ -158,7 +158,7 @@ nginx -t && systemctl enable --now nginx && systemctl reload nginx
 Ouvrez votre navigateur sur le réseau local et accédez à l'adresse IP de votre machine Debian (par exemple http://10.7.236.202).
 💡 Note : Une pastille verte en bas à gauche de l'écran indique "DB: PostgreSQL connected" lorsque le frontend communique correctement avec l'API.
 
-* 🔒 Sécurité & Bonnes Pratiques
+## 🔒 Sécurité & Bonnes Pratiques
 * 🛡️ Isolation du réseau : L'API Node.js écoute uniquement sur 127.0.0.1 (localhost). Seul Nginx est exposé sur le port 80.
 
 * 🌐 Usage local / VPN : Il est recommandé d'héberger cette application sur un réseau local privé ou d'y accéder via un tunnel sécurisé (Tailscale ou WireGuard) plutôt que d'exposer le port 80 directement sur Internet.
