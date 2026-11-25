@@ -50,7 +50,7 @@ Le module de mémoire cache associé au contrôleur RAID est repéré dans le se
 
 🧪 Partie 2 — Tests des composants
 🟢 Étape 6 — Premier démarrage avec un processeur
-![BIOS avec 16 Go de RAM](images/WhatsApp%20Image%202026-11-19%20at%2000.33.23.jpeg)
+![BIOS avec 16 Go de RAM](images/WhatsApp%20Image%202026-11-19%20at%2000.33.23%20%281%29.jpeg)
 Dans le modèle, le premier test utilise un processeur et une barrette de RAM de 16 Go. L'écran de démarrage indique :
 
 16 GB Installed
@@ -62,7 +62,7 @@ La touche F9 donne accès à l'utilitaire de configuration. L'écran ROM-Based S
 ### Vérification du BIOS avec 64 Go de RAM
 
 Lors d'un autre démarrage, j'ai observé que le serveur HP ProLiant détectait 64 Go de RAM et un processeur Intel Xeon E5620 à 2,40 GHz avec quatre cœurs activés.
-![Mon BIOS avec 64 Go de RAM](images/WhatsApp%20Image%202026-11-19%20at%2000.33.52.jpeg)
+![Mon BIOS avec 64 Go de RAM](images/WhatsApp%20Image%202026-11-19%20at%2000.33.52%20%281%29.jpeg)
 
 
 
