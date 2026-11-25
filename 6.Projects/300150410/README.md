@@ -1,176 +1,308 @@
 <div align="center">
 
-<img src="./assets/banner.svg" width="100%" alt="SmartWallet PRO"/>
+<img src="assets/banner.svg" width="100%" alt="SmartWallet PRO">
 
-![Version](https://img.shields.io/badge/VERSION-1.0-B6FF00?style=for-the-badge&labelColor=050806)
-![Status](https://img.shields.io/badge/STATUS-DEPLOYED-B6FF00?style=for-the-badge&labelColor=050806)
-![Experience](https://img.shields.io/badge/EXPERIENCE-3D-B6FF00?style=for-the-badge&labelColor=050806)
+# 💳 SMARTWALLET // PRO
 
-### 🔥 YOUR LIFE. ONE WALLET. 🔥
+### DIGITAL DOCUMENT MANAGEMENT SYSTEM
 
-[🚀 Lancer SmartWallet PRO](http://10.7.236.205)
+![Status](https://img.shields.io/badge/STATUS-OPERATIONAL-00FF88?style=for-the-badge)
+![Debian](https://img.shields.io/badge/DEBIAN-13-A80030?style=for-the-badge&logo=debian)
+![Nginx](https://img.shields.io/badge/NGINX-WEB_SERVER-009639?style=for-the-badge&logo=nginx)
+![MariaDB](https://img.shields.io/badge/MARIADB-DATABASE-003545?style=for-the-badge&logo=mariadb)
+![PHP](https://img.shields.io/badge/PHP-BACKEND-777BB4?style=for-the-badge&logo=php)
+![Proxmox](https://img.shields.io/badge/PROXMOX-VIRTUALIZATION-E57000?style=for-the-badge&logo=proxmox)
+
+**Une nouvelle expérience de gestion numérique des documents personnels.**
 
 </div>
 
 ---
-## ⚡ Présentation du projet
 
-**SMARTWALLET // PRO** est une application web interactive de gestion de documents personnels dans un portefeuille numérique en 3D.
+## 01 — Présentation du projet
 
-Son design futuriste combine le noir carbone, le vert néon, des reflets métalliques et des animations fluides inspirées des portefeuilles numériques modernes.
+SMARTWALLET PRO est une application web permettant de centraliser et de gérer des documents personnels fictifs dans un portefeuille numérique interactif.
 
-L'application est hébergée sur une machine virtuelle Debian via Proxmox VE et propulsée par Nginx.
+Le projet combine une interface moderne en trois dimensions, un serveur web Nginx, une API PHP et une base de données relationnelle MariaDB.
+
+L'application est hébergée sur une machine virtuelle Debian 13 dans un environnement Proxmox VE.
+
+Ce projet a été réalisé dans le cadre du cours INF1085 — Administration Linux au Collège Boréal, campus de Toronto.
 
 ---
 
-## 🛠️ Technologies utilisées
+## 02 — Objectifs
+
+- Déployer une application web sous Linux.
+- Configurer un serveur web Nginx.
+- Administrer une machine virtuelle Debian.
+- Concevoir une interface interactive et responsive.
+- Installer et configurer MariaDB.
+- Développer une API PHP.
+- Assurer la persistance des données.
+- Sécuriser les identifiants de connexion.
+- Documenter et publier le projet sur GitHub.
+
+---
+
+## 03 — Fonctionnalités
+
+| Fonctionnalité | Description | État |
+|---|---|---|
+| Portefeuille numérique | Interface interactive en 3D | ✅ |
+| Animation des cartes | Ouverture, fermeture et rotation | ✅ |
+| Recherche | Recherche des documents | ✅ |
+| Ajout | Création de nouvelles cartes | ✅ |
+| Suppression | Suppression des documents | ✅ |
+| Expiration | Affichage des dates d'expiration | ✅ |
+| Responsive Design | Adaptation aux différentes tailles d'écran | ✅ |
+| Base de données | Stockage permanent dans MariaDB | ✅ |
+| API PHP | Communication avec la base de données | ✅ |
+| Sécurité SQL | Requêtes préparées PDO | ✅ |
+
+---
+
+## 04 — Technologies utilisées
 
 <div align="center">
 
-![Debian](https://img.shields.io/badge/DEBIAN-13-050806?style=for-the-badge&logo=debian&logoColor=B6FF00)
-![Proxmox](https://img.shields.io/badge/PROXMOX-VE-050806?style=for-the-badge&logo=proxmox&logoColor=B6FF00)
-![Nginx](https://img.shields.io/badge/NGINX-050806?style=for-the-badge&logo=nginx&logoColor=B6FF00)
-
-![HTML5](https://img.shields.io/badge/HTML5-050806?style=for-the-badge&logo=html5&logoColor=B6FF00)
-![CSS3](https://img.shields.io/badge/CSS3-050806?style=for-the-badge&logo=css3&logoColor=B6FF00)
-![JavaScript](https://img.shields.io/badge/JAVASCRIPT-050806?style=for-the-badge&logo=javascript&logoColor=B6FF00)
-![PowerShell](https://img.shields.io/badge/POWERSHELL-050806?style=for-the-badge&logo=powershell&logoColor=B6FF00)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MariaDB](https://img.shields.io/badge/MARIADB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
+![Linux](https://img.shields.io/badge/LINUX-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![GitHub](https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white)
 
 </div>
 
----
-
-## 🔥 Fonctionnalités principales
-
-| Fonctionnalité | Description |
-| :--- | :--- |
-| 💳 Wallet 3D | Portefeuille numérique interactif |
-| 🔥 Animation | Ouverture et fermeture des cartes |
-| 🔄 Flip 3D | Retournement à 180 degrés |
-| 💎 Premium Design | Noir carbone et vert néon |
-| ✨ Effets visuels | Reflets métalliques |
-| 📱 Responsive | Interface mobile et ordinateur |
-| 🔍 Recherche | Recherche instantanée |
-| ➕ Ajout | Création de documents |
-| 🗑️ Suppression | Gestion des documents |
-| 💾 LocalStorage | Sauvegarde locale |
-| 📊 Dashboard | Statistiques des documents |
-| ⏳ Expiration | Suivi des renouvellements |
+| Technologie | Utilisation |
+|---|---|
+| HTML5 | Structure de l'application |
+| CSS3 | Design, animations et effets 3D |
+| JavaScript | Interactions et requêtes HTTP |
+| PHP 8.4 | Traitement des requêtes côté serveur |
+| PDO | Connexion et requêtes SQL préparées |
+| MariaDB | Stockage permanent des documents |
+| Nginx | Serveur web |
+| Debian 13 | Système d'exploitation |
+| Proxmox VE | Virtualisation |
+| SSH | Administration à distance |
+| SCP | Transfert sécurisé des fichiers |
+| GitHub | Gestion du code source |
 
 ---
 
-## 💳 Collection de cartes
-
-| Carte | Document | Couleur |
-| :--- | :--- | :---: |
-| Desjardins | Assurance automobile | 🟢 |
-| RAMQ | Assurance maladie | 🔵 |
-| SAAQ | Permis de conduire | 🟠 |
-| Collège Boréal | Carte étudiante | 🟣 |
-| Immatriculation | Certificat du véhicule | ⚫ |
-
-> Toutes les cartes sont fictives et non officielles.
-
----
-
-## 📸 Aperçu de l'application
-
-<!-- Ajouter ici les images de l'application si nécessaire -->
-
----
-
-## 🖥️ Architecture et infrastructure
-
-| Composant | Configuration |
-| :--- | :--- |
-| Hyperviseur | Proxmox VE |
-| Système | Debian 13 |
-| Serveur web | Nginx |
-| Adresse IP | 10.7.236.205 |
-| Port | 80 |
-| Protocole | HTTP |
-| Administration | PowerShell via SSH |
-| Frontend | HTML5, CSS3, JavaScript |
-| Stockage | LocalStorage |
-| Répertoire | /var/www/smartwallet |
-| Fichier principal | index.html |
+## 05 — Architecture du système
 
 ```mermaid
 flowchart TD
-    A["💻 Ordinateur / 📱 Téléphone"]
-    B["🌐 Réseau local"]
-    C["🖥️ Proxmox VE"]
-    D["🐧 VM Debian 13"]
-    E["⚡ Nginx - Port 80"]
-    F["💳 SMARTWALLET PRO"]
+    A["Utilisateur - Navigateur"] --> B["Interface SMARTWALLET PRO"]
+    B --> C["Serveur Nginx"]
+    C --> D["API PHP - PHP-FPM"]
+    D --> E[("MariaDB - smartwallet")]
+    E --> D
+    D --> B
 
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
+    style A fill:#101010,stroke:#00ff88,color:#ffffff
+    style B fill:#101010,stroke:#00ff88,color:#ffffff
+    style C fill:#101010,stroke:#00ff88,color:#ffffff
+    style D fill:#101010,stroke:#00ff88,color:#ffffff
+    style E fill:#003b22,stroke:#00ff88,color:#ffffff
+```
 
-    style A fill:#101710,color:#B6FF00,stroke:#B6FF00
-    style B fill:#101710,color:#B6FF00,stroke:#B6FF00
-    style C fill:#101710,color:#B6FF00,stroke:#B6FF00
-    style D fill:#101710,color:#B6FF00,stroke:#B6FF00
-    style E fill:#101710,color:#B6FF00,stroke:#B6FF00
-    style F fill:#B6FF00,color:#050806,stroke:#050806
+L'utilisateur interagit avec l'interface web. JavaScript transmet les requêtes HTTP à l'API PHP, qui communique avec MariaDB à l'aide de PDO.
+
+Les résultats sont retournés au format JSON et affichés dynamiquement dans l'application.
+
+---
+
+## 06 — Environnement de déploiement
+
+| Paramètre | Configuration |
+|---|---|
+| Hyperviseur | Proxmox VE |
+| Système | Debian 13 |
+| Adresse IP | 10.7.236.205 |
+| Serveur web | Nginx |
+| Port HTTP | 80 |
+| Port SSH | 22 |
+| Backend | PHP 8.4-FPM |
+| Base de données | MariaDB |
+| Nom de la base | smartwallet |
+| Répertoire web | /var/www/smartwallet |
+
+### Accès à l'application
+
+http://10.7.236.205
+
+L'adresse est privée et accessible depuis un réseau disposant d'une route vers la machine virtuelle.
+
+---
+
+## 07 — Structure du projet
+
+```text
+300150410/
+│
+├── assets/
+│   └── banner.svg
+│
+├── api/
+│   └── documents.php
+│
+├── config/
+│   ├── database.example.php
+│   └── nginx.conf
+│
+├── database/
+│   └── smartwallet.sql
+│
+├── images/
+│   └── .gitkeep
+│
+├── .gitignore
+├── index.html
+└── README.md
 ```
 
 ---
 
-## 🚀 Installation et déploiement
+## 08 — Installation des services
 
-### 01 — Connexion SSH depuis PowerShell
-
-```powershell
-ssh lahloulachi@10.7.236.205
-```
-
-Connexion en administrateur :
-
-```bash
-su -
-```
-
-### 02 — Installation de Nginx
+### Mise à jour du système
 
 ```bash
 apt update
-apt install -y nginx curl ca-certificates
+apt upgrade -y
+```
+
+### Installation des composants
+
+```bash
+apt install nginx mariadb-server php-fpm php-mysql -y
+```
+
+### Activation des services
+
+```bash
 systemctl enable --now nginx
+systemctl enable --now mariadb
+systemctl enable --now php8.4-fpm
 ```
 
-Vérification :
+### Vérification
 
 ```bash
-systemctl is-active nginx
+systemctl status nginx
+systemctl status mariadb
+systemctl status php8.4-fpm
 ```
 
-Résultat obtenu :
+---
 
-```text
-active
+## 09 — Base de données MariaDB
+
+La base de données `smartwallet` permet de conserver les documents de manière permanente.
+
+Contrairement à la première version utilisant LocalStorage, les informations sont désormais enregistrées directement sur le serveur.
+
+### Structure de la table documents
+
+| Champ | Type | Description |
+|---|---|---|
+| id | INT | Identifiant unique |
+| nom | VARCHAR(100) | Nom du document |
+| type | VARCHAR(100) | Catégorie du document |
+| reference | VARCHAR(100) | Référence du document |
+| expiration | DATE | Date d'expiration |
+| couleur | VARCHAR(50) | Couleur de la carte |
+| icone | VARCHAR(20) | Icône du document |
+| date_creation | TIMESTAMP | Date de création |
+
+### Modèle relationnel
+
+```mermaid
+erDiagram
+    DOCUMENTS {
+        int id PK
+        varchar nom
+        varchar type
+        varchar reference
+        date expiration
+        varchar couleur
+        varchar icone
+        timestamp date_creation
+    }
 ```
 
-### 03 — Création du répertoire web
+### Importation de la base
+
+Depuis le répertoire du projet :
 
 ```bash
-mkdir -p /var/www/smartwallet
-cd /var/www/smartwallet
-nano index.html
+mariadb < database/smartwallet.sql
 ```
 
-Le fichier `index.html` contient le code HTML, CSS et JavaScript de l'application.
-
-### 04 — Configuration de Nginx
+### Vérification des données
 
 ```bash
-nano /etc/nginx/sites-available/smartwallet
+mariadb -e "SELECT id, nom, reference FROM smartwallet.documents;"
 ```
 
-Configuration :
+### Documents de démonstration
+
+| ID | Document | Référence |
+|---|---|---|
+| 1 | Desjardins | DEMO-001 |
+| 2 | RAMQ | DEMO-002 |
+| 3 | SAAQ | DEMO-003 |
+| 4 | Collège Boréal | DEMO-004 |
+| 5 | Immatriculation | DEMO-005 |
+
+Toutes les informations utilisées sont fictives.
+
+---
+
+## 10 — API PHP
+
+L'API est disponible dans le fichier :
+
+`api/documents.php`
+
+Elle permet la communication entre JavaScript et MariaDB.
+
+| Méthode HTTP | Endpoint | Action |
+|---|---|---|
+| GET | /api/documents.php | Afficher les documents |
+| POST | /api/documents.php | Ajouter un document |
+| DELETE | /api/documents.php?id=ID | Supprimer un document |
+
+### Exemple de réponse JSON
+
+```json
+{
+  "id": 1,
+  "nom": "Desjardins",
+  "type": "Assurance automobile",
+  "reference": "DEMO-001",
+  "expiration": "2027-12-31",
+  "couleur": "vert",
+  "icone": "🚗"
+}
+```
+
+### Test de l'API
+
+```bash
+curl http://localhost/api/documents.php
+```
+
+Résultat obtenu : les cinq documents sont retournés au format JSON.
+
+---
+
+## 11 — Configuration de Nginx
 
 ```nginx
 server {
@@ -178,11 +310,17 @@ server {
     listen [::]:80 default_server;
 
     server_name _;
+
     root /var/www/smartwallet;
-    index index.html;
+    index index.html index.php;
 
     location / {
         try_files $uri $uri/ /index.html;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.4-fpm.sock;
     }
 
     add_header X-Content-Type-Options "nosniff" always;
@@ -191,127 +329,228 @@ server {
 }
 ```
 
-### 05 — Activation du site
+### Déploiement des fichiers
+
+Depuis le répertoire du projet, en tant que root :
 
 ```bash
+mkdir -p /var/www/smartwallet/api
+
+cp index.html /var/www/smartwallet/
+cp api/documents.php /var/www/smartwallet/api/
+
+cp config/nginx.conf /etc/nginx/sites-available/smartwallet
+
+ln -sfn /etc/nginx/sites-available/smartwallet /etc/nginx/sites-enabled/smartwallet
+
 rm -f /etc/nginx/sites-enabled/default
-ln -sf /etc/nginx/sites-available/smartwallet /etc/nginx/sites-enabled/smartwallet
+```
+
+### Validation de la configuration
+
+```bash
 nginx -t
 systemctl reload nginx
 ```
 
-Résultat obtenu :
+---
 
-```text
-nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
-nginx: configuration file /etc/nginx/nginx.conf test is successful
+## 12 — Sécurisation
+
+Plusieurs mesures de sécurité ont été appliquées :
+
+- Utilisation d'un compte MariaDB dédié.
+- Limitation des privilèges SQL.
+- Utilisation de requêtes préparées PDO.
+- Génération d'un mot de passe aléatoire de 48 caractères.
+- Stockage des identifiants en dehors du répertoire web.
+- Restriction des permissions du fichier de connexion.
+- Utilisation de SSH et SCP.
+- Exclusion des fichiers sensibles avec `.gitignore`.
+- Configuration d'en-têtes de sécurité HTTP.
+- Validation des données reçues par l'API.
+
+### Création du compte MariaDB
+
+Dans MariaDB :
+
+```sql
+CREATE USER 'smartwallet_user'@'localhost'
+IDENTIFIED BY 'VOTRE_MOT_DE_PASSE';
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON smartwallet.*
+TO 'smartwallet_user'@'localhost';
 ```
 
-### 06 — Test HTTP
+Remplacer le mot de passe d'exemple par un mot de passe sécurisé.
+
+### Configuration de la connexion PHP
 
 ```bash
-curl -I http://10.7.236.205
+mkdir -p /etc/smartwallet
+
+cp config/database.example.php /etc/smartwallet/database.php
+
+nano /etc/smartwallet/database.php
 ```
 
-Résultat obtenu :
+Renseigner le véritable mot de passe MariaDB dans ce fichier.
+
+### Permissions du fichier
+
+```bash
+chown root:www-data /etc/smartwallet/database.php
+chmod 640 /etc/smartwallet/database.php
+```
+
+Le véritable fichier de connexion n'est pas publié sur GitHub.
+
+### Fichier .gitignore
+
+```gitignore
+database.php
+.env
+*.bak
+*.log
+```
+
+---
+
+## 13 — Tests et validation
+
+| Test | Résultat |
+|---|---|
+| Connexion SSH | ✅ Réussi |
+| Serveur Nginx | ✅ Opérationnel |
+| Accès HTTP | ✅ Réussi |
+| Configuration Nginx | ✅ Valide |
+| Connexion PHP à MariaDB | ✅ Réussie |
+| Lecture des documents | ✅ Réussie |
+| Ajout d'un document | ✅ Réussi |
+| Suppression d'un document | ✅ Réussie |
+| Persistance des données | ✅ Confirmée |
+| Exportation SQL | ✅ Réussie |
+| Syntaxe PHP | ✅ Aucune erreur |
+| Changement du mot de passe | ✅ Réussi |
+| Transfert SCP | ✅ Réussi |
+| Publication GitHub | ✅ Réussie |
+
+### Test de persistance
+
+Une carte nommée `TEST MARIADB` a été créée depuis l'interface web.
+
+Une requête SQL a confirmé son enregistrement dans la base de données.
+
+La carte a ensuite été supprimée depuis l'application.
+
+Une nouvelle vérification SQL a confirmé que seuls les cinq documents originaux étaient présents.
+
+### Résultat final
 
 ```text
-HTTP/1.1 200 OK
-Server: nginx
-Content-Type: text/html
-Content-Length: 51097
-Connection: keep-alive
-X-Content-Type-Options: nosniff
-X-Frame-Options: SAMEORIGIN
-Referrer-Policy: no-referrer
++----+------------------+-----------+
+| id | nom              | reference |
++----+------------------+-----------+
+|  1 | Desjardins       | DEMO-001  |
+|  2 | RAMQ             | DEMO-002  |
+|  3 | SAAQ             | DEMO-003  |
+|  4 | Collège Boréal   | DEMO-004  |
+|  5 | Immatriculation  | DEMO-005  |
++----+------------------+-----------+
 ```
 
 ---
 
-## 🟢 État du déploiement
+## 14 — Sauvegarde de la base de données
 
-| Vérification | Résultat |
-| :--- | :---: |
-| Installation de Nginx | ✅ |
-| Connexion SSH | ✅ |
-| Création du répertoire web | ✅ |
-| Configuration Nginx | ✅ |
-| Déploiement de l'application | ✅ |
-| Réponse HTTP 200 OK | ✅ |
+La base MariaDB a été exportée avec la commande :
 
-<div align="center">
+```bash
+mariadb-dump --databases smartwallet > smartwallet.sql
+```
 
-![Deployment](https://img.shields.io/badge/DEPLOYMENT-SUCCESS-B6FF00?style=for-the-badge&labelColor=050806)
+Le fichier SQL est disponible dans :
 
-![HTTP](https://img.shields.io/badge/HTTP-200_OK-B6FF00?style=for-the-badge&labelColor=050806)
+`database/smartwallet.sql`
 
-[![Launch](https://img.shields.io/badge/🚀_LAUNCH-SMARTWALLET_PRO-B6FF00?style=for-the-badge&labelColor=050806)](http://10.7.236.205)
-
-</div>
-
-L'application est accessible sur le réseau local autorisé.
+Cette sauvegarde permet de restaurer la structure de la base et les documents de démonstration.
 
 ---
 
-## 🛡️ Sécurité et bonnes pratiques
+## 15 — Améliorations futures
 
-- Administration distante via SSH.
-- Utilisation d'une adresse IP privée.
-- Configuration des en-têtes de sécurité HTTP.
-- Utilisation exclusive de documents fictifs.
-- Aucun stockage de véritables informations sensibles.
-- Accès limité aux réseaux autorisés.
-
-Le stockage LocalStorage n'est pas chiffré.
-
----
-
-## 🔮 Améliorations futures
-
-- [ ] Installation d'un certificat HTTPS.
-- [ ] Authentification des utilisateurs.
-- [ ] Intégration d'une base de données.
-- [ ] Notifications de renouvellement.
-- [ ] Transformation en application PWA.
-- [ ] Accès distant sécurisé via VPN.
+- Authentification des utilisateurs.
+- Mise en place du protocole HTTPS.
+- Modification des documents existants.
+- Gestion de plusieurs utilisateurs.
+- Chiffrement des données sensibles.
+- Notifications avant expiration.
+- Sauvegardes automatiques avec CRON.
+- Importation de documents PDF.
 
 ---
 
-## 📚 Documentation officielle
+## 16 — Limites et avertissement
 
-- [Proxmox VE](https://pve.proxmox.com/pve-docs/)
+SMARTWALLET PRO est un projet pédagogique.
+
+Les cartes présentées sont des représentations fictives et ne constituent pas des documents officiels.
+
+L'application ne dispose pas encore d'authentification ni de chiffrement HTTPS. Elle ne doit pas être utilisée pour stocker de véritables informations personnelles ou confidentielles.
+
+---
+
+## 17 — Documentation technique
+
 - [Debian](https://www.debian.org/doc/)
+- [Proxmox VE](https://pve.proxmox.com/pve-docs/)
 - [Nginx](https://nginx.org/en/docs/)
-- [MDN Web Docs](https://developer.mozilla.org/fr/)
-- [OpenSSH](https://www.openssh.com/)
+- [MariaDB](https://mariadb.com/docs/)
+- [PHP PDO](https://www.php.net/manual/fr/book.pdo.php)
+- [GitHub](https://docs.github.com/fr)
 
 ---
 
-## 🎯 Conclusion
+## 18 — Conclusion
 
-Ce projet m'a permis de mettre en pratique mes connaissances en administration Linux, virtualisation, administration distante et configuration de serveurs web.
+La réalisation du projet SMARTWALLET PRO m'a permis de mettre en pratique les connaissances acquises en administration Linux, virtualisation, développement web et gestion des bases de données.
 
-J'ai installé et configuré Nginx sur une machine virtuelle Debian hébergée dans Proxmox VE, puis déployé une application web interactive de gestion de documents personnels.
+J'ai installé et configuré un environnement Debian sur Proxmox, déployé un serveur Nginx et développé une application web interactive.
 
-Les tests effectués confirment la validité de la configuration Nginx et la disponibilité du serveur web avec une réponse HTTP 200 OK.
+L'intégration de PHP et MariaDB a permis de remplacer le stockage local par une véritable base de données relationnelle, assurant ainsi la persistance des documents.
+
+Les tests réalisés ont confirmé le bon fonctionnement de la lecture, de l'ajout et de la suppression des documents.
+
+Ce projet représente une solution fonctionnelle de démonstration combinant administration système, développement web, gestion des données et sécurité informatique.
 
 ---
+
+## 19 — Auteur
 
 <div align="center">
-
-## 👨‍💻 Auteur
 
 ### LACHI LAHLOU
 
-**Collège Boréal | Campus Toronto | TSIQ**
+**Collège Boréal — Campus Toronto**
 
-![Year](https://img.shields.io/badge/PROJECT-2026-B6FF00?style=for-the-badge&labelColor=050806)
-![Course](https://img.shields.io/badge/COURSE-INF1085-B6FF00?style=for-the-badge&labelColor=050806)
+Techniques des systèmes informatiques — TSIQ
+
+**Cours : INF1085 — Administration Linux**
+
+**Matricule : 300150410**
+
+**Année : 2026**
+
+![Project](https://img.shields.io/badge/PROJECT-SMARTWALLET_PRO-00FF88?style=for-the-badge)
+![Status](https://img.shields.io/badge/STATUS-COMPLETED-00FF88?style=for-the-badge)
 
 ---
 
-### 🔥 YOUR LIFE. ONE WALLET. 🔥
-
 **SMARTWALLET // PRO**
+
+`DESIGN • TECHNOLOGY • SECURITY`
+
+© 2026 — Projet pédagogique
 
 </div>
