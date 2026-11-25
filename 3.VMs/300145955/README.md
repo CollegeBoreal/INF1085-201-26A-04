@@ -264,7 +264,7 @@ Le message d'accueil donne déjà des informations utiles :
 - **Welcome to Ubuntu 26.04.1 LTS (GNU/Linux 7.0.0-43-generic x86_64)** ;
 - **Usage of / : 24.1 % of 30.34 GB** ;
 - **Memory usage : 3 %** ;
-- **IPv4 address for ens18 : 10.7.236.180** ;
+- **IPv4 address for ens18 : 10.7.236.204** ;
 - **46 updates can be applied immediately**, à installer plus tard avec `sudo apt upgrade`.
 
 ![Connexion réussie](images/22-connexion.jpeg)
@@ -292,7 +292,7 @@ Le message d'accueil donne déjà des informations utiles :
 | Interface | Adresse | Rôle |
 |---|---|---|
 | **lo** | 127.0.0.1/8 | Le *loopback* : la machine qui se parle à elle-même |
-| **ens18** | **10.7.236.180/23** | La carte réseau VirtIO de la VM, reliée à **vmbr0**. Elle est **UP** (active) |
+| **ens18** | **10.7.236.204/23** | La carte réseau VirtIO de la VM, reliée à **vmbr0**. Elle est **UP** (active) |
 
 - **link/ether bc:24:11:f6:e8:42** : l'adresse **MAC** générée par Proxmox ;
 - **dynamic** : l'adresse a été attribuée **automatiquement par le serveur DHCP** du laboratoire ;
@@ -343,7 +343,7 @@ L'installation est terminée, donc l'ISO n'est plus utile. Dans Proxmox, on ouvr
 | Processeur | **4 cœurs** (2 sockets × 2 cores), type **host** |
 | Mémoire | **8 Go** (7,2 Gi utilisables) + 4 Go de swap |
 | Disque | **64 Go, créé directement sur le NVMe** (stockage **nvme-storage**), en LVM : 31 Go pour `/` et 31 Go libres |
-| Réseau | **ens18**, **10.7.236.180/23** (DHCP), via le pont **vmbr0** |
+| Réseau | **ens18**, **10.7.236.204/23** (DHCP), via le pont **vmbr0** |
 | Accès | Console Proxmox et **SSH** (`ssh b300145955@10.7.236.180`) |
 
 ## 10. Problèmes rencontrés et leçons apprises
