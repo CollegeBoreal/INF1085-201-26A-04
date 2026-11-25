@@ -1,0 +1,6 @@
+[Unit]
+Description=Actualisation de la page d’état Linux
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/actualiser-etat.sh
