@@ -73,11 +73,13 @@ Dans le deuxième test du modèle, deux processeurs et une barrette RAM de 16 Go
 
 💽 Partie 3 — Configuration du stockage RAID
 🛠️ Étape 8 — Accès à l'utilitaire RAID
+![Menu de configuration RAID](images/IMG_2722.jpg)
 L'utilitaire HP Array Configuration Utility permet de consulter, créer et supprimer des volumes logiques (Logical Drives).
 
 
 
 🗑️ Étape 9 — Vérification de l'ancien volume
+
 Le modèle présente un ancien volume RAID 5 d'environ 273,4 Go. Sa suppression est décrite dans l'exemple ; une telle opération efface l'accès aux données du volume et ne doit pas être répétée sans l'autorisation du professeur.
 
 
