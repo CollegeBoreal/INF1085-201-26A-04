@@ -43,7 +43,8 @@ pvesm status
 
 Dans notre labo, `lsblk` affiche le disque système `/dev/sda` de 273,4 Gio et le NVMe `/dev/nvme0n1` de 953,9 Gio. Le NVMe comporte deux partitions avant la préparation.
 
-![Capture 1 · NVMe de 953,9 Gio et ses deux partitions avant la préparation](media/rId22.png)
+![Capture 1 · NVMe de 953,9 Gio et ses deux partitions avant la préparation]<img width="728" height="645" alt="image" src="https://github.com/user-attachments/assets/40846937-0c2b-47b4-9658-d62c36aee39b" />
+
 
 Capture 1 · NVMe de 953,9 Gio et ses deux partitions avant la préparation
 
@@ -57,7 +58,8 @@ wipefs --no-act /dev/nvme0n1
 
 Si le professeur demande un nettoyage préalable, confirmer avec le groupe que le NVMe est dédié au laboratoire, que ses données peuvent être effacées et qu’il ne sert ni au système ni à un stockage existant. Dans ce cas seulement, `wipefs -a /dev/nvme0n1` retire les signatures détectées sur le disque. Cette commande est facultative lorsque le disque est prêt à être partitionné.
 
-![Capture 2 · NVMe sans partitions après le retrait des signatures GPT et PMBR](media/rId26.png)
+![Capture 2 · NVMe sans partitions après le retrait des signatures GPT et PMBR]<img width="728" height="645" alt="image" src="https://github.com/user-attachments/assets/89c76dd5-f6e6-4ac7-99e1-23db8d0c441c" />
+
 
 Capture 2 · NVMe sans partitions après le retrait des signatures GPT et PMBR
 
@@ -75,7 +77,8 @@ fdisk /dev/nvme0n1
 4.  Entrer `w` pour enregistrer quand la vérification est bonne.
 5.  Exécuter `lsblk /dev/nvme0n1` et vérifier que `nvme0n1p1` apparaît.
 
-![Capture 3 · Création de la table GPT et de la partition de 953,9 Gio](media/rId30.png)
+![Capture 3 · Création de la table GPT et de la partition de 953,9 Gio]<img width="1043" height="645" alt="image" src="https://github.com/user-attachments/assets/fd0cb861-aa4c-4b75-a450-451cd3912762" />
+
 
 Capture 3 · Création de la table GPT et de la partition de 953,9 Gio
 
@@ -91,7 +94,8 @@ lvcreate -l 100%FREE -T nvme-vg/data
 
 Le PV utilise la partition NVMe. Le VG s’appelle `nvme-vg` et le thin pool s’appelle `data`. La commande de création du pool crée déjà le LV demandé pour ce labo.
 
-![Capture 4 · Création du volume physique, de nvme-vg et du pool data](media/rId34.png)
+![Capture 4 · Création du volume physique, de nvme-vg et du pool data]<img width="1059" height="588" alt="image" src="https://github.com/user-attachments/assets/a6018988-031c-46f4-8eaa-1632ed851ee6" />
+
 
 Capture 4 · Création du volume physique, de nvme-vg et du pool data
 
@@ -121,11 +125,13 @@ pvesm status
 | `lvs`          | `nvme-vg/data` est un `thin-pool`.                         |
 | `pvesm status` | `nvme-storage` est de type `lvmthin` avec l’état `active`. |
 
-![Capture 5 · Partition NVMe et volumes du pool LVM-Thin dans lsblk](media/rId39.png)
+![Capture 5 · Partition NVMe et volumes du pool LVM-Thin dans lsblk]<img width="754" height="645" alt="image" src="https://github.com/user-attachments/assets/a9033742-fd59-4df5-b63a-9964b20c5330" />
+
 
 Capture 5 · Partition NVMe et volumes du pool LVM-Thin dans lsblk
 
-![Capture 6 · Vérification de LVM et de nvme-storage actif dans Proxmox](media/rId42.png)
+![Capture 6 · Vérification de LVM et de nvme-storage actif dans Proxmox]<img width="904" height="645" alt="image" src="https://github.com/user-attachments/assets/d9a13726-5603-4ca2-83c1-85a5c9594c44" />
+
 
 Capture 6 · Vérification de LVM et de nvme-storage actif dans Proxmox
 
@@ -135,7 +141,8 @@ Capture 6 · Vérification de LVM et de nvme-storage actif dans Proxmox
 
 Dans Proxmox, j’ai ouvert **102 (Mohammed) → Hardware** sur le nœud `server1`. Le disque `scsi0` avait une capacité de **32 Gio** et se trouvait sur `local-lvm:vm-102-disk-0`.
 
-![Capture 7 · Disque scsi0 de la VM 102 sur local-lvm avant le transfert](media/rId47.png)
+![Capture 7 · Disque scsi0 de la VM 102 sur local-lvm avant le transfert]<img width="1059" height="437" alt="image" src="https://github.com/user-attachments/assets/53423949-3577-44fa-b394-1f47d13deae8" />
+
 
 Capture 7 · Disque scsi0 de la VM 102 sur local-lvm avant le transfert
 
@@ -145,7 +152,8 @@ J’ai arrêté la VM et sélectionné **Hard Disk (scsi0) → Disk Action → M
 
 Le journal affiche le transfert de **32,0 Gio sur 32,0 Gio (100 %)**, l’ajout du volume source à la configuration sous `unused0` et le résultat `TASK OK`.
 
-![Capture 8 · Journal du déplacement du disque de la VM 102](media/rId51.png)
+![Capture 8 · Journal du déplacement du disque de la VM 102]<img width="1035" height="645" alt="image" src="https://github.com/user-attachments/assets/332591df-7bd3-4642-ba88-f38ccead9085" />
+
 
 Capture 8 · Journal du déplacement du disque de la VM 102
 
@@ -153,7 +161,8 @@ Capture 8 · Journal du déplacement du disque de la VM 102
 
 Dans **Hardware**, la ligne **Hard Disk (scsi0)** indique maintenant `nvme-storage:vm-102-disk-0,iothread=1,size=32G`. L’ancien volume `local-lvm:vm-102-disk-0` apparaît sous **Unused Disk 0**.
 
-![Capture 9 · Disque scsi0 de la VM 102 sur nvme-storage après le transfert](media/rId55.png)
+![Capture 9 · Disque scsi0 de la VM 102 sur nvme-storage après le transfert]<img width="1059" height="500" alt="image" src="https://github.com/user-attachments/assets/93fb5cc8-f31e-4e50-961b-ed17291cf224" />
+
 
 Capture 9 · Disque scsi0 de la VM 102 sur nvme-storage après le transfert
 
@@ -166,7 +175,8 @@ lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINTS
 
 Le nom d’hôte retourné est `mohammed`. Debian voit le disque virtuel `sda` de **32 Gio**. La partition `sda1` de **30,3 Gio** utilise `ext4` et est montée sur `/`. La partition `sda5` de **1,7 Gio** sert d’espace d’échange. La configuration de la VM dans Proxmox indique le stockage du disque virtuel.
 
-![Capture 10 · Debian démarré et partition système montée sur /](media/rId58.png)
+![Capture 10 · Debian démarré et partition système montée sur /]<img width="995" height="645" alt="image" src="https://github.com/user-attachments/assets/64bc1808-8342-40d0-b21b-275abd5c7220" />
+
 
 Capture 10 · Debian démarré et partition système montée sur /
 
