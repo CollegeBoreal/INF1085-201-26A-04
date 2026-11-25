@@ -28,9 +28,9 @@ J’ai vérifié l’adresse IP de la VM et l’état du service SSH le 18 novem
 | Nom de machine | mohammed |
 | Compte Debian confirmé | mohammed18 |
 | Interface réseau | ens18, UP |
-| Adresse IPv4 observée | 10.7.236.185/23 |
+| Adresse IPv4 observée | 10.7.236.233/23 |
 
-L’interface Web de Proxmox est à l’adresse `10.7.236.240:8006`. Pour se connecter en SSH à la VM Debian, l’adresse observée le 18 novembre est `10.7.236.185`.
+L’interface Web de Proxmox est à l’adresse `10.7.236.240:8006`. Pour se connecter en SSH à la VM Debian, l’adresse observée le 18 novembre est `10.7.236.233`.
 
 ![Ressources et état de la VM 102](https://github.com/user-attachments/assets/047da3df-360f-43fe-91f8-ad0b4c51bb49)
 
@@ -117,7 +117,7 @@ Résultats observés :
 Utilisateur : mohammed18
 Machine    : mohammed
 Interface  : ens18 — UP
-IPv4       : 10.7.236.185/23
+IPv4       : 10.7.236.233/23
 ```
 
 ![Compte et adresse IP Debian](https://github.com/user-attachments/assets/af446784-066a-4f99-97bf-a1dcfc0f439f)
@@ -130,7 +130,7 @@ La vérification du 18 novembre confirme les mêmes valeurs.
 ![Vérification du compte et de l’adresse IP le 18 novembre]<img width="960" height="294" alt="image" src="https://github.com/user-attachments/assets/bdffc13c-d0d9-402a-a4a0-8b5e1ffb8481" />
 
 
-*Figure 10 — VM 102 sur `server1`. L’interface `ens18` est active et porte l’adresse `10.7.236.185/23`.*
+*Figure 10 — VM 102 sur `server1`. L’interface `ens18` est active et porte l’adresse `10.7.236.233/23`.*
 
 ## 7. Vérification du service SSH
 
@@ -152,19 +152,20 @@ Le service OpenSSH est **actif** (`active (running)`) et configuré pour démarr
 J’ai lancé la commande suivante dans PowerShell.
 
 ```powershell
-ssh mohammed18@10.7.236.185
+ssh mohammed18@10.7.236.233
 ```
 
 Le serveur SSH de la VM a répondu et demandé le mot de passe. La tentative s’est terminée par `Permission denied (publickey,password)`. La VM est donc joignable en SSH depuis mon poste Windows. L’ouverture de session reste à valider.
 
-![Message d’authentification SSH refusée dans PowerShell]<img width="1587" height="818" alt="image" src="https://github.com/user-attachments/assets/6fc7b718-a98a-4210-b780-4a3c48988eff" />
+![Message d’authentification SSH refusée dans PowerShell]<img width="1462" height="752" alt="image" src="https://github.com/user-attachments/assets/67146a8a-b706-41ed-a622-487b0bed9002" />
+
 
 
 *Figure 12 — La VM répond à la demande de connexion, puis refuse l’authentification.*
 
 ## 9. Clé publique du professeur
 
-Lors de la vérification dans la VM, le fichier `/home/mohammed18/.ssh/authorized_keys` était absent. La clé publique du professeur a été ajoutée lors d’une session sur `server1` (`10.7.236.240`), sous le compte `B300158185`. Pour permettre l’accès à **la VM Debian**, la clé doit être enregistrée dans le fichier du compte `mohammed18` sur la VM (`10.7.236.185`).
+Lors de la vérification dans la VM, le fichier `/home/mohammed18/.ssh/authorized_keys` était absent. La clé publique du professeur a été ajoutée lors d’une session sur `server1` (`10.7.236.240`), sous le compte `B300158185`. Pour permettre l’accès à **la VM Debian**, la clé doit être enregistrée dans le fichier du compte `mohammed18` sur la VM (`10.7.236.233`).
 
 ### Configuration à terminer dans la VM
 
@@ -194,7 +195,7 @@ Une session SSH sur `server1` est visible sous le compte Linux `B300158185`. Les
 | Vérification | Résultat |
 |---|---|
 | 🥉 VM créée | Confirmé. La VM 102 est en marche et Debian ouvre le bureau GNOME. |
-| 🥈 Adresse IP assignée | Confirmé. L’interface `ens18` est active avec l’adresse `10.7.236.185/23`. |
+| 🥈 Adresse IP assignée | Confirmé. L’interface `ens18` est active avec l’adresse `10.7.236.233/23`. |
 | Service SSH dans Debian | Confirmé. OpenSSH est actif et activé au démarrage. |
 | Connexion depuis Windows | Le serveur répond. L’authentification du compte `mohammed18` a échoué. |
 | 🥇 Accès à la VM par la clé du professeur | À valider. L’ajout de la clé dans la VM et la connexion du professeur restent à confirmer. |

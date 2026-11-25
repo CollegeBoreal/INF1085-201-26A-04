@@ -116,14 +116,56 @@ ssh b300150470@10.7.236.207
 
 ---
 
+### 🔧 4. Correction réseau — 2026-11-25
+
+Problème : la VM était en `10.7.236.207/24` avec passerelle `10.7.236.1`, qui n'existe pas. Le ping de la passerelle échouait, `Destination Host Unreachable`.
+
+Cause : sur server237, le vrai réseau est `10.7.236.0/23` avec passerelle `10.7.237.1`.
+
+Correction, en root dans la VM, connexion `Wired connection 1` :
+
+```bash
+nmcli connection modify "Wired connection 1" ipv4.addresses 10.7.236.207/23 ipv4.gateway 10.7.237.1
+nmcli connection modify "Wired connection 1" ipv4.dns 8.8.8.8
+nmcli connection up "Wired connection 1"
+```
+
+Config finale : `10.7.236.207/23`, passerelle `10.7.237.1`, DNS `8.8.8.8`.
+
+#### Capture 11 — Route sur server237
+
+![Capture 11](images/11-ip-route-server237.png)
+
+*`ip route` sur server237 : default via 10.7.237.1, réseau 10.7.236.0/23.*
+
+#### Capture 12 — Ping passerelle
+
+![Capture 12](images/12-ping-passerelle-237-1.png)
+
+*Ping 10.7.237.1 OK, ~0,5 ms.*
+
+#### Capture 13 — Ping Internet
+
+![Capture 13](images/13-ping-8888.png)
+
+*Ping 8.8.8.8 OK, ~3 ms.*
+
+#### Capture 14 — Ping google.com
+
+![Capture 14](images/14-ping-google.png)
+
+*Ping google.com OK, 142.250.137.138, ~2,8 ms. Le DNS fonctionne.*
+
+---
+
 ## ✅ Conclusion
 
-> La VM 102 fonctionne : Debian 13 est installée, l'adresse fixe `10.7.236.207` est vérifiée, et la clé du professeur est ajoutée.
+> La VM 102 fonctionne : Debian 13 est installée, l'adresse fixe `10.7.236.207/23` est vérifiée, passerelle `10.7.237.1`, DNS `8.8.8.8`, et la clé du professeur est ajoutée. Internet fonctionne : ping passerelle, 8.8.8.8 et google.com OK le 2026-11-25.
 
 
 
 <div align="center">
 
-*INF1085 • Collège Boréal • 2026-11-04*
+*INF1085 • Collège Boréal • 2026-11-04, mis à jour 2026-11-25*
 
 </div>
