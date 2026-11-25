@@ -131,7 +131,7 @@ La partition a été créée avec `sgdisk`, contrairement
 L'ancienne configuration a été supprimée et une
 nouvelle partition `/dev/nvme0n1p1` a été créée.
 
-![Préparation du disque NVMe](images/03-suppression-ancien-vg.png)
+![Préparation du disque NVMe](images/02-suppression-ancien-vg.png)
 
 > **Attention :** ces opérations sont destructives.
 > Elles ont été réalisées pendant la préparation collective
@@ -188,7 +188,7 @@ Proxmox sous le nom `nvme-storage`.
 Ce stockage peut accueillir les disques des machines
 virtuelles et les volumes des conteneurs LXC.
 
-![Création du stockage LVM-Thin](images/04-creation-lvm-thin.png)
+![Création du stockage LVM-Thin](images/03-creation-lvm-thin.png)
 
 ### 5.7. Architecture finale du stockage
 
@@ -234,7 +234,17 @@ pvesm status
 | lvs | Vérifier les volumes logiques |
 | pvesm status | Vérifier les stockages Proxmox |
 
-![Vérification du NVMe](images/05-lsblk-nvme.png)
+#### Vérification du disque NVMe et de sa partition
+
+![Vérification du NVMe](images/04-lsblk-nvme.png)
+
+#### Vérification des volumes PV, VG et LV
+
+![Vérification des volumes LVM](images/05-pvs-vgs-lvs.png)
+
+#### Vérification des stockages Proxmox
+
+![Vérification des stockages Proxmox](images/06-pvesm-status.png)
 
 Les vérifications ont confirmé la présence du groupe
 `nvme-vg`, du Thin Pool `data` et du stockage
