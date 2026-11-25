@@ -1,237 +1,128 @@
-
 # 🖥️ Démontage et remontage d'un serveur HP ProLiant DL360 G6
 
-**Étudiante :** Fairouz Sadoun  
-**Matricule :** 300155881  
-**Programme :** Techniques des systèmes informatiques  
-**Module :** INF1085 – Administration Linux  
+Étudiante : Fairouz Sadoun  
+Matricule : 300155881  
+Programme : Techniques des systèmes informatiques  
+Module : INF1085 – Administration Linux
 
----
+> Note : Les valeurs techniques ci-dessous proviennent du modèle de laboratoire fourni. Il faut les vérifier à l'aide des photos et observations faites en classe avant d'affirmer qu'il s'agit de nos résultats.
 
 ## 🎯 Objectif du laboratoire
+L'objectif est de démonter, identifier et remonter les principaux composants matériels d'un serveur HP ProLiant DL360 G6. Le laboratoire porte également sur les vérifications au démarrage (POST/BIOS), la détection des processeurs et de la mémoire, ainsi que la configuration du stockage RAID.
 
-Dans ce laboratoire, j'ai étudié le démontage et le remontage d'un serveur HP ProLiant DL360 G6.
-
-L'objectif était d'identifier les principaux composants matériels du serveur, de comprendre leur fonctionnement et de vérifier les informations affichées au démarrage dans le BIOS.
-
-J'ai également étudié la configuration du stockage RAID et les différentes étapes du diagnostic.
-
-## 🔍 Matériel identifié
-
-Le matériel présenté dans le modèle du laboratoire comprend :
-
+## 🔍 Matériel identifié dans le modèle
 - 💽 3 disques durs SAS de 146 Go
 - 🔌 2 blocs d'alimentation HP
 - 🧠 2 barrettes RAM de 16 Go
 - 🧠 8 barrettes RAM de 4 Go
-- ⚙️ 2 processeurs Intel Xeon
-- 💾 1 contrôleur RAID avec module de mémoire cache
+- ⚙️ 2 processeurs Intel Xeon E5540 à 2,53 GHz
+- 💾 Contrôleur RAID avec module de mémoire cache
 
-Ces caractéristiques doivent être comparées au matériel réellement observé.
+Confirmer ces composants avec les photos de notre serveur.
 
----
+## 🔧 Partie 1 — Démontage du serveur
+### 🔌 Étape 1 — Retrait des blocs d'alimentation
+Lors du démontage présenté en laboratoire, les blocs d'alimentation du serveur sont identifiés puis retirés après la mise hors tension et le débranchement du matériel.
 
-# 🔧 Partie 1 — Démontage du serveur
+![Vue intérieure du serveur HP](images/IMG_6722%281%29.jpeg)
 
-## 🔌 Étape 1 — Retrait des blocs d'alimentation
+### 💽 Étape 2 — Retrait des disques durs
+Les trois disques SAS sont retirés des baies hot-swap situées à l'avant du serveur. Leurs caractéristiques sont observées sur les étiquettes.
 
-Pendant le laboratoire, j'ai étudié les deux blocs d'alimentation du serveur HP ProLiant DL360 G6.
+### 🧠 Étape 3 — Retrait des barrettes RAM
+Les barrettes RAM sont identifiées selon leur capacité et leur emplacement. Le modèle mentionne de la mémoire PC3-8500R, dont des barrettes de 16 Go et de 4 Go.
 
-J'ai observé leur emplacement et la manière de les retirer après avoir éteint et débranché le serveur.
+### ⚙️ Étape 4 — Retrait du processeur
+Après retrait du système de refroidissement par une personne autorisée, le processeur et son socket sont examinés. Les contacts sont fragiles et ne doivent pas être manipulés sans supervision.
 
-Cette étape m'a permis de mieux comprendre le rôle des alimentations dans le fonctionnement du serveur.
+### 💾 Étape 5 — Identification du module de mémoire cache
+Le module de mémoire cache associé au contrôleur RAID est repéré dans le serveur.
 
-![Blocs d'alimentation du serveur HP](images/IMG_2702.jpg)
+## 🧪 Partie 2 — Tests des composants
+### 🟢 Étape 6 — Premier démarrage avec un processeur
+![Écran BIOS — configuration avec 16 Go](images/bios_16go.jpeg)
 
-## 💽 Étape 2 — Retrait des disques durs
+Dans le modèle, le premier test utilise un processeur et une barrette de RAM de 16 Go. L'écran de démarrage indique :
 
-J'ai examiné les trois disques durs SAS installés à l'avant du serveur.
+16 GB Installed  
+1 Processor  
+Intel Xeon E5540 @ 2.53 GHz
 
-J'ai identifié leurs baies hot-swap et étudié leurs caractéristiques.
-
-Dans le modèle du laboratoire, les disques possèdent une capacité de 146 Go chacun.
-
-![Les trois disques SAS](images/IMG_2705.jpg)
-
-## 🧠 Étape 3 — Retrait des barrettes RAM
-
-J'ai étudié les barrettes de mémoire RAM et leurs emplacements sur la carte mère.
-
-J'ai appris à reconnaître les différentes capacités de mémoire et à comprendre leur rôle dans le fonctionnement du serveur.
-
-Le modèle présente notamment des barrettes de 16 Go et de 4 Go.
-
-![Barrettes de mémoire RAM](images/IMG_2707.jpg)
-
-## ⚙️ Étape 4 — Retrait du processeur
-
-Pendant cette étape, j'ai observé le processeur Intel Xeon et son système de refroidissement.
-
-J'ai étudié son emplacement sur la carte mère et les précautions nécessaires pendant le démontage.
-
-J'ai compris que le socket et ses contacts sont fragiles et doivent être manipulés avec précaution, sous supervision.
-
-![Processeur Intel Xeon](images/IMG_2711.jpg)
-
-## 💾 Étape 5 — Identification du module de mémoire cache
-
-J'ai identifié le module de mémoire cache associé au contrôleur RAID.
-
-Cette étape m'a permis de comprendre son rôle dans la gestion des opérations de stockage.
-
-![Module de mémoire cache RAID](images/IMG_2714.jpg)
-
----
-
-# 🧪 Partie 2 — Tests des composants
-
-## 🟢 Étape 6 — Premier démarrage avec un processeur
-
-Lors du démarrage du serveur, j'ai observé les informations affichées à l'écran.
-
-Sur ma capture, le BIOS indique :
-
-- 16 Go de mémoire RAM installée
-- 1 processeur Intel Xeon E5620
-- Fréquence de 2,40 GHz
-- 4 cœurs activés
-
-Cette vérification m'a permis d'identifier la configuration matérielle reconnue au démarrage.
-
-![BIOS avec 16 Go de RAM](images/WhatsApp%20Image%202026-11-19%20at%2000.33.23%20%281%29.jpeg)
+La touche F9 donne accès à l'utilitaire de configuration. L'écran ROM-Based Setup Utility affiche Proc 2 Not Installed.
 
 ### Vérification du BIOS avec 64 Go de RAM
+Lors d'un autre démarrage, j'ai observé que le serveur HP ProLiant détectait 64 Go de RAM et un processeur Intel Xeon E5620 à 2,40 GHz avec quatre cœurs activés.
 
-Lors d'un autre démarrage, j'ai observé que le serveur HP ProLiant détectait 64 Go de mémoire RAM.
+![Écran BIOS — configuration avec 64 Go](images/bios_64go.jpeg)
 
-L'écran indiquait également un processeur Intel Xeon E5620 à 2,40 GHz avec quatre cœurs activés.
+### 🟢 Étape 7 — Deuxième démarrage avec deux processeurs
+Dans le deuxième test du modèle, deux processeurs et une barrette RAM de 16 Go sont installés. Le BIOS indique 16384 MB Memory Configured et détecte Processor 1 ainsi que Processor 2.
 
-Cette observation m'a permis de comparer les informations détectées dans les deux configurations.
+## 💽 Partie 3 — Configuration du stockage RAID
+### 🛠️ Étape 8 — Accès à l'utilitaire RAID
+L'utilitaire HP Array Configuration Utility permet de consulter, créer et supprimer des volumes logiques (Logical Drives).
 
-![Mon BIOS avec 64 Go de RAM](images/WhatsApp%20Image%202026-11-19%20at%2000.33.52%20%281%29.jpeg)
+### 🗑️ Étape 9 — Vérification de l'ancien volume
+Le modèle présente un ancien volume RAID 5 d'environ 273,4 Go. Sa suppression est décrite dans l'exemple ; une telle opération efface l'accès aux données du volume et ne doit pas être répétée sans l'autorisation du professeur.
 
-## 🟢 Étape 7 — Deuxième démarrage avec deux processeurs
+### 💿 Étape 10 — Sélection des trois disques
+Les trois disques SAS sont sélectionnés dans l'utilitaire. Le niveau de RAID retenu dans le modèle est RAID 5, qui répartit les données et la parité sur plusieurs disques.
 
-J'ai étudié le test de démarrage avec deux processeurs présenté dans le laboratoire.
+### 💾 Étape 11 — Enregistrement de la configuration RAID
+La configuration est vérifiée avant d'être sauvegardée. Dans l'exemple, la touche F8 permet de confirmer la sauvegarde.
 
-Dans le modèle fourni, le BIOS affiche :
+### ✅ Étape 12 — Vérification du volume logique
+L'exemple indique :
 
-- Processor 1
-- Processor 2
-- 16384 MB Memory Configured
+Logical Drive : #1  
+RAID : 5  
+Capacité : environ 273,4 Go  
+Status : OK
 
-Cette étape permet de vérifier si les deux processeurs sont correctement reconnus.
-
----
-
-# 💽 Partie 3 — Configuration du stockage RAID
-
-## 🛠️ Étape 8 — Accès à l'utilitaire RAID
-
-J'ai étudié l'utilitaire de configuration RAID du serveur HP.
-
-Cet outil permet de gérer les volumes logiques associés aux disques durs.
-
-Il permet notamment de :
-
-- Créer un volume logique
-- Consulter la configuration RAID
-- Supprimer un volume existant
-
-![Menu de configuration RAID](images/IMG_2722.jpg)
-
-## 🗑️ Étape 9 — Vérification de l'ancien volume RAID
-
-J'ai étudié la configuration RAID existante présentée dans le modèle du laboratoire.
-
-L'ancien volume était configuré en RAID 5 avec une capacité d'environ 273,4 Go.
-
-J'ai compris qu'il faut vérifier la configuration avant de supprimer un volume, car cette opération peut entraîner une perte de données.
-
-## 💿 Étape 10 — Sélection des trois disques SAS
-
-J'ai étudié la sélection des trois disques SAS dans l'utilitaire de configuration RAID.
-
-Le niveau RAID utilisé dans le modèle est RAID 5.
-
-Le RAID 5 permet de répartir les données et les informations de parité entre plusieurs disques.
-
-## 💾 Étape 11 — Enregistrement de la configuration RAID
-
-J'ai examiné l'étape de sauvegarde de la configuration RAID.
-
-Dans le modèle du laboratoire, la touche F8 permet de confirmer l'enregistrement.
-
-J'ai compris qu'il est important de vérifier les paramètres avant de sauvegarder les modifications.
-
-## ✅ Étape 12 — Vérification du volume logique
-
-J'ai étudié les informations affichées après la création du volume RAID.
-
-Le modèle présente les résultats suivants :
-
-- Logical Drive : #1
-- Type de RAID : RAID 5
-- Capacité : environ 273,4 Go
-- Statut : OK
-
-Cette vérification permet de confirmer que le volume logique a été créé et reconnu par le contrôleur RAID.
-
----
-
-# 🔩 Partie 4 — Remontage du serveur
+## 🔩 Partie 4 — Remontage du serveur
+#![Manipulation des composants internes du serveur](images/IMG_6727%281%29.jpeg)
 
 ## 🧠 Étape 13 — Réinstallation des barrettes RAM
+Les composants sont réinstallés, puis le diagnostic mémoire est consulté. Le modèle affiche environ 61440 MB Available, soit approximativement 60 Go de mémoire disponible.
 
-J'ai étudié la réinstallation des barrettes RAM et la vérification de la mémoire pendant le démarrage.
+### 🖥️ Étape 14 — Vérification finale
+La vérification finale porte sur la détection des processeurs, de la mémoire, des disques et du volume RAID.
 
-Dans le modèle du laboratoire, le diagnostic mémoire indique environ 61 440 Mo disponibles, soit approximativement 60 Go.
-
-Cette étape permet de vérifier la quantité de mémoire reconnue par le serveur.
-
-## 🖥️ Étape 14 — Vérification finale
-
-J'ai étudié les différentes vérifications nécessaires après le remontage du serveur.
-
-Les éléments à contrôler sont :
-
-- La reconnaissance des processeurs
-- La quantité de mémoire RAM détectée
-- La détection des disques SAS
-- Le fonctionnement des alimentations
-- L'état du volume RAID
-
-Ces vérifications permettent de déterminer si les principaux composants sont correctement reconnus.
-
----
-
-# 📊 Résultats du laboratoire
-
-| Composant | Configuration de référence |
+## 📊 Résultats présentés dans le modèle
+| Composant | Configuration du modèle |
 |---|---|
 | Serveur | HP ProLiant DL360 G6 |
-| Processeurs | 2 Intel Xeon dans le modèle |
-| Processeur observé sur mes captures | Intel Xeon E5620 à 2,40 GHz |
-| Mémoire RAM observée | 16 Go puis 64 Go |
-| Disques du modèle | 3 disques SAS de 146 Go |
-| Configuration RAID du modèle | RAID 5 |
-| Volume logique du modèle | Environ 273,4 Go |
-| Alimentations du modèle | 2 blocs HP |
+| Processeurs | 2 × Intel Xeon E5540 à 2,53 GHz |
+| Mémoire installée annoncée | 2 × 16 Go + 8 × 4 Go = 64 Go |
+| Mémoire disponible observée | Environ 60 Go |
+| Disques | 3 × SAS 146 Go |
+| RAID | RAID 5 |
+| Volume logique | Environ 273,4 Go |
+| Alimentations | 2 blocs HP |
 
-Les valeurs provenant du modèle ne constituent pas toutes des résultats confirmés par mes propres captures.
+À compléter : confirmer les valeurs effectivement observées sur notre serveur et expliquer toute différence entre mémoire installée et mémoire disponible.
 
----
+## 📷 Photos du laboratoire
 
-# ✅ Conclusion
+Les images ci-dessous proviennent du dossier `images`. Elles montrent le châssis du serveur, la manipulation de composants internes et plusieurs écrans au démarrage. Le nom de chaque fichier correspond au nom téléversé sur GitHub.
 
-Ce laboratoire m'a permis de mieux comprendre le fonctionnement matériel d'un serveur HP ProLiant DL360 G6.
+![Écran de démarrage 1](images/IMG_6720%281%29.jpeg)
+![Écran de démarrage 2](images/IMG_6721%281%29.jpeg)
+![Vue intérieure du serveur](images/IMG_6722%281%29.jpeg)
+![Écran de démarrage 3](images/IMG_6723%281%29.jpeg)
+![Écran de démarrage 4](images/IMG_6724%281%29.jpeg)
+![Vue des composants du serveur](images/IMG_6725%281%29.jpeg)
+![Intervention sur les composants](images/IMG_6727%281%29.jpeg)
+![Emplacements des composants](images/IMG_6728%281%29.jpeg)
+![Manipulation à l'intérieur du serveur](images/IMG_6729%281%29.jpeg)
+![Écran HP ProLiant 1](images/IMG_6734%281%29.jpeg)
+![Écran HP ProLiant 2](images/IMG_6735%282%29.jpeg)
+![Écran HP ProLiant 3](images/IMG_6736%282%29.jpeg)
+![Vue du serveur ouvert](images/IMG_6738%281%29.jpeg)
+![Écran HP ProLiant 4](images/IMG_6739%281%29.jpeg)
+![Écran HP ProLiant 5](images/IMG_6740%281%29.jpeg)
+![BIOS 16 Go](images/bios_16go.jpeg)
+![BIOS 64 Go](images/bios_64go.jpeg)
 
-J'ai étudié les principaux composants du serveur, notamment les blocs d'alimentation, les disques durs SAS, les barrettes RAM, les processeurs et le contrôleur RAID.
-
-J'ai également observé les informations affichées pendant les démarrages du serveur, notamment la mémoire RAM et le processeur détectés dans le BIOS.
-
-J'ai appris à mieux comprendre les différentes étapes du diagnostic matériel et l'importance de vérifier les composants avant de mettre un serveur en service.
-
-Enfin, l'étude de la configuration RAID 5 m'a permis de comprendre comment plusieurs disques peuvent être regroupés dans un volume logique.
-
-Ce laboratoire m'a aidée à développer mes connaissances en administration des systèmes informatiques et en diagnostic des serveurs.
+## ✅ Conclusion
+Ce laboratoire permet de comprendre l'organisation matérielle du serveur HP ProLiant DL360 G6. Le démontage et le remontage donnent l'occasion d'identifier les alimentations, les disques SAS, les barrettes RAM, les processeurs et le module RAID. Les écrans POST et BIOS permettent d'examiner la détection des composants, tandis que l'utilitaire RAID présente la configuration du volume logique. Les captures prises pendant le laboratoire permettront de documenter les résultats réellement constatés.
