@@ -23,11 +23,13 @@ Confirmer ces composants avec les photos de notre serveur.
 🔧 Partie 1 — Démontage du serveur
 🔌 Étape 1 — Retrait des blocs d'alimentation
 Lors du démontage présenté en laboratoire, les blocs d'alimentation du serveur sont identifiés puis retirés après la mise hors tension et le débranchement du matériel.
-
+![Blocs d'alimentation du serveur HP](images/IMG_2702.jpg)
 
 
 💽 Étape 2 — Retrait des disques durs
 Les trois disques SAS sont retirés des baies hot-swap situées à l'avant du serveur. Leurs caractéristiques sont observées sur les étiquettes.
+
+
 
 
 
