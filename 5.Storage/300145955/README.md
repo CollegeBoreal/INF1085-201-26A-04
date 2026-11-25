@@ -177,7 +177,7 @@ Juste après sa création en classe, nvme-storage était à 0 %. Tous les disque
 
 ---
 
-## 10. Ajout du NVMe à Proxmox (fait en classe)
+## 10. Ajout du NVMe à Proxmox (fait en classe en groupe)
 
 ### Nettoyage du NVMe
 
