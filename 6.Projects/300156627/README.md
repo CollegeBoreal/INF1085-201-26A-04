@@ -13,10 +13,14 @@
 
 ##### Date : 25 novembre 2026
 
-1. Synthèse du déploiement et accès
-L'application web maxi - guinéen (compilée avec Flutter Web) et son API Python (api_server.py) sont déployées sur la machine virtuelle Debian (10.7.236.227).
+#### 1. Synthèse du déploiement et accès
+
+##### L'application web maxi - guinéen (compilée avec Flutter Web) et son API Python (api_server.py) sont déployées sur la machine virtuelle Debian (10.7.236.227).
 
 URL d'accès de l'application : [http://10.7.236.227:61730/](http://10.7.236.227:61730/)
+
+<img width="1911" height="1035" alt="1" src="https://github.com/user-attachments/assets/6151ce4d-b5b8-458e-9c16-b6ca97542610" />
+
 
 Port du serveur web statique : 61730 (lié sur 0.0.0.0:61730 pour accepter les connexions réseau)
 
