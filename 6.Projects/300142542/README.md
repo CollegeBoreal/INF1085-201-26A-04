@@ -5,6 +5,9 @@
 
 **LEDGER // 3D** est une application web interactive de gestion de finances personnelles et de portefeuille de cartes en 3D. Propulsée par un backend Node.js et une base de données PostgreSQL, l'application est hébergée sur une instance Debian (via Proxmox VE) et servie par Nginx.
 
+<img width="1919" height="908" alt="image" src="https://github.com/user-attachments/assets/ab1da751-dd09-4307-bbce-27740306b6ae" />
+
+
 ## 🚀 Aperçu du projet
 
 L'objectif de ce projet est de proposer une interface moderne, fluide et réactive permettant de visualiser ses cartes bancaires dans un étui 3D interactif, tout en suivant ses dépenses, ses budgets mensuels et son historique de transactions stockés de manière persistante.
