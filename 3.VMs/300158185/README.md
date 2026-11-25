@@ -157,7 +157,8 @@ ssh mohammed18@10.7.236.233
 
 Le serveur SSH de la VM a répondu et demandé le mot de passe. La tentative s’est terminée par `Permission denied (publickey,password)`. La VM est donc joignable en SSH depuis mon poste Windows. L’ouverture de session reste à valider.
 
-![Message d’authentification SSH refusée dans PowerShell]<img width="1587" height="818" alt="image" src="https://github.com/user-attachments/assets/6fc7b718-a98a-4210-b780-4a3c48988eff" />
+![Message d’authentification SSH refusée dans PowerShell]<img width="1462" height="752" alt="image" src="https://github.com/user-attachments/assets/67146a8a-b706-41ed-a622-487b0bed9002" />
+
 
 
 *Figure 12 — La VM répond à la demande de connexion, puis refuse l’authentification.*
