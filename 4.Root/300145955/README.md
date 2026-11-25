@@ -8,30 +8,6 @@
 
 ---
 
-## 📑 Sommaire
-
-1. [Objectif du laboratoire](#1-objectif-du-laboratoire)
-2. [Pourquoi ne pas utiliser root ? Le contexte](#2-pourquoi-ne-pas-utiliser-root--le-contexte)
-3. [Environnement de travail](#3-environnement-de-travail)
-4. [Étape 1 – Connexion au serveur avec mon compte personnel](#4-étape-1--connexion-au-serveur-avec-mon-compte-personnel)
-5. [Étape 2 – Vérification de mon compte Linux](#5-étape-2--vérification-de-mon-compte-linux)
-6. [Étape 3 – Passage temporaire en root](#6-étape-3--passage-temporaire-en-root)
-7. [Étape 4 – Les utilisateurs Proxmox (`pveum user list`)](#7-étape-4--les-utilisateurs-proxmox-pveum-user-list)
-8. [Étape 5 – Les permissions (`pveum acl list`)](#8-étape-5--les-permissions-pveum-acl-list)
-9. [Étape 6 – Les rôles (`pveum role list`)](#9-étape-6--les-rôles-pveum-role-list)
-10. [Étape 7 – Retour à mon compte normal](#10-étape-7--retour-à-mon-compte-normal)
-11. [Étape 8 – Connexion à l'interface web](#11-étape-8--connexion-à-linterface-web)
-12. [Étape 9 – Création de ma paire de clés SSH](#12-étape-9--création-de-ma-paire-de-clés-ssh)
-13. [Étape 10 – Installation de ma clé publique sur le serveur](#13-étape-10--installation-de-ma-clé-publique-sur-le-serveur)
-14. [Étape 11 – Test de la connexion sans mot de passe](#14-étape-11--test-de-la-connexion-sans-mot-de-passe)
-15. [Étape 12 – Ajout de la clé du professeur](#15-étape-12--ajout-de-la-clé-du-professeur)
-16. [Le compte root : réservé aux urgences](#16-le-compte-root--réservé-aux-urgences)
-17. [Problèmes rencontrés et solutions](#17-problèmes-rencontrés-et-solutions)
-18. [Bilan du laboratoire](#18-bilan-du-laboratoire)
-19. [Conclusion](#19-conclusion)
-20. [Lexique](#20-lexique)
-
----
 
 ## 1. Objectif du laboratoire
 
@@ -49,7 +25,7 @@ Apprendre à **sécuriser l'accès** à un serveur Proxmox VE en appliquant troi
 
 Le compte **root** est le « super-administrateur » de Linux : il a **tous les droits**, sans aucune limite. Sur un serveur partagé comme **server237**, utilisé par toute la classe, laisser tout le monde travailler avec root crée de vrais problèmes.
 
-### ❌ Mauvaise pratique : tout le monde se connecte avec `root@pam`
+###  Mauvaise pratique : tout le monde se connecte avec `root@pam`
 
 | Problème | Conséquence concrète |
 |---|---|
@@ -58,7 +34,7 @@ Le compte **root** est le « super-administrateur » de Linux : il a **tous les 
 | **Moins sécuritaire** | Une seule commande erronée avec root peut casser tout le serveur |
 | **Dépannage plus difficile** | On ne peut pas retrouver l'auteur d'un changement pour comprendre une panne |
 
-### ✅ Bonne pratique : un compte par administrateur
+###  Bonne pratique : un compte par administrateur
 
 | Avantage | Exemple sur server237 |
 |---|---|
@@ -96,9 +72,9 @@ Le compte **root** est le « super-administrateur » de Linux : il a **tous les 
 
 ## 4. Étape 1 – Connexion au serveur avec mon compte personnel
 
-**🎯 But :** prouver que j'ai un compte personnel sur le serveur, et m'y connecter **sans utiliser root**.
+** But :** prouver que j'ai un compte personnel sur le serveur, et m'y connecter **sans utiliser root**.
 
-**⌨️ Commande (sur mon portable) :**
+** Commande (sur mon portable) :**
 ```
 ssh B300145955@10.7.236.237
 ```
@@ -109,34 +85,34 @@ ssh B300145955@10.7.236.237
 | `B300145955` | **Mon** nom d'utilisateur Linux sur le serveur |
 | `@10.7.236.237` | L'adresse IP du serveur Proxmox |
 
-**👀 Résultat observé :**
+** Résultat observé :**
 - Le serveur demande **mon** mot de passe (à cette étape, je n'ai pas encore de clé).
 - Il affiche sa version : `Linux server237 7.0.2-6-pve … x86_64`.
 - L'invite devient **`B300145955@server237:~$`**.
 
 ![Connexion SSH avec mon compte](images/01-connexion-ssh.png)
 
-**🧠 Analyse :** l'invite se lit ainsi : `utilisateur@machine:dossier$`. Le **`~`** désigne mon dossier personnel (`/home/B300145955`) et le **`$`** final indique un **utilisateur normal**. Je suis connectée **avec mon compte**, et non avec root ✅
+** Analyse :** l'invite se lit ainsi : `utilisateur@machine:dossier$`. Le **`~`** désigne mon dossier personnel (`/home/B300145955`) et le **`$`** final indique un **utilisateur normal**. Je suis connectée **avec mon compte**, et non avec root 
 
 ---
 
 ## 5. Étape 2 – Vérification de mon compte Linux
 
-**🎯 But :** vérifier que mon compte Linux existe et voir **quels droits** il a.
+** But :** vérifier que mon compte Linux existe et voir **quels droits** il a.
 
-**⌨️ Commande :**
+** Commande :**
 ```bash
 id B300145955
 ```
 
-**👀 Résultat observé :**
+** Résultat observé :**
 ```
 uid=1001(B300145955) gid=1001(B300145955) groups=1001(B300145955),100(users)
 ```
 
 ![Commande id](images/02-id.png)
 
-**🧠 Analyse détaillée :**
+** Analyse détaillée :**
 
 | Élément | Valeur | Signification |
 |---|---|---|
@@ -144,9 +120,9 @@ uid=1001(B300145955) gid=1001(B300145955) groups=1001(B300145955),100(users)
 | **gid** | 1001 (B300145955) | Mon **groupe principal**, créé automatiquement avec le même nom que mon compte |
 | **groups** | 1001 (B300145955), **100 (users)** | Les groupes dont je fais partie : mon groupe personnel et le groupe général **users** |
 
-> 💡 **Ce qui est important :** je ne suis **pas** dans le groupe **`sudo`**. Mon compte Linux est donc un compte **ordinaire**, qui ne peut pas administrer le système Linux. C'est **voulu** : mes droits d'administratrice viennent de **Proxmox** (étape 5), pas de Linux. C'est le principe de **séparation des droits**.
+>  **Ce qui est important :** je ne suis **pas** dans le groupe **`sudo`**. Mon compte Linux est donc un compte **ordinaire**, qui ne peut pas administrer le système Linux. C'est **voulu** : mes droits d'administratrice viennent de **Proxmox** (étape 5), pas de Linux. C'est le principe de **séparation des droits**.
 
-> 📝 **Comment ce compte a été obtenu :** un compte administrateur Proxmox se crée en **trois commandes**, exécutées par root :
+>  **Comment ce compte a été obtenu :** un compte administrateur Proxmox se crée en **trois commandes**, exécutées par root :
 > ```bash
 > adduser B300145955                                        # 1. créer le compte Linux (avec son mot de passe)
 > pveum user add B300145955@pam                             # 2. déclarer ce compte dans Proxmox
@@ -160,23 +136,23 @@ uid=1001(B300145955) gid=1001(B300145955) groups=1001(B300145955),100(users)
 
 ### 6.1 Les commandes d'administration sont protégées
 
-**⌨️ Commande (avec mon compte normal) :**
+** Commande (avec mon compte normal) :**
 ```bash
 pveum user list
 ```
 
-**👀 Résultat observé :**
+** Résultat observé :**
 ```
 -bash: pveum: command not found
 ```
 
 ![pveum : command not found](images/03-pveum-command-not-found.png)
 
-**🧠 Analyse :** la commande `pveum` (**P**roxmox **VE** **U**ser **M**anager) **existe bien** sur le serveur, mais elle est rangée dans **`/usr/sbin`**, le dossier des commandes **d'administration**. Ce dossier n'est **pas** dans le **PATH** (la liste des dossiers où Linux cherche les commandes) d'un utilisateur normal. Mon compte ne trouve donc pas la commande : c'est une **protection** ✅
+** Analyse :** la commande `pveum` (**P**roxmox **VE** **U**ser **M**anager) **existe bien** sur le serveur, mais elle est rangée dans **`/usr/sbin`**, le dossier des commandes **d'administration**. Ce dossier n'est **pas** dans le **PATH** (la liste des dossiers où Linux cherche les commandes) d'un utilisateur normal. Mon compte ne trouve donc pas la commande : c'est une **protection** 
 
 ### 6.2 Devenir root avec `su -`
 
-**⌨️ Commande :**
+** Commande :**
 ```bash
 su -
 ```
@@ -190,7 +166,7 @@ su -
 
 ![su - : devenir root](images/04-su-root.png)
 
-**🧠 Analyse :** le **`$`** est devenu **`#`**, le symbole de root. Je n'utilise root que **le temps** de faire les vérifications Proxmox.
+** Analyse :** le **`$`** est devenu **`#`**, le symbole de root. Je n'utilise root que **le temps** de faire les vérifications Proxmox.
 
 ### 6.3 Incident : connexion coupée et mot de passe refusé
 
@@ -202,25 +178,25 @@ Le mot de passe root était **mal tapé**. Sous Linux, **rien ne s'affiche** qua
 
 ![Échecs puis réussite de su -](images/06-su-echecs-puis-reussite.png)
 
-> 🔐 **Ce que ça montre :** sans le **bon** mot de passe, Linux refuse catégoriquement l'accès à root. Chaque échec est aussi **enregistré** dans les journaux du système.
+>  **Ce que ça montre :** sans le **bon** mot de passe, Linux refuse catégoriquement l'accès à root. Chaque échec est aussi **enregistré** dans les journaux du système.
 
 ---
 
 ## 7. Étape 4 – Les utilisateurs Proxmox (`pveum user list`)
 
-**🎯 But :** vérifier que mon compte est bien **déclaré dans Proxmox**.
+** But :** vérifier que mon compte est bien **déclaré dans Proxmox**.
 
-**⌨️ Commande (en root) :**
+** Commande (en root) :**
 ```bash
 pveum user list
 ```
 
-**👀 Résultat observé :** un tableau de **9 comptes** : les 7 comptes étudiants (`B300142542@pam`, `B300142636@pam`, **`B300145955@pam`**, `B300150410@pam`, `B300150468@pam`, `B300150470@pam`, `B300151483@pam`), `salma@pam` et `root@pam`.
+** Résultat observé :** un tableau de **9 comptes** : les 7 comptes étudiants (`B300142542@pam`, `B300142636@pam`, **`B300145955@pam`**, `B300150410@pam`, `B300150468@pam`, `B300150470@pam`, `B300151483@pam`), `salma@pam` et `root@pam`.
 
 ![pveum user list](images/05-pveum-user-list.png)
 *(L'adresse courriel d'un autre étudiant a été masquée.)*
 
-**🧠 Analyse de chaque colonne, pour ma ligne :**
+** Analyse de chaque colonne, pour ma ligne :**
 
 | Colonne | Ma valeur | Signification |
 |---|---|---|
@@ -234,17 +210,17 @@ pveum user list
 | **keys** | (vide) | Clés de double authentification (2FA), non utilisées |
 | **realm-type** | **pam** | Le type d'authentification utilisé |
 
-> 💡 **Le realm `@pam` :** **PAM** (*Pluggable Authentication Modules*) signifie que Proxmox vérifie le mot de passe **avec le compte Linux du même nom**. C'est pour ça qu'il faut à la fois un compte **Linux** (`adduser`) **et** un compte **Proxmox** (`pveum user add`). Mon mot de passe Proxmox est donc **le même** que mon mot de passe Linux.
+>  **Le realm `@pam` :** **PAM** (*Pluggable Authentication Modules*) signifie que Proxmox vérifie le mot de passe **avec le compte Linux du même nom**. C'est pour ça qu'il faut à la fois un compte **Linux** (`adduser`) **et** un compte **Proxmox** (`pveum user add`). Mon mot de passe Proxmox est donc **le même** que mon mot de passe Linux.
 
-> ✅ **Conclusion de l'étape :** chaque étudiant a **son propre compte**. C'est exactement la bonne pratique demandée.
+>  **Conclusion de l'étape :** chaque étudiant a **son propre compte**. C'est exactement la bonne pratique demandée.
 
 ---
 
 ## 8. Étape 5 – Les permissions (`pveum acl list`)
 
-**🎯 But :** vérifier **quels droits** mon compte a dans Proxmox.
+** But :** vérifier **quels droits** mon compte a dans Proxmox.
 
-**⌨️ Commande (en root) :**
+** Commande (en root) :**
 ```bash
 pveum acl list
 ```
@@ -257,7 +233,7 @@ pveum acl list
 
 ![pveum acl list](images/07-pveum-acl-list.png)
 
-**🧠 Analyse de chaque colonne :**
+** Analyse de chaque colonne :**
 
 | Colonne | Valeur | Signification |
 |---|---|---|
@@ -267,26 +243,26 @@ pveum acl list
 | **ugid** | `B300145955@pam` | **À qui** le droit est donné |
 | **propagate** | `1` | Le droit **se transmet** à tout ce qui se trouve sous `/` (toutes les VM, tous les stockages) |
 
-> 💡 **Une ACL** (*Access Control List*) répond à trois questions : **QUI** (`ugid`) a **QUEL rôle** (`roleid`) **SUR QUOI** (`path`). Cette ligne est le résultat de la commande `pveum aclmod / -user B300145955@pam -role Administrator`.
+>  **Une ACL** (*Access Control List*) répond à trois questions : **QUI** (`ugid`) a **QUEL rôle** (`roleid`) **SUR QUOI** (`path`). Cette ligne est le résultat de la commande `pveum aclmod / -user B300145955@pam -role Administrator`.
 
-> ✅ **Conclusion de l'étape :** je suis **administratrice de Proxmox** grâce à une ACL, **sans** avoir besoin du compte root.
+>  **Conclusion de l'étape :** je suis **administratrice de Proxmox** grâce à une ACL, **sans** avoir besoin du compte root.
 
 ---
 
 ## 9. Étape 6 – Les rôles (`pveum role list`)
 
-**🎯 But :** comprendre ce que contient le rôle **Administrator** et quels autres rôles existent.
+** But :** comprendre ce que contient le rôle **Administrator** et quels autres rôles existent.
 
-**⌨️ Commande (en root) :**
+** Commande (en root) :**
 ```bash
 pveum role list
 ```
 
-**👀 Résultat observé :** chaque **rôle** (`roleid`) est une liste de **privilèges** (`privs`).
+** Résultat observé :** chaque **rôle** (`roleid`) est une liste de **privilèges** (`privs`).
 
 ![pveum role list](images/08-pveum-role-list.png)
 
-**🧠 Analyse des principaux rôles :**
+** Analyse des principaux rôles :**
 
 | Rôle | Privilèges (extraits) | Pour qui ? |
 |---|---|---|
@@ -301,32 +277,32 @@ pveum role list
 | **PVEUserAdmin** | `User.Modify`, `Group.Allocate`… | Gérer les **utilisateurs** |
 | **PVESysAdmin** | `Sys.Audit`, `Sys.Console`, `Sys.Syslog` | Accéder à la console et aux journaux |
 
-> 💡 **Comment lire un privilège :** `VM.Backup` = **catégorie**.**action**, c'est-à-dire « faire des sauvegardes de VM ». Le suffixe **`.Audit`** veut toujours dire « **consulter seulement** ».
+>  **Comment lire un privilège :** `VM.Backup` = **catégorie**.**action**, c'est-à-dire « faire des sauvegardes de VM ». Le suffixe **`.Audit`** veut toujours dire « **consulter seulement** ».
 
-> 💡 **Le principe du moindre privilège :** on donne à chaque personne **seulement** les droits dont elle a besoin. En entreprise, un technicien qui gère seulement les VM recevrait **PVEVMAdmin**, et non **Administrator**.
+>  **Le principe du moindre privilège :** on donne à chaque personne **seulement** les droits dont elle a besoin. En entreprise, un technicien qui gère seulement les VM recevrait **PVEVMAdmin**, et non **Administrator**.
 
 ---
 
 ## 10. Étape 7 – Retour à mon compte normal
 
-**⌨️ Commande :**
+** Commande :**
 ```bash
 exit
 ```
 
-**👀 Résultat observé :** `logout`, puis l'invite redevient **`B300145955@server237:~$`**.
+** Résultat observé :** `logout`, puis l'invite redevient **`B300145955@server237:~$`**.
 
 ![exit : retour au compte normal](images/09-exit-root.png)
 
-**🧠 Analyse :** le **`#`** est redevenu **`$`**. **Bonne pratique : ne jamais rester root plus longtemps que nécessaire.** Une erreur de frappe en root peut avoir des conséquences graves pour tout le serveur.
+** Analyse :** le **`#`** est redevenu **`$`**. **Bonne pratique : ne jamais rester root plus longtemps que nécessaire.** Une erreur de frappe en root peut avoir des conséquences graves pour tout le serveur.
 
 ---
 
 ## 11. Étape 8 – Connexion à l'interface web
 
-**🎯 But :** vérifier que mon compte personnel permet d'administrer Proxmox depuis le **navigateur**.
+** But :** vérifier que mon compte personnel permet d'administrer Proxmox depuis le **navigateur**.
 
-**🌐 Adresse :** **https://10.7.236.237:8006**
+** Adresse :** **https://10.7.236.237:8006**
 
 | Champ | Valeur | Explication |
 |---|---|---|
@@ -340,12 +316,12 @@ exit
 
 ![Tableau de bord avec mon compte](images/11-tableau-de-bord.png)
 
-**🧠 Analyse :** grâce à mon rôle **Administrator** sur `/`, je vois **toutes** les ressources du serveur :
+** Analyse :** grâce à mon rôle **Administrator** sur `/`, je vois **toutes** les ressources du serveur :
 - les **8 VM** (100 à 107), dont **ma VM 107 – B300145955-vm**, en marche depuis plus de 6 jours ;
 - les **3 stockages** : `local`, `local-lvm` et `nvme-storage` ;
 - tous les menus d'administration (Shell, System, Network, Disks…).
 
-> ✅ **Conclusion de l'étape :** j'administre Proxmox **avec mon propre compte**. Si je fais une modification, elle apparaîtra **sous mon nom** dans la liste des tâches.
+>  **Conclusion de l'étape :** j'administre Proxmox **avec mon propre compte**. Si je fais une modification, elle apparaîtra **sous mon nom** dans la liste des tâches.
 
 ---
 
@@ -370,7 +346,7 @@ Au lieu d'un mot de passe, on utilise une **paire de clés** :
 
 ### 12.2 Création de la clé
 
-**⌨️ Commande (sur mon portable, dans PowerShell) :**
+** Commande (sur mon portable, dans PowerShell) :**
 ```powershell
 ssh-keygen -t ed25519
 ```
@@ -398,7 +374,7 @@ Trois questions sont posées, et j'ai répondu **Entrée** à chacune :
 
 ### 12.3 Affichage de la clé publique
 
-**⌨️ Commande :**
+** Commande :**
 ```powershell
 type $env:USERPROFILE\.ssh\id_ed25519.pub
 ```
@@ -410,7 +386,7 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBRm9WkFpwuhY7R2eYZM8lRA+RiNIXi4eM/NenbGCTmD
 
 ![Ma clé publique](images/13-cle-publique.png)
 
-**🧠 Analyse :** une clé publique a toujours **3 parties** :
+** Analyse :** une clé publique a toujours **3 parties** :
 
 | Partie | Valeur | Rôle |
 |---|---|---|
@@ -418,22 +394,22 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBRm9WkFpwuhY7R2eYZM8lRA+RiNIXi4eM/NenbGCTmD
 | Clé | `AAAAC3Nz…GCTmD` | La clé elle-même, encodée en base64 |
 | Commentaire | `hp@DESKTOP-NAC3M57` | Pour savoir **à qui** appartient la clé |
 
-> 🔒 Cette clé est **publique** : la montrer dans ce rapport est **sans danger**. Le fichier `id_ed25519` (sans `.pub`) ne doit **jamais** être montré ni copié.
+>  Cette clé est **publique** : la montrer dans ce rapport est **sans danger**. Le fichier `id_ed25519` (sans `.pub`) ne doit **jamais** être montré ni copié.
 
 ---
 
 ## 13. Étape 10 – Installation de ma clé publique sur le serveur
 
-**🎯 But :** déposer ma clé publique dans le fichier **`~/.ssh/authorized_keys`** de mon compte sur le serveur.
+** But :** déposer ma clé publique dans le fichier **`~/.ssh/authorized_keys`** de mon compte sur le serveur.
 
-**⚠️ Difficulté :** la consigne utilise `ssh-copy-id`, mais **cette commande n'existe pas sous Windows**. J'ai donc utilisé son **équivalent PowerShell** :
+** Difficulté :** la consigne utilise `ssh-copy-id`, mais **cette commande n'existe pas sous Windows**. J'ai donc utilisé son **équivalent PowerShell** :
 
-**⌨️ Commande (sur mon portable) :**
+** Commande (sur mon portable) :**
 ```powershell
 type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh B300145955@10.7.236.237 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
 ```
 
-**🧠 Explication de chaque partie :**
+** Explication de chaque partie :**
 
 | Partie | Rôle |
 |---|---|
@@ -450,24 +426,24 @@ type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh B300145955@10.7.236.237 "mkdir -
 
 ![Copie de la clé sur le serveur](images/14-copie-cle-serveur.png)
 
-> 💡 **Pourquoi `chmod` est obligatoire :** le serveur SSH **refuse** d'utiliser un fichier `authorized_keys` que d'autres utilisateurs pourraient modifier. Sinon, quelqu'un pourrait y ajouter **sa** clé et entrer dans mon compte.
+>  **Pourquoi `chmod` est obligatoire :** le serveur SSH **refuse** d'utiliser un fichier `authorized_keys` que d'autres utilisateurs pourraient modifier. Sinon, quelqu'un pourrait y ajouter **sa** clé et entrer dans mon compte.
 
 ---
 
 ## 14. Étape 11 – Test de la connexion sans mot de passe
 
-**🎯 But :** prouver que la clé fonctionne.
+** But :** prouver que la clé fonctionne.
 
-**⌨️ Commande (sur mon portable) :**
+** Commande (sur mon portable) :**
 ```powershell
 ssh B300145955@10.7.236.237
 ```
 
-**👀 Résultat observé :** **aucun mot de passe n'est demandé**. J'arrive directement sur **`B300145955@server237:~$`** 🎉
+** Résultat observé :** **aucun mot de passe n'est demandé**. J'arrive directement sur **`B300145955@server237:~$`** 
 
 ![Connexion sans mot de passe](images/15-connexion-sans-mot-de-passe.png)
 
-**🧠 Analyse – comparaison avant / après :**
+** Analyse – comparaison avant / après :**
 
 | | Avant (étape 1) | Après (étape 11) |
 |---|---|---|
@@ -475,15 +451,15 @@ ssh B300145955@10.7.236.237
 | Méthode | Mot de passe | **Clé ED25519** |
 | Risque | Un mot de passe peut être deviné ou volé | La clé privée ne quitte **jamais** mon portable |
 
-> ✅ **Conclusion de l'étape :** l'authentification par clé fonctionne. C'est le **résultat attendu** de la consigne : « Aucun mot de passe ne devrait être demandé ».
+>  **Conclusion de l'étape :** l'authentification par clé fonctionne. C'est le **résultat attendu** de la consigne : « Aucun mot de passe ne devrait être demandé ».
 
 ---
 
 ## 15. Étape 12 – Ajout de la clé du professeur
 
-**🎯 But :** permettre au professeur de se connecter à **mon compte** pour vérifier mon travail, **sans** que je lui donne mon mot de passe.
+** But :** permettre au professeur de se connecter à **mon compte** pour vérifier mon travail, **sans** que je lui donne mon mot de passe.
 
-**⌨️ Commande (sur le serveur, connectée avec mon compte) :**
+** Commande (sur le serveur, connectée avec mon compte) :**
 ```bash
 echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD2pLhMq…LRP5N b300098957@ramena" >> ~/.ssh/authorized_keys
 ```
@@ -494,14 +470,14 @@ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD2pLhMq…LRP5N b300098957@ramena" >
 | `echo "…"` | Affiche le texte de la clé du professeur |
 | `>>` | **Ajoute** ce texte **à la fin** du fichier `authorized_keys` |
 
-> ⚠️ **Attention à `>>` et `>` :** `>>` **ajoute** une ligne, alors que `>` **remplace tout** le fichier. Avec `>`, ma propre clé aurait été **effacée**, et je n'aurais plus pu me connecter sans mot de passe.
+>  **Attention à `>>` et `>` :** `>>` **ajoute** une ligne, alors que `>` **remplace tout** le fichier. Avec `>`, ma propre clé aurait été **effacée**, et je n'aurais plus pu me connecter sans mot de passe.
 
-**⌨️ Vérification :**
+** Vérification :**
 ```bash
 cat ~/.ssh/authorized_keys
 ```
 
-**👀 Résultat observé :** le fichier contient maintenant **2 clés**, une par ligne :
+** Résultat observé :** le fichier contient maintenant **2 clés**, une par ligne :
 
 ![authorized_keys avec les deux clés](images/16-authorized-keys.png)
 
@@ -510,8 +486,7 @@ cat ~/.ssh/authorized_keys
 | 1 | `ssh-ed25519` | `hp@DESKTOP-NAC3M57` | **Moi** (mon portable) |
 | 2 | `ssh-rsa` | `b300098957@ramena` | **Le professeur** |
 
-**🧠 Analyse :** le professeur peut maintenant se connecter avec `ssh B300145955@10.7.236.237` **sans mot de passe**, grâce à **sa** clé privée. Je n'ai **jamais** eu à partager mon mot de passe. Et si un jour l'accès n'est plus nécessaire, il suffit d'**effacer sa ligne** du fichier pour le retirer.
-
+** Analyse :** le professeur peut maintenant se connecter avec `ssh B300145955@10.7.236.237` **sans mot de passe**, grâce à **sa** clé privée. 
 ---
 
 ## 16. Le compte root : réservé aux urgences
@@ -520,10 +495,10 @@ Le compte `root@pam` est **conservé** (on ne le supprime jamais), mais il n'est
 
 | Situation | Exemple |
 |---|---|
-| 🔧 **Dépannage** | Un service Proxmox ne démarre plus |
-| 🔄 **Réinitialisation de mots de passe** | Un administrateur a oublié le sien |
-| 🛠️ **Maintenance d'urgence** | Une mise à jour critique du système |
-| 🚑 **Récupération du système** | Le serveur ne démarre plus correctement |
+|  **Dépannage** | Un service Proxmox ne démarre plus |
+|  **Réinitialisation de mots de passe** | Un administrateur a oublié le sien |
+|  **Maintenance d'urgence** | Une mise à jour critique du système |
+|  **Récupération du système** | Le serveur ne démarre plus correctement |
 
 Dans ce laboratoire, je n'ai utilisé root que **quelques minutes**, pour les trois commandes `pveum`, puis je l'ai quitté avec `exit`.
 
@@ -599,26 +574,6 @@ Dans une vraie entreprise, plusieurs administrateurs gèrent les mêmes serveurs
 - on réduit les risques liés aux **mots de passe** (vol, partage, mots de passe faibles) ;
 - le compte root reste un **outil de secours**, utilisé rarement et consciemment.
 
-**Les objectifs du laboratoire sont atteints** : chaque administrateur a son compte, les actions sont traçables, l'accès SSH est sécurisé par clé, et le compte root est réservé aux urgences. ✅
+**Les objectifs du laboratoire sont atteints** : chaque administrateur a son compte, les actions sont traçables, l'accès SSH est sécurisé par clé, et le compte root est réservé aux urgences. 
 
----
 
-## 20. Lexique
-
-| Terme | Définition |
-|---|---|
-| **root** | Le super-administrateur de Linux (uid 0), qui a tous les droits |
-| **uid / gid** | Numéro d'utilisateur et numéro de groupe sous Linux |
-| **sudo** | Commande et groupe permettant à un utilisateur normal d'exécuter des commandes en tant que root |
-| **su -** | Commande pour prendre l'identité de root, avec son environnement complet |
-| **PATH** | La liste des dossiers où Linux cherche les commandes |
-| **pveum** | *Proxmox VE User Manager* : l'outil en ligne de commande qui gère les utilisateurs, les rôles et les ACL |
-| **Realm** | Domaine d'authentification de Proxmox (`@pam` pour les comptes Linux, `@pve` pour les comptes internes à Proxmox) |
-| **PAM** | *Pluggable Authentication Modules* : le système d'authentification de Linux |
-| **ACL** | *Access Control List* : une règle « qui a quel rôle sur quoi » |
-| **Rôle** | Un ensemble de privilèges (ex. : Administrator, PVEAuditor) |
-| **Privilège** | Un droit précis (ex. : `VM.Backup`, `Datastore.Audit`) |
-| **SSH** | *Secure Shell* : un protocole de connexion à distance **chiffré** (port 22) |
-| **ED25519 / RSA** | Algorithmes de clés SSH : ED25519 est plus moderne, RSA plus ancien |
-| **authorized_keys** | Le fichier du serveur qui contient les clés publiques autorisées à se connecter à un compte |
-| **Fingerprint** | L'empreinte unique d'une clé, pour la vérifier |
