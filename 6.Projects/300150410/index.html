@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMARTWALLET // PRO</title>
+
+<style>
+
+:root {
+    --green: #b6ff00;
+    --background: #050806;
+    --panel: #101710;
+    --text: #f4f8f1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at 50% 0%, #193500, transparent 50%),
+        #050806;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 6%;
+    border-bottom: 1px solid #b6ff0025;
+    background: #050806aa;
+    backdrop-filter: blur(20px);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--green);
+}
+
+.online {
+    color: var(--green);
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.online::before {
+    content: "● ";
+    text-shadow: 0 0 15px var(--green);
+}
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 35px 25px;
+}
+
+.hero {
+    text-align: center;
+    padding: 25px 0;
+}
+
+.eyebrow {
+    color: var(--green);
+    font-size: 11px;
+    letter-spacing: 5px;
+}
+
+.hero h1 {
+    font-size: clamp(36px, 6vw, 76px);
+    letter-spacing: -3px;
+    margin: 15px 0;
+}
+
+.hero h1 span {
+    color: var(--green);
+    text-shadow: 0 0 40px #b6ff0055;
+}
+
+.hero p {
+    color: #889487;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
+.panel {
+    background: linear-gradient(145deg, #151e14, #080d08);
+    border: 1px solid #b6ff0025;
+    border-radius: 28px;
+    padding: 25px;
+}
+
+.panel-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.panel-title h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.label {
+    color: #8b9988;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.wallet-stage {
+    position: relative;
+    height: 430px;
+    perspective: 1500px;
+    max-width: 430px;
+    margin: auto;
+    touch-action: pan-y;
+}
+
+.wallet-stage.open {
+    height: 490px;
+}
+
+.wallet-glow {
+    position: absolute;
+    width: 85%;
+    height: 180px;
+    left: 7.5%;
+    bottom: 40px;
+    background: #91ff0025;
+    filter: blur(65px);
+    border-radius: 50%;
+}
+
+.wallet-back {
+    position: absolute;
+    width: 100%;
+    height: 235px;
+    bottom: 30px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #293329, #080b08);
+    border: 1px solid #65705a;
+    box-shadow: 0 30px 45px #0009;
+}
+
+.wallet-front {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    width: 100%;
+    height: 145px;
+    z-index: 50;
+    border-radius: 12px 12px 28px 28px;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #ffffff04 0px,
+            #ffffff04 1px,
+            transparent 1px,
+            transparent 5px
+        ),
+        linear-gradient(160deg, #252d24, #070a07);
+    border: 1px solid #65705a;
+    box-shadow: 0 -12px 30px #0008;
+    padding: 25px;
+    cursor: pointer;
+    transition: transform .6s;
+}
+
+.wallet-front::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px dashed #b6ff0038;
+    border-radius: 10px 10px 20px 20px;
+    pointer-events: none;
+}
+
+.wallet-front:hover {
+    transform: translateY(5px);
+}
+
+.wallet-brand {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--green);
+    text-shadow: 0 0 20px #b6ff0055;
+}
+
+.wallet-subtitle {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #8b9988;
+    margin-top: 10px;
+}
+
+.wallet-lock {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    color: var(--green);
+    font-size: 24px;
+}
+
+.document {
+    position: absolute;
+    width: 91%;
+    height: 205px;
+    left: 4.5%;
+    bottom: 105px;
+    perspective: 1200px;
+    cursor: pointer;
+    transition:
+        transform .8s cubic-bezier(.2,.8,.2,1),
+        bottom .8s,
+        opacity .4s;
+    transform-origin: bottom center;
+}
+
+.document-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform .7s;
+}
+
+.document.flipped .document-inner {
+    transform: rotateY(180deg);
+}
+
+.face {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 20px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    border: 1px solid #ffffff50;
+    box-shadow: 0 15px 35px #0008;
+}
+
+.front {
+    background:
+        radial-gradient(circle at 90% 0%, #ffffff45, transparent 45%),
+        linear-gradient(125deg, var(--c1), var(--c2));
+}
+
+.front::after {
+    content: "";
+    position: absolute;
+    width: 130%;
+    height: 100%;
+    top: 0;
+    left: -150%;
+    transform: skewX(-25deg);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ffffff35,
+        transparent
+    );
+    transition: left .8s;
+    pointer-events: none;
+}
+
+.document:hover .front::after {
+    left: 130%;
+}
+
+.back {
+    background: linear-gradient(135deg, #293629, #080d08);
+    transform: rotateY(180deg);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-brand {
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: -.5px;
+}
+
+.demo {
+    font-size: 8px;
+    padding: 6px 8px;
+    border: 1px solid #ffffff55;
+    border-radius: 20px;
+    letter-spacing: 1px;
+}
+
+.card-type {
+    margin-top: 8px;
+    font-size: 12px;
+    opacity: .85;
+}
+
+.chip {
+    width: 40px;
+    height: 30px;
+    margin-top: 16px;
+    border-radius: 7px;
+    border: 1px solid #ffffff80;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            transparent 11px,
+            #665c32 11px,
+            #665c32 12px
+        ),
+        linear-gradient(135deg, #eee5ae, #8f7940);
+}
+
+.card-number {
+    margin-top: 12px;
+    font-family: monospace;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 10px;
+}
+
+.card-icon {
+    font-size: 35px;
+    position: absolute;
+    right: 25px;
+    bottom: 48px;
+    opacity: .8;
+}
+
+.wallet-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-weight: bold;
+    transition: .25s;
+}
+
+.primary {
+    background: var(--green);
+    color: #101500;
+    box-shadow: 0 0 25px #b6ff0035;
+}
+
+.primary:hover {
+    background: #d2ff65;
+    transform: translateY(-3px);
+    box-shadow: 0 0 35px #b6ff0060;
+}
+
+.secondary {
+    background: #192218;
+    border: 1px solid #35452d;
+    color: white;
+}
+
+.secondary:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    padding: 20px;
+    background: #080d08;
+    border: 1px solid #263326;
+    border-radius: 18px;
+}
+
+.stat strong {
+    display: block;
+    font-size: 36px;
+    color: var(--green);
+    margin-top: 10px;
+}
+
+.stat span {
+    color: #899786;
+    font-size: 12px;
+}
+
+.search {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+input, select {
+    background: #080d08;
+    color: white;
+    border: 1px solid #35452d;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 15px;
+    min-width: 0;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 15px #b6ff0015;
+}
+
+.document-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px;
+    border-radius: 15px;
+    background: #0a100a;
+    border: 1px solid #263326;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.list-item:hover {
+    border-color: var(--green);
+    transform: translateX(3px);
+}
+
+.list-icon {
+    display: grid;
+    place-items: center;
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    font-size: 23px;
+}
+
+.list-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.list-info strong {
+    font-size: 14px;
+}
+
+.list-info small {
+    display: block;
+    color: #889487;
+    margin-top: 5px;
+}
+
+.status {
+    font-size: 10px;
+    padding: 6px 8px;
+    border-radius: 20px;
+    background: #b6ff0015;
+    color: var(--green);
+}
+
+.warning {
+    color: #ffb84d;
+    background: #ffb84d15;
+}
+
+.expired {
+    color: #ff6464;
+    background: #ff646415;
+}
+
+.add-panel {
+    margin-top: 25px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+form button {
+    grid-column: 1 / -1;
+}
+
+.delete {
+    background: #ff414120;
+    color: #ff7474;
+    padding: 8px 14px;
+}
+
+.hint {
+    color: #849180;
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.7;
+}
+
+footer {
+    padding: 35px 20px;
+    text-align: center;
+    color: #697767;
+    font-size: 12px;
+    line-height: 2;
+}
+
+footer strong {
+    color: var(--green);
+}
+
+@media (max-width: 850px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    form {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 450px) {
+    main {
+        padding: 15px;
+    }
+
+    .panel {
+        padding: 15px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .online {
+        font-size: 9px;
+    }
+
+    .card-brand {
+        font-size: 19px;
+    }
+
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        SMART<span>WALLET</span> // PRO
+    </div>
+
+    <div class="online">
+        SYSTEM ONLINE
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+
+    <div class="eyebrow">
+        NEXT GENERATION DIGITAL WALLET
+    </div>
+
+    <h1>YOUR LIFE. <span>ONE WALLET.</span></h1>
+
+    <p>
+        Tous vos documents essentiels dans un seul portefeuille.
+    </p>
+
+</section>
+
+<div class="layout">
+
+    <section class="panel">
+
+        <div class="panel-title">
+            <h2>Mon portefeuille</h2>
+            <span class="label">3D EXPERIENCE</span>
+        </div>
+
+        <div class="wallet-stage" id="wallet">
+
+            <div class="wallet-glow"></div>
+
+            <div class="wallet-back"></div>
+
+            <div id="cards"></div>
+
+            <div class="wallet-front" id="walletFront"
+                 role="button" tabindex="0">
+
+                <div class="wallet-brand">SW // PRO</div>
+
+                <div class="wallet-subtitle">
+                    DIGITAL COLLECTION
+                </div>
+
+                <div class="wallet-lock">◇</div>
+
+            </div>
+
+        </div>
+
+        <div class="wallet-controls">
+
+            <button class="primary" id="openButton">
+                ↑ Ouvrir le portefeuille
+            </button>
+
+            <button class="secondary" id="flipButton">
+                ↻ Retourner
+            </button>
+
+            <button class="secondary" id="closeButton">
+                ↓ Ranger
+            </button>
+
+        </div>
+
+        <p class="hint">
+            Glissez vers le haut pour ouvrir.<br>
+            Sélectionnez une carte pour consulter ses informations.
+        </p>
+
+    </section>
+
+    <section class="panel">
+
+        <div class="panel-title">
+            <h2>Tableau de bord</h2>
+            <span class="label">LIVE STATUS</span>
+        </div>
+
+        <div class="stats">
+
+            <div class="stat">
+                <span>DOCUMENTS</span>
+                <strong id="total">0</strong>
+            </div>
+
+            <div class="stat">
+                <span>ACTIFS</span>
+                <strong id="active">0</strong>
+            </div>
+
+            <div class="stat">
+                <span>À RENOUVELER</span>
+                <strong id="renew">0</strong>
+            </div>
+
+            <div class="stat">
+                <span>EXPIRÉS</span>
+                <strong id="expired">0</strong>
+            </div>
+
+        </div>
+
+        <input
+            class="search"
+            id="search"
+            placeholder="Rechercher un document..."
+        >
+
+        <div class="document-list" id="list"></div>
+
+    </section>
+
+</div>
+
+<section class="panel add-panel">
+
+    <div class="panel-title">
+        <h2>＋ Ajouter une carte</h2>
+        <span class="label">NEW DOCUMENT</span>
+    </div>
+
+    <form id="addForm">
+
+        <input id="name" placeholder="Nom du document"
+               maxlength="35" required>
+
+        <input id="reference" placeholder="Référence fictive"
+               maxlength="30" required>
+
+        <input id="date" type="date" required>
+
+        <select id="color">
+            <option value="green">Vert néon</option>
+            <option value="blue">Bleu électrique</option>
+            <option value="purple">Violet premium</option>
+            <option value="orange">Orange métallique</option>
+        </select>
+
+        <button class="primary" type="submit">
+            ＋ Ajouter au portefeuille
+        </button>
+
+    </form>
+
+    <p class="hint">
+        Utilisez uniquement des informations fictives.
+        Les données sont enregistrées localement dans votre navigateur.
+    </p>
+
+</section>
+
+</main>
+
+<footer>
+
+    <strong>SMARTWALLET // PRO</strong><br>
+
+    Designed & Developed by Lachi Lahlou<br>
+
+    Debian • Proxmox VE • Nginx<br>
+
+    Projet éducatif — Documents fictifs non officiels
+
+</footer>
+
+<script>
+
+function futureDate(days) {
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
+const themes = {
+    green: ["#237d00", "#102600"],
+    blue: ["#087ee1", "#06294b"],
+    purple: ["#8045cc", "#251044"],
+    orange: ["#cc750c", "#472300"]
+};
+
+const initialCards = [
+
+    {
+        id: 1,
+        name: "DESJARDINS",
+        type: "Assurance automobile",
+        reference: "DEMO-AUTO-001",
+        date: futureDate(365),
+        colors: ["#008c53", "#00351c"],
+        icon: "🚘"
+    },
+
+    {
+        id: 2,
+        name: "RAMQ",
+        type: "Assurance maladie",
+        reference: "DEMO-SANTE-002",
+        date: futureDate(730),
+        colors: ["#168dc9", "#06365c"],
+        icon: "✚"
+    },
+
+    {
+        id: 3,
+        name: "SAAQ",
+        type: "Permis de conduire",
+        reference: "DEMO-PERMIS-003",
+        date: futureDate(20),
+        colors: ["#b17a28", "#48300c"],
+        icon: "◈"
+    },
+
+    {
+        id: 4,
+        name: "COLLÈGE BORÉAL",
+        type: "Carte étudiante",
+        reference: "DEMO-ETUDIANT-004",
+        date: futureDate(180),
+        colors: ["#8345bd", "#2d104d"],
+        icon: "🎓"
+    },
+
+    {
+        id: 5,
+        name: "IMMATRICULATION",
+        type: "Certificat du véhicule",
+        reference: "DEMO-VEHICULE-005",
+        date: futureDate(90),
+        colors: ["#455c49", "#101c13"],
+        icon: "🚗"
+    }
+
+];
+
+let documents = [];
+
+async function loadDocuments() {
+    const response = await fetch("/api/documents.php", {
+        cache: "no-store"
+    });
+
+    if (!response.ok) {
+        throw new Error("Erreur API");
+    }
+
+    const rows = await response.json();
+
+    const palette = {
+        vert: ["#008c53", "#00351c"],
+        bleu: ["#168dc9", "#06365c"],
+        orange: ["#b17a28", "#48300c"],
+        violet: ["#8345bd", "#2d104d"],
+        noir: ["#455c49", "#101c13"]
+    };
+
+    documents = rows.map(row => ({
+        id: Number(row.id),
+        name: row.nom.toUpperCase(),
+        type: row.type,
+        reference: row.reference || "",
+        date: row.expiration,
+        colors: palette[row.couleur] || palette.vert,
+        icon: row.icone || "◇"
+    }));
+
+    render();
+}
+
+let opened = false;
+let selected = null;
+
+const wallet = document.getElementById("wallet");
+
+function escapeText(value) {
+    const element = document.createElement("div");
+    element.textContent = value;
+    return element.innerHTML;
+}
+
+function daysLeft(date) {
+    const today = new Date();
+
+    const current = Date.UTC(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate()
+    );
+
+    return Math.round(
+        (Date.parse(date) - current) / 86400000
+    );
+}
+
+function getStatus(date) {
+
+    const days = daysLeft(date);
+
+    if (days < 0) return "Expiré";
+
+    if (days <= 30) return "À renouveler";
+
+    return "Actif";
+}
+
+function statusClass(date) {
+
+    const days = daysLeft(date);
+
+    if (days < 0) return "expired";
+
+    if (days <= 30) return "warning";
+
+    return "";
+}
+
+function arrange() {
+
+    wallet.classList.toggle("open", opened);
+
+    const cards = document.querySelectorAll(".document");
+
+    cards.forEach((card, index) => {
+
+        const count = cards.length;
+
+        const step = Math.min(
+            48,
+            240 / Math.max(count - 1, 1)
+        );
+
+        card.style.zIndex = index + 1;
+
+        if (opened) {
+
+            card.style.transform =
+                `translateY(${-index * step}px)
+                 rotateZ(${(index - (count - 1) / 2) * 2}deg)`;
+
+        } else {
+
+            card.style.transform =
+                `translateY(${-index * Math.min(12, 60 / Math.max(count - 1, 1))}px)
+                 scale(${1 - (count - 1 - index) * Math.min(.015, .1 / Math.max(count, 1))})`;
+
+        }
+
+        if (selected === Number(card.dataset.id)) {
+
+            card.style.zIndex = 100;
+
+            card.style.transform =
+                "translateY(-165px) scale(1.04) rotateZ(0deg)";
+
+        }
+
+    });
+
+    document.getElementById("openButton").textContent =
+        opened ? "↑ Portefeuille ouvert" : "↑ Ouvrir le portefeuille";
+
+}
+
+function selectCard(id) {
+
+    opened = true;
+
+    if (selected === id) {
+
+        const card = document.querySelector(
+            `.document[data-id="${id}"]`
+        );
+
+        if (card) card.classList.toggle("flipped");
+
+    } else {
+
+        selected = id;
+
+        document.querySelectorAll(".document").forEach(card => {
+            card.classList.remove("flipped");
+        });
+
+    }
+
+    arrange();
+}
+
+function render() {
+
+    const cards = document.getElementById("cards");
+
+    cards.innerHTML = "";
+
+    documents.forEach(doc => {
+
+        const card = document.createElement("div");
+
+        card.className = "document";
+        card.dataset.id = doc.id;
+        card.tabIndex = 0;
+
+        card.style.setProperty("--c1", doc.colors[0]);
+        card.style.setProperty("--c2", doc.colors[1]);
+
+        card.innerHTML = `
+
+            <div class="document-inner">
+
+                <div class="face front">
+
+                    <div class="card-top">
+
+                        <div class="card-brand">
+                            ${escapeText(doc.name)}
+                        </div>
+
+                        <span class="demo">DÉMO</span>
+
+                    </div>
+
+                    <div class="card-type">
+                        ${escapeText(doc.type)}
+                    </div>
+
+                    <div class="chip"></div>
+
+                    <div class="card-icon">
+                        ${escapeText(doc.icon)}
+                    </div>
+
+                    <div class="card-number">
+                        ${escapeText(doc.reference)}
+                    </div>
+
+                    <div class="card-bottom">
+
+                        <span>DOCUMENT FICTIF</span>
+
+                        <span>
+                            ${escapeText(doc.date)}
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="face back">
+
+                    <div class="card-top">
+
+                        <strong>DÉTAILS DU DOCUMENT</strong>
+
+                        <span class="demo">NON OFFICIEL</span>
+
+                    </div>
+
+                    <p>
+                        Référence :
+                        ${escapeText(doc.reference)}
+                    </p>
+
+                    <p>
+                        Expiration :
+                        ${escapeText(doc.date)}
+                    </p>
+
+                    <p>
+                        Statut :
+                        ${getStatus(doc.date)}
+                    </p>
+
+                    <button class="delete">
+                        Supprimer
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+        card.addEventListener("click", () => {
+            selectCard(doc.id);
+        });
+
+        card.addEventListener("keydown", event => {
+            if (event.target === card &&
+                (event.key === "Enter" || event.key === " ")) {
+                event.preventDefault();
+                selectCard(doc.id);
+            }
+        });
+
+        card.querySelector(".delete")
+    .addEventListener("click", async event => {
+        event.stopPropagation();
+        if (!confirm("Supprimer ce document ?")) return;
+        try {
+            const response = await fetch(
+                "/api/documents.php?id=" + doc.id,
+                { method: "DELETE" }
+            );
+            if (!response.ok) throw new Error();
+            selected = null;
+            await loadDocuments();
+        } catch {
+            alert("Erreur de suppression.");
+        }
+    });
+
+    cards.appendChild(card);
+
+    });
+
+    document.getElementById("total").textContent =
+        documents.length;
+
+    document.getElementById("active").textContent =
+        documents.filter(d =>
+            getStatus(d.date) === "Actif"
+        ).length;
+
+    document.getElementById("renew").textContent =
+        documents.filter(d =>
+            getStatus(d.date) === "À renouveler"
+        ).length;
+
+    document.getElementById("expired").textContent =
+        documents.filter(d =>
+            getStatus(d.date) === "Expiré"
+        ).length;
+
+    renderList();
+    arrange();
+
+}
+
+function renderList() {
+
+    const search = document.getElementById("search")
+        .value.toLowerCase();
+
+    const list = document.getElementById("list");
+
+    list.innerHTML = "";
+
+    const results = documents.filter(doc =>
+        (doc.name + " " + doc.type + " " + doc.reference)
+        .toLowerCase().includes(search)
+    );
+
+    results.forEach(doc => {
+
+        const item = document.createElement("div");
+
+        item.className = "list-item";
+        item.tabIndex = 0;
+
+        item.innerHTML = `
+
+            <div class="list-icon"
+                 style="background:${doc.colors[0]}">
+
+                ${escapeText(doc.icon)}
+
+            </div>
+
+            <div class="list-info">
+
+                <strong>${escapeText(doc.name)}</strong>
+
+                <small>${escapeText(doc.type)}</small>
+
+            </div>
+
+            <span class="status ${statusClass(doc.date)}">
+
+                ${getStatus(doc.date)}
+
+            </span>
+
+        `;
+
+        item.addEventListener("click", () => {
+            selectCard(doc.id);
+        });
+
+        item.addEventListener("keydown", event => {
+            if (event.key === "Enter") selectCard(doc.id);
+        });
+
+        list.appendChild(item);
+
+    });
+
+    if (!results.length) {
+        list.textContent = "Aucun document trouvé.";
+    }
+
+}
+
+function closeWallet() {
+
+    opened = false;
+    selected = null;
+
+    document.querySelectorAll(".document").forEach(card => {
+        card.classList.remove("flipped");
+    });
+
+    arrange();
+}
+
+function toggleWallet() {
+
+    if (opened) {
+        closeWallet();
+    } else {
+        opened = true;
+        arrange();
+    }
+
+}
+
+document.getElementById("walletFront")
+    .addEventListener("click", toggleWallet);
+
+document.getElementById("walletFront")
+    .addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggleWallet();
+        }
+    });
+
+document.getElementById("openButton")
+    .addEventListener("click", () => {
+
+        opened = true;
+        selected = null;
+
+        arrange();
+
+    });
+
+document.getElementById("closeButton")
+    .addEventListener("click", closeWallet);
+
+document.getElementById("flipButton")
+    .addEventListener("click", () => {
+
+        if (!documents.length) return;
+
+        if (selected === null) {
+            selectCard(documents[documents.length - 1].id);
+        }
+
+        const card = document.querySelector(
+            `.document[data-id="${selected}"]`
+        );
+
+        if (card) card.classList.toggle("flipped");
+
+    });
+
+document.getElementById("search")
+    .addEventListener("input", renderList);
+
+document.getElementById("addForm")
+    .addEventListener("submit", async event => {
+        event.preventDefault();
+
+        if (documents.length >= 15) {
+            alert("Maximum : 15 documents.");
+            return;
+        }
+
+        const colors = {
+            green: "vert",
+            blue: "bleu",
+            purple: "violet",
+            orange: "orange"
+        };
+
+        const data = {
+            nom: document.getElementById("name").value.trim().toUpperCase(),
+            reference: document.getElementById("reference").value.trim(),
+            expiration: document.getElementById("date").value,
+            couleur: colors[document.getElementById("color").value] || "vert"
+        };
+
+        try {
+            const response = await fetch("/api/documents.php", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) throw new Error();
+
+            const result = await response.json();
+            opened = true;
+            selected = Number(result.id);
+            await loadDocuments();
+            event.target.reset();
+
+        } catch {
+            alert("Erreur lors de l'ajout.");
+        }
+    });
+
+let touchStart = 0;
+
+wallet.addEventListener("touchstart", event => {
+
+    touchStart = event.changedTouches[0].screenY;
+
+}, {passive: true});
+
+wallet.addEventListener("touchend", event => {
+
+    const distance =
+        touchStart - event.changedTouches[0].screenY;
+
+    if (distance > 45) {
+
+        opened = true;
+        arrange();
+
+    }
+
+    if (distance < -45) {
+
+        closeWallet();
+
+    }
+
+}, {passive: true});
+
+loadDocuments().catch(error => {
+    console.error(error);
+    alert("Impossible de charger les documents.");
+});
+
+</script>
+
+</body>
+</html>
