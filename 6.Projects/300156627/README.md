@@ -19,6 +19,28 @@
 
 URL d'accès de l'application : [http://10.7.236.227:61730/](http://10.7.236.227:61730/)
 
+##### 🚀 Aperçu du projet
+
+L'objectif de ce projet est de proposer une interface web accessible et réactive permettant de consulter et gérer les contenus de maxi - guinéen (navigation entre les sections, consultation des produits et articles, et publication de nouveaux éléments) tout en s'appuyant sur un service backend dédié hébergé sur la VM du laboratoire.
+
+#### ✨ Fonctionnalités principales
+
+Navigation et interface Flutter Web
+
+Compilation web générée depuis Windows (build/web) et diffusée via HTTP sur le port 61730.
+
+Accès aux différentes vues et sections de l'application (Accueil, Produits, Articles, Publier).
+
+Backend & API REST Python (api_server.py)
+
+Exécution en arrière-plan sur la VM Debian (port 8080) pour répondre aux requêtes de l'application.
+
+Journalisation des activités et erreurs dans ~/maxi_deploy/api.log.
+
+Continuité de service sur la VM
+
+Lancement en arrière-plan (nohup et redirection des logs) et détachement de la session interactive (disown -a) afin de maintenir les services actifs même après la fermeture du terminal.
+
 <img width="1911" height="1035" alt="1" src="https://github.com/user-attachments/assets/6151ce4d-b5b8-458e-9c16-b6ca97542610" />
 
 
@@ -143,3 +165,11 @@ les processus http.server (port 61730) et api_server.py (port 8080) tournent dan
 Intégrité des fichiers : le dossier ~/maxi_deploy/web et les scripts associés sont en place.
 
 Si tu veux ajouter une section spéciale demandée dans ta grille d'évaluation (par exemple la configuration pare-feu, un test d'endpoint /api/..., ou la configuration systemd pour un redémarrage automatique au boot de la VM), dis-moi quel point ajouter et je l'intègre.
+
+#### 🔒 Bonnes Pratiques & Maintien en ligne
+
+Garder la machine virtuelle Debian (10.7.236.227) allumée jusqu'à la fin de la correction.
+
+Vérifier avec ps aux | grep -E "61730|api_server.py" que les processus restent actifs.
+
+Consulter web.log et api.log dans ~/maxi_deploy/ en cas de besoin de diagnostic.
