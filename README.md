@@ -5,15 +5,15 @@ INF 1085-201 Administration Linux
 
 ## :one: [Devoirs](Devoirs)
 
-|  :hash: | Date   | Cours                                  | 🎉 Participations                                     |
-|---------|--------|:---------------------------------------|:----------------------------------------------------- |
-| 0️⃣      | 16-sep | [0.PlanDeCours](0.PlanDeCours)         | [🎉](0.PlanDeCours/.scripts/Participation.md)         |
-| :one:   | 23-sep | [1.Diagnostics](1.Diagnostics)           | [🎉](1.Diagnostics/.scripts/Participation.md)          |
-| :two:   | 30-sep | [2.Proxmox](2.Proxmox)                 | [🎉](2.Proxmox/.scripts/Participation.md)             |
-| :three:  | 07-oct | [3.VMs](3.VMs)                         | [🎉 1️⃣ ](3.VMs/.scripts/Participation-group1.md) :curly_loop: [🎉 :two:](3.VMs/.scripts/Participation-group2.md) :curly_loop: [🎉 3️⃣ ](3.VMs/.scripts/Participation-group3.md) :curly_loop: [🎉 4️⃣](3.VMs/.scripts/Participation-group4.md) |
-| :four: | 14-oct | [4.Root](4.Root)                       | [🎉 1️⃣ ](4.Root/.scripts/Participation-group1.md) :curly_loop: [🎉 :two:](4.Root/.scripts/Participation-group2.md) :curly_loop: [🎉 3️⃣ ](4.Root/.scripts/Participation-group3.md) :curly_loop: [🎉 4️⃣](4.Root/.scripts/Participation-group4.md) |
-| :five: | 21-oct | [5.Storage](5.Storage)                       | [🎉 1️⃣ ](5.Storage/.scripts/Participation-group1.md) :curly_loop: [🎉 :two:](5.Storage/.scripts/Participation-group2.md) :curly_loop: [🎉 3️⃣ ](5.Storage/.scripts/Participation-group3.md) :curly_loop: [🎉 4️⃣](4.Root/.scripts/Participation-group4.md) |
-
+|  :hash: | Date   | Cours                                  | 🎉 Participations                                     |  💯 |
+|---------|--------|:---------------------------------------|:----------------------------------------------------- | ----|
+| 0️⃣      | 16-sep | [0.PlanDeCours](0.PlanDeCours)         | [🎉](0.PlanDeCours/.scripts/Participation.md)         | 0️⃣2️⃣
+| :one:   | 23-sep | [1.Diagnostics](1.Diagnostics)           | [🎉](1.Diagnostics/.scripts/Participation.md)          | 0️⃣8️⃣
+| :two:   | 30-sep | [2.Proxmox](2.Proxmox)                 | [🎉](2.Proxmox/.scripts/Participation.md)             | 1️⃣0️⃣
+| :three:  | 07-oct | [3.VMs](3.VMs)                         | [🎉 1️⃣ ](3.VMs/.scripts/Participation-group1.md) :curly_loop: [🎉 :two:](3.VMs/.scripts/Participation-group2.md) :curly_loop: [🎉 3️⃣ ](3.VMs/.scripts/Participation-group3.md) :curly_loop: [🎉 4️⃣](3.VMs/.scripts/Participation-group4.md) | 2️⃣0️⃣
+| :four: | 14-oct | [4.Root](4.Root)                       | [🎉 1️⃣ ](4.Root/.scripts/Participation-group1.md) :curly_loop: [🎉 :two:](4.Root/.scripts/Participation-group2.md) :curly_loop: [🎉 3️⃣ ](4.Root/.scripts/Participation-group3.md) :curly_loop: [🎉 4️⃣](4.Root/.scripts/Participation-group4.md) | 1️⃣0️⃣
+| :five: | 21-oct | [5.Storage](5.Storage)                       | [🎉 1️⃣ ](5.Storage/.scripts/Participation-group1.md) :curly_loop: [🎉 :two:](5.Storage/.scripts/Participation-group2.md) :curly_loop: [🎉 3️⃣ ](5.Storage/.scripts/Participation-group3.md) :curly_loop: [🎉 4️⃣](4.Root/.scripts/Participation-group4.md) | 2️⃣0️⃣
+| :six: | 01-dec | [6.Projects](6.Projects)                 | [🎉 1️⃣ ](6.Projects/.scripts/Participation-group1.md) :curly_loop: [🎉 :two:](6.Projects/.scripts/Participation-group2.md) :curly_loop: [🎉 3️⃣ ](6.Projects/.scripts/Participation-group3.md) :curly_loop: [🎉 4️⃣](6.Projects/.scripts/Participation-group4.md) | 3️⃣0️⃣
 
 ## 🎯 Résultats d'apprentissage du cours (RAC)
 
@@ -46,3 +46,9 @@ INF 1085-201 Administration Linux
 - 📈 Surveiller les performances et l'état du système.
 - 📝 Documenter les modifications et procédures.
 - 🤖 Automatiser la surveillance et certaines opérations administratives.
+
+# :books: References
+
+```
+=[[1]]*,02+[[2]]*,08+[[3]]*,1+[[4]]*,2+[[5]]*,1+[[6]]*,2+[[7]]*,3
+```
