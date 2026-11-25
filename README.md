@@ -5,7 +5,7 @@ INF 1085-201 Administration Linux
 
 ## :one: [Devoirs](Devoirs)
 
-|  :hash: | Date   | Cours                                  | 🎉 Participations                                     |  💯 |
+|  :hash: | Date   | Cours                                  | 🎉 Participations                                     |  💯% |
 |---------|--------|:---------------------------------------|:----------------------------------------------------- | ----|
 | 0️⃣      | 16-sep | [0.PlanDeCours](0.PlanDeCours)         | [🎉](0.PlanDeCours/.scripts/Participation.md)         | 0️⃣2️⃣
 | :one:   | 23-sep | [1.Diagnostics](1.Diagnostics)           | [🎉](1.Diagnostics/.scripts/Participation.md)          | 0️⃣8️⃣
