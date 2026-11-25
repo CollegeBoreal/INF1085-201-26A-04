@@ -12,4 +12,13 @@ Dans ce dossier, je vais présenter mon travail de participation au plan de cour
 ## Documents
 
 Ce dossier contient mon fichier README.md et les documents liés au plan de cours.
- 
+
+
+ # Administration Linux
+
+## INF1085
+
+Travaux pratiques du cours Administration Linux.
+## Images
+
+![Linux](images/linux.png)
