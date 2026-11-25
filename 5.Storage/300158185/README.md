@@ -30,7 +30,7 @@ Dans ce labo, l’ordre est **NVMe → partition → PV → VG → thin pool →
 
 ## Partie A – Travail en groupe : préparation du stockage NVMe
 
-Le stockage `nvme-storage` était déjà visible sur le nœud `server1` de Proxmox VE 9.2.2. Les sections 3 à 8 décrivent la procédure du labo. Les sorties du groupe sont à joindre pour documenter le disque physique et la création du pool LVM-Thin.
+Le stockage `nvme-storage` était déjà visible sur le nœud `server1` de Proxmox VE 9.2.2. Les sections 3 à 8 décrivent la procédure du labo. Les captures disponibles montrent le stockage dans Proxmox. Les sorties du groupe restent nécessaires pour confirmer le modèle et la taille du disque physique, le partitionnement et la configuration du pool LVM-Thin.
 
 ### 3. Identification des disques
 
@@ -41,16 +41,10 @@ pvs
 pvesm status
 ```
 
-| Périphérique | Taille | Observation |
-| --- | --- | --- |
-| Disque système | [À relever] | [Périphérique et partition ou volume portant `/`] |
-| Disque NVMe du labo | [À relever] | [Périphérique, modèle et partitions existantes] |
+Sur l’hôte, `lsblk` permet de repérer le disque système à partir du point de montage `/` et d’identifier le NVMe grâce à son modèle et à sa capacité.
 
 Les chemins `/dev/nvme0n1` et `/dev/nvme0n1p1` sont des exemples. Les remplacer si le NVMe porte un autre nom.
 
-<!-- Après avoir ajouté la capture, retirer les marques de commentaire autour de la ligne suivante.
-![Figure 1 – Identification des disques](images/01-disques-avant.png)
--->
 
 ### 4. Vérification des signatures existantes
 
@@ -60,13 +54,8 @@ Sur le NVMe identifié, afficher les signatures détectées avec cette commande 
 wipefs --no-act /dev/nvme0n1
 ```
 
-**Observation** — [Indiquer les signatures détectées et si le groupe a dû les retirer.]
-
 Si le professeur demande un nettoyage préalable, confirmer avec le groupe que le NVMe est dédié au laboratoire, que ses données peuvent être effacées et qu’il ne sert ni au système ni à un stockage existant. Dans ce cas seulement, `wipefs -a /dev/nvme0n1` retire les signatures détectées sur le disque. Cette commande est facultative lorsque le disque est prêt à être partitionné.
 
-<!--
-![Figure 2 – Vérification des signatures ou état du disque après nettoyage](images/02-signatures-nvme.png)
--->
 
 ### 5. Création de la partition GPT
 
@@ -82,11 +71,6 @@ fdisk /dev/nvme0n1
 4. Entrer `w` pour enregistrer quand la vérification est bonne.
 5. Exécuter `lsblk /dev/nvme0n1` et vérifier que `nvme0n1p1` apparaît.
 
-**Résultat relevé** — [Nom de la partition, taille et type de table.]
-
-<!--
-![Figure 3 – Création de la table GPT et de la partition](images/03-partition-gpt.png)
--->
 
 ### 6. Création du PV, du VG et du pool LVM-Thin
 
@@ -108,9 +92,6 @@ pvesm add lvmthin nvme-storage --vgname nvme-vg --thinpool data --content images
 
 Le contenu `images` autorise les disques des VM. Le contenu `rootdir` autorise les volumes racines des conteneurs. Sur un cluster, ajouter `--nodes NOM_DU_NŒUD` avec le vrai nom du nœud pour limiter cette configuration au serveur qui porte le NVMe.
 
-<!--
-![Figure 4 – Création du pool et ajout de nvme-storage](images/04-creation-lvm.png)
--->
 
 ### 8. Vérification du stockage
 
@@ -122,18 +103,21 @@ lvs -o vg_name,lv_name,segtype,lv_size,data_percent,metadata_percent
 pvesm status
 ```
 
-| Commande | Élément à vérifier | Résultat relevé |
-| --- | --- | --- |
-| `lsblk` | La partition NVMe apparaît dans l’arbre. | [À compléter] |
-| `pvs` | La partition est associée à `nvme-vg`. | [À compléter] |
-| `vgs` | Le VG `nvme-vg` existe. | [À compléter] |
-| `lvs` | `nvme-vg/data` est un `thin-pool`. | [À compléter] |
-| `pvesm status` | `nvme-storage` est de type `lvmthin` avec l’état `active`. | [À compléter] |
+| Commande | Élément à vérifier |
+| --- | --- |
+| `lsblk` | La partition NVMe apparaît dans l’arbre. |
+| `pvs` | La partition est associée à `nvme-vg`. |
+| `vgs` | Le VG `nvme-vg` existe. |
+| `lvs` | `nvme-vg/data` est un `thin-pool`. |
+| `pvesm status` | `nvme-storage` est de type `lvmthin` et son état est `active`. |
 
-<!--
-![Figure 5 – Organisation du stockage NVMe dans lsblk](images/05-arbre-lvm.png)
-![Figure 6 – Vérification du pool et de nvme-storage](images/06-validation-stockage.png)
--->
+Dans le Shell de `server1`, mon compte a reçu le message `pvesm: command not found`.
+
+![Figure 1 – Première tentative de vérification avec pvesm](images/01-shell-pvesm.png)
+
+La tentative avec `sudo` a aussi échoué. J’ai repéré le stockage `nvme-storage` et la VM 102 dans le panneau de gauche de Proxmox, puis poursuivi dans l’interface Web.
+
+![Figure 2 – Stockage nvme-storage et VM 102 dans Proxmox](images/02-stockage-nvme-et-vm-102.png)
 
 ## Partie B – Travail individuel : déplacement du disque de ma VM 102
 
@@ -141,32 +125,40 @@ pvesm status
 
 Dans Proxmox, j’ai ouvert **102 (Mohammed) → Hardware** sur le nœud `server1`. Le disque `scsi0` avait une capacité de **32 Gio** et se trouvait sur `local-lvm:vm-102-disk-0`.
 
-![Figure 7 – Disque scsi0 de la VM 102 sur local-lvm avant le transfert](images/07-vm-avant.png)
+![Figure 3 – Disque scsi0 de la VM 102 sur local-lvm avant le transfert](images/03-disque-avant-transfert.png)
 
 ### 10. Déplacement du disque
+
+J’ai ouvert la fenêtre d’édition du disque pour vérifier le volume source affiché.
+
+![Figure 4 – Fenêtre d’édition du disque scsi0 sur local-lvm](images/04-fenetre-edition-scsi0.png)
 
 J’ai arrêté la VM et sélectionné **Hard Disk (scsi0) → Disk Action → Move Storage**. J’ai choisi `nvme-storage` comme destination en laissant **Delete source** décoché.
 
 Le journal affiche le transfert de **32,0 Gio sur 32,0 Gio (100 %)**, l’ajout du volume source à la configuration sous `unused0` et le résultat **`TASK OK`**.
 
-![Figure 8 – Journal du déplacement du disque de la VM 102](images/08-transfert.png)
+![Figure 5 – Journal du déplacement du disque de la VM 102](images/05-transfert-task-ok.png)
 
 ### 11. Vérification du disque et démarrage de Debian
 
 Dans **Hardware**, la ligne **Hard Disk (scsi0)** indique maintenant `nvme-storage:vm-102-disk-0,iothread=1,size=32G`. L’ancien volume `local-lvm:vm-102-disk-0` apparaît sous **Unused Disk 0**.
 
-![Figure 10 – Disque scsi0 de la VM 102 sur nvme-storage après le transfert](images/10-vm-apres.png)
+![Figure 6 – Disque scsi0 de la VM 102 sur nvme-storage après le transfert](images/06-disque-sur-nvme.png)
 
-Après avoir redémarré la VM, j’ai ouvert un terminal dans Debian et lancé les commandes suivantes.
+Après avoir redémarré la VM, j’ai ouvert un terminal dans Debian. La commande `hostname` a retourné `mohammed`. La première saisie de `lsblk` contenait une virgule en trop.
+
+![Figure 7 – Terminal Debian et première vérification du nom d’hôte](images/07-debian-demarre.png)
+
+J’ai corrigé la commande pour afficher le nom, la taille, le système de fichiers et le point de montage de chaque périphérique.
 
 ```bash
 hostname
 lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINTS
 ```
 
-Le nom d’hôte retourné est `mohammed`. Debian voit le disque virtuel `sda` de **32 Gio**. La partition `sda1` de **30,3 Gio** utilise `ext4` et est montée sur `/`. La partition `sda5` de **1,7 Gio** sert d’espace d’échange. La configuration de la VM dans Proxmox indique le stockage du disque virtuel.
+Debian voit le disque virtuel `sda` de **32 Gio**. La partition `sda1` de **30,3 Gio** utilise `ext4` et est montée sur `/`. La partition `sda5` de **1,7 Gio** sert d’espace d’échange. La configuration de la VM dans Proxmox indique le stockage du disque virtuel.
 
-![Figure 11 – Debian démarré et partition système montée sur /](images/11-debian.png)
+![Figure 8 – Debian démarré et partition système montée sur /](images/08-verification-debian-lsblk.png)
 
 ### 12. Bilan des résultats
 
@@ -206,8 +198,13 @@ Le nom d’hôte retourné est `mohammed`. Debian voit le disque virtuel `sda` d
 
 J’ai déplacé le disque de 32 Gio de la VM 102 (Mohammed) de `local-lvm` vers `nvme-storage`. Le journal confirme la réussite du transfert, la configuration de Proxmox indique le nouveau stockage et Debian démarre avec sa partition système montée sur `/`.
 
+## Annexe – Dépôt du rapport sur GitHub
+
+Lors d’une tentative de création de `.gitkeep` depuis l’interface GitHub, le commit a été refusé avec le message `File could not be edited`.
+
+![Figure 9 – Message de GitHub lors du commit de .gitkeep](images/09-erreur-commit-github.png)
+
 ## Références
 
 - [Guide d’administration de Proxmox VE](https://pve.proxmox.com/pve-docs/pve-admin-guide.pdf)
 - [Référence de la commande qm](https://pve.proxmox.com/pve-docs/qm.1.html)
-

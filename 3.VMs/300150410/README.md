@@ -3,7 +3,7 @@
 ## Installation et sécurisation d’une machine virtuelle Debian 13 avec Proxmox VE
 
 **Lachi Lahlou | No étudiant : 300150410**  
-**Compte Debian :** lahloulachi@10.7.236.177  
+**Compte Debian :** lahloulachi@10.7.236.205
 **Cours :** INF1085 — Linux / Proxmox  
 
 ---
