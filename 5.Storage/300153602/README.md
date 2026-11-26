@@ -29,4 +29,11 @@ qm config VMID
 pvesm list nvme-storage
 ```
 
-La ligne du disque actif doit pointer vers le stockage NVMe après l’opération. Démarrer la VM ou vérifier qu’elle reste opérationnelle selon les conditions du labo. Ajouter les captures de la configuration avant et après dans `images/`.
+La ligne du disque actif doit pointer vers le stockage NVMe après l’opération. Démarrer la VM ou vérifier qu’elle reste opérationnelle selon les conditions du labo. 
+## Captures et résultats de référence
+
+Le rapport source documente le disque scsi0 sur local-lvm avant la migration et sur nvme-storage après la migration. La capture montre la configuration du disque après le déplacement.
+
+![Disque de la VM sur le stockage NVMe](images/vm-materiel-nvme.jpg)
+
+[README source](https://github.com/CollegeBoreal/INF1085-201-26A-04/tree/main/5.Storage/300153932)
