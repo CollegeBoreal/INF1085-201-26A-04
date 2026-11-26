@@ -1,96 +1,23 @@
-# 🔌 Diagnostic
+# Diagnostic du démarrage d’un HP ProLiant DL360 G6
 
-[:tada: Participation](.scripts/Participation.md)
+Le problème à diagnostiquer est l’absence de POST après l’ajout du deuxième processeur. Les causes possibles sont un processeur défectueux, un socket endommagé ou une barrette mal placée sur le canal mémoire associé.
 
-### :fire_extinguisher: Le serveur ne démarre pas
+1. Relever les voyants, les bips et le comportement des ventilateurs.
+2. Arrêter le serveur, débrancher l’alimentation et suivre les procédures antistatiques du laboratoire.
+3. Confirmer que la configuration connue avec CPU1 démarre. Tester ensuite CPU2 seul dans le socket 1 avec une barrette fonctionnelle dans l’emplacement recommandé.
+4. Si CPU2 démarre dans le socket 1, inspecter le socket 2, ses broches et la configuration de sa mémoire. Si CPU2 échoue alors que CPU1 fonctionne dans la même configuration, CPU2 devient la cause la plus probable.
+5. Si des broches sont cassées, comparer le coût du remplacement de la carte système avec celui d’une réparation spécialisée.
 
----
+## Bilan du diagnostic documenté
 
-<image src=images/Designer.png width=% height=% > </image>
+Le rapport de référence décrit le retrait et la réinstallation des processeurs pour contrôler leur position et leur fixation. Après remontage, le serveur a affiché l’écran HP ProLiant, lancé la calibration thermique et poursuivi son démarrage jusqu’à Proxmox VE.
 
----
+[Rapport de référence](https://github.com/CollegeBoreal/INF1085-201-26A-04/tree/main/1.Diagnostics/300153401#-7-d%C3%A9marrage-du-serveur-et-test-post)
 
-## 🥏 Cas 1 : Quelques broches légèrement pliées
+## Photo du laboratoire
 
-C'est le scénario le plus favorable.
+![Processeur installé](processeur-installe.png)
 
-Les sockets `LGA1366` [^1] ont les broches sur la carte mère.
+Cette photo illustre la position et la fixation du processeur.
 
-Avec une loupe, un bon éclairage et parfois une aiguille très fine ou une pince de précision, il est souvent possible de redresser les broches.
-
-J'ai déjà vu des serveurs revenir à la vie avec seulement 1 ou 2 broches réalignées.
-
-* ✅ Coût : 0 $
-* ✅ Réparation réaliste pour un serveur de laboratoire
-
-## 🉑 Cas 2 : Socket endommagé
-
-Si plusieurs broches sont :
-
-- cassées,
-- arrachées,
-- écrasées,
-- ou si le plastique du socket est endommagé,
-
-alors il faut remplacer le socket LGA1366.
-
-Cela nécessite :
-
-- Station à air chaud ou infrarouge BGA
-- Équipement de rework professionnel
-- Nouveau socket LGA1366
-- Beaucoup d'expérience
-
-Pour un DL360 G6 :
-
-💰 Le coût de la réparation dépasse souvent la valeur du serveur.
-
-## 🥏 Cas 3 : Remplacer la carte système
-
-Pour un G6, c'est généralement la meilleure solution.
-
-Une carte mère DL360 G6 usagée se trouve souvent pour moins cher qu'une réparation professionnelle du socket.
-
-Avant de conclure que le socket est mort
-
-Je te suggère ce test très rapide :
-
-- Retire CPU2.
-- Place CPU2 seul dans Socket 1.
-- Installe un DIMM dans le premier slot de CPU1.
-
-Démarre.
-
-Si le serveur POST :
-
-<image src=images/20260917_140052.jpg width=20% height=20% > </image>
-
-- ✅ CPU2 est bon
-- ➡️ le problème est probablement Socket 2 ou son circuit mémoire.
-
-Si le serveur ne POST pas :
-
-- ✅ forte probabilité que CPU2 soit défectueux.
-
-Autre indice important sur le DL360 G6
-
-Quand tu installes CPU2 :
-
-- Les ventilateurs montent-ils immédiatement à 100 % ?
-- Le voyant système rouge s'allume-t-il ?
-
-As-tu un code de diagnostic sur le panneau avant ?
-
-Ces symptômes peuvent souvent distinguer :
-
-- Symptôme	Cause probableÉcran noir, ventilateurs à fond	Socket 2 ou CPU2
-- Voyant rouge CPU	CPU2 défectueux
-- Bips mémoire	DIMM dans le mauvais emplacement
-
-Démarre puis s'éteint	Problème d'alimentation ou court-circuit du socket
-
-Pour un DL360 G6 de plus de 15 ans, je testerais d'abord CPU2 seul dans Socket 1 avant de démonter le socket. C'est le test qui permet d'éliminer rapidement 50 % des causes possibles.
-
-# References
-
-[^1]: https://fr.wikipedia.org/wiki/LGA_1366
+[Source de la photo](https://github.com/CollegeBoreal/INF1085-201-26A-04/tree/main/1.Diagnostics/300153401)
