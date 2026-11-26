@@ -1,21 +1,23 @@
-# Travail 3 — Création d’une machine virtuelle
+# Création et vérification d’une VM Linux
 
-**Meriem Abdedou — INF1085, groupe 04**
+1. Sur le nœud Proxmox assigné au groupe, sélectionner **Create VM** et prendre un identifiant libre réservé au laboratoire.
+2. Sélectionner l’ISO Linux du cours. Configurer le disque, les vCPU, la RAM et le bridge réseau selon les ressources attribuées.
+3. Démarrer la VM, installer Linux depuis la console, retirer l’ISO et redémarrer sur le disque virtuel.
+4. Vérifier l’OS, le disque, la mémoire et le réseau.
 
-## Objectif
+```bash
+hostnamectl
+lsblk -f
+free -h
+ip -br address
+ip route
+```
 
-Créer une machine virtuelle Ubuntu Server sur le nœud Proxmox de mon groupe et vérifier sa connexion réseau.
+| Élément | Valeur réelle |
+|---|---|
+| Nom et identifiant de la VM | À relever |
+| Distribution et version | À relever |
+| vCPU, RAM et disque | À relever |
+| Adresse de la VM | À relever |
 
-## Démarche
-
-1. Dans Proxmox, cliquer sur **Create VM**, choisir un identifiant libre et entrer le nom de la VM.
-2. Sélectionner l’image ISO d’Ubuntu Server et configurer le disque, la mémoire et le processeur selon les ressources attribuées.
-3. Connecter la VM au pont réseau du laboratoire et installer Ubuntu Server.
-4. Après le redémarrage, vérifier le nom de la machine avec `hostnamectl`, l’adresse IP avec `ip -br address` et la passerelle avec `ip route`.
-5. Si SSH est configuré, tester la connexion depuis un autre poste du laboratoire.
-
-## Résultats du laboratoire
-
-- Nom et identifiant de la VM :
-- Adresse IP et passerelle :
-- Résultat du test SSH :
+Preuves à ajouter dans `images/` et à lier ici. Capturer le matériel de la VM et la vérification dans sa console.
