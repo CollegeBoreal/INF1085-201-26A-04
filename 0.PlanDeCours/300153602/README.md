@@ -1,14 +1,11 @@
-# Plan de cours — INF1085
+# Plan de cours
 
-**Meriem Abdedou · Groupe 04**
+Le cours INF1085 couvre l’installation d’un serveur Linux, l’administration des comptes et des permissions, puis la sécurité et la surveillance. Le parcours passe par les commandes Linux, la virtualisation avec Proxmox, le stockage, les scripts Bash et le déploiement de services réseau.
 
-## Ce que je vais apprendre
+## Plan de cours
 
-Dans le cours d’administration Linux, je vais apprendre à :
+![Plan de cours](images/plan-de-cours-inf1085.png)
 
-- Installer et configurer un système Linux.
-- Créer et gérer des machines virtuelles avec Proxmox.
-- Gérer les utilisateurs, les groupes et les permissions.
-- Vérifier l’état du serveur et diagnostiquer les problèmes.
-- Documenter mes manipulations et mes résultats de laboratoire.
-![Plan de cours INF1085](images/plan-de-cours-inf1085.png)
+## Parcours étudiant
+
+![Parcours étudiant](images/parcours-inf1085.png)
