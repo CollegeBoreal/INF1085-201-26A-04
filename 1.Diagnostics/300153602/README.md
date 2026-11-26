@@ -10,9 +10,9 @@ Le problème à diagnostiquer est l’absence de POST après l’ajout du deuxi�
 
 | Test | Résultat réel |
 |---|---|
-| CPU1 dans le socket 1 | À relever |
-| CPU2 dans le socket 1 | À relever |
-| Voyants et bips | À relever |
+| CPU1 dans le socket 1 |Résultat non confirmé |
+| CPU2 dans le socket 1 |Résultat non confirmé|
+| Voyants et bips |Résultat non confirmé |
 
 Preuve à ajouter dans `images/` et à lier ici après le test.
 ## Photo du laboratoire
@@ -20,3 +20,4 @@ Preuve à ajouter dans `images/` et à lier ici après le test.
 ![Processeur installé](images/processeur-installe.png)
 
 [Source de la photo](https://github.com/CollegeBoreal/INF1085-201-26A-04/tree/main/1.Diagnostics/300153401)
+*Processeur en place dans son socket. Cette photo illustre la vérification de son positionnement et de sa fixation.*
