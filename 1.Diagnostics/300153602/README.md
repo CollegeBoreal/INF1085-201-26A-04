@@ -8,16 +8,16 @@ Le problème à diagnostiquer est l’absence de POST après l’ajout du deuxi�
 4. Si CPU2 démarre dans le socket 1, inspecter le socket 2, ses broches et la configuration de sa mémoire. Si CPU2 échoue alors que CPU1 fonctionne dans la même configuration, CPU2 devient la cause la plus probable.
 5. Si des broches sont cassées, comparer le coût du remplacement de la carte système avec celui d’une réparation spécialisée.
 
-| Test | Résultat réel |
-|---|---|
-| CPU1 dans le socket 1 |Résultat non confirmé |
-| CPU2 dans le socket 1 |Résultat non confirmé|
-| Voyants et bips |Résultat non confirmé |
+## Bilan du diagnostic documenté
 
-Preuve à ajouter dans `images/` et à lier ici après le test.
+Le rapport de référence décrit le retrait et la réinstallation des processeurs pour contrôler leur position et leur fixation. Après remontage, le serveur a affiché l’écran HP ProLiant, lancé la calibration thermique et poursuivi son démarrage jusqu’à Proxmox VE.
+
+[Rapport de référence](https://github.com/CollegeBoreal/INF1085-201-26A-04/tree/main/1.Diagnostics/300153401#-7-d%C3%A9marrage-du-serveur-et-test-post)
+
 ## Photo du laboratoire
 
-![Processeur installé](images/processeur-installe.png)
+![Processeur installé](processeur-installe.png)
+
+Cette photo illustre la position et la fixation du processeur.
 
 [Source de la photo](https://github.com/CollegeBoreal/INF1085-201-26A-04/tree/main/1.Diagnostics/300153401)
-*Processeur en place dans son socket. Cette photo illustre la vérification de son positionnement et de sa fixation.*
