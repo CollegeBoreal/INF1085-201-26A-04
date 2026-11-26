@@ -15,3 +15,8 @@ Le problème à diagnostiquer est l’absence de POST après l’ajout du deuxi�
 | Voyants et bips | À relever |
 
 Preuve à ajouter dans `images/` et à lier ici après le test.
+## Photo du laboratoire
+
+![Processeur installé](images/processeur-installe.png)
+
+[Source de la photo](https://github.com/CollegeBoreal/INF1085-201-26A-04/tree/main/1.Diagnostics/300153401)
