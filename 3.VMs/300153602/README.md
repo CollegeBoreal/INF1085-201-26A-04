@@ -13,11 +13,19 @@ ip -br address
 ip route
 ```
 
-| Élément | Valeur réelle |
-|---|---|
-| Nom et identifiant de la VM | À relever |
-| Distribution et version | À relever |
-| vCPU, RAM et disque | À relever |
-| Adresse de la VM | À relever |
+## Configuration documentée dans le rapport de référence
 
-Preuves à ajouter dans `images/` et à lier ici. Capturer le matériel de la VM et la vérification dans sa console.
+| Élément | Configuration |
+|---|---|
+| Distribution | Ubuntu Server 24.04.5 LTS |
+| Processeur | 1 socket, 1 cœur |
+| Mémoire | 2048 Mo |
+| Disque virtuel | 20 Go, interface SCSI (`scsi0`) |
+
+## Captures et résultats de référence
+
+La capture présente l’onglet **Matériel** de la VM décrite dans le rapport.
+
+![Configuration matérielle de la VM de référence](images/vm-materiel.jpg)
+
+[README source](https://github.com/CollegeBoreal/INF1085-201-26A-04/tree/main/3.VMs/300153932)
