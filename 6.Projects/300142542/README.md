@@ -1,5 +1,5 @@
 # 💳 Portefeuille Personnel & Tableau de Bord Financier
-* Auteur
+* Auteur Anouar Airn
 * Développé et déployé par Anouar Airn.
 ##
 
