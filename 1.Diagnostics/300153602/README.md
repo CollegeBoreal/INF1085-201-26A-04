@@ -1,21 +1,17 @@
-# Travail 1 — Diagnostic d’un serveur
+# Diagnostic du démarrage d’un HP ProLiant DL360 G6
 
-**Meriem Abdedou — INF1085, groupe 04**
+Le problème à diagnostiquer est l’absence de POST après l’ajout du deuxième processeur. Les causes possibles sont un processeur défectueux, un socket endommagé ou une barrette mal placée sur le canal mémoire associé.
 
-## Objectif
+1. Relever les voyants, les bips et le comportement des ventilateurs.
+2. Arrêter le serveur, débrancher l’alimentation et suivre les procédures antistatiques du laboratoire.
+3. Confirmer que la configuration connue avec CPU1 démarre. Tester ensuite CPU2 seul dans le socket 1 avec une barrette fonctionnelle dans l’emplacement recommandé.
+4. Si CPU2 démarre dans le socket 1, inspecter le socket 2, ses broches et la configuration de sa mémoire. Si CPU2 échoue alors que CPU1 fonctionne dans la même configuration, CPU2 devient la cause la plus probable.
+5. Si des broches sont cassées, comparer le coût du remplacement de la carte système avec celui d’une réparation spécialisée.
 
-Identifier pourquoi un serveur ne démarre pas et vérifier son état après l’intervention.
+| Test | Résultat réel |
+|---|---|
+| CPU1 dans le socket 1 | À relever |
+| CPU2 dans le socket 1 | À relever |
+| Voyants et bips | À relever |
 
-## Démarche
-
-1. Vérifier le câble d’alimentation et observer les voyants du serveur.
-2. Si le serveur s’allume, relever le message affiché à l’écran pendant le démarrage.
-3. Consulter le journal matériel iLO, s’il est accessible, pour préciser l’origine de la panne.
-4. Après l’intervention, vérifier si le serveur termine son autotest de démarrage (POST) et détecte le disque.
-
-## Observations du laboratoire
-
-- Symptôme observé :
-- Vérifications effectuées :
-- Cause identifiée :
-- Résultat après redémarrage :
+Preuve à ajouter dans `images/` et à lier ici après le test.
