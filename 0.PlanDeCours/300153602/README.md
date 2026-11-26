@@ -11,3 +11,4 @@ Dans le cours d’administration Linux, je vais apprendre à :
 - Gérer les utilisateurs, les groupes et les permissions.
 - Vérifier l’état du serveur et diagnostiquer les problèmes.
 - Documenter mes manipulations et mes résultats de laboratoire.
+![Plan de cours INF1085](images/plan-de-cours-inf1085.png)
