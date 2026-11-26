@@ -41,6 +41,16 @@ Le serveur présentait un problème de démarrage : le **deuxième processeur n'
 3. Vérifier la détection du CPU et de la mémoire dans le BIOS.
 4. En déduire quel élément est fautif.
 
+### Objectifs du travail
+
+- Inspecter les composants internes du serveur.
+- Vérifier l'installation des processeurs et de la mémoire.
+- Observer la séquence de démarrage (POST) et les informations du BIOS.
+- Isoler la cause de la panne par élimination.
+- Préparer le stockage : volume RAID 5 avec le contrôleur Smart Array.
+- Installer et démarrer Proxmox VE.
+- Relever les informations nécessaires à l'administration du serveur.
+
 ### Fiche technique du matériel
 
 | Élément | Détail |
@@ -114,6 +124,16 @@ Processeurs rencontrés : **Intel Xeon E5620 (2,40 GHz)** et **Intel Xeon E5540 
 
 > Avec un seul bloc d'alimentation, le message **« 1615 – Power Supply Failure or Power Supply Unplugged in Bay 2 »** s'affiche. C'est **normal** : seule la baie 1 est alimentée.
 
+### 5.1 Retrait temporaire des composants
+
+Pendant les tests, les **disques durs** et plusieurs **barrettes de mémoire** ont été retirés.
+
+![Disques HP et barrettes de mémoire retirés](https://github.com/user-attachments/assets/bb12bc21-a606-4ff2-85e3-c0c4c76d279e)
+
+*Figure 5 bis — Disques HP et barrettes de mémoire retirés pendant le diagnostic.*
+
+Retirer les disques permet d'observer le **démarrage matériel** sans que le serveur tente de charger le système installé dessus. Cela aide à distinguer un problème matériel d'un problème lié au stockage ou au système d'exploitation. Les composants sont ensuite réinstallés un par un.
+
 ---
 
 ## 6. Démarrage et résultats du POST
@@ -137,6 +157,19 @@ Le serveur passe le POST (Power-On Self-Test) et affiche :
 ![Écran POST](images/09-post-16go.jpg)
 
 *Figure 7 — Écran POST : `16 GB Installed`, BIOS P64 (03/01/2010), `1 Processor(s) detected, 4 total cores enabled, Hyperthreading is enabled`, `Proc 1 : Intel Xeon E5620 @ 2.40GHz`, `QPI Speed : 5.8 GT/s`, `Advanced ECC Support`.*
+
+### 6.3 Tentative de démarrage sur un périphérique
+
+Une fois le POST terminé, le serveur cherche un périphérique de démarrage. Il a essayé le CD-ROM, puis le réseau, et affiche :
+
+- `PXE-E61 : Media test failure, check cable` ;
+- `PXE-M0F : Exiting Broadcom PXE ROM`.
+
+![Échec du démarrage réseau PXE](images/eq-19-echec-pxe.jpeg)
+
+*Figure 7 bis — Échec de la tentative de démarrage réseau (PXE) : le message demande de vérifier le câble réseau.*
+
+Le serveur atteint donc la **recherche d'un périphérique de démarrage**, ce qui valide le matériel jusqu'à cette étape. L'échec PXE **ne prouve pas** une panne de disque : il faut contrôler le support amorçable, l'ordre de démarrage et la connexion réseau selon le mode d'installation choisi.
 
 ---
 
@@ -191,6 +224,8 @@ Voir la figure 7 : `16 GB Installed`.
 
 *Figure 9 — BIOS Memory Diagnostic : 4 barrettes de 16 384 Mo, le reste des slots en `Not Installed`. Total : `65536MB Available / 65536MB Configured`.*
 
+Ce diagnostic confirme que la mémoire est **reconnue** par le BIOS. Il ne constitue pas un test prolongé de stabilité : un test complet demande de laisser le diagnostic terminer son exécution.
+
 ---
 
 ## 9. Analyse des causes possibles
@@ -215,7 +250,7 @@ Le test demandé par la procédure du laboratoire est de placer **le processeur 
 
 ## 10. Composants complémentaires et dépannage observés en équipe
 
-Le laboratoire a été réalisé en équipe : les observations ci-dessous sont celles du groupe (voir aussi les rapports des coéquipiers [300142542](../300142542/README.md) et [300145955](../300145955/README.md)).
+Le laboratoire a été réalisé en équipe : les observations ci-dessous sont celles du groupe.
 
 ### 10.1 Composants identifiés
 
@@ -296,7 +331,7 @@ Après la validation du processeur et de la mémoire, la dernière étape du dia
 
 Le DL360 G6 utilise un contrôleur **Smart Array P410i** intégré, avec un module de cache de 512 Mo. Dans notre serveur, il gère **3 disques SAS de 146 Go** (voir la [section 10](#10-composants-complémentaires-et-dépannage-observés-en-équipe)). Il présente au système des **volumes logiques** (*logical drives*) construits à partir des disques physiques ; les disques individuels ne sont donc pas visibles directement par Linux.
 
-### 10.1 Détection au POST
+### 11.1 Détection au POST
 
 Pendant le POST, le message du contrôleur Smart Array liste les disques détectés et l'état des volumes logiques. On y lit :
 
@@ -306,7 +341,7 @@ Pendant le POST, le message du contrôleur Smart Array liste les disques détect
 
 > Si aucun volume logique n'est configuré, le POST l'indique et le système ne verra aucun disque : c'est l'étape suivante à réaliser.
 
-### 10.2 Configuration d'un volume logique (ORCA / ACU)
+### 11.2 Configuration d'un volume logique (ORCA / ACU)
 
 | Étape | Action |
 |---|---|
@@ -325,17 +360,52 @@ Pendant le POST, le message du contrôleur Smart Array liste les disques détect
 
 Pour un serveur de laboratoire, le **RAID 1** (système) ou le **RAID 5** (données) sont les choix usuels. L'utilitaire graphique **HP Array Configuration Utility (ACU)** permet les mêmes opérations avec une interface plus complète (extension d'un volume, disque de secours).
 
-### 10.3 Vérification après configuration
+### 11.3 Vérification après configuration
 
 Au redémarrage, le POST doit afficher le volume logique créé avec l'état **OK**. Un volume à l'état *Failed* ou *Rebuilding* signale un disque défectueux : on remplace le disque et le contrôleur reconstruit le volume.
+
+### 11.4 Réalisation en équipe : volume RAID 5
+
+Avant d'installer le système, le groupe a utilisé le contrôleur **Smart Array P410i** pour regrouper les **trois disques SAS** dans un seul volume logique en **RAID 5**.
+
+![Sélection des trois disques SAS pour le RAID 5](https://github.com/user-attachments/assets/241f6118-a928-4373-8596-d35a9b722c0a)
+
+*Figure 18 — Sélection des trois disques SAS pour la création du volume RAID 5.*
+
+| Élément | Configuration |
+|---|---|
+| Contrôleur | HP Smart Array P410i (cache 512 Mo) |
+| Disques | 3 disques SAS de **146,8 Go** chacun |
+| Niveau RAID | **RAID 5** |
+| Capacité utile | environ **293,56 Go** |
+| Tolérance de panne | 1 disque |
+
+**Calcul de la capacité.** En RAID 5, l'équivalent d'un disque sert à la parité : (3 − 1) × 146,8 Go ≈ **293,6 Go** utilisables, ce qui correspond à la capacité affichée par le contrôleur.
+
+### 11.5 Installation de Proxmox VE
+
+Une fois le volume logique créé, le groupe a installé **Proxmox Virtual Environment** sur le serveur. Le **partitionnement et le formatage** du volume ont été faits **par l'installateur de Proxmox**, qui prépare lui-même le disque.
+
+![Console de Proxmox VE après le démarrage](https://github.com/user-attachments/assets/d9d05c3e-1e72-47cd-9c99-fff5d9b313a6)
+
+*Figure 19 — Console de Proxmox VE après le démarrage.*
+
+| Observation | Valeur |
+|---|---|
+| Message affiché | *Welcome to the Proxmox Virtual Environment* |
+| Adresse d'administration | `https://192.168.100.2:8006/` |
+| Invite de commande | `root@server1:~#` |
+| Session | Locale, avec le compte **root** |
+
+Le démarrage de Proxmox montre que le serveur poursuit sa séquence **jusqu'au chargement du système d'exploitation**, ce qui valide le matériel nécessaire à cette étape (processeur, mémoire, contrôleur RAID et volume logique). L'accessibilité de l'interface Web depuis un autre ordinateur reste à confirmer avec un navigateur.
 
 ---
 
 ## 12. Formatage et montage sous Linux
 
-Une fois le volume logique créé, Linux le voit comme un disque ordinaire (par exemple `/dev/sda`). Il reste à le partitionner, à le formater et à le monter.
+Une fois le volume logique créé, Linux le voit comme un disque ordinaire (par exemple `/dev/sda`). Il reste à le partitionner, à le formater et à le monter. Pendant le labo, l'installateur de Proxmox a fait cette préparation (section 11.5) ; les commandes ci-dessous détaillent la méthode manuelle sous Linux.
 
-### 11.1 Identifier le disque
+### 12.1 Identifier le disque
 
 ```bash
 lsblk
@@ -344,7 +414,7 @@ sudo fdisk -l
 
 `lsblk` liste les disques, leurs partitions et leurs points de montage. **Toujours vérifier le nom du disque avant de le formater** : formater le mauvais disque détruit ses données.
 
-### 11.2 Partitionner
+### 12.2 Partitionner
 
 ```bash
 sudo parted /dev/sdb --script mklabel gpt
@@ -353,7 +423,7 @@ sudo parted /dev/sdb --script mkpart primary ext4 0% 100%
 
 Ici `/dev/sdb` est un exemple : à remplacer par le disque identifié à l'étape précédente. Le schéma **GPT** est le choix moderne pour les disques de plus de 2 To.
 
-### 11.3 Formater
+### 12.3 Formater
 
 ```bash
 sudo mkfs.ext4 /dev/sdb1
@@ -361,7 +431,7 @@ sudo mkfs.ext4 /dev/sdb1
 
 Le système de fichiers **ext4** est le plus courant sous Linux. Le formatage crée la structure qui permet de stocker des fichiers.
 
-### 11.4 Monter
+### 12.4 Monter
 
 ```bash
 sudo mkdir -p /mnt/data
@@ -371,7 +441,7 @@ df -h
 
 `df -h` confirme que la partition est montée et affiche sa taille.
 
-### 11.5 Montage permanent
+### 12.5 Montage permanent
 
 Pour que le montage survive au redémarrage, on ajoute une ligne dans `/etc/fstab`, en utilisant l'**UUID** (plus stable que le nom `/dev/sdb1`) :
 
@@ -383,7 +453,7 @@ sudo mount -a
 
 `mount -a` teste le fichier `fstab` : une erreur ici doit être corrigée avant tout redémarrage, sinon le système peut ne pas démarrer.
 
-### 11.6 Résumé du flux
+### 12.6 Résumé du flux
 
 | Étape | Outil | Résultat |
 |---|---|---|
@@ -397,11 +467,46 @@ sudo mount -a
 
 ## 13. Conclusion
 
+### 13.1 Bilan des vérifications
+
+| Élément | Résultat ou observation |
+|---|---|
+| Inspection interne | Serveur ouvert, composants identifiés |
+| Processeurs | Retirés, inspectés, réinstallés ; testés seuls dans le socket 1 |
+| Dissipateurs thermiques | Retirés puis remontés |
+| Mémoire RAM | Reconnue par le BIOS (8 Go, 16 Go, puis 64 Go selon l'essai) |
+| Retrait temporaire | Disques et barrettes retirés puis réinstallés progressivement |
+| POST | Réussi : `1 Processor(s) detected`, calibration thermique, BIOS accessible |
+| Diagnostic CPU | Processeur du socket Proc 1 : **OK** |
+| Alimentation | Avertissement 1615 normal (un seul bloc branché) |
+| Dépannage | Cache RAID retiré, pile CMOS remplacée, SW1 n°6 utilisé, processeur placé dans le socket 1 |
+| Disques SAS | 3 disques de 146,8 Go regroupés en **RAID 5** (environ 293,56 Go) |
+| Proxmox VE | Installé et démarré en console (`root@server1`) |
+| Accès Web | Adresse affichée ; connexion à vérifier depuis un navigateur |
+
+### 13.2 Résultats obtenus
+
+À la fin du travail, le groupe a réussi à :
+
+1. Ouvrir le serveur et identifier ses principaux composants.
+2. Inspecter et réinstaller les processeurs, puis remonter les dissipateurs.
+3. Vérifier l'installation des barrettes de mémoire.
+4. Isoler la panne par élimination et atteindre le POST.
+5. Accéder au BIOS, au RBSU et aux diagnostics mémoire et processeur.
+6. Observer jusqu'à 64 Go de mémoire configurée.
+7. Créer un volume RAID 5 avec les trois disques SAS.
+8. Poursuivre le démarrage jusqu'au système d'exploitation.
+9. Installer et démarrer Proxmox VE, avec une session locale root.
+
+### 13.3 Conclusion générale
+
 - Le **processeur testé et le socket 1 sont fonctionnels** : le serveur réussit le POST (`1 Processor(s) detected`), le CPU Diagnostic indique **OK** et la mémoire est détectée (8 192 Mo sur PROC 1 DIMM 3).
 - L'arrêt « *Processor in incorrect slot* » vient de l'**emplacement du processeur** : avec un seul CPU, il doit être dans le socket 1.
 - Le retrait du **module de cache RAID**, le remplacement de la **pile CMOS** et la réinitialisation par **SW1 n°6** ont permis au serveur d'atteindre le POST.
 - Le RBSU indique **Proc 2 : Not Installed**. Le **socket 2** reste une hypothèse à confirmer par le test croisé décrit en section 9.
 - Le serveur contient **3 disques SAS de 146 Go** derrière un Smart Array P410i (cache 512 Mo) : ils se gèrent en deux temps, avec le **volume logique** créé dans le contrôleur (ORCA/ACU), puis Linux qui le **partitionne, formate et monte** (`parted`, `mkfs.ext4`, `/etc/fstab`).
+- **Résultat principal :** un volume **RAID 5** d'environ 293,56 Go a été créé avec les trois disques SAS, puis **Proxmox VE** a été installé et a démarré jusqu'à la console locale (`root@server1`).
+- **Limites :** l'accès à l'interface Web (`https://192.168.100.2:8006/`) depuis un autre ordinateur et le résultat final complet du diagnostic mémoire restent à confirmer.
 - Ce laboratoire a permis de pratiquer l'isolation de panne par configuration minimale, la lecture des messages POST, l'utilisation du RBSU, du diagnostic mémoire et CPU, et la préparation du stockage.
 
 ---
