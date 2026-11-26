@@ -21,4 +21,13 @@ ip -br address
 4. `nolapic` désactive le contrôleur local des interruptions. Selon la plateforme, cela peut empêcher l’activation de plusieurs processeurs logiques.
 5. `cat /proc/cmdline` affiche les paramètres réellement utilisés par le noyau.
 
-Preuves à ajouter dans `images/` et à lier ici après l’installation. Capturer la version, les processeurs détectés et le sommaire Proxmox.
+
+## Bilan après redémarrage
+
+Le rapport source documente l’installation de Proxmox VE 9.2 et 16 processeurs logiques détectés par `nproc`. Le rapport indique également que le paramètre `nomodeset` était actif au démarrage.
+
+![Installation réussie](images/16-installation-reussie.jpg)
+
+![Processeurs logiques détectés](images/18-nproc.jpg)
+
+[README source](https://github.com/CollegeBoreal/INF1085-201-26A-04/tree/main/2.Proxmox/300153932)
