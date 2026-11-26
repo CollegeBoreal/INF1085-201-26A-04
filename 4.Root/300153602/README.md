@@ -1,21 +1,16 @@
-# Travail 4 — Comptes administrateurs Proxmox
+# Comptes administrateurs Proxmox
 
-**Meriem Abdedou — INF1085, groupe 04**
+Un compte individuel permet d’associer les actions à un administrateur. Le compte root reste disponible pour les interventions de maintenance et de récupération. Dans le laboratoire, le rôle doit correspondre aux tâches autorisées par le professeur.
 
-## Objectif
+Sur le nœud attribué, créer le compte Linux individuel puis enregistrer le même compte dans le domaine PAM de Proxmox. Remplacer `BIDENTIFIANT` par le compte demandé.
 
-Créer un compte administrateur nominatif dans Proxmox et vérifier ses droits sur les ressources du laboratoire.
+```bash
+adduser BIDENTIFIANT
+id BIDENTIFIANT
+pveum user add BIDENTIFIANT@pam
+pveum user list
+pveum role list
+pveum acl list
+```
 
-## Démarche
-
-1. Créer un compte Linux sur le nœud Proxmox.
-2. Dans **Datacenter → Permissions → Users**, ajouter ce compte avec le domaine **Linux PAM**.
-3. Dans **Datacenter → Permissions**, attribuer au compte le rôle et le périmètre prévus pour le laboratoire.
-4. Ouvrir une nouvelle session avec ce compte et vérifier qu’il peut gérer la VM qui lui est attribuée.
-5. Si l’accès SSH est demandé, ajouter la clé publique au fichier `~/.ssh/authorized_keys` et tester la connexion.
-
-## Résultats du laboratoire
-
-- Compte et domaine utilisés :
-- Rôle et périmètre attribués :
-- Résultat du test de connexion :
+Faire vérifier l’attribution du rôle demandé pour le périmètre du laboratoire. Tester la connexion web sur le domaine **Linux PAM**. Pour SSH, utiliser une clé publique ED25519 et vérifier que la session ouverte correspond au compte individuel avec `whoami`. Capturer la liste des comptes et l’ACL obtenue, puis les ajouter dans `images/`.
