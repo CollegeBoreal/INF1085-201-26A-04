@@ -1,24 +1,24 @@
-# Travail 2 — Installation de Proxmox VE
+# Installation de Proxmox VE 9
 
-**Meriem Abdedou — INF1085, groupe 04**
+Le laboratoire utilise un HP ProLiant DL360 G7. Préparer une clé USB à partir de l’ISO, démarrer sur la clé depuis le menu F11 et lancer l’installation sur le disque attribué. Configurer le nom d’hôte, le réseau et le compte selon les paramètres du groupe. Si l’installateur affiche un écran noir, tester `nomodeset` sur la ligne du noyau au démarrage.
 
-## Objectif
+## Vérifications après redémarrage
 
-Installer Proxmox VE sur le serveur du laboratoire et vérifier que le
-nœud est accessible depuis un autre poste.
+```bash
+pveversion
+cat /proc/cmdline
+lscpu
+nproc
+lsblk
+ip -br address
+```
 
-## Démarche
+## Questions de réflexion
 
-1. Démarrer le serveur sur la clé USB d’installation de Proxmox VE.
-2. Sélectionner le disque réservé à l’installation.
-3. Entrer le nom du serveur et les paramètres réseau attribués au groupe.
-4. Redémarrer le serveur, puis ouvrir https://<IP-du-serveur>:8006
-   depuis un autre poste du laboratoire.
-5. Vérifier la version de Proxmox avec `pveversion`, la mémoire avec
-   `free -h` et les disques avec `lsblk`.
+1. `nomodeset` désactive la configuration graphique avancée du noyau au démarrage pour permettre l’utilisation d’un mode vidéo simple.
+2. Un BIOS ancien peut exposer des tables ACPI incompatibles ou incomplètes. `acpi=off` peut aider à isoler ce problème, avec des effets possibles sur la gestion de l’énergie et la détection de matériel.
+3. ACPI décrit le matériel et les fonctions d’énergie. APIC gère la distribution des interruptions aux processeurs.
+4. `nolapic` désactive le contrôleur local des interruptions. Selon la plateforme, cela peut empêcher l’activation de plusieurs processeurs logiques.
+5. `cat /proc/cmdline` affiche les paramètres réellement utilisés par le noyau.
 
-## Résultats du laboratoire
-
-- Version de Proxmox :
-- Mémoire et disques détectés :
-- Accès à l’interface Web :
+Preuves à ajouter dans `images/` et à lier ici après l’installation. Capturer la version, les processeurs détectés et le sommaire Proxmox.
