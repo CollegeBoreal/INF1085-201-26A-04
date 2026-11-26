@@ -1,28 +1,32 @@
-# Travail 5 — Stockage sous Linux et Proxmox
+# Stockage Linux et migration d’un disque de VM
 
-**Meriem Abdedou — INF1085, groupe 04**
+## Questions de réflexion
 
-## Objectif
+1. Un HDD utilise des plateaux mécaniques. Un SSD SATA utilise de la mémoire flash via SATA. Un SSD NVMe utilise la mémoire flash avec un protocole adapté à PCIe.
+2. Une partition définit une zone du disque qu’on peut gérer séparément.
+3. Un système de fichiers organise les dossiers, les fichiers et leurs métadonnées.
+4. PV signifie volume physique, VG groupe de volumes et LV volume logique. Un VG rassemble un ou plusieurs PV pour allouer de l’espace aux LV.
+5. LVM-Thin alloue l’espace physique au fur et à mesure des écritures et permet les instantanés.
+6. `pvesm status` affiche les stockages déclarés dans Proxmox.
+7. Un NVMe réduit généralement la latence et augmente le débit lorsque plusieurs VM accèdent au stockage.
 
-Identifier les disques et les volumes du serveur, puis vérifier où Proxmox
-stocke les images ISO et les disques des machines virtuelles.
+## Laboratoire de migration
 
-## Vérifications
+```bash
+lsblk -f
+pvs
+vgs
+lvs
+pvesm status
+qm list
+```
 
-| Commande | Ce que je vérifie |
-|---|---|
-| `lsblk -f` | Les disques, les partitions et leurs systèmes de fichiers |
-| `pvs` et `vgs` | Les volumes physiques et les groupes de volumes LVM |
-| `lvs -a` | Les volumes logiques et les pools LVM-thin |
-| `pvesm status` | L’état et l’espace disponible des stockages Proxmox |
+Vérifier que le stockage NVMe est actif et a l’espace requis, puis identifier le disque de sa propre VM avec `qm config VMID`. Remplacer `VMID` et `scsi0` par les valeurs relevées.
 
-Un volume physique (PV) fournit de l’espace à un groupe de volumes (VG).
-On utilise cet espace pour créer des volumes logiques (LV). Avec LVM-thin,
-les blocs sont alloués à mesure que les machines virtuelles écrivent des données.
+```bash
+qm move_disk VMID scsi0 nvme-storage
+qm config VMID
+pvesm list nvme-storage
+```
 
-## Résultats du laboratoire
-
-- Disques détectés :
-- Groupe de volumes et pool LVM-thin :
-- Stockage des ISO :
-- Stockage des disques des VM :
+La ligne du disque actif doit pointer vers le stockage NVMe après l’opération. Démarrer la VM ou vérifier qu’elle reste opérationnelle selon les conditions du labo. Ajouter les captures de la configuration avant et après dans `images/`.
